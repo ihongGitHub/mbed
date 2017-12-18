@@ -12,5 +12,9 @@ procRf::procRf(){
 }
 
 void procRf::process(rfFrame_t* pFrame){
-
+	uint8_t ucCmd = pFrame->Cmd.Command;
+	switch(ucCmd){
+		case 1:
+				break;
+	}
 }

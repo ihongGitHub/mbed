@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\BUILD\BLE_LED.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\BUILD\BLE_LED.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Tue Dec 19 05:11:11 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Tue Dec 19 05:49:37 2017
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -530,7 +530,7 @@ Global Symbols
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
 <BR>[Called By]<UL><LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 </UL>
 
 <P><STRONG><a name="[c5]"></a>__2printf</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_w.l(__2printf.o)(.text))
@@ -1260,7 +1260,11 @@ Global Symbols
 <LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::sendInternal()
 </UL>
 
-<P><STRONG><a name="[19d]"></a>Rf::clearRxFlag()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\rf.o(i._ZN2Rf11clearRxFlagEv))
+<P><STRONG><a name="[19e]"></a>Rf::clearRxFlag()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\rf.o(i._ZN2Rf11clearRxFlagEv))
+<BR><BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+</UL>
+
+<P><STRONG><a name="[19f]"></a>Rf::returnRxBuf()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, .\build\rf.o(i._ZN2Rf11returnRxBufEv))
 <BR><BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
@@ -1704,6 +1708,14 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp_65dbaf9c
 </UL>
 
+<P><STRONG><a name="[1a0]"></a>procRf::process(rfFrame_t*)</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, .\build\procrf.o(i._ZN6procRf7processEP9rfFrame_t))
+<BR><BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+</UL>
+
+<P><STRONG><a name="[19d]"></a>procRf::procRf()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, .\build\procrf.o(i._ZN6procRfC1Ev))
+<BR><BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+</UL>
+
 <P><STRONG><a name="[16e]"></a>DimmerRf::initRfFrame()</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, .\build\dimmerrf.o(i._ZN8DimmerRf11initRfFrameEv))
 <BR><BR>[Calls]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::initRf(channel_t*)
 </UL>
@@ -1895,7 +1907,7 @@ Global Symbols
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::~SerialBase()
 <LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
 <LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 <LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
 <LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_64bit_us_get
 <LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_32bit_ticks_get
@@ -1923,7 +1935,7 @@ Global Symbols
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::Timer()
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::~SerialBase()
 <LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 <LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
 <LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_64bit_us_get
 <LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_32bit_ticks_get
@@ -1977,7 +1989,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::Timer()
 <LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::TimerEvent__sub_object()
-<LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
+<LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
 </UL>
 
 <P><STRONG><a name="[190]"></a>gpio_dir</STRONG> (Thumb, 88 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_dir))
@@ -2065,7 +2077,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mbed_lp_ticker_api.o(.constdata)
 </UL>
-<P><STRONG><a name="[11a]"></a>$Super$$main</STRONG> (Thumb, 376 bytes, Stack size 0 bytes, .\build\main.o(i.main))
+<P><STRONG><a name="[11a]"></a>$Super$$main</STRONG> (Thumb, 398 bytes, Stack size 0 bytes, .\build\main.o(i.main))
 <BR><BR>[Calls]<UL><LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Callback&lang;void()&rang;::Callback(void(*)())
 <LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::attach(mbed::Callback&lang;void()&rang;, float)
 <LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::PwmOut::operator =(float)
@@ -2074,12 +2086,15 @@ Global Symbols
 <LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_read
 <LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::DimmerRf(Flash*)
 <LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::initRfFrame()
+<LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRf()
+<LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::process(rfFrame_t*)
 <LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::isFactoryMode()
 <LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::getFlashFrame()
 <LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::baud(int)
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::isRxDone()
 <LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::sendRf(const rfFrame_t*)
-<LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::clearRxFlag()
+<LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::returnRxBuf()
+<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::clearRxFlag()
 <LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_write(gpio_t*, int)
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Callback&lang;void()&rang;::~Callback()
@@ -2090,7 +2105,7 @@ Global Symbols
 <P><STRONG><a name="[11f]"></a>mbed_assert_internal</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_assert.o)(i.mbed_assert_internal))
 <BR><BR>[Calls]<UL><LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
 <LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
-<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
 <LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_read
@@ -2111,14 +2126,14 @@ Global Symbols
 <P><STRONG><a name="[185]"></a>mbed_die</STRONG> (Thumb, 188 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed_board.o(i.mbed_die))
 <BR><BR>[Calls]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
-<LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
+<LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
-<P><STRONG><a name="[19e]"></a>mbed_error_printf</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed_board.o(i.mbed_error_printf))
+<P><STRONG><a name="[1a1]"></a>mbed_error_printf</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed_board.o(i.mbed_error_printf))
 <BR><BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
 <LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_putc
@@ -2243,12 +2258,12 @@ Global Symbols
 <P><STRONG><a name="[138]"></a>serial_init</STRONG> (Thumb, 332 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_init))
 <BR><BR>[Calls]<UL><LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
 <LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
-<LI><a href="#[1a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;internal_set_hwfc
+<LI><a href="#[1a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;internal_set_hwfc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_write
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
 <LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::SerialBase(PinName, PinName, int)
 </UL>
 
@@ -2267,7 +2282,7 @@ Global Symbols
 <P><STRONG><a name="[131]"></a>serial_putc</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_putc))
 <BR><BR>[Called By]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_write
 <LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::_base_putc(int)
 </UL>
 
@@ -2298,30 +2313,30 @@ Global Symbols
 <P><STRONG><a name="[140]"></a>ticker_insert_event_us</STRONG> (Thumb, 112 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_insert_event_us))
 <BR><BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
-<LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
-<LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<LI><a href="#[1a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
+<LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::insert_absolute(unsigned long long)
 </UL>
 
 <P><STRONG><a name="[19c]"></a>ticker_irq_handler</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_irq_handler))
-<BR><BR>[Calls]<UL><LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<BR><BR>[Calls]<UL><LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_irq_handler
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lp_ticker_irq_handler
 </UL>
 
-<P><STRONG><a name="[1a5]"></a>ticker_read</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read))
-<BR><BR>[Calls]<UL><LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
-<LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<P><STRONG><a name="[1a8]"></a>ticker_read</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read))
+<BR><BR>[Calls]<UL><LI><a href="#[1a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
+<LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
-<LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
+<LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
 </UL>
 
 <P><STRONG><a name="[14a]"></a>ticker_read_us</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read_us))
-<BR><BR>[Calls]<UL><LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
-<LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<BR><BR>[Calls]<UL><LI><a href="#[1a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
+<LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::setup(unsigned long long)
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::Timer()
@@ -2330,15 +2345,15 @@ Global Symbols
 <P><STRONG><a name="[142]"></a>ticker_remove_event</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_remove_event))
 <BR><BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
-<LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::~TimerEvent__sub_object()
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::remove()
 </UL>
 
 <P><STRONG><a name="[145]"></a>ticker_set_handler</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_set_handler))
-<BR><BR>[Calls]<UL><LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
-<LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<BR><BR>[Calls]<UL><LI><a href="#[1a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
+<LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::TimerEvent__sub_object()
 </UL>
@@ -2381,7 +2396,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mbed_us_ticker_api.o(.constdata)
 </UL>
 <P><STRONG><a name="[127]"></a>wait</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait))
-<BR><BR>[Calls]<UL><LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<BR><BR>[Calls]<UL><LI><a href="#[1a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 <LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_us_ticker_data
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
@@ -2389,8 +2404,8 @@ Global Symbols
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::initRf(channel_t*)
 </UL>
 
-<P><STRONG><a name="[19f]"></a>wait_ms</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms))
-<BR><BR>[Calls]<UL><LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<P><STRONG><a name="[1a2]"></a>wait_ms</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms))
+<BR><BR>[Calls]<UL><LI><a href="#[1a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 <LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_us_ticker_data
 </UL>
 <BR>[Called By]<UL><LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
@@ -2446,8 +2461,8 @@ Global Symbols
 <P><STRONG><a name="[47]"></a>CThunk&lang;mbed::SerialBase&rang;::trampoline(mbed::SerialBase*, void*, void(mbed::SerialBase::**)(void*))</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(SerialBase.o)(t._ZN6CThunkIN4mbed10SerialBaseEE10trampolineEPS1_PvPMS1_FvS4_E))
 <BR>[Address Reference Count : 1]<UL><LI> SerialBase.o(i._ZN4mbed10SerialBaseC1E7PinNameS1_i)
 </UL>
-<P><STRONG><a name="[1a7]"></a>__fpl_fnaninf</STRONG> (Thumb, 140 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_wm.l(fnaninf.o)(x$fpl$fnaninf), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[1a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ll_ufrom_f
+<P><STRONG><a name="[1aa]"></a>__fpl_fnaninf</STRONG> (Thumb, 140 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_wm.l(fnaninf.o)(x$fpl$fnaninf), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[1a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ll_ufrom_f
 </UL>
 
 <P><STRONG><a name="[aa]"></a>_fp_init</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_wm.l(fpinit.o)(x$fpl$fpinit))
@@ -2458,8 +2473,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::attach(mbed::Callback&lang;void()&rang;, float)
 </UL>
 
-<P><STRONG><a name="[1a6]"></a>_ll_ufrom_f</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_wm.l(ffixull.o)(x$fpl$llufromf), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[1a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fnaninf
+<P><STRONG><a name="[1a9]"></a>_ll_ufrom_f</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_wm.l(ffixull.o)(x$fpl$llufromf), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[1aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fnaninf
 </UL>
 
 <P><STRONG><a name="[8c]"></a>_printf_fp_dec</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_wm.l(printf1.o)(x$fpl$printf1))
@@ -2511,8 +2526,8 @@ Local Symbols
 <P><STRONG><a name="[189]"></a>queue_process</STRONG> (Thumb, 1522 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/fds.o(i.queue_process))
 <BR><BR>[Calls]<UL><LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_store
 <LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_erase
-<LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;record_find_by_desc
-<LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;record_find
+<LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;record_find_by_desc
+<LI><a href="#[1a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;record_find
 <LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
 <LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gc_record_find_next
 </UL>
@@ -2520,11 +2535,11 @@ Local Symbols
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_event_handler
 </UL>
 
-<P><STRONG><a name="[1a1]"></a>record_find</STRONG> (Thumb, 350 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/fds.o(i.record_find))
+<P><STRONG><a name="[1a4]"></a>record_find</STRONG> (Thumb, 350 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/fds.o(i.record_find))
 <BR><BR>[Called By]<UL><LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
 </UL>
 
-<P><STRONG><a name="[1a0]"></a>record_find_by_desc</STRONG> (Thumb, 278 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/fds.o(i.record_find_by_desc))
+<P><STRONG><a name="[1a3]"></a>record_find_by_desc</STRONG> (Thumb, 278 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/fds.o(i.record_find_by_desc))
 <BR><BR>[Called By]<UL><LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
 </UL>
 
@@ -2561,7 +2576,7 @@ Local Symbols
 <LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_period_us
 </UL>
 
-<P><STRONG><a name="[1a4]"></a>internal_set_hwfc</STRONG> (Thumb, 116 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/serial_api.o(i.internal_set_hwfc))
+<P><STRONG><a name="[1a7]"></a>internal_set_hwfc</STRONG> (Thumb, 116 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/serial_api.o(i.internal_set_hwfc))
 <BR><BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_init
 </UL>
 
@@ -2587,10 +2602,10 @@ Local Symbols
 <P><STRONG><a name="[48]"></a>&lang;Func3&rang;</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(SerialBase.o)(i.<Func3>))
 <BR>[Address Reference Count : 1]<UL><LI> SerialBase.o(i._ZN4mbed10SerialBaseC1E7PinNameS1_i)
 </UL>
-<P><STRONG><a name="[1a2]"></a>schedule_interrupt</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.schedule_interrupt))
-<BR><BR>[Calls]<UL><LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
+<P><STRONG><a name="[1a5]"></a>schedule_interrupt</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.schedule_interrupt))
+<BR><BR>[Calls]<UL><LI><a href="#[1a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<BR>[Called By]<UL><LI><a href="#[1a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read_us
 <LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_irq_handler
 <LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_set_handler
@@ -2598,10 +2613,10 @@ Local Symbols
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_insert_event_us
 </UL>
 
-<P><STRONG><a name="[1a3]"></a>update_present_time</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.update_present_time))
-<BR><BR>[Called By]<UL><LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<P><STRONG><a name="[1a6]"></a>update_present_time</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.update_present_time))
+<BR><BR>[Called By]<UL><LI><a href="#[1a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read_us
-<LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 <LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_set_handler
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_insert_event_us
 </UL>

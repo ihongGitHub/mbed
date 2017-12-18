@@ -108,3 +108,4 @@
 .\build\main.o: .\UttecLib\Random.h
 .\build\main.o: .\UttecLib\UttecUtil.h
 .\build\main.o: .\UttecLib\radio_config.h
+.\build\main.o: .\UttecApp\procRf.h

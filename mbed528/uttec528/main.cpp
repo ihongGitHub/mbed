@@ -3,6 +3,7 @@
 
 #include "Flash.h"
 #include "DimmerRf.h"
+#include "procRf.h"
 
 DigitalOut alivenessLED(LED1, 0);
 
@@ -37,35 +38,47 @@ int main(void)
 #ifdef 	my52832
 	printf("My system is nrf52832\n\r");
 #else
-	printf("My system is nrf51822\n\r");	
+	printf("My system is nrf51822\n\r");
 #endif
-	
+
 	wait(0.001);
 	flash.isFactoryMode();
 	Flash_t* pFlash = flash.getFlashFrame();
 	rfFrame_t* pFrame=&pFlash->rfFrame;
-	printf("My Gid =%d\n\r", pFrame->MyAddr.GroupAddr);	
+	printf("My Gid =%d\n\r", pFrame->MyAddr.GroupAddr);
+
 	DimmerRf myRf(&flash);
 	myRf.initRfFrame();
-	
+
 //	pFrame->MyAddr.RxTx.iRxTx = eTx;
-	
-	secTimer.attach(&tickSec, 1);	
-	msecTimer.attach(&tickmSec, 0.001);	
+
+	secTimer.attach(&tickSec, 1);
+	msecTimer.attach(&tickmSec, 0.001);
 	uint32_t ulCount = 0;
 	uint32_t ulmSecCount = 0;
 	bool mSecToggle = false;
 	myPwm2.period_us(1000);
 	myPwm1.period_us(1000);
 	myPwm.period_us(1000);
+
+	procRf rfProc;
+
 	while (true) {
 		if(myRf.isRxDone()){
 			myRf.clearRxFlag();
+			rfProc.process(myRf.returnRxBuf());
 			printf("---------Rf Received\n\r");
 		}
+		/*
+		if(my485.isRxDone()){
+			myRf.clearRxFlag();
+			rfProc.process(myRf.returnRxBuf());
+			printf("---------Rf Received\n\r");
+		}
+		*/
 		if(tick_Sec){
 			tick_Sec = false;
-			
+
 			alivenessLED = !alivenessLED;
 			ulCount++;
 			if(pFrame->MyAddr.RxTx.Bit.Tx){
@@ -81,11 +94,11 @@ int main(void)
 			tick_mSec = false;
 			ulmSecCount++;
 			if(!(ulmSecCount%1000)) printf("ulmSecCount = %d\n\r",ulmSecCount);
-			mSecToggle = !mSecToggle;			
+			mSecToggle = !mSecToggle;
 			if(mSecToggle){
 				if(!(ulmSecCount%7))
 					myPwm = 0.5;
-				else 
+				else
 					myPwm2 = 0.1;
 			}
 			else{

@@ -16,5 +16,4 @@ public:
 	procRf();
 	void process(rfFrame_t*);
 };
-//extern DimmerRf* myRf;
 #endif
