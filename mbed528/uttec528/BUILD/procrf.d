@@ -1,0 +1,9 @@
+.\build\procrf.o: UttecApp\procRf.cpp
+.\build\procrf.o: mbed_config.h
+.\build\procrf.o: UttecApp\procRf.h
+.\build\procrf.o: .\UttecLib\Rf.h
+.\build\procrf.o: .\UttecLib\Flash.h
+.\build\procrf.o: .\UttecLib\Channel.h
+.\build\procrf.o: .\UttecLib\Random.h
+.\build\procrf.o: .\UttecLib\UttecUtil.h
+.\build\procrf.o: .\UttecLib\radio_config.h
