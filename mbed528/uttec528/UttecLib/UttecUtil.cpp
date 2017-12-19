@@ -49,3 +49,64 @@ uint8_t UttecUtil::Hex2Dec(uint8_t cHex)
 	}
 	return cHex;
 }
+#include <stdio.h>
+#include <string.h>
+
+char* dispRxTx(char* cResult, uint8_t ucRxTx){
+	memset(cResult,0,5);
+	switch(ucRxTx){
+		case eRx: sprintf(cResult, "Rx"); break;
+		case eTx: sprintf(cResult, "Tx"); break;
+		case eSRx: sprintf(cResult, "SRx"); break;
+		case eRpt: sprintf(cResult, "Rpt"); break;
+		case eGW: sprintf(cResult, "GW"); break;
+		case eMst: sprintf(cResult, "Mst"); break;
+		case eReserved: sprintf(cResult, "TBD"); break;
+		default: printf("Error value %d\n\r", ucRxTx);
+	}
+	return cResult;
+}
+
+char* dispSensor(char* cResult, uint8_t ucSensor){
+	memset(cResult,0,5);
+	switch(ucSensor){
+		case eNoSensor: sprintf(cResult, "No"); break;
+		case ePir: sprintf(cResult, "Pir"); break;
+		case eMicroWave: sprintf(cResult, "Mw"); break;
+		case eDayLight: sprintf(cResult, "Day"); break;
+		case eUtraSonic: sprintf(cResult, "Snx"); break;
+		case eHyBrid: sprintf(cResult, "Hyb"); break;
+		case eVolume: sprintf(cResult, "Vol"); break;
+		case eTestMode: sprintf(cResult, "Test"); break;
+		default: printf("Error value %d\n\r", ucSensor);
+	}
+	return cResult;
+}
+
+#include <time.h>
+void disTime(){
+	static uint32_t ulTime = 0;
+	tm myTime;
+	ulTime++;
+	myTime.tm_sec = ulTime%60;
+	myTime.tm_min = (ulTime/60)%60;
+	myTime.tm_hour = (ulTime/3600)%24;
+	myTime.tm_mday = ulTime/(3600*24);
+	printf("%dD %dH %dM %dS\n\r", myTime.tm_mday,
+	myTime.tm_hour, myTime.tm_min, myTime.tm_sec);
+}
+
+void UttecUtil::dispSec(rfFrame_t* pFrame){
+	char cResult[5];
+	printf("G:%d P:%d RxTx:%s", 
+	pFrame->MyAddr.GroupAddr, pFrame->MyAddr.PrivateAddr,
+	dispRxTx(cResult,pFrame->MyAddr.RxTx.iRxTx));
+	printf(" S:%s\n\r",
+	dispSensor(cResult,pFrame->MyAddr.SensorType.iSensor));
+	disTime();
+}
+
+
+
+
+

@@ -1,6 +1,8 @@
 .\build\procrf.o: UttecApp\procRf.cpp
 .\build\procrf.o: mbed_config.h
+.\build\procrf.o: UttecApp\CmdDefine.h
 .\build\procrf.o: UttecApp\procRf.h
+.\build\procrf.o: UttecApp\DimmerRf.h
 .\build\procrf.o: .\UttecLib\Rf.h
 .\build\procrf.o: .\UttecLib\Flash.h
 .\build\procrf.o: .\UttecLib\Channel.h

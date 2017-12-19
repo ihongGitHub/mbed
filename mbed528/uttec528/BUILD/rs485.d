@@ -1,0 +1,10 @@
+.\build\rs485.o: UttecLib\rs485.cpp
+.\build\rs485.o: mbed_config.h
+.\build\rs485.o: UttecLib\rs485.h
+.\build\rs485.o: .\UttecApp\DimmerRf.h
+.\build\rs485.o: .\UttecLib\Rf.h
+.\build\rs485.o: .\UttecLib\Flash.h
+.\build\rs485.o: .\UttecLib\Channel.h
+.\build\rs485.o: .\UttecLib\Random.h
+.\build\rs485.o: .\UttecLib\UttecUtil.h
+.\build\rs485.o: .\UttecLib\radio_config.h

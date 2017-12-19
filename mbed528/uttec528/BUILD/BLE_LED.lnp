@@ -1,4 +1,4 @@
---cpu Cortex-M4.fp
+--cpu=Cortex-M4.fp
 ".\build\main.o"
 "mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/analogin_api.o"
 "mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/app_error.o"
@@ -85,10 +85,13 @@
 ".\build\rf.o"
 ".\build\radio_config.o"
 ".\build\flash.o"
+".\build\rs485.o"
 ".\build\uttecutil.o"
 ".\build\dimmerrf.o"
 ".\build\procrf.o"
+".\build\procsec.o"
+".\build\proc_msec.o"
 --nodebug --scatter "mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/nRF52832.sct"
---show_full_path --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--show_full_path --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\BUILD\BLE_LED.map" -o .\BUILD\BLE_LED.axf

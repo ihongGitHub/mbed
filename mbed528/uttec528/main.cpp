@@ -4,8 +4,9 @@
 #include "Flash.h"
 #include "DimmerRf.h"
 #include "procRf.h"
-
-DigitalOut alivenessLED(LED1, 0);
+#include "rs485.h"
+#include "procSec.h"
+#include "proc_mSec.h"
 
 #ifdef my52832
 Serial uart(p6, p8);
@@ -17,10 +18,6 @@ Flash flash;
 Ticker secTimer;
 Ticker msecTimer;
 Timer timer;
-
-PwmOut myPwm(LED2);
-PwmOut myPwm1(LED3);
-PwmOut myPwm2(LED4);
 
 bool tick_Sec = false;
 bool tick_mSec = false;
@@ -50,60 +47,37 @@ int main(void)
 	DimmerRf myRf(&flash);
 	myRf.initRfFrame();
 
-//	pFrame->MyAddr.RxTx.iRxTx = eTx;
+	pFrame->MyAddr.RxTx.iRxTx = eTx;
+	pFrame->Ctr.SensorRate = 10;
 
 	secTimer.attach(&tickSec, 1);
 	msecTimer.attach(&tickmSec, 0.001);
 	uint32_t ulCount = 0;
 	uint32_t ulmSecCount = 0;
-	bool mSecToggle = false;
-	myPwm2.period_us(1000);
-	myPwm1.period_us(1000);
-	myPwm.period_us(1000);
 
 	procRf rfProc;
-
+	rs485 my485;
+	procSec mySec(&myRf);
+	proc_mSec my_mSec(&myRf);
+	my_mSec.setSensorLimit(pFrame->Ctr.SensorRate/100.0);
 	while (true) {
 		if(myRf.isRxDone()){
 			myRf.clearRxFlag();
-			rfProc.process(myRf.returnRxBuf());
+			rfProc.taskRf(myRf.returnRxBuf());
 			printf("---------Rf Received\n\r");
 		}
-		/*
-		if(my485.isRxDone()){
-			myRf.clearRxFlag();
-			rfProc.process(myRf.returnRxBuf());
-			printf("---------Rf Received\n\r");
+		if(my485.is485Done()){
+			my485.clear485Done();
+			my485.task485(my485.return485Buf());
+			printf("---------485 Received\n\r");
 		}
-		*/
 		if(tick_Sec){
 			tick_Sec = false;
-
-			alivenessLED = !alivenessLED;
-			ulCount++;
-			if(pFrame->MyAddr.RxTx.Bit.Tx){
-				printf("This is Tx: %d\n\r",ulCount);
-				printf("Tx Send Rf Frame to Rx \n\r");
-				myRf.sendRf(pFrame);
-			}
-			else{
-				printf("This is Rx: %d\n\r",ulCount);
-			}
+			mySec.secTask(pFrame);
 		}
 		if(tick_mSec){
 			tick_mSec = false;
-			ulmSecCount++;
-			if(!(ulmSecCount%1000)) printf("ulmSecCount = %d\n\r",ulmSecCount);
-			mSecToggle = !mSecToggle;
-			if(mSecToggle){
-				if(!(ulmSecCount%7))
-					myPwm = 0.5;
-				else
-					myPwm2 = 0.1;
-			}
-			else{
-				myPwm1 = 0.5;
-			}
+			my_mSec.msecTask(pFrame);			
 		}
 	}
 }

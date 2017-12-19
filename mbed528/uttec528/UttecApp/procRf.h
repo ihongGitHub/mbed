@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "Rf.h"
+#include "DimmerRf.h"
 
 class procRf
 {
@@ -14,6 +14,6 @@ private:
 	static rfFrame_t* mp_rfFrame;
 public:
 	procRf();
-	void process(rfFrame_t*);
+	void taskRf(rfFrame_t*);
 };
 #endif

@@ -109,3 +109,6 @@
 .\build\main.o: .\UttecLib\UttecUtil.h
 .\build\main.o: .\UttecLib\radio_config.h
 .\build\main.o: .\UttecApp\procRf.h
+.\build\main.o: .\UttecLib\rs485.h
+.\build\main.o: .\UttecApp\procSec.h
+.\build\main.o: .\UttecApp\proc_mSec.h
