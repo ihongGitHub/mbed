@@ -109,3 +109,4 @@
 .\build\proc_msec.o: .\UttecLib\Random.h
 .\build\proc_msec.o: .\UttecLib\UttecUtil.h
 .\build\proc_msec.o: .\UttecLib\radio_config.h
+.\build\proc_msec.o: UttecApp\UttecLed.h

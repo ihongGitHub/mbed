@@ -106,9 +106,19 @@ void UttecUtil::dispSec(rfFrame_t* pFrame){
 	disTime();
 }
 
-void UttecUtil::testProc(uint8_t ucName, uint8_t ucOrder){
-	printf("\n\r-------- Name: %d ::: Order: %d -----------\n\r",
-	ucName, ucOrder);
+void UttecUtil::testProc(uint8_t ucName, uint32_t ulValue){
+	printf("\n\r-------- Name: %d ::: value: %d -----------\n\r",
+	ucName, ulValue);
+}
+void UttecUtil::testProc(uint8_t ucName, uint32_t ulValue,
+	uint32_t ulValue1){
+	printf("\n\r------ Name: %d ::: value: %d value: %d ---\n\r",
+	ucName, ulValue, ulValue1);
+}
+void UttecUtil::testProc(uint8_t ucName, uint32_t ulValue,
+	float fValue){
+	printf("\n\r------ Name: %d ::: value: %d value: %0.3f ---\n\r",
+	ucName, ulValue, fValue);
 }
 
 

@@ -2255,6 +2255,11 @@
               <FileType>8</FileType>
               <FilePath>.\UttecApp\proc_mSec.cpp</FilePath>
             </File>
+            <File>
+              <FileName>UttecLed.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\UttecApp\UttecLed.cpp</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

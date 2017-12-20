@@ -19,7 +19,12 @@ private:
 	bool isMstOrGw(rfFrame_t*);
 	bool isMst(rfFrame_t*);
 	bool isGw(rfFrame_t*);
+	bool isTx(rfFrame_t*);
+	bool isSRx(rfFrame_t*);
+	bool isRx(rfFrame_t*);
+	bool isRpt(rfFrame_t*);
 	void procSensorCmd(rfFrame_t*);
+	void procRepeatCmd(rfFrame_t*);
 
 public:
 	procRf(DimmerRf*);

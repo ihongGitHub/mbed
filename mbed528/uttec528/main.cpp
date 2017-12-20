@@ -7,6 +7,7 @@
 #include "rs485.h"
 #include "procSec.h"
 #include "proc_mSec.h"
+#include "UttecUtil.h"
 
 #ifdef my52832
 Serial uart(p6, p8);
@@ -55,7 +56,7 @@ int main(void)
 	DimmerRf myRf(&flash);
 	myRf.initRfFrame();
 
-	pFrame->MyAddr.RxTx.iRxTx = eSRx;
+	pFrame->MyAddr.RxTx.iRxTx = eTx;
 	pFrame->Ctr.SensorRate = 10;
 
 	secTimer.attach(&tickSec, 1);
@@ -68,28 +69,26 @@ int main(void)
 	procSec mySec(&myRf);
 	proc_mSec my_mSec(&myRf);
 	my_mSec.setSensorLimit(pFrame->Ctr.SensorRate/100.0);
-	rfFrame_t stFrame = *pFrame;
-	stFrame.Cmd.Command = edSensor;
-	stFrame.MyAddr.RxTx.iRxTx = eSRx;
-	
 	rfProc.set_procmSec(&my_mSec);
 	//flash.resetFlash();
 	while (true) {
 		if(myRf.isRxDone()){
 			myRf.clearRxFlag();
+			myUtil.testProc(2,0);
 			rfProc.taskRf(myRf.returnRxBuf());
-			printf("---------Rf Received\n\r");
 		}
 		if(my485.is485Done()){
 			my485.clear485Done();
 			my485.task485(my485.return485Buf());
-			printf("---------485 Received\n\r");
+			myUtil.testProc(2,1);
 		}
 		if(tick_Sec){
 			tick_Sec = false;
 			mySec.secTask(pFrame);
-			if((pFrame->MyAddr.RxTx.iRxTx == eSRx)&&testTick){
-				rfProc.taskRf(&stFrame);
+			pFrame->Cmd.Command = edRepeat;
+			if((pFrame->MyAddr.RxTx.iRxTx == eTx)&&testTick){
+				myUtil.testProc(1,1);
+				myRf.sendRf(pFrame);
 				testTick = false;
 			}
 		}

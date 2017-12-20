@@ -91,6 +91,7 @@
 ".\build\procrf.o"
 ".\build\procsec.o"
 ".\build\proc_msec.o"
+".\build\uttecled.o"
 --nodebug --scatter "mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/nRF52832.sct"
 --show_full_path --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

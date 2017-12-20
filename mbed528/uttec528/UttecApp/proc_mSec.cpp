@@ -2,8 +2,10 @@
 #include <string.h>
 
 #include "proc_mSec.h"
+#include "UttecLed.h"
 
-DigitalOut msecLed(p18, 0);
+//DigitalOut rfLed(LED2, 0);
+//DigitalOut sensorLed(LED1, 0);
 AnalogIn pir(p3);
 PwmOut dimer(LED3);
 
@@ -12,6 +14,7 @@ UttecPir_t proc_mSec::m_sPir = {0,};
 //ePir, eVolume
 eSensorType_t proc_mSec::m_sensorType = eVolume;
 bool proc_mSec::m_sensorFlag = false;
+UttecLed myLed;
 
 proc_mSec::proc_mSec(DimmerRf* pRf){
 	m_pRf = pRf;
@@ -127,7 +130,8 @@ void proc_mSec::procDim(UttecDim_t sDim){
 		fNow -= sDim.downStep;
 		if(fNow <= m_sPir.target) fNow = m_sPir.target;
 	}
-	dimer = fNow;
+	dimer = 1.0 - fNow;
+//	dimer = fNow;
 }
 
 void proc_mSec::switchDimType(rfFrame_t* pFrame){
@@ -139,14 +143,14 @@ void proc_mSec::switchDimType(rfFrame_t* pFrame){
 			else{
 				m_sPir.target = (float)pFrame->Ctr.Low/100.0;
 			}
-			sDim.upStep = 0.1;
-			sDim.downStep = 0.02;
+			sDim.upStep = 0.001;
+			sDim.downStep = 0.0003;
 			sDim.direct = false;
 			procDim(sDim);		
 			break;
 		case eVolume:
-			sDim.upStep = 0.1;
-			sDim.downStep = 0.1;
+			sDim.upStep = 0.01;
+			sDim.downStep = 0.01;
 			sDim.direct = false;
 			procDim(sDim);		
 			break;
@@ -168,8 +172,8 @@ void proc_mSec::monitorSensorFactor(){
 	printf("Flash float init value = %f\n\r", pFlash->VolumeCheck);
 	printf("Gid = %d\n\r", pFlash->rfFrame.MyAddr.GroupAddr);
 }
-
 void proc_mSec::msecTask(rfFrame_t* pFrame){
+	
 	static uint32_t ulCount = 0;	
 	ulCount++;
 	
@@ -177,9 +181,11 @@ void proc_mSec::msecTask(rfFrame_t* pFrame){
 
 //	switchSensorType(pFrame);
 	switchDimType(pFrame);
-	if(!(ulCount%500)){		
-		msecLed = !msecLed;
-//		if(msecLed) monitorSensorFactor();		
+	myLed.taskLed();
+	if(!(ulCount%500)){	
+			myLed.blink(eRfLed, eRfBlink);
+			myLed.blink(eSensLed, eSensBlink);
+//		if(rfLed) monitorSensorFactor();		
 		if(pFrame->MyAddr.RxTx.Bit.Tx){
 		}
 		else{
