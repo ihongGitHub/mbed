@@ -19,7 +19,7 @@ void procSec::secTask(rfFrame_t* pFrame){
 	
 	if(pFrame->MyAddr.RxTx.Bit.Tx){
 //		printf("My Role is Tx\n\r");
-		m_pRf->sendRf(pFrame);
+//		m_pRf->sendRf(pFrame);
 	}
 	else{
 //		printf("My Role is Rx\n\r");

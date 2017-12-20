@@ -106,6 +106,10 @@ void UttecUtil::dispSec(rfFrame_t* pFrame){
 	disTime();
 }
 
+void UttecUtil::testProc(uint8_t ucName, uint8_t ucOrder){
+	printf("\n\r-------- Name: %d ::: Order: %d -----------\n\r",
+	ucName, ucOrder);
+}
 
 
 

@@ -24,7 +24,7 @@ public:
 	DimmerRf(Flash* );
 	void test();
 	void initRfFrame();
-	void dispRfFactor(rfFrame_t* pFrame);
+	void dispRfFactor(rfFrame_t* pFrame);	
 };
 //extern DimmerRf* myRf;
 #endif

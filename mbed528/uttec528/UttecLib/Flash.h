@@ -61,6 +61,7 @@ typedef union
   } Bit;
   uint8_t iSensor;                        
 } Sensor_t;
+
 typedef union
 {
   struct
@@ -159,7 +160,7 @@ typedef struct
 	uint32_t Life;
 	uint32_t AgingCycle;
 	uint32_t UttecDevice[2];
-	uint32_t VolumeCheck;
+	float VolumeCheck;
 	Jitc_t jitcData[10];
 } Flash_t;
 
@@ -176,6 +177,7 @@ public:
 	bool isFactoryMode();
 	void TestFlashFunction();
 	Flash_t* getFlashFrame();
+	void resetFlash();
 };
 //extern Flash myFlash;
 

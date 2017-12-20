@@ -52,5 +52,3 @@ void DimmerRf::dispRfFactor(rfFrame_t* frame){
 }
 
 
-
-

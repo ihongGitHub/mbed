@@ -185,6 +185,15 @@ Flash_t* Flash::getFlashFrame(){
 
 #define DeLifeEnd	43800	//356*24*5
 //#define DeLifeEnd	10	//Test
+void Flash::resetFlash(){
+	uint8_t* ucpFrame=(uint8_t*)getFlashFrame();
+	for(int i=0;i<sizeof(Flash_t);i++) *ucpFrame++=0;	
+	WriteAllFlash();
+	wait(0.5);
+	printf("End of resetFlash();\n\r");
+	while(1);
+//	NVIC_SystemReset();
+}
 
 void Flash::initOrgFlash(){
 	
@@ -201,10 +210,10 @@ void Flash::initOrgFlash(){
 	rfFrame.MyAddr.RxTx.Bit.Rx=1;
 	rfFrame.MyAddr.SensorType.Bit.NoSensor=1;
 	
-	rfFrame.Ctr.High=6;
+	rfFrame.Ctr.High=100;
 	rfFrame.Ctr.Low=0;
 	rfFrame.Ctr.Level=0;
-	rfFrame.Ctr.DTime=10;
+	rfFrame.Ctr.DTime=1;
 		
 	m_flash.rfFrame=rfFrame;
 	
