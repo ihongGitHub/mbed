@@ -1,5 +1,7 @@
 #include "UttecUtil.h"
 
+dimFactors_t UttecUtil::myDimFact = {0,};
+
 UttecUtil::UttecUtil(){
 }
 	
@@ -95,6 +97,11 @@ void disTime(){
 	printf("%dD %dH %dM %dS\n\r", myTime.tm_mday,
 	myTime.tm_hour, myTime.tm_min, myTime.tm_sec);
 }
+char* dispForced(char* cResult, bool bForced){
+	if(bForced) sprintf(cResult,"manu");
+	else sprintf(cResult,"auto");
+	return cResult;
+}
 
 void UttecUtil::dispSec(rfFrame_t* pFrame){
 	char cResult[5];
@@ -104,6 +111,9 @@ void UttecUtil::dispSec(rfFrame_t* pFrame){
 	printf(" S:%s\n\r",
 	dispSensor(cResult,pFrame->MyAddr.SensorType.iSensor));
 	disTime();
+	printf("Dim :%s, ",dispForced(cResult, myDimFact.forced));
+	printf("pwm = %0.3f, Type = %s\n\r", 
+		myDimFact.dimValue,dispSensor(cResult,myDimFact.sensorType));
 }
 
 void UttecUtil::testProc(uint8_t ucName, uint32_t ulValue){
@@ -119,6 +129,15 @@ void UttecUtil::testProc(uint8_t ucName, uint32_t ulValue,
 	float fValue){
 	printf("\n\r------ Name: %d ::: value: %d value: %0.3f ---\n\r",
 	ucName, ulValue, fValue);
+}
+
+void UttecUtil::setDimFactor(dimFactors_t sFact){
+	myDimFact.dimValue = sFact.dimValue;
+	myDimFact.sensorType = sFact.sensorType;
+	myDimFact.forced = sFact.forced;
+}
+dimFactors_t UttecUtil::getDimFactor(){
+	return myDimFact;
 }
 
 

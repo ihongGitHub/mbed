@@ -11,6 +11,7 @@ PwmOut dimer(LED3);
 
 DimmerRf* proc_mSec::m_pRf = NULL;
 UttecPir_t proc_mSec::m_sPir = {0,};
+UttecDim_t proc_mSec::sDim = {0,};
 //ePir, eVolume
 eSensorType_t proc_mSec::m_sensorType = eVolume;
 bool proc_mSec::m_sensorFlag = false;
@@ -49,7 +50,7 @@ bool proc_mSec::procPirSensor(){
 	m_sPir.realUpper= m_sPir.max*m_sPir.upper;
 	averageSensor(m_sPir.current);
 	
-	m_sPir.average = (m_sPir.max + m_sPir.min)/2.0;	
+	m_sPir.average = (m_sPir.max + m_sPir.min)/(float)2.0;	
 	if(m_sPir.current>m_sPir.realUpper){
 		m_sPir.flag = true;
 		m_sPir.target = m_sPir.current;
@@ -69,7 +70,6 @@ void proc_mSec::setNextRange(){
 }
 
 bool proc_mSec::procVolumeSw(){
-	static bool bTestPoint = true;	
 	if(m_sPir.flag) return m_sPir.flag;
 	
 	m_sPir.current = pir.read();	//check range of max, min
@@ -79,11 +79,10 @@ bool proc_mSec::procVolumeSw(){
 	
 	m_sPir.volumeCount++;
 	if(m_sPir.volumeCount == MaxVolumeCount){
-		m_sPir.rate = (m_sPir.max - m_sPir.min)/100.0;
+		m_sPir.rate = (m_sPir.max - m_sPir.min)/(float)100.0;
 		
 		printf("------------------Save range:unit = %0.3f, max = %0.3f, min = %0.3f\n\r",
 			m_sPir.rate, m_sPir.max, m_sPir.min);
-		bTestPoint = false;
 	}
 	
 	if(m_sPir.current >= m_sPir.upper){
@@ -130,28 +129,29 @@ void proc_mSec::procDim(UttecDim_t sDim){
 		fNow -= sDim.downStep;
 		if(fNow <= m_sPir.target) fNow = m_sPir.target;
 	}
-	dimer = 1.0 - fNow;
+	dimer = (float)1.0 - fNow;
 //	dimer = fNow;
 }
 
 void proc_mSec::switchDimType(rfFrame_t* pFrame){
-	UttecDim_t sDim;
+	if(sDim.forced){	//when forced Mode
+		dimer = m_sPir.target;
+		return;
+	}
 	switch(m_sensorType){
 		case ePir:
-//			putchar('.');
 			if(m_sPir.dTime) m_sPir.dTime--;
-			else{
-				m_sPir.target = (float)pFrame->Ctr.Low/100.0;
-			}
+			else	//when Delay Time out
+				m_sPir.target = (float)pFrame->Ctr.Low/(float)100.0;
 			sDim.upStep = 0.001;
 			sDim.downStep = 0.0003;
-			sDim.direct = false;
+			sDim.forced = false;
 			procDim(sDim);		
 			break;
 		case eVolume:
 			sDim.upStep = 0.01;
 			sDim.downStep = 0.01;
-			sDim.direct = false;
+			sDim.forced = false;
 			procDim(sDim);		
 			break;
 		default:
@@ -161,35 +161,36 @@ void proc_mSec::switchDimType(rfFrame_t* pFrame){
 void proc_mSec::monitorSensorFactor(){
 	Flash flash;
 	Flash_t* pFlash = flash.getFlashFrame();
-	float fTest = 0.0;
 	printf("Pir Value = %0.3f\n\r", m_sPir.current);
 	printf("rate = %0.3f, rUpper = %0.3f, Upper = %0.3f, Lower = %0.3f\n\r",
 	m_sPir.rate, m_sPir.realUpper, m_sPir.upper, m_sPir.lower);
 	printf("max = %0.3f, min = %0.3f, avr = %0.3f, current = %0.3f, target = %0.3f \n\r",
 	m_sPir.max, m_sPir.min, m_sPir.average, m_sPir.current, m_sPir.target);	
-  printf("Flash Size = %d, float size = %d, %d\n\r", 
-		sizeof(Flash_t), sizeof(float), sizeof(fTest));
+  printf("Flash Size = %d, float size = %d\n\r", 
+		sizeof(Flash_t), sizeof(float));
 	printf("Flash float init value = %f\n\r", pFlash->VolumeCheck);
 	printf("Gid = %d\n\r", pFlash->rfFrame.MyAddr.GroupAddr);
 }
+#include "UttecUtil.h"
+
 void proc_mSec::msecTask(rfFrame_t* pFrame){
 	
 	static uint32_t ulCount = 0;	
 	ulCount++;
 	
-	m_sensorType = ePir;
+//	m_sensorType = ePir;
 
 //	switchSensorType(pFrame);
 	switchDimType(pFrame);
 	myLed.taskLed();
-	if(!(ulCount%500)){	
-			myLed.blink(eRfLed, eRfBlink);
-			myLed.blink(eSensLed, eSensBlink);
+	if(!(ulCount%500)){
+		UttecUtil myUtil;
+		dimFactors_t sFactors = {m_sPir.target,sDim.forced, m_sensorType}; 
+		
+		myUtil.setDimFactor(sFactors);
+		myLed.blink(eRfLed, eRfBlink);
+		myLed.blink(eSensLed, eSensBlink);
 //		if(rfLed) monitorSensorFactor();		
-		if(pFrame->MyAddr.RxTx.Bit.Tx){
-		}
-		else{
-		}
 	}
 }
 

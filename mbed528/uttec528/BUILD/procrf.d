@@ -111,4 +111,5 @@
 .\build\procrf.o: mbed/./platform/DirHandle.h
 .\build\procrf.o: mbed/./platform/CriticalSectionLock.h
 .\build\procrf.o: mbed/./platform/DeepSleepLock.h
+.\build\procrf.o: UttecApp\server.h
 .\build\procrf.o: UttecApp\UttecLed.h

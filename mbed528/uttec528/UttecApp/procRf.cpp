@@ -12,10 +12,17 @@ Flash_t* procRf::mpFlashFrame=NULL;
 rfFrame_t* procRf::mp_rfFrame=NULL;
 DimmerRf* procRf::pMyRf=NULL;
 proc_mSec* procRf::pMy_mSec=NULL;
+server* procRf::pMyServer = NULL;
 
-procRf::procRf(DimmerRf* pRf){
+procRf::procRf(Flash* pFlash, DimmerRf* pRf, proc_mSec* pMsec){
+	mpFlash = pFlash;
+	mpFlashFrame = mpFlash->getFlashFrame();
+	mp_rfFrame = &mpFlashFrame->rfFrame;
+	
 	pMyRf = pRf;
-//	pRf->mpFlash->getFlashFrame->rfFrame;
+	pMy_mSec = pMsec;
+	server myServer(pFlash, pRf, pMsec);
+	pMyServer = (server*)&myServer;
 }
 bool procRf::isTx(rfFrame_t* pFrame){
 	return pFrame->MyAddr.RxTx.Bit.Tx;
@@ -39,16 +46,36 @@ bool procRf::isMstOrGw(rfFrame_t* pFrame){
 	return pFrame->MyAddr.RxTx.Bit.Mst||pFrame->MyAddr.RxTx.Bit.GW;
 }
 void procRf::procRepeatCmd(rfFrame_t* pFrame){
-	UttecUtil myUtil;
+	if(isMstOrGw(mp_rfFrame)) return;
+	if(isTx(mp_rfFrame)) conflictTx();
+	
 	printf("procRepeatCmd\n\r");
-	myUtil.testProc(2,(uint32_t)pFrame->MyAddr.RxTx.iRxTx);
+	pFrame->Ctr.High = mp_rfFrame->Ctr.High;
+	pFrame->Ctr.Low = mp_rfFrame->Ctr.Low;
+	pFrame->Ctr.Level = mp_rfFrame->Ctr.Level;
+	pFrame->Ctr.DTime = mp_rfFrame->Ctr.DTime;
+	pFrame->Ctr.Type = mp_rfFrame->Ctr.Type;
+	if(isRx(mp_rfFrame)){
+		pMy_mSec->m_sensorType = 
+			(eSensorType_t)pFrame->MyAddr.SensorType.iSensor;
+	}
 }
 void procRf::procSensorCmd(rfFrame_t* pFrame){
-	pMy_mSec->m_sPir.dTime = pFrame->Ctr.DTime*1000;
-	pMy_mSec->m_sPir.target = (float)pFrame->Ctr.High/100.0;
+	if(isMstOrGw(mp_rfFrame)) return;
+	pMy_mSec->m_sPir.dTime = mp_rfFrame->Ctr.DTime*1000;
+	pMy_mSec->m_sPir.target = mp_rfFrame->Ctr.High/100.0;
 }
-void procRf::set_procmSec(proc_mSec* pmSec){
-	pMy_mSec = pmSec;
+
+void procRf::procVolumeCmd(rfFrame_t* pFrame){
+	UttecUtil myUtil;
+	printf("procVolumeCmd\n\r");
+	
+	if(isMstOrGw(mp_rfFrame)) return;
+	if(isTx(mp_rfFrame)) conflictTx();
+	
+	pMy_mSec->m_sensorType = eVolume;
+	mp_rfFrame->Ctr.Level = pFrame->Ctr.Level;
+	pMy_mSec->m_sPir.target = pFrame->Ctr.Level/100.0;
 }
 
 void procRf::taskRf(rfFrame_t* pFrame){
@@ -60,26 +87,10 @@ void procRf::taskRf(rfFrame_t* pFrame){
 		case edDummy:
 				break;
 		case edSensor:
-			if(!isMstOrGw(pFrame)){
-				procSensorCmd(pFrame);
-			}			
+			procSensorCmd(pFrame);
 				break;
 		case edRepeat:
-			myUtil.testProc(3,(uint32_t)pFrame->MyAddr.RxTx.iRxTx);
-			if(!isMstOrGw(pFrame)){
-				procRepeatCmd(pFrame);
-			}
-			if(isTx(pFrame)){
-				while(1){
-					printf("Duplicate Tx in this Group\n\r");
-					wait(0.5);
-					myLed.on(eRfLed);
-					myLed.on(eSensLed);
-					wait(0.5);
-					myLed.off(eRfLed);
-					myLed.off(eSensLed);
-				}
-			}
+			procRepeatCmd(pFrame);
 				break;
 		case edLifeEnd:
 				break;
@@ -94,10 +105,12 @@ void procRf::taskRf(rfFrame_t* pFrame){
 		case edAsk:
 				break;
 		case edVolume:
+			procVolumeCmd(pFrame);
 				break;
 		case edDayLight:
 				break;
 		case edServerReq:
+			pMyServer->taskServer(pFrame);
 				break;
 		case edClientReq:
 				break;
@@ -106,3 +119,19 @@ void procRf::taskRf(rfFrame_t* pFrame){
 			break;
 	}
 }
+
+void procRf::conflictTx(){
+	UttecLed myLed;
+	while(1){
+		printf("Duplicate Tx in this Group\n\r");
+		wait(0.5);
+		myLed.on(eRfLed);
+		myLed.on(eSensLed);
+		wait(0.5);
+		myLed.off(eRfLed);
+		myLed.off(eSensLed);
+	}
+}
+
+
+

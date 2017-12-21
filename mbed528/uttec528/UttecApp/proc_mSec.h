@@ -28,7 +28,7 @@ typedef struct{
 } UttecPir_t;
 
 typedef struct{
-	bool direct;
+	bool forced;
 	float upStep;
 	float downStep;	
 } UttecDim_t;
@@ -42,7 +42,6 @@ class proc_mSec
 {
 private:
 	static DimmerRf* m_pRf;
-
 	static bool m_sensorFlag;
 
 	void switchSensorType(rfFrame_t*);
@@ -55,6 +54,8 @@ private:
 public:
 	static eSensorType_t m_sensorType;
 	static UttecPir_t m_sPir;
+	static UttecDim_t sDim;
+
 	proc_mSec(DimmerRf*);
 	void msecTask(rfFrame_t*);
 	void setSensorLimit(float);

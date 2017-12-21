@@ -110,6 +110,7 @@
 .\build\main.o: .\UttecLib\radio_config.h
 .\build\main.o: .\UttecApp\procRf.h
 .\build\main.o: .\UttecApp\proc_mSec.h
+.\build\main.o: .\UttecApp\server.h
 .\build\main.o: .\UttecLib\rs485.h
 .\build\main.o: .\UttecApp\procSec.h
 .\build\main.o: .\UttecApp\CmdDefine.h

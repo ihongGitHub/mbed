@@ -2260,6 +2260,11 @@
               <FileType>8</FileType>
               <FilePath>.\UttecApp\UttecLed.cpp</FilePath>
             </File>
+            <File>
+              <FileName>server.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\UttecApp\server.cpp</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

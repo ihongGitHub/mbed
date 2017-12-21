@@ -23,7 +23,7 @@ Timer timer;
 bool tick_Sec = false;
 bool tick_mSec = false;
 bool testTick = false;
-#define DeTestTime 5
+#define DeTestTime 3
 
 void tickSec(){
 	static uint32_t ulSecCount = 0;
@@ -36,17 +36,19 @@ void tickmSec(){
 }
 
 #include "CmdDefine.h"
+#include "serial_api.h"
 int main(void)
 {
 	UttecUtil myUtil;
 	
+//https://os.mbed.com/handbook/Serial	
 	uart.baud(115200);
+	
 #ifdef 	my52832
 	printf("\n\rNow New nrf52832 2017.12.18 12:50\n\r");
 #else
 	printf("\n\rNow New nrf51822 2017.12.18 12:50\n\r");
 #endif
-	myUtil.testProc(1,0);
 	wait(0.001);
 	flash.isFactoryMode();
 	Flash_t* pFlash = flash.getFlashFrame();
@@ -56,38 +58,46 @@ int main(void)
 	DimmerRf myRf(&flash);
 	myRf.initRfFrame();
 
-	pFrame->MyAddr.RxTx.iRxTx = eTx;
-	pFrame->Ctr.SensorRate = 10;
-
 	secTimer.attach(&tickSec, 1);
 	msecTimer.attach(&tickmSec, 0.001);
-	uint32_t ulCount = 0;
-	uint32_t ulmSecCount = 0;
 
-	procRf rfProc(&myRf);
-	rs485 my485;
+	rs485 my485(&uart);
 	procSec mySec(&myRf);
 	proc_mSec my_mSec(&myRf);
+	procRf rfProc(&flash, &myRf, &my_mSec);
+	
 	my_mSec.setSensorLimit(pFrame->Ctr.SensorRate/100.0);
-	rfProc.set_procmSec(&my_mSec);
 	//flash.resetFlash();
+	uint8_t ucTest = 0;
 	while (true) {
 		if(myRf.isRxDone()){
 			myRf.clearRxFlag();
-			myUtil.testProc(2,0);
 			rfProc.taskRf(myRf.returnRxBuf());
 		}
 		if(my485.is485Done()){
 			my485.clear485Done();
 			my485.task485(my485.return485Buf());
-			myUtil.testProc(2,1);
 		}
 		if(tick_Sec){
 			tick_Sec = false;
 			mySec.secTask(pFrame);
-			pFrame->Cmd.Command = edRepeat;
+			my485.send485(pFrame);
+//		pFrame->MyAddr.RxTx.iRxTx = eTx;
+		pFrame->MyAddr.SensorType.iSensor = eVolume;	
+		pFrame->MyAddr.PrivateAddr = 	11; //org 10
+		pFrame->Cmd.Command = edServerReq;
+		pFrame->Cmd.SubCmd = edsControl;
+		pFrame->Ctr.Level = ucTest++;
+		static bool bCmd = false;	
+		if(ucTest > 100) ucTest = 0;		
 			if((pFrame->MyAddr.RxTx.iRxTx == eTx)&&testTick){
-				myUtil.testProc(1,1);
+				bCmd = !bCmd;
+				if(bCmd) 
+					pFrame->Cmd.SubCmd = edsControl;
+				else
+					pFrame->Cmd.SubCmd = edsCmd_Alternative;
+					
+				myUtil.testProc(1,0);
 				myRf.sendRf(pFrame);
 				testTick = false;
 			}
