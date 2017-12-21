@@ -9,8 +9,12 @@
 #include "proc_mSec.h"
 #include "UttecUtil.h"
 
+#include "serial_api.h"
+
 #ifdef my52832
+//Serial uart(p13, p8);
 Serial uart(p6, p8);
+//Serial uart(LED4, p8);
 #else
 Serial uart(p9,p11);
 #endif
@@ -34,22 +38,42 @@ void tickSec(){
 void tickmSec(){
 	tick_mSec = true;
 }
-
 #include "CmdDefine.h"
 #include "serial_api.h"
 int main(void)
 {
 	UttecUtil myUtil;
-	
+	uint32_t ulCount = 0;
 //https://os.mbed.com/handbook/Serial	
-	uart.baud(115200);
-	
+	uart.baud(9600);
+	while(1){
+		uart.printf("Hong %d\n\r", ulCount++);
+		wait(0.5);
+	}
 #ifdef 	my52832
 	printf("\n\rNow New nrf52832 2017.12.18 12:50\n\r");
 #else
 	printf("\n\rNow New nrf51822 2017.12.18 12:50\n\r");
 #endif
+	/*
+	serial_free((serial_t*)&uart);
+	serial_clear((serial_t*)&uart);
 	wait(0.001);
+//	serial_pinout_tx(p13);
+//	Serial uart(p13, p8);
+	serial_init((serial_t*)&uart, p13, p8);
+	wait(0.001);
+	uart.baud(115200);
+	wait(0.001);
+	*/
+/*	
+	serial_free((serial_t*)&uart);
+	wait(0.001);
+//	Serial uart(p6, p8);
+	serial_init((serial_t*)&uart, p6, p8);
+	uart.baud(115200);
+	wait(0.001);
+	*/
 	flash.isFactoryMode();
 	Flash_t* pFlash = flash.getFlashFrame();
 	rfFrame_t* pFrame=&pFlash->rfFrame;

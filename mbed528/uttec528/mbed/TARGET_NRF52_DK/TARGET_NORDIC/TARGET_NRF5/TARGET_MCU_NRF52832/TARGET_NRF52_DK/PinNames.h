@@ -133,6 +133,7 @@ typedef enum {
     BUTTON4 = p16,
 
     RX_PIN_NUMBER  = p8,
+//    TX_PIN_NUMBER  = p13,
     TX_PIN_NUMBER  = p6,
     CTS_PIN_NUMBER = p7,
     RTS_PIN_NUMBER = p5,

@@ -16,7 +16,8 @@ rs485::rs485(Serial* pSer){
 }
 
 bool rs485::is485Done(){
-	if(pMySer->readable()) parse485Data(pMySer->getc());
+//	if(pMySer->readable()) parse485Data(pMySer->getc());
+	if(pMySer->readable()) parse485Data(getchar());
 	return m_485Done;
 }
 
@@ -95,7 +96,9 @@ void rs485::send485(rfFrame_t* spFrame)
 	}
 	*cpTemp='}' ;
 	dTest = 0;	
-	for(int i=0;i<FLENGTH;i++) pMySer->putc(m485Data[i]);
+	for(int i=0;i<FLENGTH;i++){
+		putchar(m485Data[i]);
+	}
 	dTest = 1;
 	
 //	for(int i=0;i<FLENGTH;i++) putchar(m485Data[i]);

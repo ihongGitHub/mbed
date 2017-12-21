@@ -83,6 +83,7 @@ typedef enum {
 typedef void (*uart_irq_handler)(uint32_t id, SerialIrq event);
 
 #if DEVICE_SERIAL_ASYNCH
+//#if 0
 /** Asynch serial HAL structure
  */
 typedef struct {
@@ -220,6 +221,7 @@ void serial_pinout_tx(PinName tx);
 void serial_set_flow_control(serial_t *obj, FlowControl type, PinName rxflow, PinName txflow);
 
 #if DEVICE_SERIAL_ASYNCH
+//#if 0
 
 /**@}*/
 

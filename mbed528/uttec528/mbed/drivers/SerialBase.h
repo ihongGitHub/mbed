@@ -26,6 +26,7 @@
 #include "platform/NonCopyable.h"
 
 #if DEVICE_SERIAL_ASYNCH
+//#if 0
 #include "CThunk.h"
 #include "dma_api.h"
 #endif
@@ -164,6 +165,7 @@ public:
     static void _irq_handler(uint32_t id, SerialIrq irq_type);
 
 #if DEVICE_SERIAL_ASYNCH
+//#if 0
 
     /** Begin asynchronous write using 8bit buffer. The completition invokes registered TX event callback
      *
@@ -247,6 +249,7 @@ protected:
     int _base_putc(int c);
 
 #if DEVICE_SERIAL_ASYNCH
+//#if 0
     CThunk<SerialBase> _thunk_irq;
     DMAUsage _tx_usage;
     DMAUsage _rx_usage;

@@ -65,9 +65,9 @@
 .\build\main.o: mbed/hal/serial_api.h
 .\build\main.o: mbed/./hal/buffer.h
 .\build\main.o: mbed/./hal/dma_api.h
-.\build\main.o: mbed/platform/CThunk.h
 .\build\main.o: mbed/./drivers/SPI.h
 .\build\main.o: mbed/./hal/spi_api.h
+.\build\main.o: mbed/./platform/CThunk.h
 .\build\main.o: mbed/./platform/CircularBuffer.h
 .\build\main.o: mbed/./platform/FunctionPointer.h
 .\build\main.o: mbed/./platform/Transaction.h

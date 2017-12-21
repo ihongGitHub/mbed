@@ -66,9 +66,9 @@
 .\build\proc_msec.o: mbed/hal/serial_api.h
 .\build\proc_msec.o: mbed/./hal/buffer.h
 .\build\proc_msec.o: mbed/./hal/dma_api.h
-.\build\proc_msec.o: mbed/platform/CThunk.h
 .\build\proc_msec.o: mbed/./drivers/SPI.h
 .\build\proc_msec.o: mbed/./hal/spi_api.h
+.\build\proc_msec.o: mbed/./platform/CThunk.h
 .\build\proc_msec.o: mbed/./platform/CircularBuffer.h
 .\build\proc_msec.o: mbed/./platform/FunctionPointer.h
 .\build\proc_msec.o: mbed/./platform/Transaction.h

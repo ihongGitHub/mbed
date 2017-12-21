@@ -54,6 +54,7 @@ class Serial : public SerialBase, public Stream, private NonCopyable<Serial> {
 
 public:
 #if DEVICE_SERIAL_ASYNCH
+//#if 0
     using SerialBase::read;
     using SerialBase::write;
 #endif
