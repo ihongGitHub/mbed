@@ -35,5 +35,5 @@
 #define MBED_CONF_PLATFORM_STDIO_CONVERT_NEWLINES   0               // set by library:platform
 */
 #define my52832	1
-#define DEVICE_SERIAL_ASYNCH 0
+#define DEVICE_SERIAL_ASYNCH 1
 #endif

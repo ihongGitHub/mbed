@@ -74,9 +74,9 @@
 .\build\server.o: mbed/hal/serial_api.h
 .\build\server.o: mbed/./hal/buffer.h
 .\build\server.o: mbed/./hal/dma_api.h
+.\build\server.o: mbed/platform/CThunk.h
 .\build\server.o: mbed/./drivers/SPI.h
 .\build\server.o: mbed/./hal/spi_api.h
-.\build\server.o: mbed/./platform/CThunk.h
 .\build\server.o: mbed/./platform/CircularBuffer.h
 .\build\server.o: mbed/./platform/FunctionPointer.h
 .\build\server.o: mbed/./platform/Transaction.h

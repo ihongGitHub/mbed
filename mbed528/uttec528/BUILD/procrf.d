@@ -75,9 +75,9 @@
 .\build\procrf.o: mbed/hal/serial_api.h
 .\build\procrf.o: mbed/./hal/buffer.h
 .\build\procrf.o: mbed/./hal/dma_api.h
+.\build\procrf.o: mbed/platform/CThunk.h
 .\build\procrf.o: mbed/./drivers/SPI.h
 .\build\procrf.o: mbed/./hal/spi_api.h
-.\build\procrf.o: mbed/./platform/CThunk.h
 .\build\procrf.o: mbed/./platform/CircularBuffer.h
 .\build\procrf.o: mbed/./platform/FunctionPointer.h
 .\build\procrf.o: mbed/./platform/Transaction.h
