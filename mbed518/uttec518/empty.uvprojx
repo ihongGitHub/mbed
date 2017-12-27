@@ -11,6 +11,7 @@
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060061::V5.06 update 1 (build 61)::ARMCC</pCCUsed>
+      <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>nRF51822_xxAA</Device>
@@ -125,47 +126,6 @@
             <HexOffset>0</HexOffset>
             <Oh166RecLen>16</Oh166RecLen>
           </OPTHX>
-          <Simulator>
-            <UseSimulator>0</UseSimulator>
-            <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>1</RunToMain>
-            <RestoreBreakpoints>1</RestoreBreakpoints>
-            <RestoreWatchpoints>1</RestoreWatchpoints>
-            <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
-            <RestoreFunctions>1</RestoreFunctions>
-            <RestoreToolbox>1</RestoreToolbox>
-            <LimitSpeedToRealTime>0</LimitSpeedToRealTime>
-            <RestoreSysVw>1</RestoreSysVw>
-          </Simulator>
-          <Target>
-            <UseTarget>1</UseTarget>
-            <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>1</RunToMain>
-            <RestoreBreakpoints>1</RestoreBreakpoints>
-            <RestoreWatchpoints>1</RestoreWatchpoints>
-            <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
-            <RestoreFunctions>0</RestoreFunctions>
-            <RestoreToolbox>1</RestoreToolbox>
-            <RestoreTracepoints>1</RestoreTracepoints>
-            <RestoreSysVw>1</RestoreSysVw>
-          </Target>
-          <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>12</TargetSelection>
-          <SimDlls>
-            <CpuDll></CpuDll>
-            <CpuDllArguments></CpuDllArguments>
-            <PeripheralDll></PeripheralDll>
-            <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile></InitializationFile>
-          </SimDlls>
-          <TargetDlls>
-            <CpuDll></CpuDll>
-            <CpuDllArguments></CpuDllArguments>
-            <PeripheralDll></PeripheralDll>
-            <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile></InitializationFile>
-            <Driver>BIN\CMSIS_AGDI.dll</Driver>
-          </TargetDlls>
         </DebugOption>
         <Utilities>
           <Flash1>
@@ -369,6 +329,9 @@
             <v6LangP>1</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
+            <v6Lto>0</v6Lto>
+            <v6WtE>0</v6WtE>
+            <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>-DDEVICE_RTC=1 -DDEVICE_SLEEP=1 -DTOOLCHAIN_object -DTARGET_MCU_NRF51822 -DTARGET_NRF5 --preinclude=mbed_config.h --split_sections -DTARGET_MCU_NRF51822_UNIFIED -DTARGET_MCU_NRF51_32K -D__ASSERT_MSG -DTARGET_MCU_NORDIC_32K -DTARGET_NRF51822 --no_rtti -DS130 -DCMSIS_VECTAB_VIRTUAL_HEADER_FILE=\"cmsis_nvic.h\" -DDEVICE_PORTINOUT=1 -DTARGET_MCU_NRF51_32K_UNIFIED -DDEVICE_SERIAL_FC=1 -DSOFTDEVICE_PRESENT -DDEVICE_PWMOUT=1 -DDEVICE_I2C_ASYNCH=1 -DTARGET_FF_ARDUINO -c -DTARGET_NORDIC -DCMSIS_VECTAB_VIRTUAL -DDEVICE_SPISLAVE=1 -DDEVICE_PORTOUT=1 -DTARGET_RELEASE -DTARGET_LIKE_MBED -DTARGET_MCU_NRF51_UNIFIED -DTARGET_LIKE_CORTEX_M0 -DARM_MATH_CM0 -DDEVICE_ANALOGIN=1 -DTARGET_NRF51_DK -DDEVICE_PORTIN=1 -DTARGET_CORTEX_M -DTARGET_MCU_NRF51 --cpu=Cortex-M0 -DDEVICE_I2C=1 -DBLE_STACK_SUPPORT_REQD -DTARGET_CORTEX -DDEVICE_LOWPOWERTIMER=1 -DTOOLCHAIN_ARM -D__CORTEX_M0 -DNRF51 -DTOOLCHAIN_ARM_STD --no_depend_system_headers -DTARGET_UVISOR_UNSUPPORTED --md -DNO_SYSTICK -DDEVICE_SERIAL_ASYNCH=1 --gnu -DMBED_TICKLESS --apcs=interwork -DDEVICE_SPI=1 -D__MBED__=1 -DFEATURE_BLE=1 -DDEVICE_SERIAL=1 -DTARGET_M0 -DDEVICE_INTERRUPTIN=1 -D__CMSIS_RTOS -DDEVICE_SPI_ASYNCH=1 -DMBED_BUILD_TIMESTAMP=1513499315.32 -D__MBED_CMSIS_RTOS_CM -DTARGET_SDK11</MiscControls>
               <Define></Define>
@@ -386,6 +349,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls>--cpreproc --cpreproc_opts=-D__ASSERT_MSG,-D__CORTEX_M0,-DTARGET_MCU_NRF51_32K,-DTARGET_MCU_NRF51822,-DTARGET_MCU_NORDIC_32K,-DSOFTDEVICE_PRESENT,-DNRF51,-DNO_SYSTICK,-DTARGET_NRF51822,-DARM_MATH_CM0,-D__MBED_CMSIS_RTOS_CM,-DCMSIS_VECTAB_VIRTUAL,-DCMSIS_VECTAB_VIRTUAL_HEADER_FILE="cmsis_nvic.h",-DBLE_STACK_SUPPORT_REQD,-D__CMSIS_RTOS,-DMBED_TICKLESS,-DS130</MiscControls>
               <Define></Define>
@@ -2266,5 +2230,11 @@
       </Groups>
     </Target>
   </Targets>
+
+  <RTE>
+    <apis/>
+    <components/>
+    <files/>
+  </RTE>
 
 </Project>
