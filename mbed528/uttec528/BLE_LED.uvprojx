@@ -386,9 +386,9 @@
               <FilePath>mbed_config.h</FilePath>
             </File>
             <File>
-              <FileName>main.cpp</FileName>
+              <FileName>mainForSx1276.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\main.cpp</FilePath>
+              <FilePath>.\mainForSx1276.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2251,11 +2251,6 @@
               <FilePath>.\UttecApp\procSec.cpp</FilePath>
             </File>
             <File>
-              <FileName>proc_mSec.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\UttecApp\proc_mSec.cpp</FilePath>
-            </File>
-            <File>
               <FileName>UttecLed.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\UttecApp\UttecLed.cpp</FilePath>
@@ -2264,6 +2259,41 @@
               <FileName>server.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\UttecApp\server.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>procSx1276.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\UttecApp\procSx1276.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>procBle.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\UttecApp\procBle.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>sx1276Exe.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\UttecApp\sx1276Exe.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>bleExe.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\UttecApp\bleExe.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>mSecExe.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\UttecApp\mSecExe.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>ref</GroupName>
+          <Files>
+            <File>
+              <FileName>ref.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ref\ref.txt</FilePath>
             </File>
           </Files>
         </Group>

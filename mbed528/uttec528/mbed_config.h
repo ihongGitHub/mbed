@@ -19,6 +19,7 @@
 // Automatically generated configuration file.
 // DO NOT EDIT, content will be overwritten.
 
+
 #ifndef __MBED_CONFIG_DATA__
 #define __MBED_CONFIG_DATA__
 
@@ -36,4 +37,5 @@
 */
 #define my52832	1
 #define DEVICE_SERIAL_ASYNCH 1
+
 #endif

@@ -87,6 +87,6 @@
 ".\build\dimmerrf.o"
 ".\build\uttecutil.o"
 --nodebug --scatter "mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nRF51822.sct"
---show_full_path --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--show_full_path --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\BUILD\uttec518_171218_1730.map" -o .\BUILD\uttec518_171218_1730.axf

@@ -10,9 +10,9 @@ Flash* server::mpFlash=NULL;
 Flash_t* server::mpFlashFrame=NULL;
 rfFrame_t* server::mp_rfFrame=NULL;
 DimmerRf* server::pMyRf=NULL;
-proc_mSec* server::pMy_mSec=NULL;
+mSecExe* server::pMy_mSec=NULL;
 
-server::server(Flash* pFlash, DimmerRf* pRf, proc_mSec* pMsec){
+server::server(Flash* pFlash, DimmerRf* pRf, mSecExe* pMsec){
 	mpFlash = pFlash;
 	mpFlashFrame = mpFlash->getFlashFrame();
 	mp_rfFrame = &mpFlashFrame->rfFrame;

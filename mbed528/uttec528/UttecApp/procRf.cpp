@@ -11,10 +11,10 @@ Flash* procRf::mpFlash=NULL;
 Flash_t* procRf::mpFlashFrame=NULL;
 rfFrame_t* procRf::mp_rfFrame=NULL;
 DimmerRf* procRf::pMyRf=NULL;
-proc_mSec* procRf::pMy_mSec=NULL;
+mSecExe* procRf::pMy_mSec=NULL;
 server* procRf::pMyServer = NULL;
 
-procRf::procRf(Flash* pFlash, DimmerRf* pRf, proc_mSec* pMsec){
+procRf::procRf(Flash* pFlash, DimmerRf* pRf, mSecExe* pMsec){
 	mpFlash = pFlash;
 	mpFlashFrame = mpFlash->getFlashFrame();
 	mp_rfFrame = &mpFlashFrame->rfFrame;

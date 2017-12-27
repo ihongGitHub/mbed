@@ -107,3 +107,9 @@
 .\build\main.o: ..\..\mbed528\uttec528\UttecLib\Random.h
 .\build\main.o: ..\..\mbed528\uttec528\UttecLib\UttecUtil.h
 .\build\main.o: ..\..\mbed528\uttec528\UttecLib\radio_config.h
+.\build\main.o: ..\..\mbed528\uttec528\UttecApp\procRf.h
+.\build\main.o: ..\..\mbed528\uttec528\UttecApp\proc_mSec.h
+.\build\main.o: ..\..\mbed528\uttec528\UttecApp\server.h
+.\build\main.o: ..\..\mbed528\uttec528\UttecLib\rs485.h
+.\build\main.o: ..\..\mbed528\uttec528\UttecApp\procSec.h
+.\build\main.o: ..\..\mbed528\uttec528\UttecApp\CmdDefine.h

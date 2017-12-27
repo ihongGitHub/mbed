@@ -9,7 +9,7 @@
 .\build\procrf.o: .\UttecLib\Random.h
 .\build\procrf.o: .\UttecLib\UttecUtil.h
 .\build\procrf.o: .\UttecLib\radio_config.h
-.\build\procrf.o: UttecApp\proc_mSec.h
+.\build\procrf.o: UttecApp\mSecExe.h
 .\build\procrf.o: mbed/./mbed.h
 .\build\procrf.o: mbed/./platform/mbed_toolchain.h
 .\build\procrf.o: mbed/./platform/mbed_preprocessor.h

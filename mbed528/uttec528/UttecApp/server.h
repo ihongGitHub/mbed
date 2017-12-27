@@ -6,7 +6,7 @@
 #include <string.h>
 
 #include "DimmerRf.h"
-#include "proc_mSec.h"
+#include "mSecExe.h"
 
 class server
 {
@@ -15,14 +15,14 @@ private:
 	static Flash_t* mpFlashFrame;
 	static rfFrame_t* mp_rfFrame;
 	static DimmerRf* pMyRf;
-	static proc_mSec* pMy_mSec;
+	static mSecExe* pMy_mSec;
 
 	void procControlSub(rfFrame_t*);
 	void procNewSetSub(rfFrame_t*);
 	void procNewFactSetSub(rfFrame_t*);
 	void procAltSub(rfFrame_t*);
 public:
-	server(Flash* pFlash, DimmerRf* pRf, proc_mSec* pMsec);
+	server(Flash* pFlash, DimmerRf* pRf, mSecExe* pMsec);
 	void taskServer(rfFrame_t*);
 	void taskClient(rfFrame_t*);
 };

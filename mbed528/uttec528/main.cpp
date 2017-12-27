@@ -12,9 +12,7 @@
 #include "serial_api.h"
 
 #ifdef my52832
-//Serial uart(p13, p8);
 Serial uart(p6, p8);
-//Serial uart(LED4, p8);
 #else
 Serial uart(p9,p11);
 #endif
@@ -38,8 +36,10 @@ void tickSec(){
 void tickmSec(){
 	tick_mSec = true;
 }
+
 #include "CmdDefine.h"
 #include "serial_api.h"
+
 int main(void)
 {
 	UttecUtil myUtil;

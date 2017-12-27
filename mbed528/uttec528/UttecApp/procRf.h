@@ -5,7 +5,7 @@
 #include <stdbool.h>
 
 #include "DimmerRf.h"
-#include "proc_mSec.h"
+#include "mSecExe.h"
 #include "server.h"
 
 class procRf
@@ -15,7 +15,7 @@ private:
 	static Flash_t* mpFlashFrame;
 	static rfFrame_t* mp_rfFrame;
 	static DimmerRf* pMyRf;
-	static proc_mSec* pMy_mSec;
+	static mSecExe* pMy_mSec;
 	static server* pMyServer;
 
 	bool isMstOrGw(rfFrame_t*);
@@ -30,7 +30,7 @@ private:
 	void procRepeatCmd(rfFrame_t*);
 	void procVolumeCmd(rfFrame_t*);
 public:
-	procRf(Flash*, DimmerRf*, proc_mSec*);
+	procRf(Flash*, DimmerRf*, mSecExe*);
 	void taskRf(rfFrame_t*);
 };
 #endif
