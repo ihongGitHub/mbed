@@ -81,7 +81,7 @@ static void flash_word_write(uint32_t * p_address, uint32_t value)
 }
 /*
 */
-bool Flash::WriteAllFlash(void)
+bool Flash::writeFlash(void)
 {
 	uint32_t* addrDst;
 	uint32_t* addrSrc;
@@ -167,7 +167,7 @@ void Flash::TestFlashFunction(void)
 {
 	uint32_t uiTest=0x12345678;		
 	m_flash.Life=uiTest;
-	WriteAllFlash();
+	writeFlash();
 	clearsgFlashBuff();
 	printf("Before Life=%x\n\r",m_flash.Life);
 	ReadAllFlash();
@@ -188,7 +188,7 @@ Flash_t* Flash::getFlashFrame(){
 void Flash::resetFlash(){
 	uint8_t* ucpFrame=(uint8_t*)getFlashFrame();
 	for(int i=0;i<sizeof(Flash_t);i++) *ucpFrame++=0;	
-	WriteAllFlash();
+	writeFlash();
 	wait(0.5);
 	printf("End of resetFlash();\n\r");
 	while(1);
@@ -240,7 +240,7 @@ void Flash::initOrgFlash(){
 	m_flash.Channel=m_Ch;
 	wait(0.1);
 //	nrf_delay_ms(100);
-	WriteAllFlash();
+	writeFlash();
 	
 //	NVIC_SystemReset();
 }

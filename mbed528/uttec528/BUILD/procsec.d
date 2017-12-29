@@ -1,6 +1,6 @@
-.\build\procsec.o: UttecApp\procSec.cpp
+.\build\procsec.o: UttecProc\procSec.cpp
 .\build\procsec.o: mbed_config.h
-.\build\procsec.o: UttecApp\procSec.h
+.\build\procsec.o: UttecProc\procSec.h
 .\build\procsec.o: mbed/./mbed.h
 .\build\procsec.o: mbed/./platform/mbed_toolchain.h
 .\build\procsec.o: mbed/./platform/mbed_preprocessor.h
@@ -102,10 +102,16 @@
 .\build\procsec.o: mbed/./platform/DirHandle.h
 .\build\procsec.o: mbed/./platform/CriticalSectionLock.h
 .\build\procsec.o: mbed/./platform/DeepSleepLock.h
-.\build\procsec.o: UttecApp\DimmerRf.h
-.\build\procsec.o: .\UttecLib\Rf.h
+.\build\procsec.o: UttecProc\uttecLib.h
 .\build\procsec.o: .\UttecLib\Flash.h
 .\build\procsec.o: .\UttecLib\Channel.h
+.\build\procsec.o: .\UttecApp\DimmerRf.h
+.\build\procsec.o: .\UttecLib\Rf.h
 .\build\procsec.o: .\UttecLib\Random.h
 .\build\procsec.o: .\UttecLib\UttecUtil.h
 .\build\procsec.o: .\UttecLib\radio_config.h
+.\build\procsec.o: .\UttecLib\rs485.h
+.\build\procsec.o: .\UttecApp\sx1276Exe.h
+.\build\procsec.o: .\UttecApp\UttecBle.h
+.\build\procsec.o: .\UttecApp\mSecExe.h
+.\build\procsec.o: UttecProc\procServer.h

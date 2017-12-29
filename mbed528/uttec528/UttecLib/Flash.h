@@ -170,7 +170,7 @@ private:
 	static Flash_t m_flash;
 public:
     Flash();
-	bool WriteAllFlash();
+	bool writeFlash();
 	void initOrgFlash();
 	void ReadAllFlash();
 	void clearsgFlashBuff();

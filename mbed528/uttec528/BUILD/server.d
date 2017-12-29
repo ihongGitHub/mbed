@@ -8,7 +8,7 @@
 .\build\server.o: .\UttecLib\Random.h
 .\build\server.o: .\UttecLib\UttecUtil.h
 .\build\server.o: .\UttecLib\radio_config.h
-.\build\server.o: UttecApp\proc_mSec.h
+.\build\server.o: UttecApp\mSecExe.h
 .\build\server.o: mbed/./mbed.h
 .\build\server.o: mbed/./platform/mbed_toolchain.h
 .\build\server.o: mbed/./platform/mbed_preprocessor.h

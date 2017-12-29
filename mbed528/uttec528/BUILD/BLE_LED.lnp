@@ -1,5 +1,5 @@
 --cpu=Cortex-M4.fp
-".\build\main.o"
+".\build\mainforsx1276.o"
 "mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/analogin_api.o"
 "mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/app_error.o"
 "mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/app_error_weak.o"
@@ -88,11 +88,16 @@
 ".\build\rs485.o"
 ".\build\uttecutil.o"
 ".\build\dimmerrf.o"
+".\build\uttecled.o"
+".\build\sx1276exe.o"
+".\build\msecexe.o"
+".\build\uttecble.o"
+".\build\proc485.o"
+".\build\procble.o"
 ".\build\procrf.o"
 ".\build\procsec.o"
-".\build\proc_msec.o"
-".\build\uttecled.o"
-".\build\server.o"
+".\build\procserver.o"
+".\build\procsx1276.o"
 --nodebug --scatter "mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/nRF52832.sct"
 --show_full_path --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

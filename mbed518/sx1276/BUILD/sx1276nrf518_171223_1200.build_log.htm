@@ -1,0 +1,83 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: •ÏVision V5.24.2.0
+Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Kwang Seon Hong, UTTEC, LIC=KRMMM-XAJCR-T33MI-T3M7J-QP611-9RZPL
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.24.1
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 5 (build 528)
+Assembler:       Armasm.exe V5.06 update 5 (build 528)
+Linker/Locator:  ArmLink.exe V5.06 update 5 (build 528)
+Library Manager: ArmAr.exe V5.06 update 5 (build 528)
+Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
+CPU DLL:         
+Dialog DLL:      DCM.DLL V1.16.0.0
+Target DLL:      CMSIS_AGDI.dll V1.28.3.0
+Dialog DLL:      TCM.DLL V1.32.0.0
+ 
+<h2>Project:</h2>
+C:\mbed\mbed518\sx1276\empty.uvprojx
+Project File Date:  12/29/2017
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'uttec518'
+compiling sx1276-hal.cpp...
+compiling mainForSx1276.cpp...
+..\..\mbed528\uttec528\mainForSx1276.cpp(64): warning:  #550-D: variable "myLib"  was set but never used
+  	uttecLib_t myLib;
+..\..\mbed528\uttec528\mainForSx1276.cpp(66): warning:  #177-D: variable "ulCount"  was declared but never referenced
+  	uint32_t ulCount = 0;
+..\..\mbed528\uttec528\mainForSx1276.cpp: 2 warnings, 0 errors
+compiling sx1276.cpp...
+compiling radio.cpp...
+linking...
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol Rf::clearRxFlag() (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol Rf::sendRf(const rfFrame_t*) (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol Rf::isRxDone() (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol Flash::getFlashFrame() (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol Flash::isFactoryMode() (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol Flash::Flash() (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol rs485::clear485Done() (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol rs485::return485Buf() (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol rs485::send485(rfFrame_t*) (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol rs485::task485(rfFrame_t*) (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol rs485::is485Done() (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol rs485::rs485(mbed::Serial*) (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol mSecExe::setSensorLimit(float) (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol mSecExe::returnSensorFlag() (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol mSecExe::msecTask(rfFrame_t*) (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol mSecExe::mSecExe(DimmerRf*) (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol DimmerRf::initRfFrame() (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol DimmerRf::DimmerRf(Flash*) (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol UttecBle::UttecBle() (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol UttecUtil::testProc(unsigned char, unsigned) (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol UttecUtil::UttecUtil() (referred from .\build\mainforsx1276.o).
+.\BUILD\sx1276nrf518_171223_1200.axf: Error: L6218E: Undefined symbol sx1276Exe::sx1276Exe() (referred from .\build\mainforsx1276.o).
+Not enough information to list image symbols.
+Not enough information to list load addresses in the image map.
+Finished: 2 information, 0 warning and 22 error messages.
+".\BUILD\sx1276nrf518_171223_1200.axf" - 22 Error(s), 2 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: NordicSemiconductor
+                http://developer.nordicsemi.com/nRF5_SDK/pieces/nRF_DeviceFamilyPack/NordicSemiconductor.nRF_DeviceFamilyPack.8.15.0.pack
+                NordicSemiconductor.nRF_DeviceFamilyPack.8.15.0
+                Nordic Semiconductor nRF ARM devices Device Family Pack.
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_uttec518
+  C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.15.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
+Build Time Elapsed:  00:00:04
+</pre>
+</body>
+</html>
