@@ -105,5 +105,5 @@
 .\build\rf.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\rf.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\rf.o: ..\..\mbed528\uttec528\UttecLib\Random.h
-.\build\rf.o: ..\..\mbed528\uttec528\UttecLib\UttecUtil.h
+.\build\rf.o: ..\..\mbed528\uttec528\UttecApp\UttecUtil.h
 .\build\rf.o: ..\..\mbed528\uttec528\UttecLib\radio_config.h

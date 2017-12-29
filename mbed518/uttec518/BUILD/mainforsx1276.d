@@ -106,7 +106,7 @@
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecLib\Rf.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecLib\Random.h
-.\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecLib\UttecUtil.h
+.\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecApp\UttecUtil.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecLib\radio_config.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecLib\rs485.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecApp\sx1276Exe.h

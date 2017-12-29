@@ -28,5 +28,5 @@ procSx1276::procSx1276(uttecLib_t pLib, procServer* pServer){
 	pMyServer = pServer;
 }
 
-void procSx1276::sx1276Task(rfFrame_t* pFrame){
+void procSx1276::sx1276Task(uint8_t* pFrame){
 }

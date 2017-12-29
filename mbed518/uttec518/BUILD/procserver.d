@@ -7,7 +7,7 @@
 .\build\procserver.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h
 .\build\procserver.o: ..\..\mbed528\uttec528\UttecLib\Rf.h
 .\build\procserver.o: ..\..\mbed528\uttec528\UttecLib\Random.h
-.\build\procserver.o: ..\..\mbed528\uttec528\UttecLib\UttecUtil.h
+.\build\procserver.o: ..\..\mbed528\uttec528\UttecApp\UttecUtil.h
 .\build\procserver.o: ..\..\mbed528\uttec528\UttecLib\radio_config.h
 .\build\procserver.o: ..\..\mbed528\uttec528\UttecLib\rs485.h
 .\build\procserver.o: mbed/./mbed.h

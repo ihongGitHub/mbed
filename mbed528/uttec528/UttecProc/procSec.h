@@ -21,6 +21,8 @@ private:
 	static UttecBle* pMyBle;
 	static mSecExe* pMy_mSec;
 	static procServer* pMyServer;
+
+	void testFrame(rfFrame_t*);
 public:
 	procSec(uttecLib_t, procServer*);
 	void secTask(rfFrame_t*);

@@ -11,8 +11,11 @@
 class sx1276Exe
 {
 private:
+	bool m_RxDone;
 public:
 	sx1276Exe();
+	bool isSx1276RxDone();
+	void clearSx1276RxDone();
 };
 
 #endif

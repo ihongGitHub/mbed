@@ -1,3 +1,9 @@
+#include "mbed.h"
+/*
+#include "ble/BLE.h"
+#include "ble/services/UARTService.h"
+#include "UttecBle.h"
+*/
 #include "UttecUtil.h"
 
 dimFactors_t UttecUtil::myDimFact = {0,};
@@ -51,6 +57,7 @@ uint8_t UttecUtil::Hex2Dec(uint8_t cHex)
 	}
 	return cHex;
 }
+
 #include <stdio.h>
 #include <string.h>
 
@@ -140,6 +147,26 @@ dimFactors_t UttecUtil::getDimFactor(){
 	return myDimFact;
 }
 
+#define WDT_1Sec    32767UL
+void UttecUtil::setWdt(uint8_t ucTime)
+{
+    NRF_WDT->POWER=WDT_POWER_POWER_Enabled;
+    NRF_WDT->CRV=WDT_1Sec*ucTime;     //For 1Sec
+    NRF_WDT->RREN=WDT_RREN_RR0_Enabled<<WDT_RREN_RR0_Pos;
+    NRF_WDT->TASKS_START=1;
+}
+void UttecUtil::setWdtReload()
+{
+    NRF_WDT->RR[0]=     WDT_RR_RR_Reload;
+}
 
-
+uint16_t UttecUtil::changeBytesInWord(uint16_t uiData){
+    ChangeByte_t uChange;
+    uint8_t ucTemp;
+    uChange.u16 = uiData;
+    ucTemp = uChange.u8[0];
+    uChange.u8[0]= uChange.u8[1];
+    uChange.u8[1]= ucTemp;
+    return uChange.u16;
+}
 

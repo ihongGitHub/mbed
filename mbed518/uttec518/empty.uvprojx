@@ -2251,7 +2251,7 @@
             <File>
               <FileName>UttecUtil.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\mbed528\uttec528\UttecLib\UttecUtil.cpp</FilePath>
+              <FilePath>..\..\mbed528\uttec528\UttecApp\UttecUtil.cpp</FilePath>
             </File>
           </Files>
         </Group>

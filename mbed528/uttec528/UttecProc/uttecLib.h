@@ -7,6 +7,9 @@
 #include "sx1276Exe.h"
 #include "UttecBle.h"
 #include "mSecExe.h"
+
+#include "CmdDefine.h"
+
 //C:\sx1276\downloadTest\UttecLoRa2Ble_FinalOk\uttecLib.h
 //C:\sx1276\downloadTest\Rf\UttecUtil.h
 typedef struct{

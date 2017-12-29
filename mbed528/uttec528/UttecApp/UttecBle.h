@@ -11,9 +11,11 @@
 class UttecBle
 {
 private:
-	static DimmerRf* m_pRf;
 public:
 	UttecBle();
+	bool isBleRxReady();
+	void clearBleRxReady();
+	uint8_t* getBleRxData();  
 };
 
 #endif

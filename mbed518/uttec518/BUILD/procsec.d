@@ -107,10 +107,11 @@
 .\build\procsec.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h
 .\build\procsec.o: ..\..\mbed528\uttec528\UttecLib\Rf.h
 .\build\procsec.o: ..\..\mbed528\uttec528\UttecLib\Random.h
-.\build\procsec.o: ..\..\mbed528\uttec528\UttecLib\UttecUtil.h
+.\build\procsec.o: ..\..\mbed528\uttec528\UttecApp\UttecUtil.h
 .\build\procsec.o: ..\..\mbed528\uttec528\UttecLib\radio_config.h
 .\build\procsec.o: ..\..\mbed528\uttec528\UttecLib\rs485.h
 .\build\procsec.o: ..\..\mbed528\uttec528\UttecApp\sx1276Exe.h
 .\build\procsec.o: ..\..\mbed528\uttec528\UttecApp\UttecBle.h
 .\build\procsec.o: ..\..\mbed528\uttec528\UttecApp\mSecExe.h
+.\build\procsec.o: ..\..\mbed528\uttec528\UttecApp\CmdDefine.h
 .\build\procsec.o: ..\..\mbed528\uttec528\UttecProc\procServer.h

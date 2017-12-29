@@ -27,17 +27,26 @@ procSec::procSec(uttecLib_t pLib, procServer* pServer){
 	pMyServer = pServer;
 }
 
+void procSec::testFrame(rfFrame_t* pFrame){
+	pFrame->MyAddr.SensorType.iSensor = eVolume;	
+	pFrame->MyAddr.PrivateAddr = 	11; //org 10
+	pFrame->Cmd.Command = edServerReq;
+	pFrame->Cmd.SubCmd = edsControl;
+	pFrame->Ctr.Level = 50;
+}
+
 void procSec::secTask(rfFrame_t* pFrame){
 	static uint32_t ulCount = 0;
 	UttecUtil myUtil;
 	ulCount++;	
 	
 	if(pFrame->MyAddr.RxTx.Bit.Tx){
-//		printf("My Role is Tx\n\r");
-//		m_pRf->sendRf(pFrame);
+		printf("My Role is Tx\n\r");
+		testFrame(pFrame);
+		pMyRf->sendRf(pFrame);
 	}
 	else{
-//		printf("My Role is Rx\n\r");
+		printf("My Role is Rx\n\r");
 	}
 	myUtil.dispSec(pFrame);
 }

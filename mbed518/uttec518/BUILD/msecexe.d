@@ -106,6 +106,6 @@
 .\build\msecexe.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\msecexe.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\msecexe.o: ..\..\mbed528\uttec528\UttecLib\Random.h
-.\build\msecexe.o: ..\..\mbed528\uttec528\UttecLib\UttecUtil.h
+.\build\msecexe.o: ..\..\mbed528\uttec528\UttecApp\UttecUtil.h
 .\build\msecexe.o: ..\..\mbed528\uttec528\UttecLib\radio_config.h
 .\build\msecexe.o: ..\..\mbed528\uttec528\UttecApp\UttecLed.h

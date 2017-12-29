@@ -83,6 +83,7 @@ int main(void)
 	myRf.initRfFrame(); 
 	secTimer.attach(&tickSec, 1);
 	msecTimer.attach(&tickmSec, 0.001);
+	myUtil.setWdt(3);
 	
 	mSecExe my_mSec(&myRf);
 	rs485 my485(&Uart);
@@ -96,26 +97,50 @@ int main(void)
 	myLib.pBleExe = &myBle;
 	myLib.pMsecEce = &my_mSec;
 	
+	procServer mProcServer(myLib);
+	procRf mProcRf(myLib, &mProcServer);
+	procBle mProcBle(myLib, &mProcServer);
+	procSx1276 mProcSx1276(myLib, &mProcServer);
+	proc485 mProc485(myLib, &mProcServer);
+	procSec mProcSec(myLib, &mProcServer);
 /*
-	procSec mySec(&myRf);
-	
-	procRf rfProc(&flash, &myRf, &my_mSec);
-	procSx1276 mySx(&myRf);
-	procBle myBls(&myRf);
 */	
 	my_mSec.setSensorLimit(pFrame->Ctr.SensorRate/100.0);
 	//flash.resetFlash();
 	uint8_t ucTest = 0;
 	
-	while (true) {
+	while(true){
+		myUtil.setWdtReload();
+		
 		if(myRf.isRxDone()){
 			myRf.clearRxFlag();
-//			rfProc.taskRf(myRf.returnRxBuf());
+			mProcRf.taskRf(myRf.returnRxBuf());
 		}
+		
+		if(myBle.isBleRxReady()){
+			myBle.clearBleRxReady();
+			mProcBle.bleTask(myBle.getBleRxData());
+		}
+		
 		if(my485.is485Done()){
 			my485.clear485Done();
-			my485.task485(my485.return485Buf());
+			mProc485.rs485Task(my485.return485Buf());
 		}
+		
+		if(mySx1276.isSx1276RxDone()){
+			uint8_t ucTemp[10];
+			mySx1276.clearSx1276RxDone();
+			mProcSx1276.sx1276Task(ucTemp);
+		}
+		
+		if(tick_Sec){
+			printf("Sec proc\n\r");
+			tick_Sec = false;
+			mProcSec.secTask(pFrame);			
+		}
+	}
+
+	while (true) {
 		if(tick_Sec){
 			printf("Sec proc\n\r");
 			tick_Sec = false;

@@ -15,7 +15,7 @@ private:
 	static DimmerRf* m_pRf;
 public:
 	procBle(uttecLib_t, procServer*);
-	void bleTask(rfFrame_t*);
+	void bleTask(uint8_t*);
 };
 
 #endif

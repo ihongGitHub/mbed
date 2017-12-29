@@ -23,7 +23,7 @@ private:
 	static procServer* pMyServer;
 public:
 	procSx1276(uttecLib_t, procServer*);
-	void sx1276Task(rfFrame_t*);
+	void sx1276Task(uint8_t*);
 };
 
 #endif
