@@ -6,6 +6,7 @@
 #include "UttecUtil.h"
 #include "UttecLed.h"
 
+static UttecUtil myUtil;
 
 Flash* procServer::mpFlash = NULL;
 Flash_t* procServer::mpFlashFrame = NULL;
@@ -27,26 +28,43 @@ procServer::procServer(uttecLib_t pLib){
 	pMyBle = pLib.pBle;
 	pMy_mSec = pLib.pMsec;
 }
+void procServer::resendByRepeater(rfFrame_t* pFrame){
+	if(myUtil.isRpt(mp_rfFrame)){	//Repeat Function
+		myUtil.testProc(pFrame->Cmd.Command, 3);
+		if(!myUtil.isRpt(pFrame)){	//From Rpt?
+			pFrame->MyAddr.RxTx.iRxTx = eRpt;
+			printf("resend by repeater\n\r");
+			myUtil.testProc(pFrame->Cmd.Command,
+				(uint32_t)pFrame->Cmd.SubCmd, (uint32_t)4);
+			pMyRf->sendRf(pFrame);	
+		}			
+	}
+}
 
 void procServer::procControlSub(rfFrame_t* pFrame){
 	pMy_mSec->m_sPir.target = pFrame->Ctr.Level/(float)100.0;
 	pMy_mSec->sDim.forced = true;
 	pMy_mSec->sDim.upStep = pMy_mSec->sDim.downStep = 0;
-	UttecUtil myUtil;
-	myUtil.testProc(3,1);
+	myUtil.testProc(pFrame->Cmd.Command, 
+		(uint32_t)pFrame->Cmd.SubCmd, (uint32_t)3);
+	resendByRepeater(pFrame);
 }
 void procServer::procNewSetSub(rfFrame_t* pFrame){
 	pMy_mSec->sDim.forced = false;
-	UttecUtil myUtil;
-	myUtil.testProc(3,2);
+	myUtil.testProc(pFrame->Cmd.SubCmd,2);
+	myUtil.testProc(pFrame->Cmd.Command, 
+		(uint32_t)pFrame->Cmd.SubCmd, (uint32_t)3);
+	resendByRepeater(pFrame);
 }
 
 void procServer::procNewFactSetSub(rfFrame_t* pFrame){
 	Flash myFlash;
 	mp_rfFrame->Ctr = pFrame->Ctr;
 	myFlash.writeFlash();
-	UttecUtil myUtil;
-	myUtil.testProc(3,3);
+	myUtil.testProc(pFrame->Cmd.SubCmd,2);
+	myUtil.testProc(pFrame->Cmd.Command, 
+		(uint32_t)pFrame->Cmd.SubCmd, (uint32_t)3);
+	resendByRepeater(pFrame);
 }
 void procServer::procAltSub(rfFrame_t* pFrame){
 	Flash myFlash;
@@ -56,12 +74,12 @@ void procServer::procAltSub(rfFrame_t* pFrame){
 		pMy_mSec->m_sPir.target = 0;
 		pMy_mSec->sDim.upStep = pMy_mSec->sDim.downStep = 0;		
 	}
-	UttecUtil myUtil;
-	myUtil.testProc(3,4);
+	myUtil.testProc(pFrame->Cmd.Command, 
+		(uint32_t)pFrame->Cmd.SubCmd, (uint32_t)3);
+	resendByRepeater(pFrame);
 }
 
 void procServer::taskServer(rfFrame_t* pFrame){
-	UttecUtil myUtil;
 	UttecLed myLed;
 	
 	uint8_t ucCmd = pFrame->Cmd.SubCmd;
@@ -97,7 +115,6 @@ void procServer::taskServer(rfFrame_t* pFrame){
 }
 
 void procServer::taskClient(rfFrame_t* pFrame){
-	UttecUtil myUtil;
 	UttecLed myLed;
 	
 	uint8_t ucCmd = pFrame->Cmd.Command;

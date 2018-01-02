@@ -3,16 +3,21 @@
 
 #include "rs485.h"
 
-bool rs485::m_doneFlag = false;
 rfFrame_t rs485::m_485Rx = {0,};
 rs485Status_t rs485::m_status={0};
 uint8_t rs485::m485Data[]={0};
 bool rs485::m_485Done=false;
 
 Serial* rs485::pMySer = NULL;
+UttecUtil myUtil;
+
+DigitalOut downCtr(p13);	//FOR DOWNLOAD TXCTR
+DigitalOut upCtr(p19);	//For upload TXCtr
 
 rs485::rs485(Serial* pSer){
 	pMySer = pSer;
+	downCtr = 1;
+	upCtr = 1;
 }
 
 bool rs485::is485Done(){
@@ -22,7 +27,7 @@ bool rs485::is485Done(){
 }
 
 void rs485::clear485Done(){
-	m_doneFlag = false;
+	m_485Done = false;
 }
 
 void rs485::task485(rfFrame_t* pFrame){
@@ -30,6 +35,33 @@ void rs485::task485(rfFrame_t* pFrame){
 
 rfFrame_t* rs485::return485Buf(){
 	return &m_485Rx;
+}
+
+bool rs485::reform485toRx(uint8_t* p485){
+	rs485withRf_t frame;
+	rs485withRf_t* pFrame = &frame;
+	uint8_t* ucpTemp = (uint8_t *)pFrame;
+	uint8_t ucTemp;
+	uint16_t uiSum;
+	bool bResult = false;
+//	printf("sizeof(rs485withRf_t) = %d\n\r", sizeof(rs485withRf_t));	
+	for(int i = 0; i<sizeof(rs485withRf_t); i++){
+		ucTemp=myUtil.Hex2Dec(p485[i*2]);
+		ucTemp=ucTemp*16 + myUtil.Hex2Dec(p485[i*2+1]);		
+		*ucpTemp++ = ucTemp;
+//		printf("%d, ", ucTemp);
+	}
+	uiSum = myUtil.gen_crc16((uint8_t*)&frame.sRf,sizeof(rfFrame_t));
+	printf("Gid = %d, Pid = %d, sum = %d, crc = %d\n\r", frame.sRf.MyAddr.GroupAddr,
+		frame.sRf.MyAddr.PrivateAddr, frame.sum, uiSum);
+	if(uiSum == frame.sum){
+		bResult = true;
+		m_485Rx = frame.sRf;
+	}
+	else printf("gen_crc16 Error %d, %d\n\r", frame.sum, uiSum);
+//	myUtil.dispRfFactor(&frame.sRf);
+//	frame.sRf.MyAddr.GroupAddr=myUtil.changeBytesInWord(frame.sRf.MyAddr.GroupAddr);
+	return bResult;
 }
 
 bool rs485::parse485Data(uint8_t ucChar)
@@ -44,9 +76,10 @@ bool rs485::parse485Data(uint8_t ucChar)
 		if((m_status.start)&&(m_status.count==De485FrameLength)){
 			printf("\n\r");
 			for(int i=0;i<De485FrameLength;i++) putchar(m485Data[i]);
+			printf("\n\r");
+			m_485Done=reform485toRx(m485Data);
 //			m_status.flag=ProcessFinish485();
 			m_status.flag=true;
-			m_485Done=true;
 			m_status.count=0;
 			m_status.start=false;
 		}
@@ -67,9 +100,57 @@ bool rs485::parse485Data(uint8_t ucChar)
 	return m_485Done;
 }
 
-void rs485::send485(rfFrame_t* spFrame)
-{
-	DigitalOut dTest(LED4);
+void rs485::sendByUart(){
+	Serial sendUart(p9, p11);		//For Uart stdio
+	sendUart.baud(115200);
+	for(int i=0;i<FLENGTH;i++){
+		sendUart.putc(m485Data[i]);
+	}
+}
+
+void rs485::sendByDown(){
+	Serial sendDown(p12, p11);	//FOR Download TX
+	sendDown.baud(115200);
+	for(int i=0;i<FLENGTH;i++){
+		downCtr = 0;
+		sendDown.putc(m485Data[i]);
+	}
+	wait(0.0002);
+	downCtr = 1;		
+}
+
+void rs485::sendByUp(){
+	Serial sendUp(p18, p11);		//For Up Tx
+	sendUp.baud(115200);		
+//	sendUp.baud(115200/12);		//For 9600bps
+	for(int i=0;i<FLENGTH;i++){
+		upCtr = 0;
+		sendUp.putc(m485Data[i]);
+	}
+	wait(0.0002);
+	upCtr = 1;		
+}
+
+void rs485::changeChannel(rs485Channel_t ch){
+	switch(ch){
+		case eUart:
+			sendByUart();
+			break;
+		case eRsDown:
+			sendByDown();
+			break;
+		case eRsUp:
+			sendByUp();
+			break;
+		default:
+			break;
+	}
+	Serial sendUart(p9, p11);		//For Uart stdio
+	sendUart.baud(115200);
+}
+
+void rs485::send485(rfFrame_t* spFrame, rs485Channel_t ch)
+{		
 	UttecUtil myUtil;
 	UU16 uu16Temp;
 	uint8_t cdTemp[40];
@@ -95,12 +176,6 @@ void rs485::send485(rfFrame_t* spFrame)
 		cpTemp+=2;
 	}
 	*cpTemp='}' ;
-	dTest = 0;	
-	for(int i=0;i<FLENGTH;i++){
-		putchar(m485Data[i]);
-	}
-	dTest = 1;
-	
-//	for(int i=0;i<FLENGTH;i++) putchar(m485Data[i]);
+	changeChannel(ch);
 }
 

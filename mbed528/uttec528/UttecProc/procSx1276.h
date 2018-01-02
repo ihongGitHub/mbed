@@ -9,6 +9,15 @@
 #include "uttecLib.h"
 #include "procServer.h"
 
+typedef struct{
+	uint8_t gid;
+	uint8_t pid;
+	uint8_t cmd;
+	uint8_t sub;
+	uint8_t sxData;
+	uint8_t ext;
+} sxFrame_t;
+
 class procSx1276
 {
 private:
@@ -21,9 +30,25 @@ private:
 	static UttecBle* pMyBle;
 	static mSecExe* pMy_mSec;
 	static procServer* pMyServer;
+
+	static sxRxFrame_t m_sxRxFrame;
+
+	sxFrame_t m_sxTxFrame;
+
+	void procVolumeCmd(rfFrame_t*);
+	void resendByRepeater(rfFrame_t*);
+	void transferMstGwBy485(rfFrame_t*, UttecDirection_t);
 public:
+	static sxFrame_t m_sxFrame;
+
 	procSx1276(uttecLib_t, procServer*);
-	void sx1276Task(uint8_t*);
+	void sx1276Task(rfFrame_t*);
+	void dispSx1276();
+	void setSimulationData();
+	void sendSxFrame(rfFrame_t*);
+	void reformSx2Rf(rfFrame_t*);
+	void reformRf2Sx(rfFrame_t*,sxFrame_t*);
+	bool isMyGroup(rfFrame_t*, rfFrame_t*);
 };
 
 #endif

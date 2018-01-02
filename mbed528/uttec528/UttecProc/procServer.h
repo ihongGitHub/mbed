@@ -26,6 +26,7 @@ private:
 	void procNewSetSub(rfFrame_t*);
 	void procNewFactSetSub(rfFrame_t*);
 	void procAltSub(rfFrame_t*);
+	void resendByRepeater(rfFrame_t*);
 public:
 	procServer(uttecLib_t);
 	void taskServer(rfFrame_t*);

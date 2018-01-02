@@ -26,24 +26,47 @@ procSec::procSec(uttecLib_t pLib, procServer* pServer){
 	pMy_mSec = pLib.pMsec;
 	pMyServer = pServer;
 }
+//eRpt, eSRx, eTx, eRx, eMst, eGw
+#define testCount 7
 
 void procSec::testFrame(rfFrame_t* pFrame){
-	pFrame->MyAddr.SensorType.iSensor = eVolume;	
-	pFrame->MyAddr.PrivateAddr = 	11; //org 10
-	pFrame->Cmd.Command = edServerReq;
-	pFrame->Cmd.SubCmd = edsControl;
-	pFrame->Ctr.Level = 50;
+	static bool bSender = true;
+	static bool bToggle = false;
+	static uint32_t tgCount = 0;
+	tgCount++;
+	if(!(tgCount%testCount)) bToggle = !bToggle;
+	if(bSender){
+		pFrame->MyAddr.RxTx.iRxTx = eMst;
+		pFrame->MyAddr.SensorType.iSensor = ePir;	
+		pFrame->MyAddr.PrivateAddr = 	11; //org 10
+		pFrame->Cmd.Command = edVolume;
+		if(bToggle)
+			pFrame->Cmd.SubCmd = edsControl;
+		else
+			pFrame->Cmd.SubCmd = edsCmd_Alternative;
+			
+		pFrame->Ctr.High = 100;
+		pFrame->Ctr.Low = 0;
+		pFrame->Ctr.Level = 50;
+	}
+	else{
+		pFrame->MyAddr.SensorType.iSensor = ePir;	
+		pFrame->MyAddr.RxTx.iRxTx = eRpt;
+	}	
 }
-
 void procSec::secTask(rfFrame_t* pFrame){
 	static uint32_t ulCount = 0;
 	UttecUtil myUtil;
 	ulCount++;	
 	
-	if(pFrame->MyAddr.RxTx.Bit.Tx){
-		printf("My Role is Tx\n\r");
-		testFrame(pFrame);
-		pMyRf->sendRf(pFrame);
+	testFrame(pFrame);
+	if(pFrame->MyAddr.RxTx.Bit.Mst){
+		printf("My Role is eMst\n\r");
+		if(!(ulCount%testCount)){
+			myUtil.testProc(pFrame->Cmd.Command, 0);
+			pMy485->send485(pFrame, eRsUp);
+//			pMyRf->sendRf(pFrame);
+		}
 	}
 	else{
 		printf("My Role is Rx\n\r");

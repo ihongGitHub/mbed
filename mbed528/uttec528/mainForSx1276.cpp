@@ -2,21 +2,6 @@
 #include "nrf.h"
 #include "uttecLib.h"
 
-/*
-#include "Flash.h"
-#include "DimmerRf.h"
-#include "rs485.h"
-#include "sx1276Exe.h"
-#include "bleExe.h"
-#include "mSecExe.h"
-
-#include "procSx1276.h"
-#include "procBle.h"
-#include "procRf.h"
-#include "procSec.h"
-
-*/
-
 #include "procRf.h"
 #include "procBle.h"
 #include "procSx1276.h"
@@ -25,7 +10,9 @@
 #include "procServer.h"
 
 #include "UttecUtil.h"
+#include "CmdDefine.h"
 #include "serial_api.h"
+
 
 #ifdef my52832
 Serial Uart(p6, p8);
@@ -35,8 +22,8 @@ Serial Uart(p9,p11);
 
 Flash myFlash;
 UttecBle myBle;
+//sx1276Exe mySx1276;
 sx1276Exe mySx1276;
-PwmOut pwm(p22);
 
 Ticker secTimer;
 Ticker msecTimer;
@@ -56,14 +43,9 @@ void tickmSec(){
 	tick_mSec = true;
 }
 
-#include "CmdDefine.h"
-#include "serial_api.h"
-
 int main(void)
 {
 	uttecLib_t myLib;
-	
-	uint32_t ulCount = 0;
 //https://os.mbed.com/handbook/Serial	
 	Uart.baud(115200);
 #ifdef 	my52832
@@ -83,19 +65,18 @@ int main(void)
 	myRf.initRfFrame(); 
 	secTimer.attach(&tickSec, 1);
 	msecTimer.attach(&tickmSec, 0.001);
-	myUtil.setWdt(3);
-	
+		
 	mSecExe my_mSec(&myRf);
 	rs485 my485(&Uart);
-//	mySx1276.initSx1276();
+	
 	UttecBle myBle;
 	
 	myLib.pFlash = &myFlash;
 	myLib.pDimmerRf = &myRf;
-	myLib.pRx485 = &my485;
-	myLib.pSx1276Exe = &mySx1276;
-	myLib.pBleExe = &myBle;
-	myLib.pMsecEce = &my_mSec;
+	myLib.pRs485 = &my485;
+	myLib.pSx1276 = &mySx1276;
+	myLib.pBle = &myBle;
+	myLib.pMsec = &my_mSec;
 	
 	procServer mProcServer(myLib);
 	procRf mProcRf(myLib, &mProcServer);
@@ -104,73 +85,64 @@ int main(void)
 	proc485 mProc485(myLib, &mProcServer);
 	procSec mProcSec(myLib, &mProcServer);
 /*
-*/	
+*/
+	pFrame->Ctr.SensorRate = 1;
 	my_mSec.setSensorLimit(pFrame->Ctr.SensorRate/100.0);
 	//flash.resetFlash();
-	uint8_t ucTest = 0;
+	mySx1276.initSx1276();
 	
+	myUtil.setWdt(3);
+	mProcSx1276.setSimulationData();
 	while(true){
 		myUtil.setWdtReload();
 		
-		if(myRf.isRxDone()){
+		if(myRf.isRxDone()){		//For Rf Receive
 			myRf.clearRxFlag();
-			mProcRf.taskRf(myRf.returnRxBuf());
+			rfFrame_t* pFrame = myRf.returnRxBuf();
+			myUtil.testProc(pFrame->Cmd.Command, 1);
+			mProcRf.taskRf(pFrame);			
 		}
 		
-		if(myBle.isBleRxReady()){
+		if(myBle.isBleRxReady()){		//For Ble Receive
 			myBle.clearBleRxReady();
 			mProcBle.bleTask(myBle.getBleRxData());
 		}
 		
-		if(my485.is485Done()){
+		if(my485.is485Done()){		//For rs485 Receive
 			my485.clear485Done();
 			mProc485.rs485Task(my485.return485Buf());
 		}
 		
-		if(mySx1276.isSx1276RxDone()){
-			uint8_t ucTemp[10];
-			mySx1276.clearSx1276RxDone();
-			mProcSx1276.sx1276Task(ucTemp);
+		if(mySx1276.readLoRa()->rxFlag){		//For sx1276 Receive
+			rfFrame_t sxRfFrame = *pFrame;
+			sxRxFrame_t* psxRxFrame = mySx1276.readLoRa();
+			mProcSx1276.m_sxFrame = *(sxFrame_t*)psxRxFrame->ptrBuf;
+			mProcSx1276.reformSx2Rf(&sxRfFrame);
+			psxRxFrame->rxFlag = false;
+			
+			if(mProcSx1276.isMyGroup(&sxRfFrame, pFrame))
+				mProcSx1276.sx1276Task(&sxRfFrame);
+		}
+
+		if(my_mSec.returnSensorFlag()){		//For sensor Receive
+			my_mSec.clearSensorFlag();
+//			myRf.sendRf(pFrame);
+//			my485.send485(pFrame);
+//			mySx1276.sendSx1276(pFrame);
+//			myBle.sendBle(pFrame);
+		}
+		
+		if(tick_mSec){
+			tick_mSec = false;
+			my_mSec.msecTask(pFrame);
 		}
 		
 		if(tick_Sec){
 			printf("Sec proc\n\r");
-			tick_Sec = false;
+			tick_Sec = false;			
 			mProcSec.secTask(pFrame);			
+			mProcSx1276.dispSx1276();
 		}
-	}
-
-	while (true) {
-		if(tick_Sec){
-			printf("Sec proc\n\r");
-			tick_Sec = false;
-//			mySec.secTask(pFrame);
-			my485.send485(pFrame);
-//		pFrame->MyAddr.RxTx.iRxTx = eTx;
-		pFrame->MyAddr.SensorType.iSensor = eVolume;	
-		pFrame->MyAddr.PrivateAddr = 	11; //org 10
-		pFrame->Cmd.Command = edServerReq;
-		pFrame->Cmd.SubCmd = edsControl;
-		pFrame->Ctr.Level = ucTest++;
-		static bool bCmd = false;	
-		if(ucTest > 100) ucTest = 0;		
-			if((pFrame->MyAddr.RxTx.iRxTx == eTx)&&testTick){
-				bCmd = !bCmd;
-				if(bCmd) 
-					pFrame->Cmd.SubCmd = edsControl;
-				else
-					pFrame->Cmd.SubCmd = edsCmd_Alternative;
-					
-				myUtil.testProc(1,0);
-				myRf.sendRf(pFrame);
-				testTick = false;
-			}
-		}
-		if(tick_mSec){
-			tick_mSec = false;
-			my_mSec.msecTask(pFrame);		
-			if(my_mSec.returnSensorFlag()){
-			}				
-		}
+		
 	}
 }

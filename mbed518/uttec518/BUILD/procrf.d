@@ -111,8 +111,8 @@
 .\build\procrf.o: mbed/./platform/DirHandle.h
 .\build\procrf.o: mbed/./platform/CriticalSectionLock.h
 .\build\procrf.o: mbed/./platform/DeepSleepLock.h
-.\build\procrf.o: ..\..\mbed528\uttec528\UttecApp\sx1276Exe.h
-.\build\procrf.o: ..\..\mbed528\uttec528\UttecApp\UttecBle.h
+.\build\procrf.o: ..\..\mbed528\uttec528\Simulation\sx1276Exe.h
+.\build\procrf.o: ..\..\mbed528\uttec528\Simulation\UttecBle.h
 .\build\procrf.o: ..\..\mbed528\uttec528\UttecApp\mSecExe.h
 .\build\procrf.o: ..\..\mbed528\uttec528\UttecProc\procServer.h
 .\build\procrf.o: ..\..\mbed528\uttec528\UttecApp\UttecLed.h

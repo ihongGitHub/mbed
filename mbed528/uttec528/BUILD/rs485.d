@@ -107,5 +107,5 @@
 .\build\rs485.o: .\UttecLib\Flash.h
 .\build\rs485.o: .\UttecLib\Channel.h
 .\build\rs485.o: .\UttecLib\Random.h
-.\build\rs485.o: .\UttecLib\UttecUtil.h
+.\build\rs485.o: .\UttecApp\UttecUtil.h
 .\build\rs485.o: .\UttecLib\radio_config.h

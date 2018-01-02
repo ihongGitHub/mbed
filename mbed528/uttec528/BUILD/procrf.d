@@ -8,7 +8,7 @@
 .\build\procrf.o: .\UttecApp\DimmerRf.h
 .\build\procrf.o: .\UttecLib\Rf.h
 .\build\procrf.o: .\UttecLib\Random.h
-.\build\procrf.o: .\UttecLib\UttecUtil.h
+.\build\procrf.o: .\UttecApp\UttecUtil.h
 .\build\procrf.o: .\UttecLib\radio_config.h
 .\build\procrf.o: .\UttecLib\rs485.h
 .\build\procrf.o: mbed/./mbed.h

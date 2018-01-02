@@ -100,7 +100,7 @@
 .\build\mainforsx1276.o: mbed/./platform/DirHandle.h
 .\build\mainforsx1276.o: mbed/./platform/CriticalSectionLock.h
 .\build\mainforsx1276.o: mbed/./platform/DeepSleepLock.h
-.\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecApp\uttecLib.h
+.\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecProc\uttecLib.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h
@@ -109,14 +109,13 @@
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecApp\UttecUtil.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecLib\radio_config.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecLib\rs485.h
-.\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecApp\sx1276Exe.h
-.\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecApp\UttecBle.h
+.\build\mainforsx1276.o: ..\..\mbed528\uttec528\Simulation\sx1276Exe.h
+.\build\mainforsx1276.o: ..\..\mbed528\uttec528\Simulation\UttecBle.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecApp\mSecExe.h
+.\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecApp\CmdDefine.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecProc\procRf.h
-.\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecProc\uttecLib.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecProc\procServer.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecProc\procBle.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecProc\procSx1276.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecProc\proc485.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecProc\procSec.h
-.\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecApp\CmdDefine.h

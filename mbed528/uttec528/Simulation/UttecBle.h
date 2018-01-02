@@ -16,6 +16,7 @@ public:
 	bool isBleRxReady();
 	void clearBleRxReady();
 	uint8_t* getBleRxData();  
+	void sendBle(rfFrame_t*);
 };
 
 #endif

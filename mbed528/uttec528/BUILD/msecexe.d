@@ -107,6 +107,6 @@
 .\build\msecexe.o: .\UttecLib\Flash.h
 .\build\msecexe.o: .\UttecLib\Channel.h
 .\build\msecexe.o: .\UttecLib\Random.h
-.\build\msecexe.o: .\UttecLib\UttecUtil.h
+.\build\msecexe.o: .\UttecApp\UttecUtil.h
 .\build\msecexe.o: .\UttecLib\radio_config.h
 .\build\msecexe.o: UttecApp\UttecLed.h

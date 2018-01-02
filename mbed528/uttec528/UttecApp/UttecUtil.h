@@ -9,9 +9,14 @@
 
 #define UartTx   p9
 #define UartRx   p11
+typedef enum{
+	eUp = 0,
+	eDown = 1
+} UttecDirection_t;
 
 typedef struct{
-	float dimValue;
+	float targetValue;
+	float nowValue;
 	bool forced;
 	uint8_t sensorType;	
 } dimFactors_t;
@@ -41,6 +46,16 @@ public:
 	dimFactors_t getDimFactor();
 	uint16_t changeBytesInWord(uint16_t);
 
+	bool isMstOrGw(rfFrame_t*);
+	bool isMst(rfFrame_t*);
+	bool isGw(rfFrame_t*);
+	bool isTx(rfFrame_t*);
+	bool isSRx(rfFrame_t*);
+	bool isRx(rfFrame_t*);
+	bool isRpt(rfFrame_t*);
+	void dispRfFactor(rfFrame_t*);
+	void dispCmdandSub(char*, char*, rfFrame_t*);
+	bool isNotMyGroup(rfFrame_t* pSrc, rfFrame_t* pMy);
 };
 
 #endif

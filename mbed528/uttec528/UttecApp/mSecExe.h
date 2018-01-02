@@ -11,7 +11,10 @@
 #define floatZero (float)0.01
 #define MaxVolumeCount 10000
 #define VolumeZeroPoint (float)0.01
-	
+//0.2Sec	
+#define TimeoutForVolumeRepeat 200 
+#define TimeoutForPirRepeat 300 
+
 typedef struct{
 	bool flag;
 	uint32_t dTime;
@@ -24,6 +27,7 @@ typedef struct{
 	float average;
 	float current;
 	float target;
+	float pwm;
 	uint32_t volumeCount;
 } UttecPir_t;
 
@@ -33,10 +37,6 @@ typedef struct{
 	float downStep;	
 } UttecDim_t;
 
-typedef enum{
-	eUp = 0,
-	eDown = 1
-} UttecDirection_t;
 
 class mSecExe
 {
@@ -45,12 +45,13 @@ private:
 	static bool m_sensorFlag;
 
 	void switchSensorType(rfFrame_t*);
-	bool procPirSensor();
+	bool procPirSensor(rfFrame_t*);
 	bool procVolumeSw();
 	void setNextRange();
 	void monitorSensorFactor();
 	float averageSensor(float);
 	void procDim(UttecDim_t);
+	void setSensorFlag();
 public:
 	static eSensorType_t m_sensorType;
 	static UttecPir_t m_sPir;
@@ -59,6 +60,7 @@ public:
 	mSecExe(DimmerRf*);
 	void msecTask(rfFrame_t*);
 	void setSensorLimit(float);
+	
 	bool returnSensorFlag();
 	void clearSensorFlag();
 	void switchDimType(rfFrame_t*);

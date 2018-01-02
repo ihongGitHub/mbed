@@ -17,6 +17,8 @@ UttecBle* procRf::pMyBle = NULL;
 mSecExe* procRf::pMy_mSec = NULL;
 procServer* procRf::pMyServer = NULL;
 
+static UttecUtil myUtil;
+
 procRf::procRf(uttecLib_t pLib, procServer* pServer){
 	mpFlash = pLib.pFlash;
 	mpFlashFrame = mpFlash->getFlashFrame();
@@ -32,30 +34,9 @@ procRf::procRf(uttecLib_t pLib, procServer* pServer){
 
 procRf::procRf(Flash* pFlash, DimmerRf* pRf, mSecExe* pMsec){
 }
-bool procRf::isTx(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.Tx;
-}
-bool procRf::isSRx(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.SRx;
-}
-bool procRf::isRx(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.Rx;
-}
-bool procRf::isRpt(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.Rpt;
-}
-bool procRf::isGw(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.GW;
-}
-bool procRf::isMst(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.Mst;
-}
-bool procRf::isMstOrGw(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.Mst||pFrame->MyAddr.RxTx.Bit.GW;
-}
 void procRf::procRepeatCmd(rfFrame_t* pFrame){
-	if(isMstOrGw(mp_rfFrame)) return;
-	if(isTx(mp_rfFrame)) conflictTx();
+	if(myUtil.isMstOrGw(mp_rfFrame)) return;
+	if(myUtil.isTx(mp_rfFrame)) conflictTx();
 	
 	printf("procRepeatCmd\n\r");
 	pFrame->Ctr.High = mp_rfFrame->Ctr.High;
@@ -63,34 +44,59 @@ void procRf::procRepeatCmd(rfFrame_t* pFrame){
 	pFrame->Ctr.Level = mp_rfFrame->Ctr.Level;
 	pFrame->Ctr.DTime = mp_rfFrame->Ctr.DTime;
 	pFrame->Ctr.Type = mp_rfFrame->Ctr.Type;
-	if(isRx(mp_rfFrame)){
-		pMy_mSec->m_sensorType = 
-			(eSensorType_t)pFrame->MyAddr.SensorType.iSensor;
+	
+	if(myUtil.isRx(mp_rfFrame)){
+		if(mp_rfFrame->MyAddr.SensorType.iSensor == eNoSensor){
+			pMy_mSec->m_sensorType = 
+				(eSensorType_t)pFrame->MyAddr.SensorType.iSensor;
+			myUtil.testProc(pFrame->Cmd.Command, 3);
+		}
+		myUtil.testProc(pFrame->Cmd.Command, 4);
+	}
+			myUtil.testProc(pFrame->Cmd.Command, 5);
+}
+
+void procRf::resendByRepeater(rfFrame_t* pFrame){
+	if(myUtil.isRpt(mp_rfFrame)){	//Repeat Function
+		myUtil.testProc(pFrame->Cmd.Command, 3);
+		if(!myUtil.isRpt(pFrame)){	//From Rpt?
+			pFrame->MyAddr.RxTx.iRxTx = eRpt;
+			printf("resend by repeater\n\r");
+			myUtil.testProc(pFrame->Cmd.Command, 4);
+			pMyRf->sendRf(pFrame);	
+		}			
 	}
 }
+
 void procRf::procSensorCmd(rfFrame_t* pFrame){
-	if(isMstOrGw(mp_rfFrame)) return;
+	if(myUtil.isMstOrGw(mp_rfFrame)) return;
+	if(myUtil.isRx(mp_rfFrame)) return;
+	
 	pMy_mSec->m_sPir.dTime = mp_rfFrame->Ctr.DTime*1000;
 	pMy_mSec->m_sPir.target = mp_rfFrame->Ctr.High/100.0;
+	
+	resendByRepeater(pFrame);
+	myUtil.testProc(pFrame->Cmd.Command, 5);
 }
 
 void procRf::procVolumeCmd(rfFrame_t* pFrame){
 	UttecUtil myUtil;
 	printf("procVolumeCmd\n\r");
 	
-	if(isMstOrGw(mp_rfFrame)) return;
-	if(isTx(mp_rfFrame)) conflictTx();
+	if(myUtil.isMstOrGw(mp_rfFrame)) return;
+	if(myUtil.isTx(mp_rfFrame)) conflictTx();
 	
 	pMy_mSec->m_sensorType = eVolume;
 	mp_rfFrame->Ctr.Level = pFrame->Ctr.Level;
 	pMy_mSec->m_sPir.target = pFrame->Ctr.Level/100.0;
+	printf("pMy_mSec->m_sPir.target = %0.3f\n\r",
+	pMy_mSec->m_sPir.target);
 }
 
 void procRf::taskRf(rfFrame_t* pFrame){
-	UttecUtil myUtil;
 	UttecLed myLed;
-	
 	uint8_t ucCmd = pFrame->Cmd.Command;
+	myUtil.testProc(pFrame->Cmd.Command, 2);
 	switch(ucCmd){
 		case edDummy:
 				break;
@@ -118,7 +124,7 @@ void procRf::taskRf(rfFrame_t* pFrame){
 		case edDayLight:
 				break;
 		case edServerReq:
-//			pMyServer->taskServer(pFrame);
+			pMyServer->taskServer(pFrame);
 				break;
 		case edClientReq:
 				break;

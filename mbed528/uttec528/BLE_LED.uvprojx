@@ -2231,11 +2231,6 @@
           <GroupName>UttecApp</GroupName>
           <Files>
             <File>
-              <FileName>UttecUtil.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\UttecLib\UttecUtil.cpp</FilePath>
-            </File>
-            <File>
               <FileName>DimmerRf.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\UttecApp\DimmerRf.cpp</FilePath>
@@ -2259,6 +2254,11 @@
               <FileName>UttecBle.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\UttecApp\UttecBle.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>UttecUtil.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\UttecApp\UttecUtil.cpp</FilePath>
             </File>
           </Files>
         </Group>

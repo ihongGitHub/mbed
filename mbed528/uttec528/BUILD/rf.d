@@ -106,5 +106,5 @@
 .\build\rf.o: UttecLib\Flash.h
 .\build\rf.o: UttecLib\Channel.h
 .\build\rf.o: UttecLib\Random.h
-.\build\rf.o: UttecLib\UttecUtil.h
+.\build\rf.o: .\UttecApp\UttecUtil.h
 .\build\rf.o: UttecLib\radio_config.h

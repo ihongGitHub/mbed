@@ -110,8 +110,8 @@
 .\build\procble.o: ..\..\mbed528\uttec528\UttecApp\UttecUtil.h
 .\build\procble.o: ..\..\mbed528\uttec528\UttecLib\radio_config.h
 .\build\procble.o: ..\..\mbed528\uttec528\UttecLib\rs485.h
-.\build\procble.o: ..\..\mbed528\uttec528\UttecApp\sx1276Exe.h
-.\build\procble.o: ..\..\mbed528\uttec528\UttecApp\UttecBle.h
+.\build\procble.o: ..\..\mbed528\uttec528\Simulation\sx1276Exe.h
+.\build\procble.o: ..\..\mbed528\uttec528\Simulation\UttecBle.h
 .\build\procble.o: ..\..\mbed528\uttec528\UttecApp\mSecExe.h
 .\build\procble.o: ..\..\mbed528\uttec528\UttecApp\CmdDefine.h
 .\build\procble.o: ..\..\mbed528\uttec528\UttecProc\procServer.h

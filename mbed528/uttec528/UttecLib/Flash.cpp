@@ -213,6 +213,7 @@ void Flash::initOrgFlash(){
 	rfFrame.Ctr.High=100;
 	rfFrame.Ctr.Low=0;
 	rfFrame.Ctr.Level=0;
+	rfFrame.Ctr.SensorRate=1;
 	rfFrame.Ctr.DTime=1;
 		
 	m_flash.rfFrame=rfFrame;

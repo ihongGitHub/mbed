@@ -21,6 +21,10 @@ private:
 	static UttecBle* pMyBle;
 	static mSecExe* pMy_mSec;
 	static procServer* pMyServer;
+
+	void procVolumeCmd(rfFrame_t*);
+	void resendByRepeater(rfFrame_t*);
+	void transferMstGwBy485(rfFrame_t*, UttecDirection_t);
 public:
 	proc485(uttecLib_t, procServer*);
 	void rs485Task(rfFrame_t*);

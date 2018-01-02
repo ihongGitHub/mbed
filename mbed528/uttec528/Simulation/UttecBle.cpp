@@ -21,3 +21,7 @@ void UttecBle::clearBleRxReady(){
 uint8_t* UttecBle::getBleRxData(){
     return ucgdRxData;
 }
+
+void UttecBle::sendBle(rfFrame_t* pFrame){
+	printf("----------Now send rfFrame, Please porting UttecBle driver \n\r");
+}

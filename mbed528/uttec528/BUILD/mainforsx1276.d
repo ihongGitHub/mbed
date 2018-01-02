@@ -107,7 +107,7 @@
 .\build\mainforsx1276.o: .\UttecApp\DimmerRf.h
 .\build\mainforsx1276.o: .\UttecLib\Rf.h
 .\build\mainforsx1276.o: .\UttecLib\Random.h
-.\build\mainforsx1276.o: .\UttecLib\UttecUtil.h
+.\build\mainforsx1276.o: .\UttecApp\UttecUtil.h
 .\build\mainforsx1276.o: .\UttecLib\radio_config.h
 .\build\mainforsx1276.o: .\UttecLib\rs485.h
 .\build\mainforsx1276.o: .\UttecApp\sx1276Exe.h

@@ -108,10 +108,11 @@
 .\build\procsx1276.o: .\UttecApp\DimmerRf.h
 .\build\procsx1276.o: .\UttecLib\Rf.h
 .\build\procsx1276.o: .\UttecLib\Random.h
-.\build\procsx1276.o: .\UttecLib\UttecUtil.h
+.\build\procsx1276.o: .\UttecApp\UttecUtil.h
 .\build\procsx1276.o: .\UttecLib\radio_config.h
 .\build\procsx1276.o: .\UttecLib\rs485.h
 .\build\procsx1276.o: .\UttecApp\sx1276Exe.h
 .\build\procsx1276.o: .\UttecApp\UttecBle.h
 .\build\procsx1276.o: .\UttecApp\mSecExe.h
+.\build\procsx1276.o: .\UttecApp\CmdDefine.h
 .\build\procsx1276.o: UttecProc\procServer.h

@@ -3,11 +3,11 @@
 
 #include "mSecExe.h"
 #include "UttecLed.h"
+#include "UttecUtil.h"
 
-//DigitalOut rfLed(LED2, 0);
-//DigitalOut sensorLed(LED1, 0);
 AnalogIn pir(p3);
-PwmOut dimer(LED3);
+PwmOut dimer(p0);
+UttecLed myLed;
 
 DimmerRf* mSecExe::m_pRf = NULL;
 UttecPir_t mSecExe::m_sPir = {0,};
@@ -15,7 +15,6 @@ UttecDim_t mSecExe::sDim = {0,};
 //ePir, eVolume
 eSensorType_t mSecExe::m_sensorType = eVolume;
 bool mSecExe::m_sensorFlag = false;
-UttecLed myLed;
 
 mSecExe::mSecExe(DimmerRf* pRf){
 	m_pRf = pRf;
@@ -40,7 +39,7 @@ float mSecExe::averageSensor(float fValue){
 	return m_sPir.average;
 }
 
-bool mSecExe::procPirSensor(){
+bool mSecExe::procPirSensor(rfFrame_t* pFrame){
 	if(m_sPir.flag) return m_sPir.flag;
 	
 	m_sPir.current = pir.read();
@@ -53,11 +52,9 @@ bool mSecExe::procPirSensor(){
 	m_sPir.average = (m_sPir.max + m_sPir.min)/(float)2.0;	
 	if(m_sPir.current>m_sPir.realUpper){
 		m_sPir.flag = true;
-		m_sPir.target = m_sPir.current;
 	}
 	else if(m_sPir.current<(m_sPir.lower+floatZero)){
 		m_sPir.flag = true;
-		m_sPir.target = m_sPir.current;
 	}
 	return m_sPir.flag;
 }
@@ -98,21 +95,35 @@ bool mSecExe::procVolumeSw(){
 	return m_sPir.flag;
 }
 
-
 void mSecExe::switchSensorType(rfFrame_t* pFrame){
-	switch(m_sensorType){
+	static uint32_t ulTimeout = 0;
+	if(ulTimeout) ulTimeout--;
+	switch(pFrame->MyAddr.SensorType.iSensor){
 		case ePir:
-			if(procPirSensor()){
+			m_sensorType = ePir;			
+			if(procPirSensor(pFrame)){
 				m_sPir.flag = false;
-//				clearSensorFlag();
-//				printf("Sens = %0.3f\n\r", m_sPir.saved);
+//				putchar('.');
+				if(!ulTimeout){
+					ulTimeout = TimeoutForVolumeRepeat; //0.2Sec
+					m_sPir.target = pFrame->Ctr.High/100.0;
+					m_sPir.dTime = pFrame->Ctr.DTime*1000;
+					printf("\n\r***************target = %0.3f\n\r", m_sPir.target);
+					setSensorFlag();
+					printf("Sens = %0.3f\n\r", m_sPir.target);
+				}
 			}
 			break;
 		case eVolume:
-			if(procVolumeSw()){
+			if(procVolumeSw()&&pFrame->MyAddr.RxTx.Bit.Tx){
+				m_sensorType = eVolume;			
 				m_sPir.flag = false;
-				clearSensorFlag();
-				printf("Sens = %0.3f\n\r", m_sPir.target);
+				pFrame->Ctr.Level = m_sPir.target*100;
+				if(!ulTimeout){
+					ulTimeout = TimeoutForVolumeRepeat; //0.2Sec
+					setSensorFlag();
+					printf("Sens = %0.3f\n\r", m_sPir.target);
+				}
 			}
 			break;
 		default:
@@ -129,7 +140,8 @@ void mSecExe::procDim(UttecDim_t sDim){
 		fNow -= sDim.downStep;
 		if(fNow <= m_sPir.target) fNow = m_sPir.target;
 	}
-	dimer = (float)1.0 - fNow;
+	m_sPir.pwm = fNow;
+	dimer = (float)1.0 - m_sPir.pwm; 
 //	dimer = fNow;
 }
 
@@ -143,7 +155,7 @@ void mSecExe::switchDimType(rfFrame_t* pFrame){
 			if(m_sPir.dTime) m_sPir.dTime--;
 			else	//when Delay Time out
 				m_sPir.target = (float)pFrame->Ctr.Low/(float)100.0;
-			sDim.upStep = 0.001;
+			sDim.upStep = 0.005;
 			sDim.downStep = 0.0003;
 			sDim.forced = false;
 			procDim(sDim);		
@@ -153,6 +165,7 @@ void mSecExe::switchDimType(rfFrame_t* pFrame){
 			sDim.downStep = 0.01;
 			sDim.forced = false;
 			procDim(sDim);		
+//		putchar('v');
 			break;
 		default:
 			break;
@@ -171,37 +184,38 @@ void mSecExe::monitorSensorFactor(){
 	printf("Flash float init value = %f\n\r", pFlash->VolumeCheck);
 	printf("Gid = %d\n\r", pFlash->rfFrame.MyAddr.GroupAddr);
 }
-#include "UttecUtil.h"
 
 void mSecExe::msecTask(rfFrame_t* pFrame){
-	
+	UttecUtil myUtil;	
 	static uint32_t ulCount = 0;	
+	static bool isRealMode = false;
 	ulCount++;
 	
-//	m_sensorType = ePir;
-
-//	switchSensorType(pFrame);
-	switchDimType(pFrame);
+	if(isRealMode)
+	if(!myUtil.isMstOrGw(pFrame)){
+		switchSensorType(pFrame);
+		switchDimType(pFrame);
+	}
 	myLed.taskLed();
 	if(!(ulCount%500)){
-		UttecUtil myUtil;
-		dimFactors_t sFactors = {m_sPir.target,sDim.forced, m_sensorType}; 
+		dimFactors_t sFactors = {m_sPir.target,m_sPir.pwm,
+			sDim.forced, m_sensorType}; 
 		
 		myUtil.setDimFactor(sFactors);
 		myLed.blink(eRfLed, eRfBlink);
 		myLed.blink(eSensLed, eSensBlink);
-//		if(rfLed) monitorSensorFactor();		
+//		monitorSensorFactor();		
 	}
 }
 
 void mSecExe::setSensorLimit(float fLimit){
 	m_sPir.flag = false;
-	m_sPir.average = 0.0;
+	m_sPir.average = 0.5;
 	m_sPir.max = 0.5;
 	m_sPir.min = 0.5;
 	m_sPir.current = 0.5;
 	
-	m_sPir.upper = m_sPir.average + m_sPir.average - fLimit;
+	m_sPir.upper = 1.0 - fLimit;
 	m_sPir.lower = fLimit;
 	m_sPir.rate = fLimit;
 }
@@ -210,5 +224,8 @@ bool mSecExe::returnSensorFlag(){
 }
 void mSecExe::clearSensorFlag(){
 	m_sensorFlag = false;
+}
+void mSecExe::setSensorFlag(){
+	m_sensorFlag = true;
 }
 
