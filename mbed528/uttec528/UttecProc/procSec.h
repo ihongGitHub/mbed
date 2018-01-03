@@ -23,6 +23,8 @@ private:
 	static procServer* pMyServer;
 
 	void testFrame(rfFrame_t*);
+	void testSxFrame();
+
 public:
 	procSec(uttecLib_t, procServer*);
 	void secTask(rfFrame_t*);

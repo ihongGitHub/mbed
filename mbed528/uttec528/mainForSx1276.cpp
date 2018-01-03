@@ -22,7 +22,6 @@ Serial Uart(p9,p11);
 
 Flash myFlash;
 UttecBle myBle;
-//sx1276Exe mySx1276;
 sx1276Exe mySx1276;
 
 Ticker secTimer;
@@ -93,6 +92,8 @@ int main(void)
 	
 	myUtil.setWdt(3);
 	mProcSx1276.setSimulationData();
+	
+	pFrame->MyAddr.RxTx.iRxTx = eTx;
 	while(true){
 		myUtil.setWdtReload();
 		
@@ -111,17 +112,31 @@ int main(void)
 		if(my485.is485Done()){		//For rs485 Receive
 			my485.clear485Done();
 			mProc485.rs485Task(my485.return485Buf());
-		}
-		
-		if(mySx1276.readLoRa()->rxFlag){		//For sx1276 Receive
+		}		
+/*		
+		if(mySx1276.isSxRxReady()){		//For sx1276 Receive
+			printf("-------------isSxRxReady\n\r");
 			rfFrame_t sxRfFrame = *pFrame;
 			sxRxFrame_t* psxRxFrame = mySx1276.readLoRa();
 			mProcSx1276.m_sxFrame = *(sxFrame_t*)psxRxFrame->ptrBuf;
 			mProcSx1276.reformSx2Rf(&sxRfFrame);
-			psxRxFrame->rxFlag = false;
+			mySx1276.clearSxRxFlag();
 			
 			if(mProcSx1276.isMyGroup(&sxRfFrame, pFrame))
 				mProcSx1276.sx1276Task(&sxRfFrame);
+		}
+		*/
+		if(mySx1276.isSxRxReady()){		//For sx1276 Receive
+			rfFrame_t sxRfFrame = *pFrame;
+			mProcSx1276.setSxRxData(mySx1276.readLoRa());
+			printf("-----------i received readLoRa: \n\r");
+			mProcSx1276.dispSx1276();
+			
+			mProcSx1276.reformSx2Rf(&sxRfFrame, &mProcSx1276.m_sxFrame);
+			mySx1276.clearSxRxFlag();
+				if(!myUtil.isTx(pFrame))
+					printf("Resend rfFrame\n\r");
+					mProcSx1276.sendSxFrame(&sxRfFrame);
 		}
 
 		if(my_mSec.returnSensorFlag()){		//For sensor Receive
@@ -142,7 +157,12 @@ int main(void)
 			tick_Sec = false;			
 			mProcSec.secTask(pFrame);			
 			mProcSx1276.dispSx1276();
+			mProcSx1276.setSimulationData();
+			if(myUtil.isTx(pFrame)){
+				pFrame->Cmd.Command = edServerReq;
+				pFrame->Cmd.SubCmd = edsControl;
+				mProcSx1276.sendSxFrame(pFrame);
+			}
 		}
-		
 	}
 }

@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\BUILD\</OutputDirectory>
-          <OutputName>sx1276nrf518_180101_0440</OutputName>
+          <OutputName>sx1276nrf518_180103_1400</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -2194,6 +2194,13 @@
         </Group>
         <Group>
           <GroupName>ref</GroupName>
+          <Files>
+            <File>
+              <FileName>ref.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\mbed528\uttec528\ref\ref.txt</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>UttecLib</GroupName>

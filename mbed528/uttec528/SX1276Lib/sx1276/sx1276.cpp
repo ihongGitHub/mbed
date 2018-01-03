@@ -646,7 +646,6 @@ double SX1276::TimeOnAir( RadioModems_t modem, uint8_t pktLen )
     }
     return airTime;
 }
-
 void SX1276::Send( uint8_t *buffer, uint8_t size )
 {
     uint32_t txTimeout = 0;

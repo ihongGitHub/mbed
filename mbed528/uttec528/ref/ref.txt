@@ -1,36 +1,21 @@
-sx1276 flow
+2018.01.03 LoRa Project Start
 
-	main
+1. LoRa Channel Setting
+915MHz 대역
+905~925MHz, bandwidth 500KHz, 41Channels, 40th Channel is setting channel.
 
-	set objects
+Tx Test data: 2018.01.03 11:00
+bandwidth: 250KHz				500KHz	(10Kbps)				125KHz(2.56Kbs)
 
-	make pointer sturcture of transfer object
-		trasfer ={	*rf,
-				*sx12756,
-				*rs485,
-				*ble,
-				*flash,
-				*pwm	}
-        
-	set pointers for tasks
+64bytes								64bytes											64bytes:
+red:60mSec						red: 28mSec									red: 120mSec
+yellow:8*20= 160mSec			yellow: 130mSec					yellow: 220mSec
+base: 100mSec
 
-	forever while
+32bytes							32bytes												32bytes
+red: 36mSec					red: 18mSec										red: 70mSec
+yellow: 138mSec				yellow:  118mSec						yellow: 170mSec
 
-		is Rf input?
-			Rf task(transfer)
-
-		is sx1276 input?
-			sx1276 task(transfer)
-
-		is rs485 input?
-			rs485 task(transfer)
-
-		is ble input?
-			ble task(transfer)
-
-		is one second?
-			oneSec task(transfer)
-
-		is msec?
-			sensor task(transfer)
-			pwm task
+16bytes							16bytes												16bytes
+red: 25mSec					red: 12mSec										red: 50mSec
+yellow: 125mSec				yellow: 115mSec							yellow: 150mSec

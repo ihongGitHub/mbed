@@ -5,43 +5,49 @@
 #include "sx1276Exe.h"
 
 DigitalOut led(LED1);
+DigitalOut RxEnable(p13);
+DigitalOut TxEnable(p12);
 
 volatile AppStates_t State = LOWPOWER;
-
-/*!
- * Radio events function pointer
- */
 static RadioEvents_t RadioEvents;
-
-/*
- *  Global variables declarations
- */
 
 SX1276MB1xAS Radio( NULL );
 
-const uint8_t PingMsg[] = "PING";
-const uint8_t PongMsg[] = "PONG";
-
 uint16_t BufferSize = BUFFER_SIZE;
-uint8_t Buffer[BUFFER_SIZE];
-
-int16_t RssiValue = 0.0;
-int8_t SnrValue = 0.0;
+uint8_t m_sxRxBuff[BUFFER_SIZE];
+uint8_t m_sxTxBuff[BUFFER_SIZE];
 
 sxRxFrame_t m_sxRxFrame = {0,};
 
 sx1276Exe::sx1276Exe(){
+    TxEnable = 0;
+    RxEnable = 1;
 }
-
+void sx1276Exe::enableSxTx(){
+    TxEnable = 1;
+    RxEnable = 0;
+}
+void disableSxTx(){
+    wait(0.1);
+    TxEnable = 0;
+    RxEnable = 1;
+}
 void sx1276Exe::sendLoRa(sxTxFrame_t sFrame){
-//    Radio.Send( sFrame.ptrBuf, sFrame.size );
-	printf("sendLoRa\n\r");
+    enableSxTx();
+    /*
+    if(sFrame.size>BUFFER_SIZE){
+        printf("size is over: %d\n\r",sFrame.size);
+        sFrame.size = BUFFER_SIZE;
+    }
+    */
+    Radio.Send( sFrame.ptrBuf, sFrame.size );
+//    printf("sendLoRa\n\r");
 }
-bool sx1276Exe::getRxFlag(){
-    return m_sxRxFrame.rxFlag;
+bool sx1276Exe::isSxRxReady(){
+    return m_sxRxFrame.sxRxFlag;
 }
-void sx1276Exe::clearRxFlag(){
-    m_sxRxFrame.rxFlag=false;
+void sx1276Exe::clearSxRxFlag(){
+    m_sxRxFrame.sxRxFlag=false;
 }
 
 sxRxFrame_t* sx1276Exe::readLoRa(){
@@ -49,20 +55,69 @@ sxRxFrame_t* sx1276Exe::readLoRa(){
     return &m_sxRxFrame;
 }
 
+void OnTxDone( void )
+{
+    Radio.Sleep( );
+    State = TX;
+    Radio.Rx( RX_TIMEOUT_VALUE ); 
+    disableSxTx();
+}
+
+void OnRxDone( uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr)
+{
+    Radio.Sleep( );
+    memcpy( m_sxRxBuff, payload, size );
+    State = RX;
+    
+    m_sxRxFrame.sxRxFlag=true;
+    m_sxRxFrame.ptrBuf=m_sxRxBuff;
+    m_sxRxFrame.size=size;
+    m_sxRxFrame.rssi=rssi;
+    m_sxRxFrame.snr=snr;
+}
+
+void OnTxTimeout( void )
+{
+    Radio.Sleep( );
+    State = TX_TIMEOUT;
+    Radio.Rx( RX_TIMEOUT_VALUE );  
+    printf("\n\r OnTxTimeout \n\r"); 
+}
+
+void OnRxTimeout( void )
+{
+    Radio.Sleep( );
+    m_sxRxBuff[ BufferSize ] = 0;
+    State = RX_TIMEOUT;
+    Radio.Rx( RX_TIMEOUT_VALUE );  
+    printf("\n\r OnRxTimeout \n\r"); 
+}
+
+void OnRxError( void )
+{
+    Radio.Sleep( );
+    State = RX_ERROR;
+    Radio.Rx( RX_TIMEOUT_VALUE );  
+    printf("\n\r OnRxError \n\r"); 
+}
+
+
 void sx1276Exe::testTxRx(uint32_t uiTest){
-    uint8_t LoRaBuf[32];
+    uint8_t LoRaBuf[64/4];
+    for(int i = 0; i<sizeof(LoRaBuf); i++) LoRaBuf[i] = i%10 + '0';
     sxTxFrame_t sTxFrame;
-//    printf("testTxRx:%d\n\r",uiTest);
-    int iSize=sprintf((char*)LoRaBuf,"Count=%d\n\r",uiTest);
-    sTxFrame.ptrBuf=LoRaBuf; sTxFrame.size=(uint8_t)iSize;            
-		wait_ms( 10 ); 
+//    int iSize=sprintf((char*)LoRaBuf,"C:%d",uiTest);
+    printf("-------------testTxRx:%d\n\r",sizeof(LoRaBuf));
+    int iSize = sizeof(LoRaBuf);
+    sTxFrame.ptrBuf=LoRaBuf; sTxFrame.size=(uint8_t)iSize; 
+//    wait_ms( 20 );            
     sendLoRa(sTxFrame);
+//    Radio.Rx( RX_TIMEOUT_VALUE );
 }
 
 void sx1276Exe::initSx1276(){
 }
-
-void sx1276Exe::initSx1276_org(){
+void sx1276Exe::initSx1276(uint8_t ucCh){
     // Initialize Radio driver
     RadioEvents.TxDone = OnTxDone;
     RadioEvents.RxDone = OnRxDone;
@@ -77,14 +132,10 @@ void sx1276Exe::initSx1276_org(){
         debug( "Radio could not be detected!\n\r", NULL );
         wait( 1 );
     }
-            
-    debug_if( ( DEBUG_MESSAGE & ( Radio.DetectBoardType( ) == SX1276MB1LAS ) ) , "\n\r > Board Type: SX1276MB1LAS < \n\r" );
-    debug_if( ( DEBUG_MESSAGE & ( Radio.DetectBoardType( ) == SX1276MB1MAS ) ) , "\n\r > Board Type: SX1276MB1MAS < \n\r" );
-    
-    Radio.SetChannel( RF_FREQUENCY ); 
-    
-    debug_if( LORA_FHSS_ENABLED, "\n\n\r             > LORA FHSS Mode < \n\n\r");
-    debug_if( !LORA_FHSS_ENABLED, "\n\n\r             > LORA Mode < \n\n\r");
+		uint32_t ulCh = LoRaFreqBase + LoRaStep*ucCh;
+    Radio.SetChannel( ulCh );  
+		printf("LoRaChannel = %d, %d\n\r", ucCh, ulCh);	
+//    Radio.SetChannel( RF_FREQUENCY );     
     Radio.SetTxConfig( MODEM_LORA, TX_OUTPUT_POWER, 0, LORA_BANDWIDTH,
                          LORA_SPREADING_FACTOR, LORA_CODINGRATE,
                          LORA_PREAMBLE_LENGTH, LORA_FIX_LENGTH_PAYLOAD_ON,
@@ -96,22 +147,27 @@ void sx1276Exe::initSx1276_org(){
                          LORA_SYMBOL_TIMEOUT, LORA_FIX_LENGTH_PAYLOAD_ON, 0,
                          LORA_CRC_ENABLED, LORA_FHSS_ENABLED, LORA_NB_SYMB_HOP, 
                          LORA_IQ_INVERSION_ON, true );
-     
-    debug_if( DEBUG_MESSAGE, "\n\rStarting Ping-Pong loop\r\n" ); 
-        
     led = 0;
         
     Radio.Rx( RX_TIMEOUT_VALUE );
-    testSx1276();
+//    testSx1276();
 //    testTxRx();
 }
+
+
+/*
+*/
+uint8_t Buffer[BUFFER_SIZE];
+
+const uint8_t PingMsg[] = "PING";
+const uint8_t PongMsg[] = "PONG";
+#define DeTxDelay   1000
 
 void testSx1276(){
     uint8_t i;
     bool isMaster = true;
     while( 1 )
     {
-//			printf(".");
         switch( State )
         {
         case RX:
@@ -257,57 +313,3 @@ void testSx1276(){
         }    
     }
 }
-
-
-void OnTxDone( void )
-{
-    Radio.Sleep( );
-    State = TX;
-    Radio.Rx( RX_TIMEOUT_VALUE );  
-}
-
-void OnRxDone( uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr)
-{
-    Radio.Sleep( );
-    BufferSize = size;
-    memcpy( Buffer, payload, BufferSize );
-    RssiValue = rssi;
-    SnrValue = snr;
-    State = RX;
-    
-    m_sxRxFrame.rxFlag=true;
-    m_sxRxFrame.ptrBuf=Buffer;
-    m_sxRxFrame.size=size;
-    m_sxRxFrame.rssi=rssi;
-    m_sxRxFrame.snr=snr;
-}
-
-void OnTxTimeout( void )
-{
-    Radio.Sleep( );
-    State = TX_TIMEOUT;
-    Radio.Rx( RX_TIMEOUT_VALUE );  
-//    printf("OnTxTimeout\n\r");
-//    debug_if( DEBUG_MESSAGE, "\n\r> OnTxTimeout\n\r" );
-}
-
-void OnRxTimeout( void )
-{
-    Radio.Sleep( );
-    Buffer[ BufferSize ] = 0;
-    State = RX_TIMEOUT;
-    Radio.Rx( RX_TIMEOUT_VALUE );  
-//    printf("OnRxTimeout\n\r");
-//    debug_if( DEBUG_MESSAGE, "\n\r> OnRxTimeout\n\r" );
-}
-
-void OnRxError( void )
-{
-    Radio.Sleep( );
-    State = RX_ERROR;
-    Radio.Rx( RX_TIMEOUT_VALUE );  
-//    printf("OnRxError\n\r");
-//    debug_if( DEBUG_MESSAGE, "\n\r> OnRxError\n\r" );
-}
-/*
-*/

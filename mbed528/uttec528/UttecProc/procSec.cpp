@@ -54,6 +54,11 @@ void procSec::testFrame(rfFrame_t* pFrame){
 		pFrame->MyAddr.RxTx.iRxTx = eRpt;
 	}	
 }
+
+void procSec::testSxFrame(){
+	
+}
+
 void procSec::secTask(rfFrame_t* pFrame){
 	static uint32_t ulCount = 0;
 	UttecUtil myUtil;

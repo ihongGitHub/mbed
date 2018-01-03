@@ -59,14 +59,19 @@ void procSx1276::procVolumeCmd(rfFrame_t* pFrame){
 }
 
 void procSx1276::dispSx1276(){
+	m_sxFrame = *(sxFrame_t*)m_sxRxFrame.ptrBuf;
 	printf("cmd:%d, ",m_sxFrame.cmd);
 	printf("sub:%d, ",m_sxFrame.sub);
 	printf("size:%d, rssi:%d, snr:%d \n\r",
 		m_sxRxFrame.size, m_sxRxFrame.rssi, m_sxRxFrame.snr);
 }
+void procSx1276::setSxRxData(sxRxFrame_t* pSxRxData){
+	m_sxRxFrame = *pSxRxData;
+	m_sxFrame = *(sxFrame_t*)m_sxRxFrame.ptrBuf;
+}
 
 void procSx1276::setSimulationData(){
-	m_sxFrame.gid = 10;
+	m_sxFrame.gid = 45;
 	m_sxFrame.pid = 11;
 	m_sxFrame.cmd = edServerReq;
 	m_sxFrame.sub = edsControl;
@@ -74,6 +79,10 @@ void procSx1276::setSimulationData(){
 	m_sxRxFrame.rssi = 101;
 	m_sxRxFrame.snr = -10;
 	m_sxRxFrame.size = sizeof(m_sxFrame);
+	m_sxRxFrame.sxRxFlag = true;
+	
+	sxRxFrame_t* ptemp = pMySx1276->readLoRa();
+	*ptemp = m_sxRxFrame;
 }
 
 void procSx1276::sendSxFrame(rfFrame_t* pFrame){
@@ -90,16 +99,16 @@ void procSx1276::sendSxFrame(rfFrame_t* pFrame){
 	pMySx1276->sendLoRa(sTxFrame);
 }
 
-void procSx1276::reformSx2Rf(rfFrame_t* pFrame){
-	pFrame->MyAddr.GroupAddr = m_sxFrame.gid;
-	pFrame->MyAddr.PrivateAddr = m_sxFrame.pid;
-	pFrame->Cmd.Command = m_sxFrame.cmd;
-	pFrame->Cmd.SubCmd = m_sxFrame.sub;
-	pFrame->Ctr.Level = m_sxFrame.sxData;
-	pFrame->Ctr.High = m_sxFrame.ext;
+void procSx1276::reformSx2Rf(rfFrame_t* pFrame, sxFrame_t* sxFrame){
+	pFrame->MyAddr.GroupAddr = sxFrame->gid;
+	pFrame->MyAddr.PrivateAddr = sxFrame->pid;
+	pFrame->Cmd.Command = sxFrame->cmd;
+	pFrame->Cmd.SubCmd = sxFrame->sub;
+	pFrame->Ctr.Level = sxFrame->sxData;
+	pFrame->Ctr.High = sxFrame->ext;
 }
 
-void procSx1276::reformRf2Sx(rfFrame_t* pFrame, sxFrame_t* pSx){
+void procSx1276::reformRf2Sx(sxFrame_t* pSx, rfFrame_t* pFrame){
 	pSx->gid = pFrame->MyAddr.GroupAddr;
 	pSx->pid = pFrame->MyAddr.PrivateAddr;
 	pSx->cmd = pFrame->Cmd.Command;
