@@ -33,33 +33,55 @@ void proc485::transferMstGwBy485(rfFrame_t* pFrame, UttecDirection_t dir){
 	char cCmd[20]; char cSub[20];
 	myUtil.dispCmdandSub(cCmd, cSub, pFrame);
 	if(dir == eDown){
-		printf("server ---> gateway, %s, %s\n\r", cCmd, cSub);
+		printf("by485 Down: , %s, %s\n\r", cCmd, cSub);
 		pMy485->send485(pFrame, eRsDown);
 	}
 	else{
-		printf("gateway  ---> server, %s, %s\n\r", cCmd, cSub);
+		printf("by485 Up: , %s, %s\n\r", cCmd, cSub);
 		pMy485->send485(pFrame, eRsUp);
 	}
 }
 
 void proc485::procVolumeCmd(rfFrame_t* pFrame){
-	UttecUtil myUtil;
-	printf("procVolumeCmd\n\r");
-	
-	
 	pMy_mSec->m_sensorType = eVolume;
 	mp_rfFrame->Ctr.Level = pFrame->Ctr.Level;
 	pMy_mSec->sDim.target = pFrame->Ctr.Level/100.0;
-	printf("pMy_mSec->m_sPir.target = %0.3f\n\r",
-	pMy_mSec->sDim.target);
+	printf("End of procVolumeCmdL %0.3f\n\r",
+		pMy_mSec->sDim.target);
 }
+
+void proc485::returnAckBy485(rfFrame_t* pFrame){
+	char cRxTx[5];
+	switch(pFrame->Cmd.SubCmd){
+		case edsControl:
+		case edsNewSet:
+		case edsPhoto:
+		case edsCmd_485NewSet:
+		case edsCmd_Alternative:
+			printf(" 485 Ack From Gw -> server \n\r");
+			break;
+			
+		case edsPing:
+		case edsCmd_Status:
+			if(mp_rfFrame->MyAddr.RxTx.iRxTx == pFrame->Trans.Zone){
+				if(pFrame->Trans.Zone == eRx){
+					if(mp_rfFrame->MyAddr.PrivateAddr !=
+						pFrame->MyAddr.PrivateAddr) return;				
+				}
+				myUtil.dispRxTx(cRxTx, pFrame);
+				printf(" 485 Ack From %s -> server \n\r", cRxTx);
+			}
+			break;
+	}
+}
+
 
 void proc485::rs485Task(rfFrame_t* pFrame){
 	static uint32_t ulCount = 0;
 	UttecUtil myUtil;
 	ulCount++;	
 	uint8_t ucCmd = pFrame->Cmd.Command;
-	myUtil.testProc(pFrame->Cmd.Command, 2);
+	printf("From 485:%d -> ", ucCmd);
 	switch(ucCmd){
 		case edDummy:
 				break;
@@ -84,6 +106,12 @@ void proc485::rs485Task(rfFrame_t* pFrame){
 				transferMstGwBy485(pFrame, eDown);
 				return;
 			}			
+			if(myUtil.isTx(mp_rfFrame)){
+				printf("byRf: isTx ");
+				pMyRf->sendRf(pFrame);	
+				printf("and by485: isTx -> ");
+				pMy485->send485(pFrame, eRsDown);
+			}
 			procVolumeCmd(pFrame);
 				break;
 		case edDayLight:
@@ -91,9 +119,17 @@ void proc485::rs485Task(rfFrame_t* pFrame){
 		case edServerReq:
 			if(myUtil.isMstOrGw(mp_rfFrame)){
 				transferMstGwBy485(pFrame, eDown);
+				returnAckBy485(pFrame);
 				return;
 			}			
+			if(myUtil.isTx(mp_rfFrame)){
+				printf("byRf: isTx ");
+				pMyRf->sendRf(pFrame);	
+				printf("and by485: isTx -> ");
+				pMy485->send485(pFrame, eRsDown);
+			}
 			pMyServer->taskServer(pFrame);
+			returnAckBy485(pFrame);
 				break;
 		case edClientAck:
 			if(myUtil.isMstOrGw(mp_rfFrame)){

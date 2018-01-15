@@ -179,3 +179,8 @@ void rs485::send485(rfFrame_t* spFrame, rs485Channel_t ch)
 	changeChannel(ch);
 }
 
+void rs485::set485Done(){
+	m_485Done = true;
+}
+
+

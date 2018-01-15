@@ -71,7 +71,7 @@ int main(void)
 #ifdef 	my52832
 	printf("\n\rNow New nrf52832 2017.12.18 12:50\n\r");
 #else
-	printf("\n\rNow New nrf51822 2018.01.07 12:50\n\r");
+	printf("\n\rNow New nrf51822 2018.01.15 11:00\n\r");
 #endif
 	
 	myFlash.ReadAllFlash();

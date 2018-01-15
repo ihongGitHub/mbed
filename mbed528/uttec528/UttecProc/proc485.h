@@ -24,6 +24,7 @@ private:
 	void procVolumeCmd(rfFrame_t*);
 	void resendByRfRepeater(rfFrame_t*);
 	void transferMstGwBy485(rfFrame_t*, UttecDirection_t);
+	void returnAckBy485(rfFrame_t*);
 public:
 	proc485(uttecLib_t, procServer*);
 	void rs485Task(rfFrame_t*);

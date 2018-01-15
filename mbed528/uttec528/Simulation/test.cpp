@@ -198,13 +198,18 @@ void test::setTestReceiveFrameByNum(uint16_t uiNum){
 	uint8_t ucCmd = uiNum%10; uiNum /= 10;
 	uint8_t ucRxTx = uiNum%10; uiNum /= 10;
 	uint8_t ucSensor = uiNum;
-	
+/*	
 	pMyRf->setRxFlag();
 	rfFrame_t* pRf = pMyRf->returnRxBuf();
+	*pRf = *mp_rfFrame;
+*/
+	pMy485->set485Done();
+	rfFrame_t* pRf = pMy485->return485Buf();
 	*pRf = *mp_rfFrame;
 	
 	pRf->MyAddr.SensorType.iSensor = setSensorType(ucSensor);
 	pRf->MyAddr.RxTx.iRxTx = setRoleType(ucRxTx);
+	pRf->Trans.Zone = pRf->MyAddr.RxTx.iRxTx;
 	pRf->Cmd.Command = setCmd(ucCmd);
 	pRf->Cmd.SubCmd = setSub(ucSub);
 	pRf->Ctr.Level = 22;

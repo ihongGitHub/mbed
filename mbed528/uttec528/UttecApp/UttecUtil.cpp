@@ -58,7 +58,7 @@ uint8_t UttecUtil::Hex2Dec(uint8_t cHex)
 #include <stdio.h>
 #include <string.h>
 
-char* dispRxTx(char* cResult, uint8_t ucRxTx){
+char* UttecUtil::dispRxTx(char* cResult, uint8_t ucRxTx){
 	memset(cResult,0,5);
 	switch(ucRxTx){
 		case eRx: sprintf(cResult, "Rx"); break;
@@ -337,4 +337,31 @@ void UttecUtil::alertFaultSet(uint8_t ucFrom){
 		wait(1);
 	}
 }
+
+void UttecUtil::dispRxTx(char* cpRxTx, rfFrame_t* pFrame){
+	memset(cpRxTx,0,5);	
+	switch(pFrame->MyAddr.RxTx.iRxTx){
+		case eRx:
+			sprintf(cpRxTx,"Rx");
+			break;
+		case eTx:
+			sprintf(cpRxTx,"Tx");
+			break;
+		case eSRx:
+			sprintf(cpRxTx,"SRx");
+			break;
+		case eRpt:
+			sprintf(cpRxTx,"Rpt");
+			break;
+		case eGW:
+			sprintf(cpRxTx,"Gw");
+			break;
+		case eMst:
+			sprintf(cpRxTx,"Mst");
+			break;
+		default:
+			break;
+	}
+}
+
 

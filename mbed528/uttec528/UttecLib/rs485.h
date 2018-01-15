@@ -61,6 +61,7 @@ public:
 	void task485(rfFrame_t*);
 //	void send485(rfFrame_t*);
 	void send485(rfFrame_t*,rs485Channel_t);
+	void set485Done();	//for test only
 
 	rfFrame_t* return485Buf();
 };
