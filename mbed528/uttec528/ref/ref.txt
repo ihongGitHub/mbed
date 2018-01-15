@@ -19,3 +19,9 @@ yellow: 138mSec				yellow:  118mSec						yellow: 170mSec
 16bytes							16bytes												16bytes
 red: 25mSec					red: 12mSec										red: 50mSec
 yellow: 125mSec				yellow: 115mSec							yellow: 150mSec
+
+
+2018.01.14
+simSx.cpp 추가
+procSx1276.cpp 수정
+

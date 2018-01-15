@@ -4,7 +4,6 @@
 
 #include "procRf.h"
 #include "procBle.h"
-#include "procSx1276.h"
 #include "proc485.h"
 #include "procSec.h"
 #include "procServer.h"
@@ -12,7 +11,17 @@
 #include "UttecUtil.h"
 #include "CmdDefine.h"
 #include "serial_api.h"
+#include "Rcu.h"
+#include "test.h"
+//#include "bh1750.h"
+//#include "Pyd1788.h"
+//#include "eprom.h"
+//#include "HX711.h"
+//#include "procSx1276.h"
 
+#include "simSx.h"
+
+#include "nrf_ble_gap.h"
 
 #ifdef my52832
 Serial Uart(p6, p8);
@@ -22,44 +31,61 @@ Serial Uart(p9,p11);
 
 Flash myFlash;
 UttecBle myBle;
-sx1276Exe mySx1276;
 
-Ticker secTimer;
-Ticker msecTimer;
+Timer rcuTimer;
 
-bool tick_Sec = false;
-bool tick_mSec = false;
-bool testTick = false;
+static Ticker secTimer;
+static Ticker msecTimer;
+
+static bool tick_Sec = false;
+static bool tick_mSec = false;
+static bool testTick = false;
 #define DeTestTime 3
 
-void tickSec(){
+static void tickSec(){
 	static uint32_t ulSecCount = 0;
 	ulSecCount++;
 	if(!(ulSecCount%DeTestTime)) testTick = true;
 	tick_Sec = true;
 }
-void tickmSec(){
+static void tickmSec(){
 	tick_mSec = true;
 }
 
+//bh1750 my1750;		//100KHz
+//Pyd1788 myPyd(p4);
+//eprom myEprom;
+//HX711 scale;
+
+test myTest;
 int main(void)
 {
+	ble_gap_addr_t addr;
+	for(int i=0; i<sizeof(addr.addr); i++) 
+		addr.addr[i] = i*7;
+	
 	uttecLib_t myLib;
 //https://os.mbed.com/handbook/Serial	
 	Uart.baud(115200);
+	
 #ifdef 	my52832
 	printf("\n\rNow New nrf52832 2017.12.18 12:50\n\r");
 #else
-	printf("\n\rNow New nrf51822 2017.12.18 12:50\n\r");
+	printf("\n\rNow New nrf51822 2018.01.07 12:50\n\r");
 #endif
 	
-	myFlash.isFactoryMode();
+	myFlash.ReadAllFlash();
+//	while(1);
+	
 	Flash_t* pFlash = myFlash.getFlashFrame();
 	rfFrame_t* pFrame=&pFlash->rfFrame;
-	printf("My Gid =%d\n\r", pFrame->MyAddr.GroupAddr);
+	myFlash.isFactoryMode();
+	
+//	pFrame->Ctr.DTime = 1;
+	printf("My Gid =%d, %f\n\r", pFrame->MyAddr.GroupAddr,
+		pFlash->VolumeCheck);
 
 	UttecUtil myUtil;
-	
 	DimmerRf myRf(&myFlash);
 	myRf.initRfFrame(); 
 	secTimer.attach(&tickSec, 1);
@@ -73,75 +99,83 @@ int main(void)
 	myLib.pFlash = &myFlash;
 	myLib.pDimmerRf = &myRf;
 	myLib.pRs485 = &my485;
-	myLib.pSx1276 = &mySx1276;
 	myLib.pBle = &myBle;
 	myLib.pMsec = &my_mSec;
 	
+simSx mySim(&myRf);	
+
 	procServer mProcServer(myLib);
 	procRf mProcRf(myLib, &mProcServer);
 	procBle mProcBle(myLib, &mProcServer);
-	procSx1276 mProcSx1276(myLib, &mProcServer);
 	proc485 mProc485(myLib, &mProcServer);
 	procSec mProcSec(myLib, &mProcServer);
+	procSx1276 mProcSx1276(myLib, &mProcServer);
 /*
 */
-	pFrame->Ctr.SensorRate = 1;
-	my_mSec.setSensorLimit(pFrame->Ctr.SensorRate/100.0);
-	//flash.resetFlash();
-	mySx1276.initSx1276();
+//	myFlash.resetFlash();
 	
-	myUtil.setWdt(3);
-	mProcSx1276.setSimulationData();
+	myUtil.setWdt(3);	
 	
-	pFrame->MyAddr.RxTx.iRxTx = eTx;
+	Rcu myRcu;	
+	myTest.setTest(myLib, &mProcServer);
+	
+//	my1750.setMode(BH1750_ONE_TIME_LOW_RES_MODE);	
+//	myTest.testTicker();
 	while(true){
 		myUtil.setWdtReload();
 		
+/*		
+*/		
+		if(mProcSec.m_product.rcu)
+		if(myRcu.isRcuReady()&&myRcu.isUttecCode()){
+			rcuValue_t myCode;
+			myRcu.clearRcuFlag();
+			myCode = (rcuValue_t)myRcu.returnRcuCode(); 
+			myRcu.procRcu(myCode);
+		}
+		
+		if(mProcSec.m_product.rf)
 		if(myRf.isRxDone()){		//For Rf Receive
 			myRf.clearRxFlag();
 			rfFrame_t* pFrame = myRf.returnRxBuf();
-			myUtil.testProc(pFrame->Cmd.Command, 1);
 			mProcRf.taskRf(pFrame);			
 		}
-		
+		if(mProcSec.m_product.ble)
 		if(myBle.isBleRxReady()){		//For Ble Receive
 			myBle.clearBleRxReady();
 			mProcBle.bleTask(myBle.getBleRxData());
 		}
 		
+		if(mProcSec.m_product.rs485)
 		if(my485.is485Done()){		//For rs485 Receive
 			my485.clear485Done();
 			mProc485.rs485Task(my485.return485Buf());
 		}		
-/*		
-		if(mySx1276.isSxRxReady()){		//For sx1276 Receive
+		
+		/*
+	*/
+		if(mProcSec.m_product.sx1276)
+		if(mySim.isSxRxReady()){		//For sx1276 Receive
 			printf("-------------isSxRxReady\n\r");
-			rfFrame_t sxRfFrame = *pFrame;
-			sxRxFrame_t* psxRxFrame = mySx1276.readLoRa();
-			mProcSx1276.m_sxFrame = *(sxFrame_t*)psxRxFrame->ptrBuf;
-			mProcSx1276.reformSx2Rf(&sxRfFrame);
-			mySx1276.clearSxRxFlag();
+			mySim.clearSxRxFlag();
+			rfFrame_t* psRf = mProcSx1276.readSxFrame();
+			sxFrame_t* psx = (sxFrame_t*)psRf;
+			printf("gid = %d, %d\n\r", psRf->MyAddr.GroupAddr, 
+				psRf->Ctr.Level);
+			printf("\n\r");
+			for(int i = 0; i<sizeof(addr.addr); i++){
+				printf("mac[%d]:%d ", i, psx->mac[i]);
+			}
+			printf("\n\r");
 			
-			if(mProcSx1276.isMyGroup(&sxRfFrame, pFrame))
-				mProcSx1276.sx1276Task(&sxRfFrame);
+			if(mProcSx1276.isMyGroup(pFrame, psRf))
+				mProcSx1276.sx1276Task(psRf);
 		}
-		*/
-		if(mySx1276.isSxRxReady()){		//For sx1276 Receive
-			rfFrame_t sxRfFrame = *pFrame;
-			mProcSx1276.setSxRxData(mySx1276.readLoRa());
-			printf("-----------i received readLoRa: \n\r");
-			mProcSx1276.dispSx1276();
-			
-			mProcSx1276.reformSx2Rf(&sxRfFrame, &mProcSx1276.m_sxFrame);
-			mySx1276.clearSxRxFlag();
-				if(!myUtil.isTx(pFrame))
-					printf("Resend rfFrame\n\r");
-					mProcSx1276.sendSxFrame(&sxRfFrame);
-		}
-
+		
 		if(my_mSec.returnSensorFlag()){		//For sensor Receive
 			my_mSec.clearSensorFlag();
-//			myRf.sendRf(pFrame);
+			myRf.sendRf(pFrame);
+						
 //			my485.send485(pFrame);
 //			mySx1276.sendSx1276(pFrame);
 //			myBle.sendBle(pFrame);
@@ -150,19 +184,34 @@ int main(void)
 		if(tick_mSec){
 			tick_mSec = false;
 			my_mSec.msecTask(pFrame);
+//			putchar('.');
 		}
-		
 		if(tick_Sec){
-			printf("Sec proc\n\r");
 			tick_Sec = false;			
-			mProcSec.secTask(pFrame);			
-			mProcSx1276.dispSx1276();
-			mProcSx1276.setSimulationData();
-			if(myUtil.isTx(pFrame)){
-				pFrame->Cmd.Command = edServerReq;
-				pFrame->Cmd.SubCmd = edsControl;
-				mProcSx1276.sendSxFrame(pFrame);
-			}
+			mProcSec.secTask(pFrame);	
 		}
+/*		
+		*/
 	}
 }
+
+/*
+			pFrame->MyAddr.SensorType.iSensor = eNoSensor;
+//			pFrame->MyAddr.RxTx.iRxTx = eRx;
+//			pFrame->MyAddr.RxTx.iRxTx = eTx;
+//			pFrame->MyAddr.RxTx.iRxTx = eSRx;
+			pFrame->MyAddr.RxTx.iRxTx = eRpt;
+			
+			sxFrame_t sxFrame;
+			sxFrame.gid = 2;
+			sxFrame.cmd = edVolume;
+			sxFrame.rxtx = eSRx;
+			sxFrame.level = 33;
+
+			
+			for(int i = 0; i<6; i++) sxFrame.mac[i] = i;
+			if(pFrame->MyAddr.RxTx.iRxTx == eTx){
+				printf("sendSxFrame for eTx\n\r"); 
+				mProcSx1276.sendSxFrame((rfFrame_t*)&sxFrame);
+			}
+*/

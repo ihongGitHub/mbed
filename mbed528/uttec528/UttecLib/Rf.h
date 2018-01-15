@@ -37,6 +37,7 @@ public:
 	Rf();
 	void initRf(channel_t* pCh);
 	void sendRf(const rfFrame_t* ucpTx);
+	void sendSxRf(const rfFrame_t* ucpTx);
 	bool isRxDone();
 	void clearRxFlag();
 	rfFrame_t* returnRxBuf();
@@ -48,6 +49,7 @@ public:
 	void isOkChannel();
 	void setHoppingCount();
 	bool isOkCheckSum(uint16_t myAddr);
+	void setRxFlag();
 };
 
 

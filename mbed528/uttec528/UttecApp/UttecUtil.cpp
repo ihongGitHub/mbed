@@ -9,8 +9,8 @@ UttecUtil::UttecUtil(){
 	
 uint16_t UttecUtil::gen_crc16(const uint8_t *data, uint16_t size)
 {
-    uint16_t out = 0;
-    int bits_read = 0, bit_flag;
+	uint16_t out = 0;
+	int bits_read = 0, bit_flag;
 	uint16_t CRC16=0x8005;
 
     if(data == NULL)
@@ -25,7 +25,6 @@ uint16_t UttecUtil::gen_crc16(const uint8_t *data, uint16_t size)
             bits_read = 0;            data++;            size--;
         }
         if(bit_flag)       out ^= CRC16;
-
     }
     int i;
     for (i = 0; i < 16; ++i) {
@@ -69,7 +68,7 @@ char* dispRxTx(char* cResult, uint8_t ucRxTx){
 		case eGW: sprintf(cResult, "GW"); break;
 		case eMst: sprintf(cResult, "Mst"); break;
 		case eReserved: sprintf(cResult, "TBD"); break;
-		default: printf("Error value %d\n\r", ucRxTx);
+		default: printf("RxTx Error value %d\n\r", ucRxTx);
 	}
 	return cResult;
 }
@@ -85,16 +84,14 @@ char* dispSensor(char* cResult, uint8_t ucSensor){
 		case eHyBrid: sprintf(cResult, "Hyb"); break;
 		case eVolume: sprintf(cResult, "Vol"); break;
 		case eTestMode: sprintf(cResult, "Test"); break;
-		default: printf("Error value %d\n\r", ucSensor);
+		default: sprintf(cResult, "sErr"); break;
 	}
 	return cResult;
 }
 
 #include <time.h>
-void disTime(){
-	static uint32_t ulTime = 0;
+void dispTime(uint32_t ulTime){
 	tm myTime;
-	ulTime++;
 	myTime.tm_sec = ulTime%60;
 	myTime.tm_min = (ulTime/60)%60;
 	myTime.tm_hour = (ulTime/3600)%24;
@@ -108,18 +105,32 @@ char* dispForced(char* cResult, bool bForced){
 	return cResult;
 }
 
-void UttecUtil::dispSec(rfFrame_t* pFrame){
+void UttecUtil::dispSec(rfFrame_t* pFrame, bool bCount){
+	static uint32_t ulCount = 0;
+	static uint32_t ulTime = 0;
+	ulTime++;
+	
+	if(bCount)
+		if(ulCount++%10) { printf("-"); return; }
+	
 	char cResult[5];
-	printf("G:%d P:%d RxTx:%s", 
+	printf("\n\rG:%d P:%d RxTx:%s", 
 	pFrame->MyAddr.GroupAddr, pFrame->MyAddr.PrivateAddr,
 	dispRxTx(cResult,pFrame->MyAddr.RxTx.iRxTx));
 	printf(" S:%s\n\r",
 	dispSensor(cResult,pFrame->MyAddr.SensorType.iSensor));
-	disTime();
-	printf("Dim :%s, ",dispForced(cResult, myDimFact.forced));
-	printf("tagetPwm = %0.3f, nowPwm = %0.3f, Type = %s\n\r", 
-		myDimFact.targetValue, myDimFact.nowValue, 
-	dispSensor(cResult,myDimFact.sensorType));
+	dispTime(ulTime);
+	if(!isMstOrGw(pFrame)){	
+		printf("Dim:%s, ",dispForced(cResult, myDimFact.forced));
+		printf("Type:%s, ", dispSensor(cResult,myDimFact.sensorType));
+		printf("tagetPwm = %0.3f, nowPwm = %0.3f\n\r", 
+			myDimFact.targetValue, myDimFact.nowValue);
+	}
+	if(m_Factory.mode == eFactoryTestMode)
+		printf("eFactoryTestMode\n\r");
+	else if(m_Factory.mode == eFactoryOutMode)
+		printf("eFactoryOutMode\n\r");
+	else printf("eFieldMode\n\r");
 }
 
 void UttecUtil::testProc(uint8_t ucName, uint32_t ulValue){
@@ -137,7 +148,7 @@ void UttecUtil::testProc(uint8_t ucName, uint32_t ulValue,
 	ucName, ulValue, fValue);
 }
 
-void UttecUtil::setDimFactor(dimFactors_t sFact){
+void UttecUtil::getDimFactor(dimFactors_t sFact){
 	myDimFact.targetValue = sFact.targetValue;
 	myDimFact.nowValue = sFact.nowValue;
 	myDimFact.sensorType = sFact.sensorType;
@@ -192,25 +203,33 @@ uint16_t UttecUtil::changeBytesInWord(uint16_t uiData){
     return uChange.u16;
 }
 bool UttecUtil::isTx(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.Tx;
+	if(pFrame->MyAddr.RxTx.iRxTx == eTx) return true;
+	else return false;
 }
 bool UttecUtil::isSRx(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.SRx;
+	if(pFrame->MyAddr.RxTx.iRxTx == eSRx) return true;
+	else return false;
 }
 bool UttecUtil::isRx(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.Rx;
+	if(pFrame->MyAddr.RxTx.iRxTx == eRx) return true;
+	else return false;
 }
 bool UttecUtil::isRpt(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.Rpt;
+	if(pFrame->MyAddr.RxTx.iRxTx == eRpt) return true;
+	else return false;
 }
 bool UttecUtil::isGw(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.GW;
+	if(pFrame->MyAddr.RxTx.iRxTx == eGW) return true;
+	else return false;
 }
 bool UttecUtil::isMst(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.Mst;
+	if(pFrame->MyAddr.RxTx.iRxTx == eMst) return true;
+	else return false;
 }
 bool UttecUtil::isMstOrGw(rfFrame_t* pFrame){
-	return pFrame->MyAddr.RxTx.Bit.Mst||pFrame->MyAddr.RxTx.Bit.GW;
+	if(pFrame->MyAddr.RxTx.iRxTx == eMst) return true;
+	else if(pFrame->MyAddr.RxTx.iRxTx == eGW) return true;
+	else return false;
 }
 
 void UttecUtil::dispRfFactor(rfFrame_t* frame){
@@ -269,7 +288,53 @@ void UttecUtil::dispCmdandSub(char* cpCmd, char* cpSub, rfFrame_t* pFrame){
 	}
 }
 
+UttecFactory_t UttecUtil::m_Factory = 
+	{eFactoryTestMode,DeFactoryModeTimeout};
+
 bool UttecUtil::isNotMyGroup(rfFrame_t* pSrc, rfFrame_t* pMy){
-	if(pMy->MyAddr.GroupAddr/10 == pSrc->MyAddr.GroupAddr/10) return false;
+	if(pMy->MyAddr.GroupAddr/10 == pSrc->MyAddr.GroupAddr/10) 
+		return false;
 	else return true;
 }
+
+bool UttecUtil::isFactoryOutMode(){
+	Flash myFlash;
+	
+	bool bResult = false;
+	rfFrame_t* pFrame = &myFlash.getFlashFrame()->rfFrame;
+
+	if(m_Factory.timeout) m_Factory.timeout--;
+	if(m_Factory.timeout&&(pFrame->MyAddr.GroupAddr == 
+		DeFactoryChannel)){
+			m_Factory.mode = eFactoryTestMode;
+		}			
+	else if(pFrame->MyAddr.GroupAddr != DeFactoryChannel){
+		m_Factory.mode = eFieldMode;
+	}
+	else{
+		m_Factory.mode = eFactoryOutMode;
+		bResult = true;
+	}	
+	return bResult;
+}
+#include "UttecLed.h"
+
+void UttecUtil::alertFaultSet(uint8_t ucFrom){
+	UttecLed myLed;
+	bool bToggle = false;
+	while(1){
+		setWdtReload();
+		bToggle = !bToggle;
+		if(bToggle){
+			myLed.on(eRfLed);
+			myLed.on(eSensLed);
+		}
+		else{
+			myLed.off(eRfLed);
+			myLed.off(eSensLed);
+		}
+		printf("You set Fault value from %d\n\r",ucFrom);
+		wait(1);
+	}
+}
+

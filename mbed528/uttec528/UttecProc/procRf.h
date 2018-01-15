@@ -10,6 +10,8 @@
 #include "DimmerRf.h"
 #include "mSecExe.h"
 
+#define DeRfSetTimeout 20
+
 class procRf
 {
 private:
@@ -18,16 +20,20 @@ private:
 	static rfFrame_t* mp_rfFrame;
 	static DimmerRf* pMyRf;
 	static rs485* pMy485;
-	static sx1276Exe* pMySx1276;
 	static UttecBle* pMyBle;
 	static mSecExe* pMy_mSec;
 	static procServer* pMyServer;
 
 	void conflictTx();
-	void procSensorCmd(rfFrame_t*);
-	void procRepeatCmd(rfFrame_t*);
-	void procVolumeCmd(rfFrame_t*);
-	void resendByRepeater(rfFrame_t*);
+	void procRfSensorCmd(rfFrame_t*);
+	void procRfRepeatCmd(rfFrame_t*);
+	void procRfVolumeCmd(rfFrame_t*);
+	void procRfDaylightCmd(rfFrame_t*);
+	void resendByRfRepeater(rfFrame_t*);
+	void searchRf(rfFrame_t*);
+	void setNewFactor();
+	void processCmdNewSet(rfFrame_t*);
+	void transferMstGwByRf(rfFrame_t*);
 public:
 	procRf(uttecLib_t, procServer*);
 	procRf(Flash*, DimmerRf*, mSecExe*);

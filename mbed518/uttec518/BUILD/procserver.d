@@ -110,7 +110,6 @@
 .\build\procserver.o: mbed/./platform/DirHandle.h
 .\build\procserver.o: mbed/./platform/CriticalSectionLock.h
 .\build\procserver.o: mbed/./platform/DeepSleepLock.h
-.\build\procserver.o: ..\..\mbed528\uttec528\Simulation\sx1276Exe.h
 .\build\procserver.o: ..\..\mbed528\uttec528\Simulation\UttecBle.h
 .\build\procserver.o: ..\..\mbed528\uttec528\UttecApp\mSecExe.h
 .\build\procserver.o: ..\..\mbed528\uttec528\UttecApp\CmdDefine.h

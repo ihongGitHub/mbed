@@ -28,7 +28,6 @@ void sx1276Exe::enableSxTx(){
     RxEnable = 0;
 }
 void disableSxTx(){
-    wait(0.1);
     TxEnable = 0;
     RxEnable = 1;
 }
@@ -40,7 +39,7 @@ void sx1276Exe::sendLoRa(sxTxFrame_t sFrame){
         sFrame.size = BUFFER_SIZE;
     }
     */
-    Radio.Send( sFrame.ptrBuf, sFrame.size );
+    Radio.Send( (uint8_t*)sFrame.ptrBuf, sFrame.size );
 //    printf("sendLoRa\n\r");
 }
 bool sx1276Exe::isSxRxReady(){
@@ -70,7 +69,7 @@ void OnRxDone( uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr)
     State = RX;
     
     m_sxRxFrame.sxRxFlag=true;
-    m_sxRxFrame.ptrBuf=m_sxRxBuff;
+    m_sxRxFrame.ptrBuf=(sxFrame_t*)m_sxRxBuff;
     m_sxRxFrame.size=size;
     m_sxRxFrame.rssi=rssi;
     m_sxRxFrame.snr=snr;
@@ -103,19 +102,20 @@ void OnRxError( void )
 
 
 void sx1276Exe::testTxRx(uint32_t uiTest){
-    uint8_t LoRaBuf[64/4];
+    uint8_t LoRaBuf[64];
     for(int i = 0; i<sizeof(LoRaBuf); i++) LoRaBuf[i] = i%10 + '0';
     sxTxFrame_t sTxFrame;
 //    int iSize=sprintf((char*)LoRaBuf,"C:%d",uiTest);
     printf("-------------testTxRx:%d\n\r",sizeof(LoRaBuf));
     int iSize = sizeof(LoRaBuf);
-    sTxFrame.ptrBuf=LoRaBuf; sTxFrame.size=(uint8_t)iSize; 
+    sTxFrame.ptrBuf=(sxFrame_t*)LoRaBuf; sTxFrame.size=(uint8_t)iSize; 
 //    wait_ms( 20 );            
     sendLoRa(sTxFrame);
 //    Radio.Rx( RX_TIMEOUT_VALUE );
 }
 
 void sx1276Exe::initSx1276(){
+	m_sxRxFrame.ptrBuf = (sxFrame_t*)m_sxRxBuff;
 }
 void sx1276Exe::initSx1276(uint8_t ucCh){
     // Initialize Radio driver
@@ -132,9 +132,9 @@ void sx1276Exe::initSx1276(uint8_t ucCh){
         debug( "Radio could not be detected!\n\r", NULL );
         wait( 1 );
     }
-		uint32_t ulCh = LoRaFreqBase + LoRaStep*ucCh;
+        uint32_t ulCh = LoRaFreqBase + LoRaStep*ucCh;
     Radio.SetChannel( ulCh );  
-		printf("LoRaChannel = %d, %d\n\r", ucCh, ulCh);	
+        printf("LoRaChannel = %d, %d\n\r", ucCh, ulCh); 
 //    Radio.SetChannel( RF_FREQUENCY );     
     Radio.SetTxConfig( MODEM_LORA, TX_OUTPUT_POWER, 0, LORA_BANDWIDTH,
                          LORA_SPREADING_FACTOR, LORA_CODINGRATE,

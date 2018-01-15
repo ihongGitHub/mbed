@@ -121,17 +121,18 @@ void Rf::sendInternal(){
     while (NRF_RADIO->EVENTS_END == 0U) {}; //Wait Event End 		
 	NRF_RADIO->EVENTS_END=0;
 	TxEndFlag=true;
-	printf("Ch=%d, Hop=%d\n\r",NRF_RADIO->FREQUENCY,
-		m_Ch.Hopping);
 /*		
-		*/
+	printf("Ch=%d, Hop=%d -> ",NRF_RADIO->FREQUENCY,
+		m_Ch.Hopping);
+*/
 	clearRfMode();
 	setRfMode(eRxMode);
 }
+
 void Rf::sendRf(const rfFrame_t* ucpTx)
 {
 	UttecUtil myUtil;
-	printf("sendRf Ch =%d\n\r", m_Ch.channel);
+	printf("sendRf Ch =%d -> ", m_Ch.channel);
 	uint8_t ucTempHop=0;
 	m_blockingTime=30;
 	m_TxFrame=*ucpTx;
@@ -151,6 +152,27 @@ void Rf::sendRf(const rfFrame_t* ucpTx)
 	else sendInternal();
 	m_Ch.Hopping=ucTempHop;
 }
+
+void Rf::sendSxRf(const rfFrame_t* ucpTx)
+{
+	UttecUtil myUtil;
+	printf("sendSxRf Ch =%d -> ", m_Ch.channel);
+	uint8_t ucTempHop=0;
+	m_TxFrame=*ucpTx;
+	
+	ucTempHop=m_Ch.Hopping;
+	if(m_Ch.Hopping!=eNoHopping){
+		for(int i=0;i<eNoHopping;i++){
+			m_Ch.Hopping=i; 	setRadio(m_Ch);
+			sendInternal();
+		}
+	}
+	else sendInternal();
+	m_Ch.Hopping=ucTempHop;
+}
+
+
+
 bool Rf::isOkCheckSum(uint16_t myAddr){
 	UttecUtil myUtil;
 	bool bResut=false;
@@ -210,6 +232,10 @@ bool Rf::isRxDone(){
 
 void Rf::clearRxFlag(){
 	RxEndFlag=false;
+}
+
+void Rf::setRxFlag(){	//For rfFrame simulation
+	RxEndFlag=true;
 }
 
 void Rf::setRfMode(RfRxMode_t eMode){

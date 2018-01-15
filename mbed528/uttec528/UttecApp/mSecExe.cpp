@@ -4,157 +4,67 @@
 #include "mSecExe.h"
 #include "UttecLed.h"
 #include "UttecUtil.h"
+#include "CmdDefine.h"
+#include "pirAnalog.h"
+#include "volume.h"
+#include "photoAnalog.h"
 
-AnalogIn pir(p3);
 PwmOut dimer(p0);
 UttecLed myLed;
 
 DimmerRf* mSecExe::m_pRf = NULL;
-UttecPir_t mSecExe::m_sPir = {0,};
 UttecDim_t mSecExe::sDim = {0,};
 //ePir, eVolume
-eSensorType_t mSecExe::m_sensorType = eVolume;
+eSensorType_t mSecExe::m_sensorType = ePir;
+
 bool mSecExe::m_sensorFlag = false;
 
+pirAnalog pirA;
+volume vol;
+photoAnalog photoA;
+
 mSecExe::mSecExe(DimmerRf* pRf){
+	Flash* myFlash;
+	rfFrame_t* pyFrame = &myFlash->getFlashFrame()->rfFrame;
+
+//	pyFrame->Ctr.SensorRate = 5;
+	pirA.setSensorRate(pyFrame->Ctr.SensorRate/100.0);
+	vol.setSensorRate(pyFrame->Ctr.SensorRate/100.0);
+	photoA.setSensorRate(pyFrame->Ctr.DTime/1024.0);
 	m_pRf = pRf;
-	dimer.period_us(300);
-	dimer = 0.3;
+	dimer.period_us(300);		//set Pwm Freq
+	dimer = 0.3;			//set Pwm initial duty
 }
 
-#define DeAverageCount 1000
-float mSecExe::averageSensor(float fValue){
-	static uint16_t uiCount = 0;
-	static float fNow = 0.0;
-	if(uiCount < DeAverageCount){
-		fNow += fValue;
-		uiCount++;
-	}
-	else{
-		fNow = fNow - m_sPir.average;
-		fNow = fNow + fValue;
-		uiCount = DeAverageCount;
-	}
-	m_sPir.average = fNow/(float)uiCount; 
-	return m_sPir.average;
-}
-
-bool mSecExe::procPirSensor(rfFrame_t* pFrame){
-	if(m_sPir.flag) return m_sPir.flag;
-	
-	m_sPir.current = pir.read();
-	if(m_sPir.max<m_sPir.current) m_sPir.max = m_sPir.current;
-	else if(m_sPir.min>m_sPir.current) m_sPir.min = m_sPir.current;
-
-	m_sPir.realUpper= m_sPir.max*m_sPir.upper;
-	averageSensor(m_sPir.current);
-	
-	m_sPir.average = (m_sPir.max + m_sPir.min)/(float)2.0;	
-	if(m_sPir.current>m_sPir.realUpper){
-		m_sPir.flag = true;
-	}
-	else if(m_sPir.current<(m_sPir.lower+floatZero)){
-		m_sPir.flag = true;
-	}
-	return m_sPir.flag;
-}
-
-void mSecExe::setNextRange(){
-	m_sPir.upper = m_sPir.current + m_sPir.rate;
-	m_sPir.lower = m_sPir.current - m_sPir.rate;
-	if(m_sPir.upper > m_sPir.max) m_sPir.upper = m_sPir.max;
-	if(m_sPir.lower < m_sPir.min) m_sPir.lower = m_sPir.min;
-}
-
-bool mSecExe::procVolumeSw(){
-	if(m_sPir.flag) return m_sPir.flag;
-	
-	m_sPir.current = pir.read();	//check range of max, min
-	if(m_sPir.max<m_sPir.current) m_sPir.max = m_sPir.current;
-	else if(m_sPir.min>m_sPir.current) m_sPir.min = m_sPir.current;
-	averageSensor(m_sPir.current);
-	
-	m_sPir.volumeCount++;
-	if(m_sPir.volumeCount == MaxVolumeCount){
-		m_sPir.rate = (m_sPir.max - m_sPir.min)/(float)100.0;
-		
-		printf("------------------Save range:unit = %0.3f, max = %0.3f, min = %0.3f\n\r",
-			m_sPir.rate, m_sPir.max, m_sPir.min);
-	}
-	
-	if(m_sPir.current >= m_sPir.upper){
-		m_sPir.flag = true;
-		m_sPir.target = m_sPir.current/(m_sPir.rate*100);
-		setNextRange();
-	}
-	else if(m_sPir.current <= (m_sPir.lower)){
-		m_sPir.flag = true;
-		m_sPir.target = m_sPir.current/(m_sPir.rate*100);
-		setNextRange();
-	}
-	return m_sPir.flag;
-}
-
-void mSecExe::switchSensorType(rfFrame_t* pFrame){
-	static uint32_t ulTimeout = 0;
-	if(ulTimeout) ulTimeout--;
-	switch(pFrame->MyAddr.SensorType.iSensor){
-		case ePir:
-			m_sensorType = ePir;			
-			if(procPirSensor(pFrame)){
-				m_sPir.flag = false;
-//				putchar('.');
-				if(!ulTimeout){
-					ulTimeout = TimeoutForVolumeRepeat; //0.2Sec
-					m_sPir.target = pFrame->Ctr.High/100.0;
-					m_sPir.dTime = pFrame->Ctr.DTime*1000;
-					printf("\n\r***************target = %0.3f\n\r", m_sPir.target);
-					setSensorFlag();
-					printf("Sens = %0.3f\n\r", m_sPir.target);
-				}
-			}
-			break;
-		case eVolume:
-			if(procVolumeSw()&&pFrame->MyAddr.RxTx.Bit.Tx){
-				m_sensorType = eVolume;			
-				m_sPir.flag = false;
-				pFrame->Ctr.Level = m_sPir.target*100;
-				if(!ulTimeout){
-					ulTimeout = TimeoutForVolumeRepeat; //0.2Sec
-					setSensorFlag();
-					printf("Sens = %0.3f\n\r", m_sPir.target);
-				}
-			}
-			break;
-		default:
-			break;
-	}
-}
 void mSecExe::procDim(UttecDim_t sDim){
+//	putchar('.');
 	static float fNow = 0;
-	if(m_sPir.target >= fNow){
+	if(sDim.target >= fNow){
 		fNow += sDim.upStep;
-		if(fNow >= m_sPir.target) fNow = m_sPir.target;
+		if(fNow >= sDim.target) fNow = sDim.target;
 	}
 	else{
 		fNow -= sDim.downStep;
-		if(fNow <= m_sPir.target) fNow = m_sPir.target;
+		if(fNow <= sDim.target) fNow = sDim.target;
 	}
-	m_sPir.pwm = fNow;
-	dimer = (float)1.0 - m_sPir.pwm; 
+	sDim.pwm = fNow;
+	dimer = (float)1.0 - sDim.pwm; 
 //	dimer = fNow;
 }
 
 void mSecExe::switchDimType(rfFrame_t* pFrame){
 	if(sDim.forced){	//when forced Mode
-		dimer = m_sPir.target;
+		dimer = sDim.target;
 		return;
 	}
 	switch(m_sensorType){
 		case ePir:
-			if(m_sPir.dTime) m_sPir.dTime--;
-			else	//when Delay Time out
-				m_sPir.target = (float)pFrame->Ctr.Low/(float)100.0;
+//			putchar('1');
+			if(sDim.dTime) sDim.dTime--;
+			else{	//when Delay Time out
+				sDim.target = (float)pFrame->Ctr.Low/(float)100.0;
+//				putchar('.');
+			}
 			sDim.upStep = 0.005;
 			sDim.downStep = 0.0003;
 			sDim.forced = false;
@@ -165,59 +75,119 @@ void mSecExe::switchDimType(rfFrame_t* pFrame){
 			sDim.downStep = 0.01;
 			sDim.forced = false;
 			procDim(sDim);		
-//		putchar('v');
+			break;
+		case eDayLight:
+			sDim.upStep = 0.01;
+			sDim.downStep = 0.01;
+			sDim.forced = false;
+			procDim(sDim);		
 			break;
 		default:
 			break;
 	}
 }
-void mSecExe::monitorSensorFactor(){
-	Flash flash;
-	Flash_t* pFlash = flash.getFlashFrame();
-	printf("Pir Value = %0.3f\n\r", m_sPir.current);
-	printf("rate = %0.3f, rUpper = %0.3f, Upper = %0.3f, Lower = %0.3f\n\r",
-	m_sPir.rate, m_sPir.realUpper, m_sPir.upper, m_sPir.lower);
-	printf("max = %0.3f, min = %0.3f, avr = %0.3f, current = %0.3f, target = %0.3f \n\r",
-	m_sPir.max, m_sPir.min, m_sPir.average, m_sPir.current, m_sPir.target);	
-  printf("Flash Size = %d, float size = %d\n\r", 
-		sizeof(Flash_t), sizeof(float));
-	printf("Flash float init value = %f\n\r", pFlash->VolumeCheck);
-	printf("Gid = %d\n\r", pFlash->rfFrame.MyAddr.GroupAddr);
+
+void mSecExe::switchSensorType(rfFrame_t* pFrame){
+	static uint32_t ulTimeout = 0;
+	if(ulTimeout) ulTimeout--;
+	switch(pFrame->MyAddr.SensorType.iSensor){
+		case ePir:
+			m_sensorType = ePir;			
+			if(pirA.procPirSensor(ePirAnalog)){
+//			if(pirA.procPirSensor(ePirDigital)){
+				pirA.clearSensorFlag();
+				if(!ulTimeout){
+					ulTimeout = TimeoutForPirRepeat; //0.5Sec
+					sDim.target = pFrame->Ctr.High/100.0;
+					sDim.dTime = pFrame->Ctr.DTime*1000;
+					printf("\n\rFrom Pir:");
+//					printf("\n\r***************target = %0.3f\n\r", sDim.target);
+					pFrame->Cmd.Command = edSensor;
+					setSensorFlag();
+//					printf("Sens = %0.3f\n\r", sDim.target);
+				}
+			}
+			break;
+		case eVolume:
+			if(pFrame->MyAddr.RxTx.Bit.Tx){
+							pFrame->Ctr.Level = sDim.target*100;
+			}
+			if(vol.procVolumeSw()&&pFrame->MyAddr.RxTx.Bit.Tx){
+				sDim.target = vol.getTarget();
+				m_sensorType = eVolume;		
+				vol.clearSensorFlag();	
+				if(!ulTimeout){
+					ulTimeout = TimeoutForVolumeRepeat; //0.2Sec
+					setSensorFlag();
+					pFrame->Ctr.Level = sDim.target*100;
+					pFrame->Cmd.Command = edVolume;
+					putchar('v');
+//					printf("------- Vol = %0.3f\n\r", sDim.target);
+				}
+			}
+			break;
+		case eDayLight:
+			if(pFrame->MyAddr.RxTx.Bit.Tx){
+							pFrame->Ctr.Level = sDim.target*100;
+			}
+			if(photoA.procPhotoA(ePhotoDigital)&&pFrame->MyAddr.RxTx.Bit.Tx){
+				m_sensorType = eDayLight;		
+				photoA.clearSensorFlag();	
+				if(!ulTimeout){
+				float delayTime = 20;  //20Sec	
+				float delta = (1.0*TimeoutForPhotoRepeat)/(1000.0*delayTime);	
+					if(photoA.getDir() == eUp){
+						if(sDim.target < 1.0) 
+							sDim.target = sDim.target + delta; //10Sec
+							if(sDim.target > 1.0) sDim.target = 1.0;
+					}
+					else{
+						if(sDim.target > 0.0) 
+							sDim.target = sDim.target - delta;	//Max 10Sec
+							if(sDim.target < 0.0) sDim.target = 0.0;
+					}						
+					ulTimeout = TimeoutForPhotoRepeat; //0.5Sec	
+					setSensorFlag();
+					pFrame->Ctr.Level = sDim.target*100;
+					pFrame->Cmd.Command = edDayLight;
+					printf("\n\rFrom Pir:");
+					/*
+					printf("------- Vol = %0.3f, photo = %f\n\r", 
+						sDim.target, photoA.m_sPhotoA.current);
+					*/
+				}
+			}
+			break;
+		default:
+			break;
+	}
 }
 
 void mSecExe::msecTask(rfFrame_t* pFrame){
 	UttecUtil myUtil;	
 	static uint32_t ulCount = 0;	
-	static bool isRealMode = false;
+	static bool isRealMode = true;
 	ulCount++;
 	
+//	putchar('.');
 	if(isRealMode)
 	if(!myUtil.isMstOrGw(pFrame)){
 		switchSensorType(pFrame);
 		switchDimType(pFrame);
 	}
+	/*
+	*/
 	myLed.taskLed();
 	if(!(ulCount%500)){
-		dimFactors_t sFactors = {m_sPir.target,m_sPir.pwm,
-			sDim.forced, m_sensorType}; 
+		pFrame->Ctr.Level = sDim.target*100;
+		dimFactors_t sFactors = {sDim.forced,m_sensorType,
+			sDim.target,sDim.pwm}; 
 		
-		myUtil.setDimFactor(sFactors);
+		myUtil.getDimFactor(sFactors);
+//		printf("getDimFactor\n\r");
 		myLed.blink(eRfLed, eRfBlink);
 		myLed.blink(eSensLed, eSensBlink);
-//		monitorSensorFactor();		
 	}
-}
-
-void mSecExe::setSensorLimit(float fLimit){
-	m_sPir.flag = false;
-	m_sPir.average = 0.5;
-	m_sPir.max = 0.5;
-	m_sPir.min = 0.5;
-	m_sPir.current = 0.5;
-	
-	m_sPir.upper = 1.0 - fLimit;
-	m_sPir.lower = fLimit;
-	m_sPir.rate = fLimit;
 }
 bool mSecExe::returnSensorFlag(){
 	return m_sensorFlag;
@@ -228,4 +198,12 @@ void mSecExe::clearSensorFlag(){
 void mSecExe::setSensorFlag(){
 	m_sensorFlag = true;
 }
-
+/*
+*/
+void mSecExe::setForcedDim(float level){
+	sDim.forced = true;
+	sDim.target = level;
+}
+void mSecExe::setUnforcedDim(){
+	sDim.forced = false;
+}

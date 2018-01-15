@@ -109,3 +109,9 @@
 .\build\msecexe.o: ..\..\mbed528\uttec528\UttecApp\UttecUtil.h
 .\build\msecexe.o: ..\..\mbed528\uttec528\UttecLib\radio_config.h
 .\build\msecexe.o: ..\..\mbed528\uttec528\UttecApp\UttecLed.h
+.\build\msecexe.o: ..\..\mbed528\uttec528\UttecApp\CmdDefine.h
+.\build\msecexe.o: ..\..\mbed528\uttec528\sensor\pirAnalog.h
+.\build\msecexe.o: ..\..\mbed528\uttec528\sensor\Pyd1788.h
+.\build\msecexe.o: ..\..\mbed528\uttec528\sensor\volume.h
+.\build\msecexe.o: ..\..\mbed528\uttec528\sensor\photoAnalog.h
+.\build\msecexe.o: ..\..\mbed528\uttec528\sensor\bh1750.h

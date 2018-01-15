@@ -9,10 +9,19 @@ Flash_t* procSec::mpFlashFrame = NULL;
 rfFrame_t* procSec::mp_rfFrame = NULL;
 DimmerRf* procSec::pMyRf = NULL;
 rs485* procSec::pMy485 = NULL;
-sx1276Exe* procSec::pMySx1276 = NULL;
 UttecBle* procSec::pMyBle = NULL;
 mSecExe* procSec::pMy_mSec = NULL;
 procServer* procSec::pMyServer = NULL;
+
+productType_t procSec::m_product = {0,};
+
+void procSec::setProductType(){
+	m_product.rcu = true;
+	m_product.rf = true;
+	m_product.ble	= false;
+	m_product.rs485 = false;
+	m_product.sx1276 = false;
+}
 
 procSec::procSec(uttecLib_t pLib, procServer* pServer){
 	mpFlash = pLib.pFlash;
@@ -21,10 +30,10 @@ procSec::procSec(uttecLib_t pLib, procServer* pServer){
 	
 	pMyRf = pLib.pDimmerRf;
 	pMy485 = pLib.pRs485;
-	pMySx1276 = pLib.pSx1276;
 	pMyBle = pLib.pBle;
 	pMy_mSec = pLib.pMsec;
 	pMyServer = pServer;
+	setProductType();
 }
 //eRpt, eSRx, eTx, eRx, eMst, eGw
 #define testCount 7
@@ -60,21 +69,12 @@ void procSec::testSxFrame(){
 }
 
 void procSec::secTask(rfFrame_t* pFrame){
-	static uint32_t ulCount = 0;
-	UttecUtil myUtil;
-	ulCount++;	
-	
-	testFrame(pFrame);
-	if(pFrame->MyAddr.RxTx.Bit.Mst){
-		printf("My Role is eMst\n\r");
-		if(!(ulCount%testCount)){
-			myUtil.testProc(pFrame->Cmd.Command, 0);
-			pMy485->send485(pFrame, eRsUp);
-//			pMyRf->sendRf(pFrame);
-		}
+	UttecUtil myUtil;	
+//	testFrame(pFrame);
+	if(myUtil.isFactoryOutMode()){
+//		pMy_mSec->setForcedDim(DeLampTtest);
+		pMy_mSec->setForcedDim(pFrame->Ctr.High/100.0);
 	}
-	else{
-		printf("My Role is Rx\n\r");
-	}
-	myUtil.dispSec(pFrame);
+		
+	myUtil.dispSec(pFrame, true);
 }

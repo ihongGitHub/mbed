@@ -9,11 +9,26 @@
 #include "DimmerRf.h"
 
 #define floatZero (float)0.01
-#define MaxVolumeCount 10000
 #define VolumeZeroPoint (float)0.01
-//0.2Sec	
+	
+#define TimeoutForPhotoRepeat 500 
 #define TimeoutForVolumeRepeat 200 
-#define TimeoutForPirRepeat 300 
+#define TimeoutForPirRepeat 500 
+
+typedef struct{
+	bool flag;
+	uint32_t dTime;
+	float rate;
+	float realUpper;
+	float upper;
+	float lower;
+	float max;
+	float min;
+	float average;
+	float current;
+	float target;
+	float pwm;
+} UttecPir_t;
 
 typedef struct{
 	bool flag;
@@ -29,14 +44,17 @@ typedef struct{
 	float target;
 	float pwm;
 	uint32_t volumeCount;
-} UttecPir_t;
+} UttecVol_t;
 
 typedef struct{
 	bool forced;
+	uint32_t dTime;
+	float current;
+	float target;	
+	float pwm;	
 	float upStep;
 	float downStep;	
 } UttecDim_t;
-
 
 class mSecExe
 {
@@ -45,25 +63,21 @@ private:
 	static bool m_sensorFlag;
 
 	void switchSensorType(rfFrame_t*);
-	bool procPirSensor(rfFrame_t*);
-	bool procVolumeSw();
-	void setNextRange();
-	void monitorSensorFactor();
-	float averageSensor(float);
 	void procDim(UttecDim_t);
 	void setSensorFlag();
+
 public:
 	static eSensorType_t m_sensorType;
-	static UttecPir_t m_sPir;
 	static UttecDim_t sDim;
 
 	mSecExe(DimmerRf*);
 	void msecTask(rfFrame_t*);
-	void setSensorLimit(float);
-	
 	bool returnSensorFlag();
 	void clearSensorFlag();
+
 	void switchDimType(rfFrame_t*);
+	void setForcedDim(float level);
+	void setUnforcedDim();
 };
 
 #endif

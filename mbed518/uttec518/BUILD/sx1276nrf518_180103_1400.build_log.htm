@@ -22,51 +22,24 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 C:\mbed\mbed518\uttec518\empty.uvprojx
-Project File Date:  01/03/2018
+Project File Date:  01/04/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'uttec518'
-compiling procSx1276.cpp...
-compiling sx1276Exe.cpp...
-..\..\mbed528\uttec528\Simulation\sx1276Exe.cpp(188): warning:  #780-D: reference is to variable "i"  (declared at line 167) -- under old for-init scoping rules it would have been variable "i"  (declared at line 184)
-                          for( i = 4; i < BufferSize; i++ )
-..\..\mbed528\uttec528\Simulation\sx1276Exe.cpp(188): warning:  #780-D: reference is to variable "i"  (declared at line 167) -- under old for-init scoping rules it would have been variable "i"  (declared at line 184)
-                          for( i = 4; i < BufferSize; i++ )
-..\..\mbed528\uttec528\Simulation\sx1276Exe.cpp(188): warning:  #780-D: reference is to variable "i"  (declared at line 167) -- under old for-init scoping rules it would have been variable "i"  (declared at line 184)
-                          for( i = 4; i < BufferSize; i++ )
-..\..\mbed528\uttec528\Simulation\sx1276Exe.cpp(190): warning:  #780-D: reference is to variable "i"  (declared at line 167) -- under old for-init scoping rules it would have been variable "i"  (declared at line 184)
-                              Buffer[i] = i - 4;
-..\..\mbed528\uttec528\Simulation\sx1276Exe.cpp(190): warning:  #780-D: reference is to variable "i"  (declared at line 167) -- under old for-init scoping rules it would have been variable "i"  (declared at line 184)
-                              Buffer[i] = i - 4;
-..\..\mbed528\uttec528\Simulation\sx1276Exe.cpp(206): warning:  #780-D: reference is to variable "i"  (declared at line 167) -- under old for-init scoping rules it would have been variable "i"  (declared at line 202)
-                          for( i = 4; i < BufferSize; i++ )
-..\..\mbed528\uttec528\Simulation\sx1276Exe.cpp(206): warning:  #780-D: reference is to variable "i"  (declared at line 167) -- under old for-init scoping rules it would have been variable "i"  (declared at line 202)
-                          for( i = 4; i < BufferSize; i++ )
-..\..\mbed528\uttec528\Simulation\sx1276Exe.cpp(206): warning:  #780-D: reference is to variable "i"  (declared at line 167) -- under old for-init scoping rules it would have been variable "i"  (declared at line 202)
-                          for( i = 4; i < BufferSize; i++ )
-..\..\mbed528\uttec528\Simulation\sx1276Exe.cpp(208): warning:  #780-D: reference is to variable "i"  (declared at line 167) -- under old for-init scoping rules it would have been variable "i"  (declared at line 202)
-                              Buffer[i] = i - 4;
-..\..\mbed528\uttec528\Simulation\sx1276Exe.cpp(208): warning:  #780-D: reference is to variable "i"  (declared at line 167) -- under old for-init scoping rules it would have been variable "i"  (declared at line 202)
-                              Buffer[i] = i - 4;
-..\..\mbed528\uttec528\Simulation\sx1276Exe.cpp: 10 warnings, 0 errors
+compiling Rcu.cpp...
+..\..\mbed528\uttec528\UttecLib\Rcu.cpp(13): warning:  #177-D: variable "m_IrqCount"  was declared but never referenced
+  static uint32_t m_IrqCount=0;
+..\..\mbed528\uttec528\UttecLib\Rcu.cpp(14): warning:  #177-D: variable "m_bIrq"  was declared but never referenced
+  static bool m_bIrq=false;
+..\..\mbed528\uttec528\UttecLib\Rcu.cpp(16): warning:  #177-D: function "checkRcuSignal"  was declared but never referenced
+  static void checkRcuSignal()
+..\..\mbed528\uttec528\UttecLib\Rcu.cpp: 3 warnings, 0 errors
 compiling mainForSx1276.cpp...
-compiling sx1276.cpp...
-..\..\mbed528\uttec528\SX1276Lib\sx1276\sx1276.cpp(885): warning:  #1361-D: function "mbed::Ticker::attach_us(T *, M, us_timestamp_t) [with T=SX1276, M=void (SX1276::*)()]"  (declared at line 140 of "mbed/./drivers/Ticker.h") was declared "deprecated"
-          rxTimeoutTimer.attach_us( this, &SX1276::OnTimeoutIrq, timeout );
-..\..\mbed528\uttec528\SX1276Lib\sx1276\sx1276.cpp(894): warning:  #1361-D: function "mbed::Ticker::attach_us(T *, M, us_timestamp_t) [with T=SX1276, M=void (SX1276::*)()]"  (declared at line 140 of "mbed/./drivers/Ticker.h") was declared "deprecated"
-              rxTimeoutSyncWord.attach_us( this, &SX1276::OnTimeoutIrq, ( 8.0 * ( this->settings.Fsk.PreambleLen +
-..\..\mbed528\uttec528\SX1276Lib\sx1276\sx1276.cpp(970): warning:  #1361-D: function "mbed::Ticker::attach_us(T *, M, us_timestamp_t) [with T=SX1276, M=void (SX1276::*)()]"  (declared at line 140 of "mbed/./drivers/Ticker.h") was declared "deprecated"
-      txTimeoutTimer.attach_us( this, &SX1276::OnTimeoutIrq, timeout );
-..\..\mbed528\uttec528\SX1276Lib\sx1276\sx1276.cpp(1178): warning:  #1361-D: function "mbed::Ticker::attach_us(T *, M, us_timestamp_t) [with T=SX1276, M=void (SX1276::*)()]"  (declared at line 140 of "mbed/./drivers/Ticker.h") was declared "deprecated"
-                              rxTimeoutSyncWord.attach_us( this, &SX1276::OnTimeoutIrq, (  8.0 * ( this->settings.Fsk.PreambleLen +
-..\..\mbed528\uttec528\SX1276Lib\sx1276\sx1276.cpp(1226): warning:  #1361-D: function "mbed::Ticker::attach_us(T *, M, us_timestamp_t) [with T=SX1276, M=void (SX1276::*)()]"  (declared at line 140 of "mbed/./drivers/Ticker.h") was declared "deprecated"
-                      rxTimeoutSyncWord.attach_us( this, &SX1276::OnTimeoutIrq, ( 8.0 * ( this->settings.Fsk.PreambleLen +
-..\..\mbed528\uttec528\SX1276Lib\sx1276\sx1276.cpp: 5 warnings, 0 errors
 linking...
-Program Size: Code=58408 RO-data=3860 RW-data=628 ZI-data=3500  
+Program Size: Code=58372 RO-data=3864 RW-data=660 ZI-data=3548  
 FromELF: creating hex file...
-".\BUILD\sx1276nrf518_180103_1400.axf" - 0 Error(s), 15 Warning(s).
+".\BUILD\sx1276nrf518_180103_1400.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -80,7 +53,7 @@ Package Vendor: NordicSemiconductor
   C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.15.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

@@ -6,12 +6,6 @@
 
 #include "mbed.h"
 #include "DimmerRf.h"
-/*
-typedef enum{
-	eDown = 0,
-	eUp = 1
-} rsDirection_t;
-*/
 typedef enum{
 	eUart = 0,
 	eRsDown = 1,

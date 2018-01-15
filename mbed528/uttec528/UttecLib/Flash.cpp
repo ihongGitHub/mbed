@@ -145,7 +145,6 @@ void Flash::ReadAllFlash(void)
 }
 
 bool Flash::isFactoryMode(){
-	ReadAllFlash();
 	printf("Gid=%d\n\r",getFlashFrame()->rfFrame.MyAddr.GroupAddr);
 	if(m_flash.FactoryModeId!=DeFieldMode){
 //		printf("\f\n New Factors \n\r");
@@ -195,20 +194,21 @@ void Flash::resetFlash(){
 //	NVIC_SystemReset();
 }
 
+#define DeFactoryChannel 1
 void Flash::initOrgFlash(){
 	
 	uint8_t* ucpFrame=(uint8_t*)getFlashFrame();
-	for(int i=0;i<sizeof(Flash_t);i++) *ucpFrame++=0;
+	rfFrame_t rfFrame = getFlashFrame()->rfFrame;
 	
-	rfFrame_t rfFrame;
-	ucpFrame=(uint8_t*)&rfFrame;
-	for(int i=0;i<sizeof(rfFrame_t);i++) *ucpFrame++=0;
+	for(int i=0;i<sizeof(Flash_t);i++) *ucpFrame++=0;	
+	rfFrame = rfFrame;
 	
-	rfFrame.MyAddr.GroupAddr=45;		//For Test Only
+//	rfFrame.MyAddr.GroupAddr=DeFactoryChannel;		//For Test Only
+	rfFrame.MyAddr.GroupAddr=2;		//For Test Only
 	rfFrame.MyAddr.PrivateAddr=10;
 	rfFrame.MyAddr.Micom.Bit.nRf518=1;
-	rfFrame.MyAddr.RxTx.Bit.Rx=1;
-	rfFrame.MyAddr.SensorType.Bit.NoSensor=1;
+	rfFrame.MyAddr.RxTx.iRxTx=eSRx;
+	rfFrame.MyAddr.SensorType.iSensor=ePir;
 	
 	rfFrame.Ctr.High=100;
 	rfFrame.Ctr.Low=0;

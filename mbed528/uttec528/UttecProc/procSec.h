@@ -9,6 +9,14 @@
 #include "uttecLib.h"
 #include "procServer.h"
 
+typedef struct{
+	bool rcu;
+	bool rf;
+	bool ble;
+	bool rs485;
+	bool sx1276;
+} productType_t;
+
 class procSec
 {
 private:
@@ -17,15 +25,16 @@ private:
 	static rfFrame_t* mp_rfFrame;
 	static DimmerRf* pMyRf;
 	static rs485* pMy485;
-	static sx1276Exe* pMySx1276;
 	static UttecBle* pMyBle;
 	static mSecExe* pMy_mSec;
 	static procServer* pMyServer;
 
 	void testFrame(rfFrame_t*);
 	void testSxFrame();
-
+	void setProductType();
 public:
+	static productType_t m_product;
+
 	procSec(uttecLib_t, procServer*);
 	void secTask(rfFrame_t*);
 };

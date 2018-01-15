@@ -104,3 +104,4 @@
 .\build\uttecutil.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\uttecutil.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\uttecutil.o: ..\..\mbed528\uttec528\UttecApp\CmdDefine.h
+.\build\uttecutil.o: ..\..\mbed528\uttec528\UttecApp\UttecLed.h

@@ -13,7 +13,6 @@ Flash_t* procServer::mpFlashFrame = NULL;
 rfFrame_t* procServer::mp_rfFrame = NULL;
 DimmerRf* procServer::pMyRf = NULL;
 rs485* procServer::pMy485 = NULL;
-sx1276Exe* procServer::pMySx1276 = NULL;
 UttecBle* procServer::pMyBle = NULL;
 mSecExe* procServer::pMy_mSec = NULL;
 
@@ -24,59 +23,36 @@ procServer::procServer(uttecLib_t pLib){
 	
 	pMyRf = pLib.pDimmerRf;
 	pMy485 = pLib.pRs485;
-	pMySx1276 = pLib.pSx1276;
 	pMyBle = pLib.pBle;
 	pMy_mSec = pLib.pMsec;
 }
-void procServer::resendByRepeater(rfFrame_t* pFrame){
-	if(myUtil.isRpt(mp_rfFrame)){	//Repeat Function
-		myUtil.testProc(pFrame->Cmd.Command, 3);
-		if(!myUtil.isRpt(pFrame)){	//From Rpt?
-			pFrame->MyAddr.RxTx.iRxTx = eRpt;
-			printf("resend by repeater\n\r");
-			myUtil.testProc(pFrame->Cmd.Command,
-				(uint32_t)pFrame->Cmd.SubCmd, (uint32_t)4);
-			pMyRf->sendRf(pFrame);	
-		}			
-	}
-}
-
 void procServer::procControlSub(rfFrame_t* pFrame){
-	pMy_mSec->m_sPir.target = pFrame->Ctr.Level/(float)100.0;
-	pMy_mSec->sDim.forced = true;
-	pMy_mSec->sDim.upStep = pMy_mSec->sDim.downStep = 0;
-	myUtil.testProc(pFrame->Cmd.Command, 
-		(uint32_t)pFrame->Cmd.SubCmd, (uint32_t)3);
-	resendByRepeater(pFrame);
+	pMy_mSec->setForcedDim(pFrame->Ctr.Level/(float)100.0);
+	printf("procControlSub: Level = %d\n\r",pFrame->Ctr.Level);
 }
 void procServer::procNewSetSub(rfFrame_t* pFrame){
 	pMy_mSec->sDim.forced = false;
-	myUtil.testProc(pFrame->Cmd.SubCmd,2);
-	myUtil.testProc(pFrame->Cmd.Command, 
-		(uint32_t)pFrame->Cmd.SubCmd, (uint32_t)3);
-	resendByRepeater(pFrame);
+	printf("procNewSetSub: Level = %d\n\r",pFrame->Ctr.Level);
 }
 
 void procServer::procNewFactSetSub(rfFrame_t* pFrame){
 	Flash myFlash;
 	mp_rfFrame->Ctr = pFrame->Ctr;
 	myFlash.writeFlash();
-	myUtil.testProc(pFrame->Cmd.SubCmd,2);
-	myUtil.testProc(pFrame->Cmd.Command, 
-		(uint32_t)pFrame->Cmd.SubCmd, (uint32_t)3);
-	resendByRepeater(pFrame);
+	printf("procNewFactSetSub: Level = %d\n\r",pFrame->Ctr.Level);
 }
 void procServer::procAltSub(rfFrame_t* pFrame){
 	Flash myFlash;
 	if(mp_rfFrame->MyAddr.PrivateAddr%2 ==
 		pFrame->MyAddr.PrivateAddr%2){
-		pMy_mSec->sDim.forced = true;
-		pMy_mSec->m_sPir.target = 0;
-		pMy_mSec->sDim.upStep = pMy_mSec->sDim.downStep = 0;		
+		pMy_mSec->setForcedDim(pFrame->Ctr.Level/(float)100.0);
 	}
-	myUtil.testProc(pFrame->Cmd.Command, 
-		(uint32_t)pFrame->Cmd.SubCmd, (uint32_t)3);
-	resendByRepeater(pFrame);
+	printf("procAltSub: Level = %d\n\r",pFrame->Ctr.Level);
+}
+
+void procServer::procStatus(rfFrame_t* pFrame){
+	printf("Return Status tbd\n\r");
+	printf("procStatus: Level = %d\n\r",pFrame->Ctr.Level);
 }
 
 void procServer::taskServer(rfFrame_t* pFrame){
@@ -97,8 +73,10 @@ void procServer::taskServer(rfFrame_t* pFrame){
 			procNewSetSub(pFrame);
 				break;
 		case edsPing:
+			printf("edsPing tbd\n\r");
 				break;
 		case edsPhoto:
+			printf("edsPhoto return Photo Value\n\r");
 				break;
 		case edsColor:
 				break;
@@ -107,6 +85,9 @@ void procServer::taskServer(rfFrame_t* pFrame){
 				break;
 		case edsCmd_Alternative:
 			procAltSub(pFrame);
+				break;
+		case edsCmd_Status:
+			procStatus(pFrame);
 				break;
 		default:
 			printf("Check Cmd %d\n\r", ucCmd);
