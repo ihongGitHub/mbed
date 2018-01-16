@@ -82,9 +82,12 @@ public:
 	bool isSRx(rfFrame_t*);
 	bool isRx(rfFrame_t*);
 	bool isRpt(rfFrame_t*);
+	bool isMyRxTx(rfFrame_t*,rfFrame_t*);
+	bool isMyGroup(rfFrame_t*,rfFrame_t*);
+	bool isMyAddr(rfFrame_t*,rfFrame_t*);
 	void dispRfFactor(rfFrame_t*);
 	void dispCmdandSub(char*, char*, rfFrame_t*);
-	bool isNotMyGroup(rfFrame_t* pSrc, rfFrame_t* pMy);
+	bool isNotMyGwGroup(rfFrame_t* pSrc, rfFrame_t* pMy);
 	bool isFactoryOutMode();
 	void alertFaultSet(uint8_t);
 	void dispRxTx(char*, rfFrame_t*);

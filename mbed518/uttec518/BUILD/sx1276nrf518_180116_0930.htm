@@ -1,9 +1,9 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html><head>
-<title>Static Call Graph - [.\BUILD\sx1276nrf518_180115_1030.axf]</title></head>
+<title>Static Call Graph - [.\BUILD\sx1276nrf518_180116_0930.axf]</title></head>
 <body><HR>
-<H1>Static Call Graph for image .\BUILD\sx1276nrf518_180115_1030.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Jan 16 08:51:05 2018
+<H1>Static Call Graph for image .\BUILD\sx1276nrf518_180116_0930.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Jan 16 15:03:07 2018
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -17,8 +17,8 @@ Mutually Recursive functions
  <LI><a href="#[18]">PendSV_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[18]">PendSV_Handler</a><BR>
  <LI><a href="#[19]">SysTick_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[19]">SysTick_Handler</a><BR>
  <LI><a href="#[20]">ADC_IRQHandler_v</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[20]">ADC_IRQHandler_v</a><BR>
- <LI><a href="#[15c]">mbed_assert_internal</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[299]">mbed_die</a><BR>
- <LI><a href="#[29e]">queue_process</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[29e]">queue_process</a><BR>
+ <LI><a href="#[15c]">mbed_assert_internal</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[29c]">mbed_die</a><BR>
+ <LI><a href="#[2a1]">queue_process</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[2a1]">queue_process</a><BR>
  <LI><a href="#[d8]">__asm___9_i2c_api_c_i2c_init__nrf_delay_us</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[d8]">__asm___9_i2c_api_c_i2c_init__nrf_delay_us</a><BR>
 </UL>
 <P>
@@ -572,23 +572,23 @@ Global Symbols
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_ProvideMemory
 </UL>
 
-<P><STRONG><a name="[295]"></a>__aeabi_uldivmod</STRONG> (Thumb, 258 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(lludiv.o)(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[294]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
+<P><STRONG><a name="[298]"></a>__aeabi_uldivmod</STRONG> (Thumb, 258 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(lludiv.o)(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[297]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
 </UL>
 
 <P><STRONG><a name="[dd]"></a>vsnprintf</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(vsnprintf.o)(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[2bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<BR>[Called By]<UL><LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
+<LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 </UL>
 
 <P><STRONG><a name="[df]"></a>__2printf</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(__2printf.o)(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_file
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procBle::bleTask(unsigned char*)
-<LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
+<BR>[Called By]<UL><LI><a href="#[251]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procBle::bleTask(unsigned char*)
+<LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
 <LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::taskRf(rfFrame_t*)
 <LI><a href="#[207]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::isFactoryMode()
 <LI><a href="#[205]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::ReadAllFlash()
@@ -625,16 +625,17 @@ Global Symbols
 <LI><a href="#[214]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::conflictTx()
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atSetTimeout()
 <LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procServer::taskServer(rfFrame_t*)
-<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferMstGwBy485(rfFrame_t*, UttecDirection_t)
-<LI><a href="#[249]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::returnAckBy485(rfFrame_t*)
-<LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::procVolumeCmd(rfFrame_t*)
-<LI><a href="#[256]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, unsigned char)
+<LI><a href="#[24d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::answerReqBy485(rfFrame_t*)
+<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferBy485(rfFrame_t*)
+<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::procVolumeCmd(rfFrame_t*)
+<LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::sendAckBy485(rfFrame_t*)
+<LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, unsigned char)
 <LI><a href="#[1ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispSec(rfFrame_t*, bool)
 <LI><a href="#[18e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::alertFaultSet(unsigned char)
 <LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dispTime(unsigned)
 <LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::procVolumeSw()
 <LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::switchSensorType(rfFrame_t*)
-<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::dispRfFactor(rfFrame_t*)
+<LI><a href="#[257]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::dispRfFactor(rfFrame_t*)
 <LI><a href="#[1b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test::setTestReceiveFrameByNum(unsigned short)
 <LI><a href="#[1b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test::setTestMyFrameByNum(unsigned short)
 <LI><a href="#[1b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test::setTestSxRxData()
@@ -655,8 +656,8 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[256]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, unsigned char)
-<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, rfFrame_t*)
+<BR>[Called By]<UL><LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, unsigned char)
+<LI><a href="#[249]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, rfFrame_t*)
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispCmdandSub(char*, char*, rfFrame_t*)
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dispSensor(char*, unsigned char)
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dispForced(char*, bool)
@@ -837,7 +838,7 @@ Global Symbols
 <P><STRONG><a name="[103]"></a>__aeabi_memset</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(aeabi_memset.o)(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_init
+<BR>[Called By]<UL><LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_init
 </UL>
 
 <P><STRONG><a name="[105]"></a>_memset_w</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(rt_memclr.o)(.text))
@@ -855,8 +856,8 @@ Global Symbols
 <P><STRONG><a name="[106]"></a>__aeabi_memclr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(rt_memclr.o)(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[256]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, unsigned char)
-<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, rfFrame_t*)
+<BR>[Called By]<UL><LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, unsigned char)
+<LI><a href="#[249]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, rfFrame_t*)
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispCmdandSub(char*, char*, rfFrame_t*)
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dispSensor(char*, unsigned char)
 </UL>
@@ -871,14 +872,14 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset_w
 </UL>
 
-<P><STRONG><a name="[266]"></a>strcmp</STRONG> (Thumb, 160 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(strcmpv6m.o)(.text))
+<P><STRONG><a name="[269]"></a>strcmp</STRONG> (Thumb, 160 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(strcmpv6m.o)(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
 <LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_ctype
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_numeric
 </UL>
 
 <P><STRONG><a name="[166]"></a>__aeabi_uidivmod</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(aeabi_sdivfast.o)(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_set
+<BR><BR>[Called By]<UL><LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_set
 <LI><a href="#[240]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::msecTask(rfFrame_t*)
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tickSec()
 <LI><a href="#[1ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispSec(rfFrame_t*, bool)
@@ -891,7 +892,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[1ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rcu::procRcu(rcuValue_t)
 <LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::processCmdNewSet(rfFrame_t*)
 <LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::setNewFactor()
-<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isNotMyGroup(rfFrame_t*, rfFrame_t*)
+<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isNotMyGwGroup(rfFrame_t*, rfFrame_t*)
 <LI><a href="#[1b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test::setTestReceiveFrameByNum(unsigned short)
 <LI><a href="#[1b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test::setTestMyFrameByNum(unsigned short)
 <LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_assert
@@ -908,7 +909,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[18a]"></a>__aeabi_d2f</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(d2f.o)(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
+<BR><BR>[Called By]<UL><LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
 <LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::mSecExe(DimmerRf*)
 <LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::procVolumeCmd(rfFrame_t*)
 <LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::procSensorCmd(rfFrame_t*)
@@ -916,7 +917,7 @@ Global Symbols
 <LI><a href="#[21e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfVolumeCmd(rfFrame_t*)
 <LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfSensorCmd(rfFrame_t*)
 <LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfRepeatCmd(rfFrame_t*)
-<LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::procVolumeCmd(rfFrame_t*)
+<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::procVolumeCmd(rfFrame_t*)
 <LI><a href="#[245]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::setSensorRate(float)
 <LI><a href="#[228]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::setSensorRate(float)
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::procPhotoA(photoType_t)
@@ -944,7 +945,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[189]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(ddiv.o)(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
+<BR><BR>[Called By]<UL><LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
 <LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::mSecExe(DimmerRf*)
 <LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::procVolumeCmd(rfFrame_t*)
 <LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::procSensorCmd(rfFrame_t*)
@@ -952,7 +953,7 @@ Global Symbols
 <LI><a href="#[21e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfVolumeCmd(rfFrame_t*)
 <LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfSensorCmd(rfFrame_t*)
 <LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfRepeatCmd(rfFrame_t*)
-<LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::procVolumeCmd(rfFrame_t*)
+<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::procVolumeCmd(rfFrame_t*)
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::procPhotoA(photoType_t)
 <LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::switchSensorType(rfFrame_t*)
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bh1750::readBH1750()
@@ -966,7 +967,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ddiv
 </UL>
 
-<P><STRONG><a name="[259]"></a>__aeabi_d2iz</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(dfixi.o)(.text))
+<P><STRONG><a name="[25c]"></a>__aeabi_d2iz</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(dfixi.o)(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[245]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::setSensorRate(float)
 </UL>
 
@@ -988,7 +989,7 @@ Global Symbols
 <P><STRONG><a name="[111]"></a>__aeabi_ui2d</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(dflti.o)(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d_normalise
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
+<BR>[Called By]<UL><LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
 <LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::mSecExe(DimmerRf*)
 <LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::procVolumeCmd(rfFrame_t*)
 <LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::procSensorCmd(rfFrame_t*)
@@ -996,7 +997,7 @@ Global Symbols
 <LI><a href="#[21e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfVolumeCmd(rfFrame_t*)
 <LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfSensorCmd(rfFrame_t*)
 <LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfRepeatCmd(rfFrame_t*)
-<LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::procVolumeCmd(rfFrame_t*)
+<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::procVolumeCmd(rfFrame_t*)
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::procPhotoA(photoType_t)
 <LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::switchSensorType(rfFrame_t*)
 </UL>
@@ -1013,7 +1014,7 @@ Global Symbols
 <LI><a href="#[21f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfDaylightCmd(rfFrame_t*)
 <LI><a href="#[21e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfVolumeCmd(rfFrame_t*)
 <LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfRepeatCmd(rfFrame_t*)
-<LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::procVolumeCmd(rfFrame_t*)
+<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::procVolumeCmd(rfFrame_t*)
 <LI><a href="#[1ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispSec(rfFrame_t*, bool)
 <LI><a href="#[245]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::setSensorRate(float)
 <LI><a href="#[228]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::setSensorRate(float)
@@ -1029,7 +1030,7 @@ Global Symbols
 <LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::switchDimType(rfFrame_t*)
 <LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::averageSensor(float)
 <LI><a href="#[225]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::averageSensor(float)
-<LI><a href="#[257]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::averageSensor(float)
+<LI><a href="#[25a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::averageSensor(float)
 </UL>
 
 <P><STRONG><a name="[113]"></a>_fdiv</STRONG> (Thumb, 334 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(fdiv.o)(.text), UNUSED)
@@ -1040,7 +1041,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fdiv
 </UL>
 
-<P><STRONG><a name="[2c9]"></a>__aeabi_f2iz</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(ffixi.o)(.text))
+<P><STRONG><a name="[2cc]"></a>__aeabi_f2iz</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(ffixi.o)(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
 </UL>
 
@@ -1073,7 +1074,7 @@ Global Symbols
 <LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::switchDimType(rfFrame_t*)
 <LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::averageSensor(float)
 <LI><a href="#[225]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::averageSensor(float)
-<LI><a href="#[257]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::averageSensor(float)
+<LI><a href="#[25a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::averageSensor(float)
 </UL>
 
 <P><STRONG><a name="[da]"></a>__rt_heap_descriptor</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(rt_heap_descriptor.o)(.text))
@@ -1256,7 +1257,7 @@ Global Symbols
 <LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_flushlinebuffered
 </UL>
 
-<P><STRONG><a name="[29a]"></a>__filbuf_byte</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(filbuf.o)(.text))
+<P><STRONG><a name="[29d]"></a>__filbuf_byte</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(filbuf.o)(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fgetc
 </UL>
 
@@ -1269,7 +1270,7 @@ Global Symbols
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
 
-<P><STRONG><a name="[29b]"></a>__flsbuf_byte</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(flsbuf.o)(.text))
+<P><STRONG><a name="[29e]"></a>__flsbuf_byte</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(flsbuf.o)(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
 </UL>
 
@@ -1359,16 +1360,16 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcheck_NaN2
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_cmpreturn
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_drcmple
-<LI><a href="#[2ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
+<BR>[Called By]<UL><LI><a href="#[2ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_drcmple
+<LI><a href="#[2cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
 </UL>
 
 <P><STRONG><a name="[144]"></a>__fpl_fcmp_InfNaN</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(fcmpin.o)(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fcheck_NaN2
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_cmpreturn
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_frcmple
-<LI><a href="#[2ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fcmple
+<BR>[Called By]<UL><LI><a href="#[2d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_frcmple
+<LI><a href="#[2d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fcmple
 </UL>
 
 <P><STRONG><a name="[154]"></a>_ttywrch</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(sys_wrch.o)(.text))
@@ -1612,12 +1613,12 @@ Global Symbols
 <BR>[Address Reference Count : 2]<UL><LI> gpio_api.o(i.gpio_init)
 <LI> pwmout_api.o(i.pwmout_init)
 </UL>
-<P><STRONG><a name="[26b]"></a>NVIC_SetVector</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/cmsis_nvic.o(i.NVIC_SetVector))
-<BR><BR>[Called By]<UL><LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
-<LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
-<LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
+<P><STRONG><a name="[26e]"></a>NVIC_SetVector</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/cmsis_nvic.o(i.NVIC_SetVector))
+<BR><BR>[Called By]<UL><LI><a href="#[2ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
+<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
 <LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_init
-<LI><a href="#[292]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_init
+<LI><a href="#[295]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_init
 <LI><a href="#[1e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_init
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_init
@@ -1703,9 +1704,9 @@ Global Symbols
 <LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecLed::UttecLed()
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
-<LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::taskRf(rfFrame_t*)
+<BR>[Called By]<UL><LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::taskRf(rfFrame_t*)
 <LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::sx1276Task(rfFrame_t*)
+<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferBy485(rfFrame_t*)
 </UL>
 
 <P><STRONG><a name="[170]"></a>procServer::procNewSetSub(rfFrame_t*)</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, .\build\procserver.o(i._ZN10procServer13procNewSetSubEP9rfFrame_t))
@@ -1830,15 +1831,15 @@ Global Symbols
 
 <P><STRONG><a name="[178]"></a>procSx1276::transferMstGwBy485(rfFrame_t*, UttecDirection_t)</STRONG> (Thumb, 110 bytes, Stack size 0 bytes, .\build\procsx1276.o(i._ZN10procSx127618transferMstGwBy485EP9rfFrame_t16UttecDirection_t))
 <BR><BR>[Calls]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isGw(rfFrame_t*)
+<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isNotMyGwGroup(rfFrame_t*, rfFrame_t*)
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispCmdandSub(char*, char*, rfFrame_t*)
-<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isNotMyGroup(rfFrame_t*, rfFrame_t*)
 <LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rs485::send485(rfFrame_t*, rs485Channel_t)
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::sx1276Task(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[2b9]"></a>procSx1276::isMyGroup(rfFrame_t*, rfFrame_t*)</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, .\build\procsx1276.o(i._ZN10procSx12769isMyGroupEP9rfFrame_tS1_))
+<P><STRONG><a name="[2bc]"></a>procSx1276::isMyGroup(rfFrame_t*, rfFrame_t*)</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, .\build\procsx1276.o(i._ZN10procSx12769isMyGroupEP9rfFrame_tS1_))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
@@ -1886,7 +1887,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::switchSensorType(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[260]"></a>photoAnalog::photoAnalog()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, .\build\photoanalog.o(i._ZN11photoAnalogC1Ev))
+<P><STRONG><a name="[263]"></a>photoAnalog::photoAnalog()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, .\build\photoanalog.o(i._ZN11photoAnalogC1Ev))
 <BR><BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___11_mSecExe_cpp_dimer
 </UL>
 
@@ -1938,7 +1939,7 @@ Global Symbols
 <LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::setRadio(channel_t)
 <LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_initialization()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[253]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::initRfFrame()
+<BR>[Called By]<UL><LI><a href="#[256]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::initRfFrame()
 </UL>
 
 <P><STRONG><a name="[181]"></a>Rf::sendRf(const rfFrame_t*)</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, .\build\rf.o(i._ZN2Rf6sendRfEPK9rfFrame_t))
@@ -1950,13 +1951,14 @@ Global Symbols
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
+<BR>[Called By]<UL><LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
 <LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::taskRf(rfFrame_t*)
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 <LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::setNewFactor()
 <LI><a href="#[21d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::resendByRfRepeater(rfFrame_t*)
 <LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::transferMstGwByRf(rfFrame_t*)
 <LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::setNewFactor()
+<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferBy485(rfFrame_t*)
 </UL>
 
 <P><STRONG><a name="[183]"></a>Rf::isRxDone()</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, .\build\rf.o(i._ZN2Rf8isRxDoneEv))
@@ -2002,10 +2004,10 @@ Global Symbols
 <P><STRONG><a name="[1a8]"></a>Rf::Rf()</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, .\build\rf.o(i._ZN2RfC1Ev))
 <BR><BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[255]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::DimmerRf(Flash*)
+<BR>[Called By]<UL><LI><a href="#[258]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::DimmerRf(Flash*)
 </UL>
 
-<P><STRONG><a name="[2b3]"></a>Rcu::isRcuReady()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\rcu.o(i._ZN3Rcu10isRcuReadyEv))
+<P><STRONG><a name="[2b6]"></a>Rcu::isRcuReady()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\rcu.o(i._ZN3Rcu10isRcuReadyEv))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
@@ -2015,7 +2017,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[2b4]"></a>Rcu::clearRcuFlag()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\rcu.o(i._ZN3Rcu12clearRcuFlagEv))
+<P><STRONG><a name="[2b7]"></a>Rcu::clearRcuFlag()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\rcu.o(i._ZN3Rcu12clearRcuFlagEv))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
@@ -2373,9 +2375,9 @@ Global Symbols
 <P><STRONG><a name="[1e6]"></a>mbed::Stream::Stream__sub_object(const char*)</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(Stream.o)(i._ZN4mbed6StreamC2EPKc))
 <BR><BR>[Calls]<UL><LI><a href="#[1da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::mbed_set_unbuffered_stream(std::__FILE*)
 <LI><a href="#[1ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;error
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_errno_addr
 <LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FileBase::FileBase(const char*, mbed::PathType)
 <LI><a href="#[1e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::fdopen(mbed::FileHandle*, const char*)
+<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_errno_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Serial::Serial(PinName, PinName, const char*, int)
 </UL>
@@ -2541,7 +2543,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
 </UL>
 
-<P><STRONG><a name="[267]"></a>mbed::FilePath::exists()</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)(i._ZN4mbed8FilePath6existsEv))
+<P><STRONG><a name="[26a]"></a>mbed::FilePath::exists()</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)(i._ZN4mbed8FilePath6existsEv))
 <BR><BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
 </UL>
 
@@ -2551,7 +2553,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
 </UL>
 
-<P><STRONG><a name="[268]"></a>mbed::FilePath::fileName()</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)(i._ZN4mbed8FilePath8fileNameEv))
+<P><STRONG><a name="[26b]"></a>mbed::FilePath::fileName()</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(FilePath.o)(i._ZN4mbed8FilePath8fileNameEv))
 <BR><BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
 </UL>
 
@@ -2621,7 +2623,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[263]"></a>test::test()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, .\build\test.o(i._ZN4testC1Ev))
+<P><STRONG><a name="[266]"></a>test::test()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, .\build\test.o(i._ZN4testC1Ev))
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___17_mainForSx1276_cpp_Uart
 </UL>
 
@@ -2653,9 +2655,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[174]"></a>Flash::getFlashFrame()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, .\build\flash.o(i._ZN5Flash13getFlashFrameEv))
-<BR><BR>[Called By]<UL><LI><a href="#[255]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::DimmerRf(Flash*)
-<LI><a href="#[251]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::procSec(uttecLib_t, procServer*)
-<LI><a href="#[24d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::proc485(uttecLib_t, procServer*)
+<BR><BR>[Called By]<UL><LI><a href="#[258]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::DimmerRf(Flash*)
+<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::procSec(uttecLib_t, procServer*)
+<LI><a href="#[250]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::proc485(uttecLib_t, procServer*)
 <LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::mSecExe(DimmerRf*)
 <LI><a href="#[223]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRf(uttecLib_t, procServer*)
 <LI><a href="#[207]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::isFactoryMode()
@@ -2667,7 +2669,7 @@ Global Symbols
 <LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::setNewFactor()
 <LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::processCmdNewSet(rfFrame_t*)
 <LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::setNewFactor()
-<LI><a href="#[250]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isFactoryOutMode()
+<LI><a href="#[253]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isFactoryOutMode()
 <LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::procVolumeSw()
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::procPhotoA(photoType_t)
 <LI><a href="#[206]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::initOrgFlash()
@@ -2689,7 +2691,7 @@ Global Symbols
 <LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procServer::procAltSub(rfFrame_t*)
 <LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::processCmdNewSet(rfFrame_t*)
 <LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::setNewFactor()
-<LI><a href="#[250]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isFactoryOutMode()
+<LI><a href="#[253]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isFactoryOutMode()
 <LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::procVolumeSw()
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::procPhotoA(photoType_t)
 </UL>
@@ -2718,7 +2720,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[1b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test::setTestReceiveFrameByNum(unsigned short)
 </UL>
 
-<P><STRONG><a name="[2b8]"></a>rs485::clear485Done()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\rs485.o(i._ZN5rs48512clear485DoneEv))
+<P><STRONG><a name="[2bb]"></a>rs485::clear485Done()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\rs485.o(i._ZN5rs48512clear485DoneEv))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
@@ -2761,9 +2763,10 @@ Global Symbols
 <LI><a href="#[1a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::gen_crc16(const unsigned char*, unsigned short)
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
+<BR>[Called By]<UL><LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
 <LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::transferMstGwBy485(rfFrame_t*, UttecDirection_t)
-<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferMstGwBy485(rfFrame_t*, UttecDirection_t)
+<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferBy485(rfFrame_t*)
+<LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::sendAckBy485(rfFrame_t*)
 </UL>
 
 <P><STRONG><a name="[20d]"></a>rs485::sendByUp()</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, .\build\rs485.o(i._ZN5rs4858sendByUpEv))
@@ -2815,7 +2818,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::sendSxFrame(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[2b0]"></a>simSx::simSx(DimmerRf*)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, .\build\simsx.o(i._ZN5simSxC1EP8DimmerRf))
+<P><STRONG><a name="[2b3]"></a>simSx::simSx(DimmerRf*)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, .\build\simsx.o(i._ZN5simSxC1EP8DimmerRf))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
@@ -2829,7 +2832,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::procPhotoA(photoType_t)
 </UL>
 
-<P><STRONG><a name="[261]"></a>bh1750::bh1750()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, .\build\bh1750.o(i._ZN6bh1750C1Ev))
+<P><STRONG><a name="[264]"></a>bh1750::bh1750()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, .\build\bh1750.o(i._ZN6bh1750C1Ev))
 <BR><BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___15_photoAnalog_cpp_myBH
 </UL>
 
@@ -2935,7 +2938,7 @@ Global Symbols
 <P><STRONG><a name="[220]"></a>procRf::transferMstGwByRf(rfFrame_t*)</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, .\build\procrf.o(i._ZN6procRf17transferMstGwByRfEP9rfFrame_t))
 <BR><BR>[Calls]<UL><LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::sendRf(const rfFrame_t*)
 <LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isGw(rfFrame_t*)
-<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isNotMyGroup(rfFrame_t*, rfFrame_t*)
+<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isNotMyGwGroup(rfFrame_t*, rfFrame_t*)
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::taskRf(rfFrame_t*)
@@ -3046,7 +3049,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::switchSensorType(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[25f]"></a>volume::volume()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, .\build\volume.o(i._ZN6volumeC1Ev))
+<P><STRONG><a name="[262]"></a>volume::volume()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, .\build\volume.o(i._ZN6volumeC1Ev))
 <BR><BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___11_mSecExe_cpp_dimer
 </UL>
 
@@ -3083,11 +3086,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[236]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::procPirSensor(pirType_t)
 </UL>
 
-<P><STRONG><a name="[258]"></a>Pyd1788::read()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\pyd1788.o(i._ZN7Pyd17884readEv))
+<P><STRONG><a name="[25b]"></a>Pyd1788::read()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\pyd1788.o(i._ZN7Pyd17884readEv))
 <BR><BR>[Called By]<UL><LI><a href="#[236]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::procPirSensor(pirType_t)
 </UL>
 
-<P><STRONG><a name="[25a]"></a>Pyd1788::clearFlag()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\pyd1788.o(i._ZN7Pyd17889clearFlagEv))
+<P><STRONG><a name="[25d]"></a>Pyd1788::clearFlag()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\pyd1788.o(i._ZN7Pyd17889clearFlagEv))
 <BR><BR>[Called By]<UL><LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::clearSensorFlag()
 </UL>
 
@@ -3098,7 +3101,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[16b]"></a>mSecExe::setForcedDim(float)</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, .\build\msecexe.o(i._ZN7mSecExe12setForcedDimEf))
-<BR><BR>[Called By]<UL><LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
+<BR><BR>[Called By]<UL><LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
 <LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procServer::procControlSub(rfFrame_t*)
 <LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procServer::procAltSub(rfFrame_t*)
 </UL>
@@ -3120,11 +3123,11 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::setNewFactor()
 </UL>
 
-<P><STRONG><a name="[2bb]"></a>mSecExe::clearSensorFlag()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\msecexe.o(i._ZN7mSecExe15clearSensorFlagEv))
+<P><STRONG><a name="[2be]"></a>mSecExe::clearSensorFlag()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\msecexe.o(i._ZN7mSecExe15clearSensorFlagEv))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[2ba]"></a>mSecExe::returnSensorFlag()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\msecexe.o(i._ZN7mSecExe16returnSensorFlagEv))
+<P><STRONG><a name="[2bd]"></a>mSecExe::returnSensorFlag()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\msecexe.o(i._ZN7mSecExe16returnSensorFlagEv))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
@@ -3196,74 +3199,90 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[248]"></a>proc485::procVolumeCmd(rfFrame_t*)</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, .\build\proc485.o(i._ZN7proc48513procVolumeCmdEP9rfFrame_t))
+<P><STRONG><a name="[248]"></a>proc485::sendAckBy485(rfFrame_t*)</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, .\build\proc485.o(i._ZN7proc48512sendAckBy485EP9rfFrame_t))
+<BR><BR>[Calls]<UL><LI><a href="#[249]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, rfFrame_t*)
+<LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rs485::send485(rfFrame_t*, rs485Channel_t)
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
+<LI><a href="#[24d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::answerReqBy485(rfFrame_t*)
+</UL>
+
+<P><STRONG><a name="[24a]"></a>proc485::procVolumeCmd(rfFrame_t*)</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, .\build\proc485.o(i._ZN7proc48513procVolumeCmdEP9rfFrame_t))
 <BR><BR>[Calls]<UL><LI><a href="#[18c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
+<BR>[Called By]<UL><LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[249]"></a>proc485::returnAckBy485(rfFrame_t*)</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, .\build\proc485.o(i._ZN7proc48514returnAckBy485EP9rfFrame_t))
-<BR><BR>[Calls]<UL><LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_common_switch8
-<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, rfFrame_t*)
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-</UL>
-<BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
-</UL>
-
-<P><STRONG><a name="[24b]"></a>proc485::transferMstGwBy485(rfFrame_t*, UttecDirection_t)</STRONG> (Thumb, 110 bytes, Stack size 0 bytes, .\build\proc485.o(i._ZN7proc48518transferMstGwBy485EP9rfFrame_t16UttecDirection_t))
-<BR><BR>[Calls]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isGw(rfFrame_t*)
+<P><STRONG><a name="[24b]"></a>proc485::transferBy485(rfFrame_t*)</STRONG> (Thumb, 266 bytes, Stack size 0 bytes, .\build\proc485.o(i._ZN7proc48513transferBy485EP9rfFrame_t))
+<BR><BR>[Calls]<UL><LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::sendRf(const rfFrame_t*)
+<LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procServer::taskServer(rfFrame_t*)
+<LI><a href="#[24d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::answerReqBy485(rfFrame_t*)
+<LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isMyRxTx(rfFrame_t*, rfFrame_t*)
+<LI><a href="#[249]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, rfFrame_t*)
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isTx(rfFrame_t*)
+<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isNotMyGwGroup(rfFrame_t*, rfFrame_t*)
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispCmdandSub(char*, char*, rfFrame_t*)
-<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isNotMyGroup(rfFrame_t*, rfFrame_t*)
 <LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rs485::send485(rfFrame_t*, rs485Channel_t)
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
+<BR>[Called By]<UL><LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[24c]"></a>proc485::rs485Task(rfFrame_t*)</STRONG> (Thumb, 334 bytes, Stack size 0 bytes, .\build\proc485.o(i._ZN7proc4859rs485TaskEP9rfFrame_t))
+<P><STRONG><a name="[24d]"></a>proc485::answerReqBy485(rfFrame_t*)</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, .\build\proc485.o(i._ZN7proc48514answerReqBy485EP9rfFrame_t))
+<BR><BR>[Calls]<UL><LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::sendAckBy485(rfFrame_t*)
+<LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_common_switch8
+<LI><a href="#[249]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, rfFrame_t*)
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferBy485(rfFrame_t*)
+</UL>
+
+<P><STRONG><a name="[24e]"></a>proc485::rs485Task(rfFrame_t*)</STRONG> (Thumb, 280 bytes, Stack size 0 bytes, .\build\proc485.o(i._ZN7proc4859rs485TaskEP9rfFrame_t))
 <BR><BR>[Calls]<UL><LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::UttecUtil()
 <LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::sendRf(const rfFrame_t*)
-<LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procServer::taskServer(rfFrame_t*)
-<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferMstGwBy485(rfFrame_t*, UttecDirection_t)
-<LI><a href="#[249]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::returnAckBy485(rfFrame_t*)
-<LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::procVolumeCmd(rfFrame_t*)
+<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferBy485(rfFrame_t*)
+<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::procVolumeCmd(rfFrame_t*)
+<LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::sendAckBy485(rfFrame_t*)
 <LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_common_switch8
+<LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isMst(rfFrame_t*)
 <LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isTx(rfFrame_t*)
-<LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isMstOrGw(rfFrame_t*)
+<LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isGw(rfFrame_t*)
+<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isNotMyGwGroup(rfFrame_t*, rfFrame_t*)
 <LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rs485::send485(rfFrame_t*, rs485Channel_t)
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[24d]"></a>proc485::proc485(uttecLib_t, procServer*)</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, .\build\proc485.o(i._ZN7proc485C1E10uttecLib_tP10procServer))
+<P><STRONG><a name="[250]"></a>proc485::proc485(uttecLib_t, procServer*)</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, .\build\proc485.o(i._ZN7proc485C1E10uttecLib_tP10procServer))
 <BR><BR>[Calls]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::getFlashFrame()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[24e]"></a>procBle::bleTask(unsigned char*)</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, .\build\procble.o(i._ZN7procBle7bleTaskEPh))
+<P><STRONG><a name="[251]"></a>procBle::bleTask(unsigned char*)</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, .\build\procble.o(i._ZN7procBle7bleTaskEPh))
 <BR><BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[2b1]"></a>procBle::procBle(uttecLib_t, procServer*)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, .\build\procble.o(i._ZN7procBleC1E10uttecLib_tP10procServer))
+<P><STRONG><a name="[2b4]"></a>procBle::procBle(uttecLib_t, procServer*)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, .\build\procble.o(i._ZN7procBleC1E10uttecLib_tP10procServer))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[252]"></a>procSec::setProductType()</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, .\build\procsec.o(i._ZN7procSec14setProductTypeEv))
-<BR><BR>[Called By]<UL><LI><a href="#[251]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::procSec(uttecLib_t, procServer*)
+<P><STRONG><a name="[255]"></a>procSec::setProductType()</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, .\build\procsec.o(i._ZN7procSec14setProductTypeEv))
+<BR><BR>[Called By]<UL><LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::procSec(uttecLib_t, procServer*)
 </UL>
 
-<P><STRONG><a name="[24f]"></a>procSec::secTask(rfFrame_t*)</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, .\build\procsec.o(i._ZN7procSec7secTaskEP9rfFrame_t))
+<P><STRONG><a name="[252]"></a>procSec::secTask(rfFrame_t*)</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, .\build\procsec.o(i._ZN7procSec7secTaskEP9rfFrame_t))
 <BR><BR>[Calls]<UL><LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::UttecUtil()
 <LI><a href="#[1ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispSec(rfFrame_t*, bool)
-<LI><a href="#[250]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isFactoryOutMode()
+<LI><a href="#[253]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::isFactoryOutMode()
 <LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::setForcedDim(float)
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
@@ -3272,46 +3291,46 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[251]"></a>procSec::procSec(uttecLib_t, procServer*)</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, .\build\procsec.o(i._ZN7procSecC1E10uttecLib_tP10procServer))
+<P><STRONG><a name="[254]"></a>procSec::procSec(uttecLib_t, procServer*)</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, .\build\procsec.o(i._ZN7procSecC1E10uttecLib_tP10procServer))
 <BR><BR>[Calls]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::getFlashFrame()
-<LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::setProductType()
+<LI><a href="#[255]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::setProductType()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[253]"></a>DimmerRf::initRfFrame()</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, .\build\dimmerrf.o(i._ZN8DimmerRf11initRfFrameEv))
+<P><STRONG><a name="[256]"></a>DimmerRf::initRfFrame()</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, .\build\dimmerrf.o(i._ZN8DimmerRf11initRfFrameEv))
 <BR><BR>[Calls]<UL><LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::initRf(channel_t*)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[254]"></a>DimmerRf::dispRfFactor(rfFrame_t*)</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, .\build\dimmerrf.o(i._ZN8DimmerRf12dispRfFactorEP9rfFrame_t))
+<P><STRONG><a name="[257]"></a>DimmerRf::dispRfFactor(rfFrame_t*)</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, .\build\dimmerrf.o(i._ZN8DimmerRf12dispRfFactorEP9rfFrame_t))
 <BR><BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[255]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::DimmerRf(Flash*)
+<BR>[Called By]<UL><LI><a href="#[258]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::DimmerRf(Flash*)
 </UL>
 
-<P><STRONG><a name="[255]"></a>DimmerRf::DimmerRf(Flash*)</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, .\build\dimmerrf.o(i._ZN8DimmerRfC1EP5Flash))
+<P><STRONG><a name="[258]"></a>DimmerRf::DimmerRf(Flash*)</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, .\build\dimmerrf.o(i._ZN8DimmerRfC1EP5Flash))
 <BR><BR>[Calls]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::getFlashFrame()
-<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::dispRfFactor(rfFrame_t*)
+<LI><a href="#[257]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::dispRfFactor(rfFrame_t*)
 <LI><a href="#[1a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::Rf()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[2b7]"></a>UttecBle::getBleRxData()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, .\build\uttecble.o(i._ZN8UttecBle12getBleRxDataEv))
+<P><STRONG><a name="[2ba]"></a>UttecBle::getBleRxData()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, .\build\uttecble.o(i._ZN8UttecBle12getBleRxDataEv))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[2b5]"></a>UttecBle::isBleRxReady()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\uttecble.o(i._ZN8UttecBle12isBleRxReadyEv))
+<P><STRONG><a name="[2b8]"></a>UttecBle::isBleRxReady()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\uttecble.o(i._ZN8UttecBle12isBleRxReadyEv))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[2b6]"></a>UttecBle::clearBleRxReady()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\uttecble.o(i._ZN8UttecBle15clearBleRxReadyEv))
+<P><STRONG><a name="[2b9]"></a>UttecBle::clearBleRxReady()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\uttecble.o(i._ZN8UttecBle15clearBleRxReadyEv))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[262]"></a>UttecBle::UttecBle()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, .\build\uttecble.o(i._ZN8UttecBleC1Ev))
+<P><STRONG><a name="[265]"></a>UttecBle::UttecBle()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, .\build\uttecble.o(i._ZN8UttecBleC1Ev))
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___17_mainForSx1276_cpp_Uart
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
@@ -3361,14 +3380,6 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[240]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::msecTask(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[190]"></a>UttecUtil::isNotMyGroup(rfFrame_t*, rfFrame_t*)</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil12isNotMyGroupEP9rfFrame_tS1_))
-<BR><BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
-</UL>
-<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::transferMstGwBy485(rfFrame_t*, UttecDirection_t)
-<LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::transferMstGwByRf(rfFrame_t*)
-<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferMstGwBy485(rfFrame_t*, UttecDirection_t)
-</UL>
-
 <P><STRONG><a name="[182]"></a>UttecUtil::setWdtReload()</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil12setWdtReloadEv))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 <LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::setNewFactor()
@@ -3395,21 +3406,30 @@ Global Symbols
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::transferMstGwBy485(rfFrame_t*, UttecDirection_t)
-<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferMstGwBy485(rfFrame_t*, UttecDirection_t)
+<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferBy485(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[250]"></a>UttecUtil::isFactoryOutMode()</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil16isFactoryOutModeEv))
+<P><STRONG><a name="[190]"></a>UttecUtil::isNotMyGwGroup(rfFrame_t*, rfFrame_t*)</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil14isNotMyGwGroupEP9rfFrame_tS1_))
+<BR><BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
+</UL>
+<BR>[Called By]<UL><LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::transferMstGwBy485(rfFrame_t*, UttecDirection_t)
+<LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::transferMstGwByRf(rfFrame_t*)
+<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferBy485(rfFrame_t*)
+</UL>
+
+<P><STRONG><a name="[253]"></a>UttecUtil::isFactoryOutMode()</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil16isFactoryOutModeEv))
 <BR><BR>[Calls]<UL><LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::Flash()
 <LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::getFlashFrame()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
+<BR>[Called By]<UL><LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
 </UL>
 
 <P><STRONG><a name="[17a]"></a>UttecUtil::isGw(rfFrame_t*)</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil4isGwEP9rfFrame_t))
-<BR><BR>[Called By]<UL><LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::sx1276Task(rfFrame_t*)
+<BR><BR>[Called By]<UL><LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
+<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::sx1276Task(rfFrame_t*)
 <LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::transferMstGwBy485(rfFrame_t*, UttecDirection_t)
 <LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::transferMstGwByRf(rfFrame_t*)
-<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferMstGwBy485(rfFrame_t*, UttecDirection_t)
 </UL>
 
 <P><STRONG><a name="[188]"></a>UttecUtil::isRx(rfFrame_t*)</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil4isRxEP9rfFrame_t))
@@ -3419,11 +3439,16 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[21b]"></a>UttecUtil::isTx(rfFrame_t*)</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil4isTxEP9rfFrame_t))
-<BR><BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
+<BR><BR>[Called By]<UL><LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
 <LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::taskRf(rfFrame_t*)
 <LI><a href="#[21f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfDaylightCmd(rfFrame_t*)
 <LI><a href="#[21e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfVolumeCmd(rfFrame_t*)
 <LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRfRepeatCmd(rfFrame_t*)
+<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferBy485(rfFrame_t*)
+</UL>
+
+<P><STRONG><a name="[24f]"></a>UttecUtil::isMst(rfFrame_t*)</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil5isMstEP9rfFrame_t))
+<BR><BR>[Called By]<UL><LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
 </UL>
 
 <P><STRONG><a name="[18f]"></a>UttecUtil::isRpt(rfFrame_t*)</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil5isRptEP9rfFrame_t))
@@ -3432,7 +3457,7 @@ Global Symbols
 <LI><a href="#[21d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::resendByRfRepeater(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[2b2]"></a>UttecUtil::setWdt(unsigned char)</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil6setWdtEh))
+<P><STRONG><a name="[2b5]"></a>UttecUtil::setWdt(unsigned char)</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil6setWdtEh))
 <BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
@@ -3443,7 +3468,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1ff]"></a>UttecUtil::dispSec(rfFrame_t*, bool)</STRONG> (Thumb, 236 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil7dispSecEP9rfFrame_tb))
-<BR><BR>[Calls]<UL><LI><a href="#[256]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, unsigned char)
+<BR><BR>[Calls]<UL><LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispRxTx(char*, unsigned char)
 <LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dispTime(unsigned)
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dispSensor(char*, unsigned char)
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dispForced(char*, bool)
@@ -3452,24 +3477,30 @@ Global Symbols
 <LI><a href="#[166]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
+<BR>[Called By]<UL><LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
 <LI><a href="#[1b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test::setTestReceiveFrameByNum(unsigned short)
 <LI><a href="#[1b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test::setTestMyFrameByNum(unsigned short)
 </UL>
 
-<P><STRONG><a name="[24a]"></a>UttecUtil::dispRxTx(char*, rfFrame_t*)</STRONG> (Thumb, 114 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil8dispRxTxEPcP9rfFrame_t))
+<P><STRONG><a name="[249]"></a>UttecUtil::dispRxTx(char*, rfFrame_t*)</STRONG> (Thumb, 114 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil8dispRxTxEPcP9rfFrame_t))
 <BR><BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[249]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::returnAckBy485(rfFrame_t*)
+<BR>[Called By]<UL><LI><a href="#[24d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::answerReqBy485(rfFrame_t*)
+<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferBy485(rfFrame_t*)
+<LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::sendAckBy485(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[256]"></a>UttecUtil::dispRxTx(char*, unsigned char)</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil8dispRxTxEPch))
+<P><STRONG><a name="[259]"></a>UttecUtil::dispRxTx(char*, unsigned char)</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil8dispRxTxEPch))
 <BR><BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispSec(rfFrame_t*, bool)
+</UL>
+
+<P><STRONG><a name="[24c]"></a>UttecUtil::isMyRxTx(rfFrame_t*, rfFrame_t*)</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil8isMyRxTxEP9rfFrame_tS1_))
+<BR><BR>[Called By]<UL><LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::transferBy485(rfFrame_t*)
 </UL>
 
 <P><STRONG><a name="[1a4]"></a>UttecUtil::gen_crc16(const unsigned char*, unsigned short)</STRONG> (Thumb, 134 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil9gen_crc16EPKht))
@@ -3479,8 +3510,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[177]"></a>UttecUtil::isMstOrGw(rfFrame_t*)</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtil9isMstOrGwEP9rfFrame_t))
-<BR><BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
-<LI><a href="#[240]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::msecTask(rfFrame_t*)
+<BR><BR>[Called By]<UL><LI><a href="#[240]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::msecTask(rfFrame_t*)
 <LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::taskRf(rfFrame_t*)
 <LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::sx1276Task(rfFrame_t*)
 <LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::procSensorCmd(rfFrame_t*)
@@ -3492,8 +3522,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[18d]"></a>UttecUtil::UttecUtil()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, .\build\uttecutil.o(i._ZN9UttecUtilC1Ev))
-<BR><BR>[Called By]<UL><LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
-<LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
+<BR><BR>[Called By]<UL><LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
+<LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
 <LI><a href="#[240]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::msecTask(rfFrame_t*)
 <LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::sendRf(const rfFrame_t*)
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
@@ -3509,7 +3539,7 @@ Global Symbols
 <LI><a href="#[1a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::sendSxRf(const rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[257]"></a>pirAnalog::averageSensor(float)</STRONG> (Thumb, 112 bytes, Stack size 0 bytes, .\build\piranalog.o(i._ZN9pirAnalog13averageSensorEf))
+<P><STRONG><a name="[25a]"></a>pirAnalog::averageSensor(float)</STRONG> (Thumb, 112 bytes, Stack size 0 bytes, .\build\piranalog.o(i._ZN9pirAnalog13averageSensorEf))
 <BR><BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
 <LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
 <LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
@@ -3520,9 +3550,9 @@ Global Symbols
 
 <P><STRONG><a name="[236]"></a>pirAnalog::procPirSensor(pirType_t)</STRONG> (Thumb, 220 bytes, Stack size 0 bytes, .\build\piranalog.o(i._ZN9pirAnalog13procPirSensorE9pirType_t))
 <BR><BR>[Calls]<UL><LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_read
-<LI><a href="#[258]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pyd1788::read()
+<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pyd1788::read()
 <LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pyd1788::processPyd1788()
-<LI><a href="#[257]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::averageSensor(float)
+<LI><a href="#[25a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::averageSensor(float)
 <LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
 <LI><a href="#[1ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmple
@@ -3536,7 +3566,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pyd1788::setSenseRate(unsigned char)
 <LI><a href="#[18c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[23d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
+<LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[229]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
@@ -3544,12 +3574,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[237]"></a>pirAnalog::clearSensorFlag()</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, .\build\piranalog.o(i._ZN9pirAnalog15clearSensorFlagEv))
-<BR><BR>[Calls]<UL><LI><a href="#[25a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pyd1788::clearFlag()
+<BR><BR>[Calls]<UL><LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pyd1788::clearFlag()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::switchSensorType(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[25e]"></a>pirAnalog::pirAnalog()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, .\build\piranalog.o(i._ZN9pirAnalogC1Ev))
+<P><STRONG><a name="[261]"></a>pirAnalog::pirAnalog()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, .\build\piranalog.o(i._ZN9pirAnalogC1Ev))
 <BR><BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___11_mSecExe_cpp_dimer
 </UL>
 
@@ -3570,21 +3600,21 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> Serial.o(.constdata__ZTVN4mbed6SerialE)
 </UL>
 <P><STRONG><a name="[149]"></a>__ARM_common_ll_muluu</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(btod.o)(i.__ARM_common_ll_muluu))
-<BR><BR>[Called By]<UL><LI><a href="#[294]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
-<LI><a href="#[291]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_64bit_us_get
+<BR><BR>[Called By]<UL><LI><a href="#[297]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
+<LI><a href="#[294]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_64bit_us_get
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 <LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;btod_internal_mul
 </UL>
 
 <P><STRONG><a name="[15f]"></a>__ARM_common_switch8</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, .\build\uttecutil.o(i.__ARM_common_switch8))
-<BR><BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
+<BR><BR>[Called By]<UL><LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
 <LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::taskRf(rfFrame_t*)
 <LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::sx1276Task(rfFrame_t*)
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setSub(unsigned char)
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setCmd(unsigned char)
 <LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setRoleType(unsigned char)
 <LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procServer::taskServer(rfFrame_t*)
-<LI><a href="#[249]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::returnAckBy485(rfFrame_t*)
+<LI><a href="#[24d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::answerReqBy485(rfFrame_t*)
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::dispCmdandSub(char*, char*, rfFrame_t*)
 <LI><a href="#[20e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::Hex2Dec(unsigned char)
 </UL>
@@ -3594,7 +3624,7 @@ Global Symbols
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_hex_real
 </UL>
 
-<P><STRONG><a name="[25b]"></a>__aeabi_atexit</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_retarget.o(i.__aeabi_atexit))
+<P><STRONG><a name="[25e]"></a>__aeabi_atexit</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_retarget.o(i.__aeabi_atexit))
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___17_mainForSx1276_cpp_Uart
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_test_cpp_a81651ac
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___14_procSx1276_cpp_4f61e213
@@ -3622,7 +3652,7 @@ Global Symbols
 <LI> FileHandle.o(.constdata__ZTVN4mbed10FileHandleE)
 </UL>
 <P><STRONG><a name="[d0]"></a>__user_setup_stackheap</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_retarget.o(i.__user_setup_stackheap))
-<BR><BR>[Calls]<UL><LI><a href="#[264]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mbed_user_setup_stackheap
+<BR><BR>[Calls]<UL><LI><a href="#[267]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mbed_user_setup_stackheap
 </UL>
 <BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_sh
 </UL>
@@ -3631,12 +3661,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__printf
 </UL>
 
-<P><STRONG><a name="[264]"></a>_mbed_user_setup_stackheap</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_retarget.o(i._mbed_user_setup_stackheap))
+<P><STRONG><a name="[267]"></a>_mbed_user_setup_stackheap</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_retarget.o(i._mbed_user_setup_stackheap))
 <BR><BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
 <P><STRONG><a name="[d2]"></a>_platform_post_stackheap_init</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_sdk_boot.o(i._platform_post_stackheap_init))
-<BR><BR>[Calls]<UL><LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_sdk_init
+<BR><BR>[Calls]<UL><LI><a href="#[268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_sdk_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_postsh_1
 </UL>
@@ -3665,14 +3695,14 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 <LI><a href="#[1c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_baud
 <LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FilePath::FilePath(const char*)
-<LI><a href="#[268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FilePath::fileName()
+<LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FilePath::fileName()
 <LI><a href="#[1fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FilePath::isFile()
-<LI><a href="#[267]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FilePath::exists()
+<LI><a href="#[26a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FilePath::exists()
 <LI><a href="#[1fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FilePath::file()
 <LI><a href="#[1f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FilePath::fileSystem()
 <LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_init
+<LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 <LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_errno_addr
-<LI><a href="#[266]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
 </UL>
@@ -3702,12 +3732,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_writebuf
 </UL>
 
-<P><STRONG><a name="[25c]"></a>analogin_init</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/analogin_api.o(i.analogin_init))
-<BR><BR>[Calls]<UL><LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pinmap_peripheral
-<LI><a href="#[26a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pinmap_function
-<LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_adc_init
+<P><STRONG><a name="[25f]"></a>analogin_init</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/analogin_api.o(i.analogin_init))
+<BR><BR>[Calls]<UL><LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pinmap_peripheral
+<LI><a href="#[26d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pinmap_function
+<LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_adc_init
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
-<LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
+<LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
 </UL>
 <BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___15_photoAnalog_cpp_myBH
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___10_volume_cpp_volPin
@@ -3715,7 +3745,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[196]"></a>analogin_read</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/analogin_api.o(i.analogin_read))
-<BR><BR>[Calls]<UL><LI><a href="#[26d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_adc_sample_convert
+<BR><BR>[Calls]<UL><LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_adc_sample_convert
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 <LI><a href="#[1ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
@@ -3725,110 +3755,110 @@ Global Symbols
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::procPhotoA(photoType_t)
 </UL>
 
-<P><STRONG><a name="[26e]"></a>analogin_read_u16</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/analogin_api.o(i.analogin_read_u16), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[26d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_adc_sample_convert
+<P><STRONG><a name="[271]"></a>analogin_read_u16</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/analogin_api.o(i.analogin_read_u16), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_adc_sample_convert
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
 
-<P><STRONG><a name="[26f]"></a>app_pwm_channel_duty_set</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.app_pwm_channel_duty_set))
-<BR><BR>[Calls]<UL><LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+<P><STRONG><a name="[272]"></a>app_pwm_channel_duty_set</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.app_pwm_channel_duty_set))
+<BR><BR>[Calls]<UL><LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
 <LI><a href="#[166]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_write
 </UL>
 
-<P><STRONG><a name="[270]"></a>app_pwm_channel_duty_ticks_set</STRONG> (Thumb, 1006 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.app_pwm_channel_duty_ticks_set))
-<BR><BR>[Calls]<UL><LI><a href="#[27a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_compare_int_enable
-<LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_compare
-<LI><a href="#[279]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_enable
-<LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channels_remove_from_group
-<LI><a href="#[275]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channels_include_in_group
-<LI><a href="#[277]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_enable
-<LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_disable
-<LI><a href="#[276]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_assign
-<LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_task_force
-<LI><a href="#[278]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_task_addr_get
+<P><STRONG><a name="[273]"></a>app_pwm_channel_duty_ticks_set</STRONG> (Thumb, 1006 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.app_pwm_channel_duty_ticks_set))
+<BR><BR>[Calls]<UL><LI><a href="#[27d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_compare_int_enable
+<LI><a href="#[276]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_compare
+<LI><a href="#[27c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_enable
+<LI><a href="#[277]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channels_remove_from_group
+<LI><a href="#[278]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channels_include_in_group
+<LI><a href="#[27a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_enable
+<LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_disable
+<LI><a href="#[279]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_assign
+<LI><a href="#[275]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_task_force
+<LI><a href="#[27b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_task_addr_get
 </UL>
-<BR>[Called By]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
-<LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_set
-<LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_reinit
-</UL>
-
-<P><STRONG><a name="[27b]"></a>app_pwm_disable</STRONG> (Thumb, 158 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.app_pwm_disable))
-<BR><BR>[Calls]<UL><LI><a href="#[27c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_disable
-<LI><a href="#[27d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_compare_int_disable
-<LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_disable
-<LI><a href="#[27e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_task_disable
-</UL>
-<BR>[Called By]<UL><LI><a href="#[28d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_uninit
+<BR>[Called By]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_set
+<LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_reinit
 </UL>
 
-<P><STRONG><a name="[27f]"></a>app_pwm_enable</STRONG> (Thumb, 146 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.app_pwm_enable))
-<BR><BR>[Calls]<UL><LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_enable
-<LI><a href="#[281]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_clear
-<LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_task_force
-<LI><a href="#[280]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_task_enable
+<P><STRONG><a name="[27e]"></a>app_pwm_disable</STRONG> (Thumb, 158 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.app_pwm_disable))
+<BR><BR>[Calls]<UL><LI><a href="#[27f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_disable
+<LI><a href="#[280]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_compare_int_disable
+<LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_disable
+<LI><a href="#[281]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_task_disable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
-<LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_reinit
-</UL>
-
-<P><STRONG><a name="[283]"></a>app_pwm_init</STRONG> (Thumb, 594 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.app_pwm_init))
-<BR><BR>[Calls]<UL><LI><a href="#[28b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_init
-<LI><a href="#[28c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_extended_compare
-<LI><a href="#[27d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_compare_int_disable
-<LI><a href="#[281]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_clear
-<LI><a href="#[284]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_init
-<LI><a href="#[288]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_alloc
-<LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_disable
-<LI><a href="#[276]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_assign
-<LI><a href="#[287]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_alloc
-<LI><a href="#[278]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_task_addr_get
-<LI><a href="#[28a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_init
-<LI><a href="#[285]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_is_init
-<LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_init
-<LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
-<LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_dealloc
-</UL>
-<BR>[Called By]<UL><LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
-<LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_reinit
+<BR>[Called By]<UL><LI><a href="#[290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_uninit
 </UL>
 
-<P><STRONG><a name="[28d]"></a>app_pwm_uninit</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.app_pwm_uninit))
-<BR><BR>[Calls]<UL><LI><a href="#[27b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_disable
-<LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_dealloc
+<P><STRONG><a name="[282]"></a>app_pwm_enable</STRONG> (Thumb, 146 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.app_pwm_enable))
+<BR><BR>[Calls]<UL><LI><a href="#[285]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_enable
+<LI><a href="#[284]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_clear
+<LI><a href="#[275]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_task_force
+<LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_task_enable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_reinit
-</UL>
-
-<P><STRONG><a name="[2be]"></a>app_util_critical_region_enter</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_util_platform.o(i.app_util_critical_region_enter))
-<BR><BR>[Called By]<UL><LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_free
-<LI><a href="#[288]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_alloc
-<LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channels_remove_from_group
-<LI><a href="#[275]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channels_include_in_group
-<LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_free
-<LI><a href="#[287]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_alloc
-<LI><a href="#[2ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_per_res_acquire
+<BR>[Called By]<UL><LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
+<LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_reinit
 </UL>
 
-<P><STRONG><a name="[2bf]"></a>app_util_critical_region_exit</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_util_platform.o(i.app_util_critical_region_exit))
-<BR><BR>[Called By]<UL><LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_free
-<LI><a href="#[288]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_alloc
-<LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channels_remove_from_group
-<LI><a href="#[275]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channels_include_in_group
-<LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_free
-<LI><a href="#[287]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_alloc
-<LI><a href="#[2ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_per_res_acquire
+<P><STRONG><a name="[286]"></a>app_pwm_init</STRONG> (Thumb, 594 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.app_pwm_init))
+<BR><BR>[Calls]<UL><LI><a href="#[28e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_init
+<LI><a href="#[28f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_extended_compare
+<LI><a href="#[280]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_compare_int_disable
+<LI><a href="#[284]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_clear
+<LI><a href="#[287]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_init
+<LI><a href="#[28b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_alloc
+<LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_disable
+<LI><a href="#[279]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_assign
+<LI><a href="#[28a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_alloc
+<LI><a href="#[27b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_task_addr_get
+<LI><a href="#[28d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_init
+<LI><a href="#[288]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_is_init
+<LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_init
+<LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+<LI><a href="#[28c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_dealloc
+</UL>
+<BR>[Called By]<UL><LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
+<LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_reinit
 </UL>
 
-<P><STRONG><a name="[290]"></a>common_rtc_32bit_ticks_get</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/us_ticker.o(i.common_rtc_32bit_ticks_get))
+<P><STRONG><a name="[290]"></a>app_pwm_uninit</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.app_pwm_uninit))
+<BR><BR>[Calls]<UL><LI><a href="#[27e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_disable
+<LI><a href="#[28c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_dealloc
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_reinit
+</UL>
+
+<P><STRONG><a name="[2c1]"></a>app_util_critical_region_enter</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_util_platform.o(i.app_util_critical_region_enter))
+<BR><BR>[Called By]<UL><LI><a href="#[2c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_free
+<LI><a href="#[28b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_alloc
+<LI><a href="#[277]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channels_remove_from_group
+<LI><a href="#[278]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channels_include_in_group
+<LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_free
+<LI><a href="#[28a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_alloc
+<LI><a href="#[2af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_per_res_acquire
+</UL>
+
+<P><STRONG><a name="[2c2]"></a>app_util_critical_region_exit</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_util_platform.o(i.app_util_critical_region_exit))
+<BR><BR>[Called By]<UL><LI><a href="#[2c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_free
+<LI><a href="#[28b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_alloc
+<LI><a href="#[277]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channels_remove_from_group
+<LI><a href="#[278]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channels_include_in_group
+<LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_free
+<LI><a href="#[28a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_alloc
+<LI><a href="#[2af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_per_res_acquire
+</UL>
+
+<P><STRONG><a name="[293]"></a>common_rtc_32bit_ticks_get</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/us_ticker.o(i.common_rtc_32bit_ticks_get))
 <BR><BR>[Calls]<UL><LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
 </UL>
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lp_ticker_fire_interrupt
 </UL>
 
-<P><STRONG><a name="[291]"></a>common_rtc_64bit_us_get</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/us_ticker.o(i.common_rtc_64bit_us_get))
+<P><STRONG><a name="[294]"></a>common_rtc_64bit_us_get</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/us_ticker.o(i.common_rtc_64bit_us_get))
 <BR><BR>[Calls]<UL><LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_common_ll_muluu
@@ -3836,31 +3866,31 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lp_ticker_read
 </UL>
 
-<P><STRONG><a name="[292]"></a>common_rtc_init</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/us_ticker.o(i.common_rtc_init))
-<BR><BR>[Calls]<UL><LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
-<LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
+<P><STRONG><a name="[295]"></a>common_rtc_init</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/us_ticker.o(i.common_rtc_init))
+<BR><BR>[Calls]<UL><LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
+<LI><a href="#[296]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lp_ticker_init
 </UL>
 
-<P><STRONG><a name="[294]"></a>common_rtc_set_interrupt</STRONG> (Thumb, 218 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/us_ticker.o(i.common_rtc_set_interrupt))
+<P><STRONG><a name="[297]"></a>common_rtc_set_interrupt</STRONG> (Thumb, 218 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/us_ticker.o(i.common_rtc_set_interrupt))
 <BR><BR>[Calls]<UL><LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
-<LI><a href="#[295]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_common_ll_muluu
 </UL>
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lp_ticker_set_interrupt
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_set_interrupt
 </UL>
 
-<P><STRONG><a name="[296]"></a>core_util_atomic_decr_u16</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)(i.core_util_atomic_decr_u16))
+<P><STRONG><a name="[299]"></a>core_util_atomic_decr_u16</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)(i.core_util_atomic_decr_u16))
 <BR><BR>[Calls]<UL><LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep_manager_unlock_deep_sleep
 </UL>
 
-<P><STRONG><a name="[297]"></a>core_util_atomic_incr_u16</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)(i.core_util_atomic_incr_u16))
+<P><STRONG><a name="[29a]"></a>core_util_atomic_incr_u16</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_critical.o)(i.core_util_atomic_incr_u16))
 <BR><BR>[Calls]<UL><LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
 </UL>
@@ -3879,11 +3909,11 @@ Global Symbols
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::~Timer()
 <LI><a href="#[1e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::Timer()
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::~SerialBase()
-<LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[2bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
-<LI><a href="#[294]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
-<LI><a href="#[291]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_64bit_us_get
-<LI><a href="#[290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_32bit_ticks_get
+<LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
+<LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[297]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
+<LI><a href="#[294]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_64bit_us_get
+<LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_32bit_ticks_get
 <LI><a href="#[1e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::PwmOut::operator =(float)
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::PwmOut::~PwmOut()
 <LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep_manager_unlock_deep_sleep
@@ -3893,8 +3923,8 @@ Global Symbols
 <LI><a href="#[1b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::InterruptIn::fall(mbed::Callback&lang;void()&rang;)
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_fire_interrupt
-<LI><a href="#[297]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_atomic_incr_u16
-<LI><a href="#[296]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_atomic_decr_u16
+<LI><a href="#[29a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_atomic_incr_u16
+<LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_atomic_decr_u16
 <LI><a href="#[1cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_remove_event
 <LI><a href="#[1cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_insert_event_us
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::~Ticker()
@@ -3911,11 +3941,11 @@ Global Symbols
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::~Timer()
 <LI><a href="#[1e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::Timer()
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::~SerialBase()
-<LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[2bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
-<LI><a href="#[294]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
-<LI><a href="#[291]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_64bit_us_get
-<LI><a href="#[290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_32bit_ticks_get
+<LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
+<LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[297]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
+<LI><a href="#[294]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_64bit_us_get
+<LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_32bit_ticks_get
 <LI><a href="#[1e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::PwmOut::operator =(float)
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::PwmOut::~PwmOut()
 <LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep_manager_unlock_deep_sleep
@@ -3925,8 +3955,8 @@ Global Symbols
 <LI><a href="#[1b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::InterruptIn::fall(mbed::Callback&lang;void()&rang;)
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_fire_interrupt
-<LI><a href="#[297]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_atomic_incr_u16
-<LI><a href="#[296]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_atomic_decr_u16
+<LI><a href="#[29a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_atomic_incr_u16
+<LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_atomic_decr_u16
 <LI><a href="#[1cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_remove_event
 <LI><a href="#[1cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_insert_event_us
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::~Ticker()
@@ -3934,32 +3964,32 @@ Global Symbols
 
 <P><STRONG><a name="[1ea]"></a>error</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_error.o)(i.error))
 <BR><BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
-<LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
+<LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pinmap_peripheral
-<LI><a href="#[26a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pinmap_function
+<BR>[Called By]<UL><LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pinmap_peripheral
+<LI><a href="#[26d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pinmap_function
 <LI><a href="#[1c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep_manager_lock_deep_sleep
-<LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
+<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
 <LI><a href="#[1e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_init
 <LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep_manager_unlock_deep_sleep
 <LI><a href="#[1e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::Stream__sub_object(const char*)
 </UL>
 
 <P><STRONG><a name="[d7]"></a>exit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_retarget.o(i.exit))
-<BR><BR>[Calls]<UL><LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
+<BR><BR>[Calls]<UL><LI><a href="#[29c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;error
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
 <P><STRONG><a name="[f3]"></a>fgetc</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(fgetc.o)(i.fgetc))
-<BR><BR>[Calls]<UL><LI><a href="#[29a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__filbuf_byte
+<BR><BR>[Calls]<UL><LI><a href="#[29d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__filbuf_byte
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getc
 </UL>
 
 <P><STRONG><a name="[39]"></a>fputc</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(fputc.o)(i.fputc))
-<BR><BR>[Calls]<UL><LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__flsbuf_byte
+<BR><BR>[Calls]<UL><LI><a href="#[29e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__flsbuf_byte
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::putc(int)
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putc
@@ -3967,108 +3997,108 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> _printf_char_file.o(.text)
 </UL>
-<P><STRONG><a name="[29c]"></a>fs_erase</STRONG> (Thumb, 154 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fstorage.o(i.fs_erase))
-<BR><BR>[Calls]<UL><LI><a href="#[29d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
+<P><STRONG><a name="[29f]"></a>fs_erase</STRONG> (Thumb, 154 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fstorage.o(i.fs_erase))
+<BR><BR>[Calls]<UL><LI><a href="#[2a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
 </UL>
-<BR>[Called By]<UL><LI><a href="#[29e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
-<LI><a href="#[2a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gc_record_find_next
+<BR>[Called By]<UL><LI><a href="#[2a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
+<LI><a href="#[2a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gc_record_find_next
 </UL>
 
-<P><STRONG><a name="[29f]"></a>fs_store</STRONG> (Thumb, 160 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fstorage.o(i.fs_store))
-<BR><BR>[Calls]<UL><LI><a href="#[29d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
+<P><STRONG><a name="[2a2]"></a>fs_store</STRONG> (Thumb, 160 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fstorage.o(i.fs_store))
+<BR><BR>[Calls]<UL><LI><a href="#[2a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
 </UL>
-<BR>[Called By]<UL><LI><a href="#[29e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
-<LI><a href="#[2a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gc_record_find_next
+<BR>[Called By]<UL><LI><a href="#[2a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
+<LI><a href="#[2a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gc_record_find_next
 </UL>
 
 <P><STRONG><a name="[1d1]"></a>get_us_ticker_data</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.get_us_ticker_data))
 <BR><BR>[Called By]<UL><LI><a href="#[1e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::Timer()
 <LI><a href="#[1d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::TimerEvent__sub_object()
-<LI><a href="#[2bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
+<LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
 <LI><a href="#[1de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_read
 <LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
 </UL>
 
-<P><STRONG><a name="[2a5]"></a>gpio_dir</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_dir))
-<BR><BR>[Calls]<UL><LI><a href="#[2a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_uninit
-<LI><a href="#[2a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
-<LI><a href="#[2a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_uninit
+<P><STRONG><a name="[2a8]"></a>gpio_dir</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_dir))
+<BR><BR>[Calls]<UL><LI><a href="#[2aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_uninit
+<LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
+<LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_uninit
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out
-<LI><a href="#[2aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out_ex
+<LI><a href="#[2ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out_ex
 <LI><a href="#[1d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_in
 </UL>
 
-<P><STRONG><a name="[2a8]"></a>gpio_init</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_init))
-<BR><BR>[Calls]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_init
+<P><STRONG><a name="[2ab]"></a>gpio_init</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_init))
+<BR><BR>[Calls]<UL><LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_init
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
-<LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
+<LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out
-<LI><a href="#[2aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out_ex
+<LI><a href="#[2ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out_ex
 <LI><a href="#[1d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_in
 </UL>
 
 <P><STRONG><a name="[1d6]"></a>gpio_init_in</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(i.gpio_init_in))
-<BR><BR>[Calls]<UL><LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
-<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
-<LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
+<BR><BR>[Calls]<UL><LI><a href="#[2ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
+<LI><a href="#[2ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::InterruptIn::InterruptIn(PinName)
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___9_HX711_cpp_Dout
 </UL>
 
 <P><STRONG><a name="[1b7]"></a>gpio_init_out</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(i.gpio_init_out))
-<BR><BR>[Calls]<UL><LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
-<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
-<LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
+<BR><BR>[Calls]<UL><LI><a href="#[2ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
+<LI><a href="#[2ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
-<BR>[Called By]<UL><LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
+<BR>[Called By]<UL><LI><a href="#[29c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
 <LI><a href="#[1b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalOut::DigitalOut(PinName)
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___9_HX711_cpp_Dout
 </UL>
 
-<P><STRONG><a name="[2aa]"></a>gpio_init_out_ex</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(i.gpio_init_out_ex), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
-<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
-<LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
+<P><STRONG><a name="[2ad]"></a>gpio_init_out_ex</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_gpio.o)(i.gpio_init_out_ex), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[2ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
+<LI><a href="#[2ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
 
 <P><STRONG><a name="[1d7]"></a>gpio_irq_free</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_irq_free))
-<BR><BR>[Calls]<UL><LI><a href="#[2a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_uninit
-<LI><a href="#[2a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
+<BR><BR>[Calls]<UL><LI><a href="#[2aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_uninit
+<LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::InterruptIn::~InterruptIn()
 </UL>
 
 <P><STRONG><a name="[1d5]"></a>gpio_irq_init</STRONG> (Thumb, 110 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_irq_init))
-<BR><BR>[Calls]<UL><LI><a href="#[2a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_uninit
-<LI><a href="#[2a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
-<LI><a href="#[2a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_uninit
-<LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_init
+<BR><BR>[Calls]<UL><LI><a href="#[2aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_uninit
+<LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
+<LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_uninit
+<LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_init
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::InterruptIn::InterruptIn(PinName)
 </UL>
 
 <P><STRONG><a name="[1d3]"></a>gpio_irq_set</STRONG> (Thumb, 148 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_irq_set))
-<BR><BR>[Calls]<UL><LI><a href="#[2a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_event_enable
-<LI><a href="#[2ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_event_disable
+<BR><BR>[Calls]<UL><LI><a href="#[2a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_event_enable
+<LI><a href="#[2ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_event_disable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::InterruptIn::fall(mbed::Callback&lang;void()&rang;)
 </UL>
 
-<P><STRONG><a name="[2a9]"></a>gpio_mode</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_mode))
-<BR><BR>[Calls]<UL><LI><a href="#[2a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_uninit
-<LI><a href="#[2a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
-<LI><a href="#[2a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_uninit
+<P><STRONG><a name="[2ac]"></a>gpio_mode</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_mode))
+<BR><BR>[Calls]<UL><LI><a href="#[2aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_uninit
+<LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
+<LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_uninit
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out
-<LI><a href="#[2aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out_ex
+<LI><a href="#[2ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out_ex
 <LI><a href="#[1d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_in
 </UL>
 
@@ -4077,9 +4107,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1e0]"></a>i2c_init</STRONG> (Thumb, 400 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/i2c_api.o(i.i2c_init))
-<BR><BR>[Calls]<UL><LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
-<LI><a href="#[2ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_per_res_acquire
-<LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
+<BR><BR>[Calls]<UL><LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
+<LI><a href="#[2af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_per_res_acquire
+<LI><a href="#[296]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
 <LI><a href="#[1ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;error
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__asm___9_i2c_api_c_i2c_init__nrf_delay_us
 </UL>
@@ -4092,7 +4122,7 @@ Global Symbols
 
 <P><STRONG><a name="[1de]"></a>i2c_read</STRONG> (Thumb, 312 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/i2c_api.o(i.i2c_read))
 <BR><BR>[Calls]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
-<LI><a href="#[2ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 <LI><a href="#[1d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_us_ticker_data
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::I2C::read(int, char*, int, bool)
@@ -4105,28 +4135,28 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mbed_lp_ticker_api.o(.constdata)
 </UL>
 <P><STRONG><a name="[63]"></a>lp_ticker_fire_interrupt</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/lp_ticker.o(i.lp_ticker_fire_interrupt))
-<BR><BR>[Calls]<UL><LI><a href="#[290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_32bit_ticks_get
+<BR><BR>[Calls]<UL><LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_32bit_ticks_get
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mbed_lp_ticker_api.o(.constdata)
 </UL>
 <P><STRONG><a name="[5e]"></a>lp_ticker_init</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/lp_ticker.o(i.lp_ticker_init))
-<BR><BR>[Calls]<UL><LI><a href="#[292]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_init
+<BR><BR>[Calls]<UL><LI><a href="#[295]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mbed_lp_ticker_api.o(.constdata)
 </UL>
 <P><STRONG><a name="[158]"></a>lp_ticker_irq_handler</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_lp_ticker_api.o)(i.lp_ticker_irq_handler))
-<BR><BR>[Calls]<UL><LI><a href="#[2af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_irq_handler
+<BR><BR>[Calls]<UL><LI><a href="#[2b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_irq_handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC1_IRQHandler
 </UL>
 
 <P><STRONG><a name="[5f]"></a>lp_ticker_read</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/lp_ticker.o(i.lp_ticker_read))
-<BR><BR>[Calls]<UL><LI><a href="#[291]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_64bit_us_get
+<BR><BR>[Calls]<UL><LI><a href="#[294]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_64bit_us_get
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mbed_lp_ticker_api.o(.constdata)
 </UL>
 <P><STRONG><a name="[62]"></a>lp_ticker_set_interrupt</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/lp_ticker.o(i.lp_ticker_set_interrupt))
-<BR><BR>[Calls]<UL><LI><a href="#[294]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
+<BR><BR>[Calls]<UL><LI><a href="#[297]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mbed_lp_ticker_api.o(.constdata)
 </UL>
@@ -4134,33 +4164,33 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Callback&lang;void()&rang;::Callback(void(*)())
 <LI><a href="#[1ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::attach(mbed::Callback&lang;void()&rang;, float)
 <LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::UttecUtil()
-<LI><a href="#[2b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::setWdt(unsigned char)
+<LI><a href="#[2b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::setWdt(unsigned char)
 <LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::setWdtReload()
-<LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecBle::UttecBle()
-<LI><a href="#[2b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecBle::clearBleRxReady()
-<LI><a href="#[2b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecBle::isBleRxReady()
-<LI><a href="#[2b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecBle::getBleRxData()
-<LI><a href="#[255]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::DimmerRf(Flash*)
-<LI><a href="#[253]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::initRfFrame()
-<LI><a href="#[251]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::procSec(uttecLib_t, procServer*)
-<LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
-<LI><a href="#[2b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procBle::procBle(uttecLib_t, procServer*)
-<LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procBle::bleTask(unsigned char*)
-<LI><a href="#[24d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::proc485(uttecLib_t, procServer*)
-<LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
+<LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecBle::UttecBle()
+<LI><a href="#[2b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecBle::clearBleRxReady()
+<LI><a href="#[2b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecBle::isBleRxReady()
+<LI><a href="#[2ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecBle::getBleRxData()
+<LI><a href="#[258]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::DimmerRf(Flash*)
+<LI><a href="#[256]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DimmerRf::initRfFrame()
+<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::procSec(uttecLib_t, procServer*)
+<LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSec::secTask(rfFrame_t*)
+<LI><a href="#[2b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procBle::procBle(uttecLib_t, procServer*)
+<LI><a href="#[251]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procBle::bleTask(unsigned char*)
+<LI><a href="#[250]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::proc485(uttecLib_t, procServer*)
+<LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc485::rs485Task(rfFrame_t*)
 <LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::mSecExe(DimmerRf*)
 <LI><a href="#[240]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::msecTask(rfFrame_t*)
-<LI><a href="#[2ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::returnSensorFlag()
-<LI><a href="#[2bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::clearSensorFlag()
+<LI><a href="#[2bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::returnSensorFlag()
+<LI><a href="#[2be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::clearSensorFlag()
 <LI><a href="#[223]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::procRf(uttecLib_t, procServer*)
 <LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::taskRf(rfFrame_t*)
-<LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simSx::simSx(DimmerRf*)
+<LI><a href="#[2b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simSx::simSx(DimmerRf*)
 <LI><a href="#[212]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simSx::clearSxRxFlag()
 <LI><a href="#[211]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simSx::isSxRxReady()
 <LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rs485::rs485(mbed::Serial*)
 <LI><a href="#[20f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rs485::is485Done()
 <LI><a href="#[201]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rs485::return485Buf()
-<LI><a href="#[2b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rs485::clear485Done()
+<LI><a href="#[2bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rs485::clear485Done()
 <LI><a href="#[207]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::isFactoryMode()
 <LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::getFlashFrame()
 <LI><a href="#[205]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::ReadAllFlash()
@@ -4169,15 +4199,15 @@ Global Symbols
 <LI><a href="#[1b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rcu::Rcu()
 <LI><a href="#[1ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rcu::procRcu(rcuValue_t)
 <LI><a href="#[1ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rcu::returnRcuCode()
-<LI><a href="#[2b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rcu::clearRcuFlag()
+<LI><a href="#[2b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rcu::clearRcuFlag()
 <LI><a href="#[1a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rcu::isUttecCode()
-<LI><a href="#[2b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rcu::isRcuReady()
+<LI><a href="#[2b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rcu::isRcuReady()
 <LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::isRxDone()
 <LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::sendRf(const rfFrame_t*)
 <LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::returnRxBuf()
 <LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::clearRxFlag()
 <LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::procSx1276(uttecLib_t, procServer*)
-<LI><a href="#[2b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::isMyGroup(rfFrame_t*, rfFrame_t*)
+<LI><a href="#[2bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::isMyGroup(rfFrame_t*, rfFrame_t*)
 <LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::readSxFrame()
 <LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procSx1276::sx1276Task(rfFrame_t*)
 <LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procServer::procServer(uttecLib_t)
@@ -4190,42 +4220,42 @@ Global Symbols
 
 <P><STRONG><a name="[15c]"></a>mbed_assert_internal</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_assert.o)(i.mbed_assert_internal))
 <BR><BR>[Calls]<UL><LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
-<LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
-<LI><a href="#[2bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[29c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
+<LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
+<BR>[Called By]<UL><LI><a href="#[2ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
 <LI><a href="#[1d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_irq_init
-<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
-<LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
-<LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_read_u16
+<LI><a href="#[2ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
+<LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_read_u16
 <LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_read
-<LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
+<LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
 <LI><a href="#[247]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_period_us
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
 <LI><a href="#[1d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::remove_filehandle(mbed::FileHandle*)
-<LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
+<LI><a href="#[29c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
 <LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out
 <LI><a href="#[1de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_read
-<LI><a href="#[2ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twi_irq_handler
+<LI><a href="#[2b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twi_irq_handler
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_write(gpio_t*, int)
 <LI><a href="#[1f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SingletonPtr&lang;PlatformMutex&rang;::operator -&rang;()
 <LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FileBase::lookup(const char*, unsigned)
-<LI><a href="#[2aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out_ex
+<LI><a href="#[2ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out_ex
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timeout::handler()
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::I2C::unlock()
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::I2C::lock()
 </UL>
 
-<P><STRONG><a name="[299]"></a>mbed_die</STRONG> (Thumb, 180 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_board.o(i.mbed_die))
+<P><STRONG><a name="[29c]"></a>mbed_die</STRONG> (Thumb, 180 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_board.o(i.mbed_die))
 <BR><BR>[Calls]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
-<LI><a href="#[2bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
+<LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
 <LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out
 </UL>
 <BR>[Called By]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
-<P><STRONG><a name="[2bc]"></a>mbed_error_printf</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_board.o(i.mbed_error_printf))
+<P><STRONG><a name="[2bf]"></a>mbed_error_printf</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_board.o(i.mbed_error_printf))
 <BR><BR>[Calls]<UL><LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
 <LI><a href="#[1bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_putc
@@ -4235,7 +4265,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
 
-<P><STRONG><a name="[298]"></a>mbed_error_vfprintf</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_board.o(i.mbed_error_vfprintf))
+<P><STRONG><a name="[29b]"></a>mbed_error_vfprintf</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_board.o(i.mbed_error_vfprintf))
 <BR><BR>[Calls]<UL><LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
 <LI><a href="#[1bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_putc
@@ -4249,206 +4279,206 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[265]"></a>mbed_sdk_init</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_sdk_boot.o(i.mbed_sdk_init))
+<P><STRONG><a name="[268]"></a>mbed_sdk_init</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed_sdk_boot.o(i.mbed_sdk_init))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_platform_post_stackheap_init
 </UL>
 
-<P><STRONG><a name="[26c]"></a>nrf_drv_adc_init</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_adc.o(i.nrf_drv_adc_init))
-<BR><BR>[Calls]<UL><LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
+<P><STRONG><a name="[26f]"></a>nrf_drv_adc_init</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_adc.o(i.nrf_drv_adc_init))
+<BR><BR>[Calls]<UL><LI><a href="#[296]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
+<BR>[Called By]<UL><LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
 </UL>
 
-<P><STRONG><a name="[26d]"></a>nrf_drv_adc_sample_convert</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_adc.o(i.nrf_drv_adc_sample_convert))
-<BR><BR>[Called By]<UL><LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_read_u16
+<P><STRONG><a name="[270]"></a>nrf_drv_adc_sample_convert</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_adc.o(i.nrf_drv_adc_sample_convert))
+<BR><BR>[Called By]<UL><LI><a href="#[271]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_read_u16
 <LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_read
 </UL>
 
-<P><STRONG><a name="[293]"></a>nrf_drv_common_irq_enable</STRONG> (Thumb, 88 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_common.o(i.nrf_drv_common_irq_enable))
-<BR><BR>[Called By]<UL><LI><a href="#[28b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_init
-<LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_init
-<LI><a href="#[26c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_adc_init
+<P><STRONG><a name="[296]"></a>nrf_drv_common_irq_enable</STRONG> (Thumb, 88 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_common.o(i.nrf_drv_common_irq_enable))
+<BR><BR>[Called By]<UL><LI><a href="#[28e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_init
+<LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_init
+<LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_adc_init
 <LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_init
-<LI><a href="#[292]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_init
+<LI><a href="#[295]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_init
 <LI><a href="#[1e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_init
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_init
 </UL>
 
-<P><STRONG><a name="[2ac]"></a>nrf_drv_common_per_res_acquire</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_common.o(i.nrf_drv_common_per_res_acquire))
-<BR><BR>[Calls]<UL><LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
-<LI><a href="#[2be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
+<P><STRONG><a name="[2af]"></a>nrf_drv_common_per_res_acquire</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_common.o(i.nrf_drv_common_per_res_acquire))
+<BR><BR>[Calls]<UL><LI><a href="#[2c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
+<LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_init
 </UL>
 
-<P><STRONG><a name="[2ab]"></a>nrf_drv_gpiote_in_event_disable</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_event_disable))
+<P><STRONG><a name="[2ae]"></a>nrf_drv_gpiote_in_event_disable</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_event_disable))
 <BR><BR>[Called By]<UL><LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_irq_set
 </UL>
 
-<P><STRONG><a name="[2a4]"></a>nrf_drv_gpiote_in_event_enable</STRONG> (Thumb, 140 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_event_enable))
+<P><STRONG><a name="[2a7]"></a>nrf_drv_gpiote_in_event_enable</STRONG> (Thumb, 140 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_event_enable))
 <BR><BR>[Called By]<UL><LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_irq_set
-<LI><a href="#[2a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
+<LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
 </UL>
 
-<P><STRONG><a name="[2a3]"></a>nrf_drv_gpiote_in_init</STRONG> (Thumb, 186 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_init))
-<BR><BR>[Called By]<UL><LI><a href="#[2a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
+<P><STRONG><a name="[2a6]"></a>nrf_drv_gpiote_in_init</STRONG> (Thumb, 186 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_init))
+<BR><BR>[Called By]<UL><LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
 </UL>
 
-<P><STRONG><a name="[2a7]"></a>nrf_drv_gpiote_in_uninit</STRONG> (Thumb, 108 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_uninit))
-<BR><BR>[Called By]<UL><LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
+<P><STRONG><a name="[2aa]"></a>nrf_drv_gpiote_in_uninit</STRONG> (Thumb, 108 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_uninit))
+<BR><BR>[Called By]<UL><LI><a href="#[2ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
 <LI><a href="#[1d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_irq_init
 <LI><a href="#[1d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_irq_free
-<LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
+<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
 </UL>
 
-<P><STRONG><a name="[286]"></a>nrf_drv_gpiote_init</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_init))
-<BR><BR>[Calls]<UL><LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
+<P><STRONG><a name="[289]"></a>nrf_drv_gpiote_init</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_init))
+<BR><BR>[Calls]<UL><LI><a href="#[296]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_irq_init
-<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
-<LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<LI><a href="#[2ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
 </UL>
 
-<P><STRONG><a name="[285]"></a>nrf_drv_gpiote_is_init</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_is_init))
-<BR><BR>[Called By]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<P><STRONG><a name="[288]"></a>nrf_drv_gpiote_is_init</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_is_init))
+<BR><BR>[Called By]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
 </UL>
 
-<P><STRONG><a name="[28a]"></a>nrf_drv_gpiote_out_init</STRONG> (Thumb, 178 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_out_init))
-<BR><BR>[Called By]<UL><LI><a href="#[2a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
-<LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<P><STRONG><a name="[28d]"></a>nrf_drv_gpiote_out_init</STRONG> (Thumb, 178 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_out_init))
+<BR><BR>[Called By]<UL><LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_config
+<LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
 </UL>
 
-<P><STRONG><a name="[278]"></a>nrf_drv_gpiote_out_task_addr_get</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_out_task_addr_get))
-<BR><BR>[Called By]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
-<LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+<P><STRONG><a name="[27b]"></a>nrf_drv_gpiote_out_task_addr_get</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_out_task_addr_get))
+<BR><BR>[Called By]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
 </UL>
 
-<P><STRONG><a name="[27e]"></a>nrf_drv_gpiote_out_task_disable</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_out_task_disable))
-<BR><BR>[Called By]<UL><LI><a href="#[27b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_disable
+<P><STRONG><a name="[281]"></a>nrf_drv_gpiote_out_task_disable</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_out_task_disable))
+<BR><BR>[Called By]<UL><LI><a href="#[27e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_disable
 </UL>
 
-<P><STRONG><a name="[280]"></a>nrf_drv_gpiote_out_task_enable</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_out_task_enable))
-<BR><BR>[Called By]<UL><LI><a href="#[27f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_enable
+<P><STRONG><a name="[283]"></a>nrf_drv_gpiote_out_task_enable</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_out_task_enable))
+<BR><BR>[Called By]<UL><LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_enable
 </UL>
 
-<P><STRONG><a name="[272]"></a>nrf_drv_gpiote_out_task_force</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_out_task_force))
-<BR><BR>[Called By]<UL><LI><a href="#[27f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_enable
-<LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+<P><STRONG><a name="[275]"></a>nrf_drv_gpiote_out_task_force</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_out_task_force))
+<BR><BR>[Called By]<UL><LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_enable
+<LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
 </UL>
 
-<P><STRONG><a name="[2a6]"></a>nrf_drv_gpiote_out_uninit</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_out_uninit))
-<BR><BR>[Called By]<UL><LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
+<P><STRONG><a name="[2a9]"></a>nrf_drv_gpiote_out_uninit</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_gpiote.o(i.nrf_drv_gpiote_out_uninit))
+<BR><BR>[Called By]<UL><LI><a href="#[2ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
 <LI><a href="#[1d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_irq_init
-<LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
-<LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_dealloc
+<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
+<LI><a href="#[28c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_dealloc
 </UL>
 
-<P><STRONG><a name="[287]"></a>nrf_drv_ppi_channel_alloc</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channel_alloc))
-<BR><BR>[Calls]<UL><LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
-<LI><a href="#[2be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
+<P><STRONG><a name="[28a]"></a>nrf_drv_ppi_channel_alloc</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channel_alloc))
+<BR><BR>[Calls]<UL><LI><a href="#[2c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
+<LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
 </UL>
-<BR>[Called By]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
-</UL>
-
-<P><STRONG><a name="[276]"></a>nrf_drv_ppi_channel_assign</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channel_assign))
-<BR><BR>[Called By]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
-<LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+<BR>[Called By]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
 </UL>
 
-<P><STRONG><a name="[271]"></a>nrf_drv_ppi_channel_disable</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channel_disable))
-<BR><BR>[Called By]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
-<LI><a href="#[27b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_disable
-<LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+<P><STRONG><a name="[279]"></a>nrf_drv_ppi_channel_assign</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channel_assign))
+<BR><BR>[Called By]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
 </UL>
 
-<P><STRONG><a name="[277]"></a>nrf_drv_ppi_channel_enable</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channel_enable))
-<BR><BR>[Called By]<UL><LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+<P><STRONG><a name="[274]"></a>nrf_drv_ppi_channel_disable</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channel_disable))
+<BR><BR>[Called By]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<LI><a href="#[27e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_disable
+<LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
 </UL>
 
-<P><STRONG><a name="[2c0]"></a>nrf_drv_ppi_channel_free</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channel_free))
-<BR><BR>[Calls]<UL><LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
-<LI><a href="#[2be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
-</UL>
-<BR>[Called By]<UL><LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_dealloc
+<P><STRONG><a name="[27a]"></a>nrf_drv_ppi_channel_enable</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channel_enable))
+<BR><BR>[Called By]<UL><LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
 </UL>
 
-<P><STRONG><a name="[275]"></a>nrf_drv_ppi_channels_include_in_group</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channels_include_in_group))
-<BR><BR>[Calls]<UL><LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
-<LI><a href="#[2be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
+<P><STRONG><a name="[2c3]"></a>nrf_drv_ppi_channel_free</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channel_free))
+<BR><BR>[Calls]<UL><LI><a href="#[2c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
+<LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
 </UL>
-<BR>[Called By]<UL><LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
-</UL>
-
-<P><STRONG><a name="[274]"></a>nrf_drv_ppi_channels_remove_from_group</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channels_remove_from_group))
-<BR><BR>[Calls]<UL><LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
-<LI><a href="#[2be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
-</UL>
-<BR>[Called By]<UL><LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+<BR>[Called By]<UL><LI><a href="#[28c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_dealloc
 </UL>
 
-<P><STRONG><a name="[288]"></a>nrf_drv_ppi_group_alloc</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_group_alloc))
-<BR><BR>[Calls]<UL><LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
-<LI><a href="#[2be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
+<P><STRONG><a name="[278]"></a>nrf_drv_ppi_channels_include_in_group</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channels_include_in_group))
+<BR><BR>[Calls]<UL><LI><a href="#[2c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
+<LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
 </UL>
-<BR>[Called By]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
-</UL>
-
-<P><STRONG><a name="[279]"></a>nrf_drv_ppi_group_enable</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_group_enable))
-<BR><BR>[Called By]<UL><LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+<BR>[Called By]<UL><LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
 </UL>
 
-<P><STRONG><a name="[2c1]"></a>nrf_drv_ppi_group_free</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_group_free))
-<BR><BR>[Calls]<UL><LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
-<LI><a href="#[2be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
+<P><STRONG><a name="[277]"></a>nrf_drv_ppi_channels_remove_from_group</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_channels_remove_from_group))
+<BR><BR>[Calls]<UL><LI><a href="#[2c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
+<LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
 </UL>
-<BR>[Called By]<UL><LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_dealloc
-</UL>
-
-<P><STRONG><a name="[284]"></a>nrf_drv_ppi_init</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_init))
-<BR><BR>[Called By]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<BR>[Called By]<UL><LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
 </UL>
 
-<P><STRONG><a name="[281]"></a>nrf_drv_timer_clear</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_clear))
-<BR><BR>[Called By]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
-<LI><a href="#[27f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_enable
+<P><STRONG><a name="[28b]"></a>nrf_drv_ppi_group_alloc</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_group_alloc))
+<BR><BR>[Calls]<UL><LI><a href="#[2c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
+<LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
+</UL>
+<BR>[Called By]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
 </UL>
 
-<P><STRONG><a name="[273]"></a>nrf_drv_timer_compare</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_compare))
-<BR><BR>[Called By]<UL><LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+<P><STRONG><a name="[27c]"></a>nrf_drv_ppi_group_enable</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_group_enable))
+<BR><BR>[Called By]<UL><LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
 </UL>
 
-<P><STRONG><a name="[27d]"></a>nrf_drv_timer_compare_int_disable</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_compare_int_disable))
+<P><STRONG><a name="[2c4]"></a>nrf_drv_ppi_group_free</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_group_free))
+<BR><BR>[Calls]<UL><LI><a href="#[2c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
+<LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_enter
+</UL>
+<BR>[Called By]<UL><LI><a href="#[28c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_dealloc
+</UL>
+
+<P><STRONG><a name="[287]"></a>nrf_drv_ppi_init</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_ppi.o(i.nrf_drv_ppi_init))
+<BR><BR>[Called By]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+</UL>
+
+<P><STRONG><a name="[284]"></a>nrf_drv_timer_clear</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_clear))
+<BR><BR>[Called By]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_enable
+</UL>
+
+<P><STRONG><a name="[276]"></a>nrf_drv_timer_compare</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_compare))
+<BR><BR>[Called By]<UL><LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+</UL>
+
+<P><STRONG><a name="[280]"></a>nrf_drv_timer_compare_int_disable</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_compare_int_disable))
 <BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_ready_tick
-<LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
-<LI><a href="#[27b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_disable
+<LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<LI><a href="#[27e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_disable
 </UL>
 
-<P><STRONG><a name="[27a]"></a>nrf_drv_timer_compare_int_enable</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_compare_int_enable))
-<BR><BR>[Called By]<UL><LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+<P><STRONG><a name="[27d]"></a>nrf_drv_timer_compare_int_enable</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_compare_int_enable))
+<BR><BR>[Called By]<UL><LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
 </UL>
 
-<P><STRONG><a name="[27c]"></a>nrf_drv_timer_disable</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_disable))
-<BR><BR>[Called By]<UL><LI><a href="#[27b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_disable
+<P><STRONG><a name="[27f]"></a>nrf_drv_timer_disable</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_disable))
+<BR><BR>[Called By]<UL><LI><a href="#[27e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_disable
 </UL>
 
-<P><STRONG><a name="[282]"></a>nrf_drv_timer_enable</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_enable))
-<BR><BR>[Called By]<UL><LI><a href="#[27f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_enable
+<P><STRONG><a name="[285]"></a>nrf_drv_timer_enable</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_enable))
+<BR><BR>[Called By]<UL><LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_enable
 </UL>
 
-<P><STRONG><a name="[28c]"></a>nrf_drv_timer_extended_compare</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_extended_compare))
-<BR><BR>[Called By]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<P><STRONG><a name="[28f]"></a>nrf_drv_timer_extended_compare</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_extended_compare))
+<BR><BR>[Called By]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
 </UL>
 
-<P><STRONG><a name="[28b]"></a>nrf_drv_timer_init</STRONG> (Thumb, 166 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_init))
-<BR><BR>[Calls]<UL><LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
+<P><STRONG><a name="[28e]"></a>nrf_drv_timer_init</STRONG> (Thumb, 166 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_init))
+<BR><BR>[Calls]<UL><LI><a href="#[296]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<BR>[Called By]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
 </UL>
 
-<P><STRONG><a name="[2c2]"></a>nrf_drv_timer_uninit</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_uninit))
-<BR><BR>[Called By]<UL><LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_dealloc
+<P><STRONG><a name="[2c5]"></a>nrf_drv_timer_uninit</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/nrf_drv_timer.o(i.nrf_drv_timer_uninit))
+<BR><BR>[Called By]<UL><LI><a href="#[28c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_dealloc
 </UL>
 
 <P><STRONG><a name="[34]"></a>nrf_reloc_vector_table</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/reloc_vector_table.o(i.nrf_reloc_vector_table))
@@ -4456,28 +4486,28 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_nRF51822.o(.text)
 </UL>
-<P><STRONG><a name="[26a]"></a>pinmap_function</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_function))
+<P><STRONG><a name="[26d]"></a>pinmap_function</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_function))
 <BR><BR>[Calls]<UL><LI><a href="#[1ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;error
 </UL>
-<BR>[Called By]<UL><LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
+<BR>[Called By]<UL><LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
 </UL>
 
-<P><STRONG><a name="[269]"></a>pinmap_peripheral</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_peripheral))
+<P><STRONG><a name="[26c]"></a>pinmap_peripheral</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_pinmap_common.o)(i.pinmap_peripheral))
 <BR><BR>[Calls]<UL><LI><a href="#[1ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;error
 </UL>
-<BR>[Called By]<UL><LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
+<BR>[Called By]<UL><LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
 </UL>
 
 <P><STRONG><a name="[4d]"></a>pwm_ready_tick</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.pwm_ready_tick))
-<BR><BR>[Calls]<UL><LI><a href="#[27d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_compare_int_disable
+<BR><BR>[Calls]<UL><LI><a href="#[280]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_compare_int_disable
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> app_pwm.o(i.app_pwm_init)
 </UL>
-<P><STRONG><a name="[25d]"></a>pwmout_init</STRONG> (Thumb, 266 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/pwmout_api.o(i.pwmout_init))
-<BR><BR>[Calls]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
-<LI><a href="#[27f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_enable
-<LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
-<LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_reinit
+<P><STRONG><a name="[260]"></a>pwmout_init</STRONG> (Thumb, 266 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/pwmout_api.o(i.pwmout_init))
+<BR><BR>[Calls]<UL><LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_enable
+<LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
+<LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_reinit
 <LI><a href="#[1ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;error
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___11_mSecExe_cpp_dimer
@@ -4485,13 +4515,13 @@ Global Symbols
 
 <P><STRONG><a name="[247]"></a>pwmout_period_us</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/pwmout_api.o(i.pwmout_period_us))
 <BR><BR>[Calls]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
-<LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_reinit
+<LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_reinit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::mSecExe(DimmerRf*)
 </UL>
 
 <P><STRONG><a name="[1e4]"></a>pwmout_write</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/pwmout_api.o(i.pwmout_write))
-<BR><BR>[Calls]<UL><LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_set
+<BR><BR>[Calls]<UL><LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_set
 <LI><a href="#[1ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[239]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 </UL>
@@ -4499,8 +4529,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1a7]"></a>radio_configureNew</STRONG> (Thumb, 162 bytes, Stack size 0 bytes, .\build\radio_config.o(i.radio_configureNew))
-<BR><BR>[Calls]<UL><LI><a href="#[28f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;swap_bits
-<LI><a href="#[28e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bytewise_bitswap
+<BR><BR>[Calls]<UL><LI><a href="#[292]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;swap_bits
+<LI><a href="#[291]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bytewise_bitswap
 </UL>
 <BR>[Called By]<UL><LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::setRadio(channel_t)
 </UL>
@@ -4519,15 +4549,15 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1c5]"></a>serial_init</STRONG> (Thumb, 314 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_init))
-<BR><BR>[Calls]<UL><LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
-<LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
-<LI><a href="#[2c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;internal_set_hwfc
+<BR><BR>[Calls]<UL><LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
+<LI><a href="#[296]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
+<LI><a href="#[2cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;internal_set_hwfc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_write
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_read
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
-<LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[2bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
+<LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 <LI><a href="#[1c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::SerialBase(PinName, PinName, int)
 </UL>
 
@@ -4545,8 +4575,8 @@ Global Symbols
 
 <P><STRONG><a name="[1bc]"></a>serial_putc</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/serial_api.o(i.serial_putc))
 <BR><BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_write
-<LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
-<LI><a href="#[2bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
+<LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_vfprintf
+<LI><a href="#[2bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_error_printf
 <LI><a href="#[1bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::_base_putc(int)
 </UL>
 
@@ -4558,7 +4588,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
 <LI><a href="#[1ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;error
-<LI><a href="#[297]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_atomic_incr_u16
+<LI><a href="#[29a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_atomic_incr_u16
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::attach_us(mbed::Callback&lang;void()&rang;, unsigned long long)
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::~SerialBase()
@@ -4570,7 +4600,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
 <LI><a href="#[1ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;error
-<LI><a href="#[296]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_atomic_decr_u16
+<LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_atomic_decr_u16
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::detach()
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::~Timer()
@@ -4584,31 +4614,31 @@ Global Symbols
 <P><STRONG><a name="[1cd]"></a>ticker_insert_event_us</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_insert_event_us))
 <BR><BR>[Calls]<UL><LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
-<LI><a href="#[2c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
-<LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<LI><a href="#[2ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
+<LI><a href="#[2c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::insert_absolute(unsigned long long)
 </UL>
 
-<P><STRONG><a name="[2af]"></a>ticker_irq_handler</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_irq_handler))
-<BR><BR>[Calls]<UL><LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<P><STRONG><a name="[2b2]"></a>ticker_irq_handler</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_irq_handler))
+<BR><BR>[Calls]<UL><LI><a href="#[2c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_irq_handler
 <LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lp_ticker_irq_handler
 </UL>
 
-<P><STRONG><a name="[2ad]"></a>ticker_read</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read))
-<BR><BR>[Calls]<UL><LI><a href="#[2c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
-<LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<P><STRONG><a name="[2b0]"></a>ticker_read</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read))
+<BR><BR>[Calls]<UL><LI><a href="#[2ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
+<LI><a href="#[2c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
+<BR>[Called By]<UL><LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
 <LI><a href="#[1de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_read
 <LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
 </UL>
 
 <P><STRONG><a name="[1e1]"></a>ticker_read_us</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_read_us))
-<BR><BR>[Calls]<UL><LI><a href="#[2c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
-<LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<BR><BR>[Calls]<UL><LI><a href="#[2ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
+<LI><a href="#[2c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::setup(unsigned long long)
 <LI><a href="#[1e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::Timer()
@@ -4619,15 +4649,15 @@ Global Symbols
 <P><STRONG><a name="[1cf]"></a>ticker_remove_event</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_remove_event))
 <BR><BR>[Calls]<UL><LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
-<LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<LI><a href="#[2c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::~TimerEvent__sub_object()
 <LI><a href="#[1ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::remove()
 </UL>
 
 <P><STRONG><a name="[1d2]"></a>ticker_set_handler</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.ticker_set_handler))
-<BR><BR>[Calls]<UL><LI><a href="#[2c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
-<LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<BR><BR>[Calls]<UL><LI><a href="#[2ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
+<LI><a href="#[2c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::TimerEvent__sub_object()
 </UL>
@@ -4645,36 +4675,36 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mbed_us_ticker_api.o(.constdata)
 </UL>
 <P><STRONG><a name="[64]"></a>us_ticker_init</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_init))
-<BR><BR>[Calls]<UL><LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
-<LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
+<BR><BR>[Calls]<UL><LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
+<LI><a href="#[296]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mbed_us_ticker_api.o(.constdata)
 </UL>
 <P><STRONG><a name="[157]"></a>us_ticker_irq_handler</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_us_ticker_api.o)(i.us_ticker_irq_handler))
-<BR><BR>[Calls]<UL><LI><a href="#[2af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_irq_handler
+<BR><BR>[Calls]<UL><LI><a href="#[2b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_irq_handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC1_IRQHandler
 </UL>
 
 <P><STRONG><a name="[65]"></a>us_ticker_read</STRONG> (Thumb, 138 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_read))
-<BR><BR>[Calls]<UL><LI><a href="#[26b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
+<BR><BR>[Calls]<UL><LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
 <LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
-<LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
+<LI><a href="#[296]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_common_irq_enable
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_common_ll_muluu
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mbed_us_ticker_api.o(.constdata)
 </UL>
 <P><STRONG><a name="[68]"></a>us_ticker_set_interrupt</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/us_ticker.o(i.us_ticker_set_interrupt))
-<BR><BR>[Calls]<UL><LI><a href="#[294]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
+<BR><BR>[Calls]<UL><LI><a href="#[297]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;common_rtc_set_interrupt
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mbed_us_ticker_api.o(.constdata)
 </UL>
 <P><STRONG><a name="[1a3]"></a>wait</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait))
-<BR><BR>[Calls]<UL><LI><a href="#[2ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<BR><BR>[Calls]<UL><LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 <LI><a href="#[1d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_us_ticker_data
 <LI><a href="#[1ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[2c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
+<LI><a href="#[2cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 </UL>
 <BR>[Called By]<UL><LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::setNewFactor()
 <LI><a href="#[214]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;procRf::conflictTx()
@@ -4685,21 +4715,21 @@ Global Symbols
 <LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rf::initRf(channel_t*)
 </UL>
 
-<P><STRONG><a name="[2bd]"></a>wait_ms</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms))
-<BR><BR>[Calls]<UL><LI><a href="#[2ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<P><STRONG><a name="[2c0]"></a>wait_ms</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_wait_api_no_rtos.o)(i.wait_ms))
+<BR><BR>[Calls]<UL><LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
 <LI><a href="#[1d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_us_ticker_data
 </UL>
-<BR>[Called By]<UL><LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
+<BR>[Called By]<UL><LI><a href="#[29c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
 </UL>
 
 <P><STRONG><a name="[cb]"></a>_get_lc_numeric</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(lc_numeric_c.o)(locale$$code))
-<BR><BR>[Calls]<UL><LI><a href="#[266]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
+<BR><BR>[Calls]<UL><LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_lc_numeric_2
 </UL>
 
 <P><STRONG><a name="[3a]"></a>_get_lc_ctype</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(lc_ctype_c.o)(locale$$code))
-<BR><BR>[Calls]<UL><LI><a href="#[266]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
+<BR><BR>[Calls]<UL><LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_lc_ctype_2
 </UL>
@@ -4756,7 +4786,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::switchSensorType(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[2ca]"></a>_dcmple</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(dlef.o)(x$fpl$dleqf), UNUSED)
+<P><STRONG><a name="[2cd]"></a>_dcmple</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(dlef.o)(x$fpl$dleqf), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcmp_InfNaN
 </UL>
 
@@ -4765,7 +4795,7 @@ Global Symbols
 <LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mSecExe::switchSensorType(rfFrame_t*)
 </UL>
 
-<P><STRONG><a name="[2cb]"></a>_drcmple</STRONG> (Thumb, 100 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(drlef.o)(x$fpl$drleqf), UNUSED)
+<P><STRONG><a name="[2ce]"></a>_drcmple</STRONG> (Thumb, 100 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(drlef.o)(x$fpl$drleqf), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcmp_InfNaN
 </UL>
 
@@ -4777,11 +4807,11 @@ Global Symbols
 <LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::averageSensor(float)
 <LI><a href="#[225]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::averageSensor(float)
 <LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::setNextRange()
-<LI><a href="#[257]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::averageSensor(float)
+<LI><a href="#[25a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::averageSensor(float)
 </UL>
 
-<P><STRONG><a name="[2cc]"></a>_fadd</STRONG> (Thumb, 134 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(faddsub.o)(x$fpl$fadd), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[2cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fsub1
+<P><STRONG><a name="[2cf]"></a>_fadd</STRONG> (Thumb, 134 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(faddsub.o)(x$fpl$fadd), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[2d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fsub1
 </UL>
 
 <P><STRONG><a name="[19a]"></a>__aeabi_cfcmple</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(flef.o)(x$fpl$fleqf))
@@ -4792,7 +4822,7 @@ Global Symbols
 <LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::setNextRange()
 </UL>
 
-<P><STRONG><a name="[2ce]"></a>_fcmple</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(flef.o)(x$fpl$fleqf), UNUSED)
+<P><STRONG><a name="[2d1]"></a>_fcmple</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(flef.o)(x$fpl$fleqf), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fcmp_InfNaN
 </UL>
 
@@ -4816,7 +4846,7 @@ Global Symbols
 <LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::setNextRange()
 </UL>
 
-<P><STRONG><a name="[2cf]"></a>_frcmple</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(frlef.o)(x$fpl$frleqf), UNUSED)
+<P><STRONG><a name="[2d2]"></a>_frcmple</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(frlef.o)(x$fpl$frleqf), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fcmp_InfNaN
 </UL>
 
@@ -4828,11 +4858,11 @@ Global Symbols
 <LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::averageSensor(float)
 <LI><a href="#[225]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::averageSensor(float)
 <LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::setNextRange()
-<LI><a href="#[257]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::averageSensor(float)
+<LI><a href="#[25a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::averageSensor(float)
 </UL>
 
-<P><STRONG><a name="[2d0]"></a>_fsub</STRONG> (Thumb, 204 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(faddsub.o)(x$fpl$fsub), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[2d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fadd1
+<P><STRONG><a name="[2d3]"></a>_fsub</STRONG> (Thumb, 204 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(faddsub.o)(x$fpl$fsub), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[2d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fadd1
 </UL>
 
 <P><STRONG><a name="[a6]"></a>_printf_fp_dec</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(printf1.o)(x$fpl$printf1))
@@ -4858,121 +4888,121 @@ Local Symbols
 </UL>
 <P><STRONG><a name="[8a]"></a>__sti___17_mainForSx1276_cpp_Uart</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, .\build\mainforsx1276.o(i.__sti___17_mainForSx1276_cpp_Uart))
 <BR><BR>[Calls]<UL><LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::Ticker()
-<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
-<LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecBle::UttecBle()
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecBle::UttecBle()
 <LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash::Flash()
-<LI><a href="#[263]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test::test()
+<LI><a href="#[266]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test::test()
 <LI><a href="#[1e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Serial::Serial(PinName, PinName, const char*, int)
 <LI><a href="#[1e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::Timer()
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mainforsx1276.o(.init_array)
 </UL>
-<P><STRONG><a name="[289]"></a>pwm_dealloc</STRONG> (Thumb, 138 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.pwm_dealloc))
-<BR><BR>[Calls]<UL><LI><a href="#[2c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_uninit
-<LI><a href="#[2c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_free
-<LI><a href="#[2c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_free
-<LI><a href="#[2a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_uninit
+<P><STRONG><a name="[28c]"></a>pwm_dealloc</STRONG> (Thumb, 138 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/app_pwm.o(i.pwm_dealloc))
+<BR><BR>[Calls]<UL><LI><a href="#[2c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_timer_uninit
+<LI><a href="#[2c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_group_free
+<LI><a href="#[2c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_ppi_channel_free
+<LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_uninit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[28d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_uninit
-<LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<BR>[Called By]<UL><LI><a href="#[290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_uninit
+<LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
 </UL>
 
 <P><STRONG><a name="[13]"></a>fs_event_handler</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fds.o(i.fs_event_handler))
-<BR><BR>[Calls]<UL><LI><a href="#[29e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
+<BR><BR>[Calls]<UL><LI><a href="#[2a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> fds.o(fs_data)
 </UL>
-<P><STRONG><a name="[2a0]"></a>gc_record_find_next</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fds.o(i.gc_record_find_next))
-<BR><BR>[Calls]<UL><LI><a href="#[29f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_store
-<LI><a href="#[29c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_erase
-<LI><a href="#[2a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;record_find_next
+<P><STRONG><a name="[2a3]"></a>gc_record_find_next</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fds.o(i.gc_record_find_next))
+<BR><BR>[Calls]<UL><LI><a href="#[2a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_store
+<LI><a href="#[29f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_erase
+<LI><a href="#[2a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;record_find_next
 </UL>
-<BR>[Called By]<UL><LI><a href="#[29e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
+<BR>[Called By]<UL><LI><a href="#[2a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
 </UL>
 
-<P><STRONG><a name="[29e]"></a>queue_process</STRONG> (Thumb, 1424 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fds.o(i.queue_process))
-<BR><BR>[Calls]<UL><LI><a href="#[29f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_store
-<LI><a href="#[29c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_erase
-<LI><a href="#[2c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;record_find_by_desc
-<LI><a href="#[2c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;record_find
-<LI><a href="#[29e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
-<LI><a href="#[2a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gc_record_find_next
+<P><STRONG><a name="[2a1]"></a>queue_process</STRONG> (Thumb, 1424 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fds.o(i.queue_process))
+<BR><BR>[Calls]<UL><LI><a href="#[2a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_store
+<LI><a href="#[29f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_erase
+<LI><a href="#[2c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;record_find_by_desc
+<LI><a href="#[2c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;record_find
+<LI><a href="#[2a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
+<LI><a href="#[2a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gc_record_find_next
 </UL>
-<BR>[Called By]<UL><LI><a href="#[29e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
+<BR>[Called By]<UL><LI><a href="#[2a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
 <LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_event_handler
 </UL>
 
-<P><STRONG><a name="[2c5]"></a>record_find</STRONG> (Thumb, 270 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fds.o(i.record_find))
-<BR><BR>[Called By]<UL><LI><a href="#[29e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
+<P><STRONG><a name="[2c8]"></a>record_find</STRONG> (Thumb, 270 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fds.o(i.record_find))
+<BR><BR>[Called By]<UL><LI><a href="#[2a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
 </UL>
 
-<P><STRONG><a name="[2c4]"></a>record_find_by_desc</STRONG> (Thumb, 270 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fds.o(i.record_find_by_desc))
-<BR><BR>[Called By]<UL><LI><a href="#[29e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
+<P><STRONG><a name="[2c7]"></a>record_find_by_desc</STRONG> (Thumb, 270 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fds.o(i.record_find_by_desc))
+<BR><BR>[Called By]<UL><LI><a href="#[2a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queue_process
 </UL>
 
-<P><STRONG><a name="[2a1]"></a>record_find_next</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fds.o(i.record_find_next))
-<BR><BR>[Called By]<UL><LI><a href="#[2a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gc_record_find_next
+<P><STRONG><a name="[2a4]"></a>record_find_next</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fds.o(i.record_find_next))
+<BR><BR>[Called By]<UL><LI><a href="#[2a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gc_record_find_next
 </UL>
 
-<P><STRONG><a name="[29d]"></a>queue_process</STRONG> (Thumb, 162 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fstorage.o(i.queue_process))
-<BR><BR>[Called By]<UL><LI><a href="#[29f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_store
-<LI><a href="#[29c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_erase
+<P><STRONG><a name="[2a0]"></a>queue_process</STRONG> (Thumb, 162 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/fstorage.o(i.queue_process))
+<BR><BR>[Called By]<UL><LI><a href="#[2a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_store
+<LI><a href="#[29f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fs_erase
 </UL>
 
-<P><STRONG><a name="[2a2]"></a>gpio_apply_config</STRONG> (Thumb, 166 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_apply_config))
-<BR><BR>[Calls]<UL><LI><a href="#[2a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_init
-<LI><a href="#[2a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_event_enable
-<LI><a href="#[28a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_init
+<P><STRONG><a name="[2a5]"></a>gpio_apply_config</STRONG> (Thumb, 166 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpio_apply_config))
+<BR><BR>[Calls]<UL><LI><a href="#[2a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_init
+<LI><a href="#[2a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_in_event_enable
+<LI><a href="#[28d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_out_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
+<BR>[Called By]<UL><LI><a href="#[2ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode
 <LI><a href="#[1d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_irq_init
 <LI><a href="#[1d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_irq_free
-<LI><a href="#[2a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
+<LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
 </UL>
 
 <P><STRONG><a name="[4f]"></a>gpiote_irq_handler</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/gpio_api.o(i.gpiote_irq_handler))
 <BR>[Address Reference Count : 1]<UL><LI> gpio_api.o(i.gpio_apply_config)
 </UL>
 <P><STRONG><a name="[56]"></a>irq_handler_twi0</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/i2c_api.o(i.irq_handler_twi0))
-<BR><BR>[Calls]<UL><LI><a href="#[2ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twi_irq_handler
+<BR><BR>[Calls]<UL><LI><a href="#[2b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twi_irq_handler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> i2c_api.o(.constdata)
 </UL>
 <P><STRONG><a name="[57]"></a>irq_handler_twi1</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/i2c_api.o(i.irq_handler_twi1))
-<BR><BR>[Calls]<UL><LI><a href="#[2ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twi_irq_handler
+<BR><BR>[Calls]<UL><LI><a href="#[2b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twi_irq_handler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> i2c_api.o(.constdata)
 </UL>
-<P><STRONG><a name="[2ae]"></a>twi_irq_handler</STRONG> (Thumb, 354 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/i2c_api.o(i.twi_irq_handler))
+<P><STRONG><a name="[2b1]"></a>twi_irq_handler</STRONG> (Thumb, 354 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/i2c_api.o(i.twi_irq_handler))
 <BR><BR>[Calls]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;irq_handler_twi1
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;irq_handler_twi0
 </UL>
 
-<P><STRONG><a name="[2c3]"></a>pwm_reinit</STRONG> (Thumb, 106 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/pwmout_api.o(i.pwm_reinit))
-<BR><BR>[Calls]<UL><LI><a href="#[28d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_uninit
-<LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
-<LI><a href="#[27f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_enable
-<LI><a href="#[270]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
+<P><STRONG><a name="[2c6]"></a>pwm_reinit</STRONG> (Thumb, 106 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/pwmout_api.o(i.pwm_reinit))
+<BR><BR>[Calls]<UL><LI><a href="#[290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_uninit
+<LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_init
+<LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_enable
+<LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_pwm_channel_duty_ticks_set
 </UL>
 <BR>[Called By]<UL><LI><a href="#[247]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_period_us
-<LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
+<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
 </UL>
 
-<P><STRONG><a name="[2c8]"></a>internal_set_hwfc</STRONG> (Thumb, 90 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/serial_api.o(i.internal_set_hwfc))
+<P><STRONG><a name="[2cb]"></a>internal_set_hwfc</STRONG> (Thumb, 90 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/serial_api.o(i.internal_set_hwfc))
 <BR><BR>[Called By]<UL><LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_init
 </UL>
 
-<P><STRONG><a name="[28e]"></a>bytewise_bitswap</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, .\build\radio_config.o(i.bytewise_bitswap))
-<BR><BR>[Calls]<UL><LI><a href="#[28f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;swap_bits
+<P><STRONG><a name="[291]"></a>bytewise_bitswap</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, .\build\radio_config.o(i.bytewise_bitswap))
+<BR><BR>[Calls]<UL><LI><a href="#[292]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;swap_bits
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;radio_configureNew
 </UL>
 
-<P><STRONG><a name="[28f]"></a>swap_bits</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, .\build\radio_config.o(i.swap_bits))
+<P><STRONG><a name="[292]"></a>swap_bits</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, .\build\radio_config.o(i.swap_bits))
 <BR><BR>[Called By]<UL><LI><a href="#[1a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;radio_configureNew
-<LI><a href="#[28e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bytewise_bitswap
+<LI><a href="#[291]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bytewise_bitswap
 </UL>
 
 <P><STRONG><a name="[203]"></a>flash_page_erase(unsigned*)</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, .\build\flash.o(i._Z16flash_page_erasePj))
@@ -5001,7 +5031,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> rcu.o(i._ZN3RcuC1Ev)
 </UL>
 <P><STRONG><a name="[8c]"></a>__sti___7_Rcu_cpp_rcuEvent</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, .\build\rcu.o(i.__sti___7_Rcu_cpp_rcuEvent))
-<BR><BR>[Calls]<UL><LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<BR><BR>[Calls]<UL><LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
 <LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::InterruptIn::InterruptIn(PinName)
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> rcu.o(.init_array)
@@ -5014,18 +5044,18 @@ Local Symbols
 <P><STRONG><a name="[8e]"></a>__sti___11_mSecExe_cpp_dimer</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, .\build\msecexe.o(i.__sti___11_mSecExe_cpp_dimer))
 <BR><BR>[Calls]<UL><LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_exit
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;core_util_critical_section_enter
-<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
-<LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
-<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::pirAnalog()
-<LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::volume()
-<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::photoAnalog()
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
+<LI><a href="#[261]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pirAnalog::pirAnalog()
+<LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;volume::volume()
+<LI><a href="#[263]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;photoAnalog::photoAnalog()
 <LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecLed::UttecLed()
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> msecexe.o(.init_array)
 </UL>
 <P><STRONG><a name="[8f]"></a>__sti___13_UttecUtil_cpp_380f9fb9</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, .\build\uttecutil.o(i.__sti___13_UttecUtil_cpp_380f9fb9))
 <BR><BR>[Calls]<UL><LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::Ticker()
-<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uttecutil.o(.init_array)
 </UL>
@@ -5041,7 +5071,7 @@ Local Symbols
 </UL>
 <P><STRONG><a name="[91]"></a>__sti___10_procRf_cpp_6e0e75ac</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, .\build\procrf.o(i.__sti___10_procRf_cpp_6e0e75ac))
 <BR><BR>[Calls]<UL><LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Callback&lang;void()&rang;::Callback(void(*)())
-<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
 <LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::UttecUtil()
 <LI><a href="#[1d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::TimerEvent__sub_object()
 </UL>
@@ -5054,7 +5084,7 @@ Local Symbols
 </UL>
 <P><STRONG><a name="[93]"></a>__sti___14_procSx1276_cpp_4f61e213</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, .\build\procsx1276.o(i.__sti___14_procSx1276_cpp_4f61e213))
 <BR><BR>[Calls]<UL><LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Callback&lang;void()&rang;::Callback(void(*)())
-<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
 <LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UttecUtil::UttecUtil()
 <LI><a href="#[1d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::TimerEvent__sub_object()
 </UL>
@@ -5075,7 +5105,7 @@ Local Symbols
 <LI><a href="#[1b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test::setTestMyFrameByNum(unsigned short)
 </UL>
 
-<P><STRONG><a name="[164]"></a>setCmd(unsigned char)</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, .\build\test.o(i._Z6setCmdh))
+<P><STRONG><a name="[164]"></a>setCmd(unsigned char)</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, .\build\test.o(i._Z6setCmdh))
 <BR><BR>[Calls]<UL><LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_common_switch8
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
@@ -5091,13 +5121,13 @@ Local Symbols
 
 <P><STRONG><a name="[94]"></a>__sti___8_test_cpp_a81651ac</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, .\build\test.o(i.__sti___8_test_cpp_a81651ac))
 <BR><BR>[Calls]<UL><LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::Ticker()
-<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> test.o(.init_array)
 </UL>
 <P><STRONG><a name="[95]"></a>__sti___13_pirAnalog_cpp_pirAPin</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, .\build\piranalog.o(i.__sti___13_pirAnalog_cpp_pirAPin))
-<BR><BR>[Calls]<UL><LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
-<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<BR><BR>[Calls]<UL><LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::AnalogIn::unlock()
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::AnalogIn::lock()
 <LI><a href="#[232]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pyd1788::Pyd1788(unsigned)
@@ -5105,24 +5135,24 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> piranalog.o(.init_array)
 </UL>
 <P><STRONG><a name="[96]"></a>__sti___10_volume_cpp_volPin</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, .\build\volume.o(i.__sti___10_volume_cpp_volPin))
-<BR><BR>[Calls]<UL><LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
-<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<BR><BR>[Calls]<UL><LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::AnalogIn::unlock()
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::AnalogIn::lock()
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> volume.o(.init_array)
 </UL>
 <P><STRONG><a name="[97]"></a>__sti___15_photoAnalog_cpp_myBH</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, .\build\photoanalog.o(i.__sti___15_photoAnalog_cpp_myBH))
-<BR><BR>[Calls]<UL><LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
-<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
-<LI><a href="#[261]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bh1750::bh1750()
+<BR><BR>[Calls]<UL><LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_init
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<LI><a href="#[264]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bh1750::bh1750()
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::AnalogIn::unlock()
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::AnalogIn::lock()
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> photoanalog.o(.init_array)
 </UL>
 <P><STRONG><a name="[98]"></a>__sti___10_BH1750_cpp_i2c</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, .\build\bh1750.o(i.__sti___10_BH1750_cpp_i2c))
-<BR><BR>[Calls]<UL><LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<BR><BR>[Calls]<UL><LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
 <LI><a href="#[1df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::I2C::I2C(PinName, PinName)
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> bh1750.o(.init_array)
@@ -5158,14 +5188,14 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[99]"></a>__sti___9_eprom_cpp_at24</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, .\build\eprom.o(i.__sti___9_eprom_cpp_at24))
-<BR><BR>[Calls]<UL><LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<BR><BR>[Calls]<UL><LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
 <LI><a href="#[1df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::I2C::I2C(PinName, PinName)
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> eprom.o(.init_array)
 </UL>
 <P><STRONG><a name="[9a]"></a>__sti___9_HX711_cpp_Dout</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, .\build\hx711.o(i.__sti___9_HX711_cpp_Dout))
 <BR><BR>[Calls]<UL><LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::Ticker()
-<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_atexit
 <LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out
 <LI><a href="#[1d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_in
 </UL>
@@ -5174,20 +5204,20 @@ Local Symbols
 <P><STRONG><a name="[3d]"></a>&lang;Func3&rang;</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(SerialBase.o)(i.<Func3>))
 <BR>[Address Reference Count : 1]<UL><LI> SerialBase.o(i._ZN4mbed10SerialBaseC1E7PinNameS1_i)
 </UL>
-<P><STRONG><a name="[2c6]"></a>schedule_interrupt</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.schedule_interrupt))
-<BR><BR>[Calls]<UL><LI><a href="#[2c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
+<P><STRONG><a name="[2c9]"></a>schedule_interrupt</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.schedule_interrupt))
+<BR><BR>[Calls]<UL><LI><a href="#[2ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_present_time
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
-<LI><a href="#[2af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_irq_handler
+<BR>[Called By]<UL><LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<LI><a href="#[2b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_irq_handler
 <LI><a href="#[1d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_set_handler
 <LI><a href="#[1cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_remove_event
 <LI><a href="#[1cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_insert_event_us
 <LI><a href="#[1e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read_us
 </UL>
 
-<P><STRONG><a name="[2c7]"></a>update_present_time</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.update_present_time))
-<BR><BR>[Called By]<UL><LI><a href="#[2ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
-<LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
+<P><STRONG><a name="[2ca]"></a>update_present_time</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, mbed/TARGET_NRF51_DK/TOOLCHAIN_ARM_STD/mbed.ar(mbed_ticker_api.o)(i.update_present_time))
+<BR><BR>[Called By]<UL><LI><a href="#[2b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read
+<LI><a href="#[2c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schedule_interrupt
 <LI><a href="#[1d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_set_handler
 <LI><a href="#[1cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_insert_event_us
 <LI><a href="#[1e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ticker_read_us
@@ -5205,12 +5235,12 @@ Local Symbols
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dadd
 </UL>
 
-<P><STRONG><a name="[2d1]"></a>_fadd1</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(faddsub.o)(x$fpl$fadd), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[2d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fsub
+<P><STRONG><a name="[2d4]"></a>_fadd1</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(faddsub.o)(x$fpl$fadd), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[2d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fsub
 </UL>
 
-<P><STRONG><a name="[2cd]"></a>_fsub1</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(faddsub.o)(x$fpl$fsub), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[2cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fadd
+<P><STRONG><a name="[2d0]"></a>_fsub1</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\fz_ps.l(faddsub.o)(x$fpl$fsub), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[2cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fadd
 </UL>
 
 <P><STRONG><a name="[11d]"></a>_fp_digits</STRONG> (Thumb, 412 bytes, Stack size 0 bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(_printf_fp_dec.o)(.text))

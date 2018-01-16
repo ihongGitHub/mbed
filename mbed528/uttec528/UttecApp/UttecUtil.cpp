@@ -231,6 +231,11 @@ bool UttecUtil::isMstOrGw(rfFrame_t* pFrame){
 	else if(pFrame->MyAddr.RxTx.iRxTx == eGW) return true;
 	else return false;
 }
+bool UttecUtil::isMyRxTx(rfFrame_t* pDst, rfFrame_t* pSrc){
+	if(pDst->MyAddr.RxTx.iRxTx == 
+		pSrc->MyAddr.RxTx.iRxTx) return true;
+	else return false;
+}
 
 void UttecUtil::dispRfFactor(rfFrame_t* frame){
 	
@@ -291,10 +296,22 @@ void UttecUtil::dispCmdandSub(char* cpCmd, char* cpSub, rfFrame_t* pFrame){
 UttecFactory_t UttecUtil::m_Factory = 
 	{eFactoryTestMode,DeFactoryModeTimeout};
 
-bool UttecUtil::isNotMyGroup(rfFrame_t* pSrc, rfFrame_t* pMy){
+bool UttecUtil::isNotMyGwGroup(rfFrame_t* pSrc, rfFrame_t* pMy){
 	if(pMy->MyAddr.GroupAddr/10 == pSrc->MyAddr.GroupAddr/10) 
 		return false;
 	else return true;
+}
+
+bool UttecUtil::isMyGroup(rfFrame_t* pSrc, rfFrame_t* pMy){
+	if(pMy->MyAddr.GroupAddr == pSrc->MyAddr.GroupAddr) 
+		return true;
+	else return false;
+}
+bool UttecUtil::isMyAddr(rfFrame_t* pSrc, rfFrame_t* pMy){
+	if((pMy->MyAddr.GroupAddr == pSrc->MyAddr.GroupAddr)&&
+		(pMy->MyAddr.PrivateAddr == pSrc->MyAddr.PrivateAddr))	
+			return true;
+	else return false;
 }
 
 bool UttecUtil::isFactoryOutMode(){

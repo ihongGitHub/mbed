@@ -236,7 +236,7 @@ void procRf::searchRf(rfFrame_t* pFrame){
 }
 
 void procRf::transferMstGwByRf(rfFrame_t* pFrame){
-	if(myUtil.isNotMyGroup(pFrame, mp_rfFrame)&&myUtil.isGw(mp_rfFrame)) return;
+	if(myUtil.isNotMyGwGroup(pFrame, mp_rfFrame)&&myUtil.isGw(mp_rfFrame)) return;
 	printf("From Mst or Gw -> ");
 	pMyRf->sendRf(pFrame);
 	printf("End of transferMstGwByRf\n\r");

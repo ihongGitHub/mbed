@@ -39,7 +39,7 @@ procSx1276::procSx1276(uttecLib_t pLib, procServer* pServer){
 }
 
 void procSx1276::transferMstGwBy485(rfFrame_t* pFrame, UttecDirection_t dir){
-	if(myUtil.isNotMyGroup(pFrame, mp_rfFrame)&&myUtil.isGw(mp_rfFrame)) return;
+	if(myUtil.isNotMyGwGroup(pFrame, mp_rfFrame)&&myUtil.isGw(mp_rfFrame)) return;
 	
 	char cCmd[20]; char cSub[20];
 	myUtil.dispCmdandSub(cCmd, cSub, pFrame);

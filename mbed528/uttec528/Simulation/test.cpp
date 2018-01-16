@@ -153,6 +153,9 @@ static uint8_t setCmd(uint8_t ucCmd){
 		case 5: ucResult = edServerReq;
 		printf("edServerReq,");
 		break;
+		case 6: ucResult = edClientAck;
+		printf("edClientAck,");
+		break;
 		default: printf("Error Command:%d\n\r", ucCmd);
 		break;
 	}

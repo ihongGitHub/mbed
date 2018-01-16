@@ -27,19 +27,13 @@ proc485::proc485(uttecLib_t pLib, procServer* pServer){
 	pMyServer = pServer;
 }
 
-void proc485::transferMstGwBy485(rfFrame_t* pFrame, UttecDirection_t dir){
-	if(myUtil.isNotMyGroup(pFrame, mp_rfFrame)&&myUtil.isGw(mp_rfFrame)) return;
-	
-	char cCmd[20]; char cSub[20];
-	myUtil.dispCmdandSub(cCmd, cSub, pFrame);
-	if(dir == eDown){
-		printf("by485 Down: , %s, %s\n\r", cCmd, cSub);
-		pMy485->send485(pFrame, eRsDown);
-	}
-	else{
-		printf("by485 Up: , %s, %s\n\r", cCmd, cSub);
-		pMy485->send485(pFrame, eRsUp);
-	}
+
+void proc485::sendAckBy485(rfFrame_t* pFrame){
+	char cRxTx[5]; 
+	myUtil.dispRxTx(cRxTx, mp_rfFrame);
+	mp_rfFrame->Cmd.Command = edClientAck;
+	pMy485->send485(pFrame, eRsUp);
+	printf("by485 Up: From %s -> Server\n\r", cRxTx);
 }
 
 void proc485::procVolumeCmd(rfFrame_t* pFrame){
@@ -50,7 +44,7 @@ void proc485::procVolumeCmd(rfFrame_t* pFrame){
 		pMy_mSec->sDim.target);
 }
 
-void proc485::returnAckBy485(rfFrame_t* pFrame){
+void proc485::answerReqBy485(rfFrame_t* pFrame){
 	char cRxTx[5];
 	switch(pFrame->Cmd.SubCmd){
 		case edsControl:
@@ -58,23 +52,62 @@ void proc485::returnAckBy485(rfFrame_t* pFrame){
 		case edsPhoto:
 		case edsCmd_485NewSet:
 		case edsCmd_Alternative:
-			printf(" 485 Ack From Gw -> server \n\r");
-			break;
-			
 		case edsPing:
 		case edsCmd_Status:
-			if(mp_rfFrame->MyAddr.RxTx.iRxTx == pFrame->Trans.Zone){
-				if(pFrame->Trans.Zone == eRx){
-					if(mp_rfFrame->MyAddr.PrivateAddr !=
-						pFrame->MyAddr.PrivateAddr) return;				
-				}
 				myUtil.dispRxTx(cRxTx, pFrame);
 				printf(" 485 Ack From %s -> server \n\r", cRxTx);
-			}
+				sendAckBy485(mp_rfFrame);
 			break;
 	}
 }
 
+void proc485::transferBy485(rfFrame_t* pFrame){
+	bool bPass = false;
+	bool bReturn = false;
+	char cCmd[20]; char cSub[20];
+	char cSrc[5]; char cMy[5];
+	
+	if(myUtil.isMyRxTx(mp_rfFrame, pFrame)) bReturn = true;
+	
+	switch(mp_rfFrame->MyAddr.RxTx.iRxTx){
+		case eMst: bPass = true; break;
+		case eGW: 
+			if(!myUtil.isNotMyGwGroup(pFrame, mp_rfFrame))
+				bPass = true;
+			else bReturn = false;
+			break;
+		case eTx:
+			if(pFrame->MyAddr.GroupAddr == mp_rfFrame->MyAddr.GroupAddr)
+				bPass = true;
+			else bReturn = false;
+			break;
+		case eRpt:
+		case eSRx:
+		case eRx:
+			if(pFrame->MyAddr.GroupAddr != mp_rfFrame->MyAddr.GroupAddr)
+				bReturn = false;
+			break;
+	}
+	if(bReturn){
+		pMyServer->taskServer(pFrame);
+		answerReqBy485(pFrame);
+		return;
+	}
+	else if(bPass){
+		if(myUtil.isTx(mp_rfFrame)){
+				printf("byRf: isTx ");
+				pMyRf->sendRf(pFrame);	
+		}
+		myUtil.dispCmdandSub(cCmd, cSub, pFrame);
+		printf("by485 Down: , %s, %s\n\r", cCmd, cSub);
+		pMy485->send485(pFrame, eRsDown);
+	}
+	else{
+		myUtil.dispRxTx(cSrc, pFrame);
+		myUtil.dispRxTx(cMy, mp_rfFrame);
+		printf("Not match Src: %s, My: %s\n\r", cSrc, cMy);
+	}
+}
 
 void proc485::rs485Task(rfFrame_t* pFrame){
 	static uint32_t ulCount = 0;
@@ -102,8 +135,15 @@ void proc485::rs485Task(rfFrame_t* pFrame){
 		case edAsk:
 				break;
 		case edVolume:
-			if(myUtil.isMstOrGw(mp_rfFrame)){
-				transferMstGwBy485(pFrame, eDown);
+			if(myUtil.isMst(mp_rfFrame)){
+				printf("and by485: isMst -> ");
+				pMy485->send485(pFrame, eRsDown);
+				return;
+			}			
+			if(myUtil.isGw(mp_rfFrame)&&
+				(!myUtil.isNotMyGwGroup(mp_rfFrame,pFrame))){
+				printf("and by485: isGw -> ");
+				pMy485->send485(pFrame, eRsDown);
 				return;
 			}			
 			if(myUtil.isTx(mp_rfFrame)){
@@ -117,25 +157,10 @@ void proc485::rs485Task(rfFrame_t* pFrame){
 		case edDayLight:
 				break;
 		case edServerReq:
-			if(myUtil.isMstOrGw(mp_rfFrame)){
-				transferMstGwBy485(pFrame, eDown);
-				returnAckBy485(pFrame);
-				return;
-			}			
-			if(myUtil.isTx(mp_rfFrame)){
-				printf("byRf: isTx ");
-				pMyRf->sendRf(pFrame);	
-				printf("and by485: isTx -> ");
-				pMy485->send485(pFrame, eRsDown);
-			}
-			pMyServer->taskServer(pFrame);
-			returnAckBy485(pFrame);
+			transferBy485(pFrame);
 				break;
 		case edClientAck:
-			if(myUtil.isMstOrGw(mp_rfFrame)){
-				transferMstGwBy485(pFrame, eUp);
-				return;
-			}			
+			sendAckBy485(pFrame);
 				break;
 		default:
 			printf("Check Cmd %d\n\r", ucCmd);
