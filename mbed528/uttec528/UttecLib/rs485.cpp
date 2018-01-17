@@ -5,8 +5,12 @@
 
 rfFrame_t rs485::m_485Rx = {0,};
 rs485Status_t rs485::m_status={0};
+rs485Status_t rs485::m_tstatus={0};
+
 uint8_t rs485::m485Data[]={0};
+uint8_t rs485::mtData[]={0};
 bool rs485::m_485Done=false;
+bool rs485::m_testDone=false;
 
 Serial* rs485::pMySer = NULL;
 UttecUtil myUtil;
@@ -21,13 +25,19 @@ rs485::rs485(Serial* pSer){
 }
 
 bool rs485::is485Done(){
-//	if(pMySer->readable()) parse485Data(pMySer->getc());
-	if(pMySer->readable()) parse485Data(getchar());
+//	if(pMySer->readable()) parse485Data(getchar());
 	return m_485Done;
+}
+bool rs485::isTestDone(){
+	if(pMySer->readable()) parseTestData(getchar());
+	return m_testDone;
 }
 
 void rs485::clear485Done(){
 	m_485Done = false;
+}
+void rs485::clearTestDone(){
+	m_testDone = false;
 }
 
 void rs485::task485(rfFrame_t* pFrame){
@@ -36,7 +46,20 @@ void rs485::task485(rfFrame_t* pFrame){
 rfFrame_t* rs485::return485Buf(){
 	return &m_485Rx;
 }
-
+uint16_t rs485::returnTestData(){
+	uint32_t uiResult = 0;
+	uint8_t ucData;
+	for(int i = 0; i<sizeof(mtData)-2; i++){
+		ucData = mtData[i];
+		if((ucData < '0')||(ucData>'9')){
+			printf("Error Data\n\r");
+		}
+		uiResult += (ucData-'0');
+		uiResult *= 10;
+	}
+	
+	return uiResult/10;
+}
 bool rs485::reform485toRx(uint8_t* p485){
 	rs485withRf_t frame;
 	rs485withRf_t* pFrame = &frame;
@@ -98,6 +121,43 @@ bool rs485::parse485Data(uint8_t ucChar)
 	}
 	else m485Data[m_status.count++]=ucChar;
 	return m_485Done;
+}
+
+bool rs485::parseTestData(uint8_t ucChar)
+{
+	if((ucChar==tsof)&&(!m_tstatus.start)){
+		m_tstatus.flag=false;
+		m_tstatus.count=0;
+		m_tstatus.start=true;
+		m_testDone=false;
+	}
+	else if(ucChar==teof){
+		if((m_tstatus.start)&&(m_tstatus.count==4)){
+			/*
+			printf("\n\r");
+			for(int i=0;i<sizeof(mtData);i++) putchar(mtData[i]);
+			printf("\n\r");
+			*/
+			m_testDone =true;
+			m_tstatus.flag=true;
+			m_tstatus.count=0;
+			m_tstatus.start=false;
+		}
+		else{
+			m_tstatus.flag=false;
+			m_tstatus.count=0;
+			m_tstatus.start=false;
+			m_testDone=false;
+		}
+	}
+	else if(m_tstatus.count>4){
+			m_tstatus.flag=false;
+			m_tstatus.count=0;
+			m_tstatus.start=false;
+			m_testDone=false;
+	}
+	else mtData[m_tstatus.count++]=ucChar;
+	return m_testDone;
 }
 
 void rs485::sendByUart(){

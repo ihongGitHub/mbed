@@ -121,6 +121,7 @@ simSx mySim(&myRf);
 	
 //	my1750.setMode(BH1750_ONE_TIME_LOW_RES_MODE);	
 //	myTest.testTicker();
+	myRcu.setRcuPwm();
 	while(true){
 		myUtil.setWdtReload();
 		
@@ -140,6 +141,7 @@ simSx mySim(&myRf);
 			rfFrame_t* pFrame = myRf.returnRxBuf();
 			mProcRf.taskRf(pFrame);			
 		}
+		
 		if(mProcSec.m_product.ble)
 		if(myBle.isBleRxReady()){		//For Ble Receive
 			myBle.clearBleRxReady();
@@ -189,7 +191,16 @@ simSx mySim(&myRf);
 		if(tick_Sec){
 			tick_Sec = false;			
 			mProcSec.secTask(pFrame);	
+			myRcu.generateRcuSignal();
 		}
+		
+		if(my485.isTestDone()){		//For test
+			my485.clearTestDone();
+			uint16_t uiResult = my485.returnTestData();
+//			printf("Test Data: %d\n\r",uiResult);
+			if(uiResult>100) myTest.setTestReceiveFrameByNum(uiResult);
+			else myTest.setTestMyFrameByNum(uiResult);
+		}		
 /*		
 		*/
 	}

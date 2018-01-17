@@ -32,6 +32,10 @@ typedef struct{
 class Rcu
 {
 private: 
+	void setClock();
+	void setOne();
+	void setZero();
+	void setHeader();
 
 public:
 	Rcu();
@@ -41,6 +45,8 @@ public:
 	uint16_t returnVendorCode();
 	uint8_t returnRcuCode();
 	void procRcu(rcuValue_t);
+	void setRcuPwm();
+	void generateRcuSignal();
 };
 
 

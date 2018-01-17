@@ -212,7 +212,6 @@ void test::setTestReceiveFrameByNum(uint16_t uiNum){
 	
 	pRf->MyAddr.SensorType.iSensor = setSensorType(ucSensor);
 	pRf->MyAddr.RxTx.iRxTx = setRoleType(ucRxTx);
-	pRf->Trans.Zone = pRf->MyAddr.RxTx.iRxTx;
 	pRf->Cmd.Command = setCmd(ucCmd);
 	pRf->Cmd.SubCmd = setSub(ucSub);
 	pRf->Ctr.Level = 22;

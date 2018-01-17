@@ -12,6 +12,58 @@ extern Timer rcuTimer;
 InterruptIn rcuEvent(p2);
 
 Rcu_t m_Rcu={true,false,false,false,0,0,0};
+PwmOut rcuPwm(p18);
+
+#define DeRcuZero 0.00035
+#define DeRcuOne 0.00135
+#define DeRcuHeader_0 0.008-0.00015
+#define DeRcuHeader_1 0.0054-0.00015
+
+static Timeout rcuClock;
+static bool bRcuTimeout = false;
+static void rcuTimeout(){
+	bRcuTimeout = true;
+}
+
+void Rcu::setOne(){
+	rcuPwm = 0.3;
+	wait(DeRcuZero);
+	rcuPwm = 0.0;
+	wait(DeRcuOne);
+}
+
+void Rcu::setZero(){
+	rcuPwm = 0.3;
+	wait(DeRcuZero);
+	rcuPwm = 0.0;
+	wait(DeRcuZero);
+}
+
+void Rcu::setHeader(){
+	rcuPwm = 0.3;
+	wait(DeRcuHeader_0);
+	rcuPwm = 0.0;
+	wait(DeRcuHeader_1);
+}
+
+void Rcu::generateRcuSignal(){
+	/*
+	uint8_t ulRcu = 0xd7;
+	for(int i = 0; i<8; i++){
+		if(ulRcu&0x80) setOne();
+		else setZero();
+		ulRcu <<= 1;
+	}
+	*/
+	uint32_t ulRcu = 0xa10cd7d7;
+	setHeader();
+	for(int i = 0; i<32; i++){
+		if(ulRcu&0x80000000) setOne();
+		else setZero();
+		ulRcu <<= 1;
+	}
+	setZero();
+}
 
 static void rcuCallback()
 {
@@ -62,7 +114,6 @@ static void rcuCallback()
 	*/
 }
 void rcuTest(){
-//	printf("&");
 }
 
 Rcu::Rcu(){
@@ -71,6 +122,10 @@ Rcu::Rcu(){
 	rcuTimer.start();
 //	rcuEvent.rise(&rcuTest);
 	rcuEvent.fall(&rcuCallback);
+}
+void Rcu::setRcuPwm(){
+	rcuPwm.period_us(25);		//set Pwm Freq
+	rcuPwm = 0.3;
 }
 
 bool Rcu::isRcuReady(){

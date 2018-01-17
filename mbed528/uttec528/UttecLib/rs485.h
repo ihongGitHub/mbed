@@ -21,11 +21,16 @@ typedef union
 typedef enum{
 	sof='{',
 	eof='}',
-//	FLENGTH=26,
-//	De485FrameLength=24
 	FLENGTH=70,
 	De485FrameLength=68
 } rs485_Frame_t;
+
+typedef enum{
+	tsof='t',
+	teof='t',
+	tFLENGTH=6,
+	tDe485FrameLength=4
+} testFrame_t;
 
 typedef struct{
 	bool flag;
@@ -42,12 +47,18 @@ class rs485
 {
 private:
 	static rs485Status_t m_status;
+	static rs485Status_t m_tstatus;
+
 	static rfFrame_t m_485Rx;
 	static uint8_t m485Data[FLENGTH];
+	static uint8_t mtData[tFLENGTH];
 	static bool m_485Done;
+	static bool m_testDone;
 	static Serial* pMySer;
 
 	bool parse485Data(uint8_t);
+	bool parseTestData(uint8_t);
+
 	bool reform485toRx(uint8_t*);
 	void changeChannel(rs485Channel_t);
 	void sendByUart();
@@ -56,13 +67,17 @@ private:
 
 public:
 	rs485(Serial*);
+	bool isTestDone();
 	bool is485Done();
 	void clear485Done();
+	void clearTestDone();
 	void task485(rfFrame_t*);
 //	void send485(rfFrame_t*);
 	void send485(rfFrame_t*,rs485Channel_t);
 	void set485Done();	//for test only
 
 	rfFrame_t* return485Buf();
+	uint16_t returnTestData();
+
 };
 #endif

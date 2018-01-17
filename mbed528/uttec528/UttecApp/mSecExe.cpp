@@ -33,6 +33,7 @@ mSecExe::mSecExe(DimmerRf* pRf){
 	photoA.setSensorRate(pyFrame->Ctr.DTime/1024.0);
 	m_pRf = pRf;
 	dimer.period_us(300);		//set Pwm Freq
+//	dimer.period_us(25);		//set Pwm Freq
 	dimer = 0.3;			//set Pwm initial duty
 }
 
