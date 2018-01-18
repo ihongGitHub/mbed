@@ -122,17 +122,29 @@ simSx mySim(&myRf);
 //	my1750.setMode(BH1750_ONE_TIME_LOW_RES_MODE);	
 //	myTest.testTicker();
 	myRcu.setRcuPwm();
+	myTest.testModAscii();
+	while(1)	myUtil.setWdtReload();
 	while(true){
 		myUtil.setWdtReload();
 		
 /*		
 */		
 		if(mProcSec.m_product.rcu)
-		if(myRcu.isRcuReady()&&myRcu.isUttecCode()){
+		if(myRcu.isRcuReady()){
+//		if(myRcu.isRcuReady()&&myRcu.isUttecCode()){
 			rcuValue_t myCode;
 			myRcu.clearRcuFlag();
-			myCode = (rcuValue_t)myRcu.returnRcuCode(); 
-			myRcu.procRcu(myCode);
+			myRcu.returnUtRcuCode(); 
+//			myCode = (rcuValue_t)myRcu.returnRcuCode(); 
+//			myRcu.procRcu(myCode);
+			if(myRcu.isUtRcuReady()){
+				myRcu.clearUtRcuFlag();
+				rcuFrame_t* pRcu;
+				pRcu = myRcu.returnUtRcuCode();
+				printf("rcu0: %llx, rcu1: %llx\n\r",
+					pRcu->rcu0.ulData, pRcu->rcu1.ulData);
+				myRcu.procUtRcu(pRcu);				
+			}				
 		}
 		
 		if(mProcSec.m_product.rf)
@@ -188,10 +200,10 @@ simSx mySim(&myRf);
 			my_mSec.msecTask(pFrame);
 //			putchar('.');
 		}
-		if(tick_Sec){
+		if(tick_Sec){			
 			tick_Sec = false;			
 			mProcSec.secTask(pFrame);	
-			myRcu.generateRcuSignal();
+//			myRcu.testRcuGenerate();
 		}
 		
 		if(my485.isTestDone()){		//For test

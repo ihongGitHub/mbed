@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #include "test.h"
+#include "modBus.h"
 
 Flash* test::mpFlash = NULL;
 Flash_t* test::mpFlashFrame = NULL;
@@ -232,3 +233,16 @@ void test::setTestMyFrameByNum(uint16_t uiNum){
 	myUtil.dispSec(mp_rfFrame,false);
 }
 
+void test::testModAscii(){
+	printf("testModAscii\n\r");
+	modBus myMod;
+	char cTest[100];
+	int iLength = sprintf(cTest,":1234567890\r\n");
+	printf("Length = %d\n\r", iLength);
+	
+	for(int i = 0; i<iLength; i++){
+		myMod.parseModAscii(cTest[i]);
+//		wait(0.001);
+		putchar(cTest[i]);
+	}
+}

@@ -13,10 +13,10 @@ bool rs485::m_485Done=false;
 bool rs485::m_testDone=false;
 
 Serial* rs485::pMySer = NULL;
-UttecUtil myUtil;
+static UttecUtil myUtil;
 
-DigitalOut downCtr(p13);	//FOR DOWNLOAD TXCTR
-DigitalOut upCtr(p19);	//For upload TXCtr
+static DigitalOut downCtr(p13);	//FOR DOWNLOAD TXCTR
+static DigitalOut upCtr(p19);	//For upload TXCtr
 
 rs485::rs485(Serial* pSer){
 	pMySer = pSer;

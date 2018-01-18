@@ -25,3 +25,7 @@ yellow: 125mSec				yellow: 115mSec							yellow: 150mSec
 simSx.cpp 추가
 procSx1276.cpp 수정
 
+2018.01.18
+Rcu 기능 추가
+Uttec Rcu Generator
+Uttec Rcu Decoder

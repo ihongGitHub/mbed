@@ -86,6 +86,7 @@
 ".\build\flash.o"
 ".\build\rs485.o"
 ".\build\rcu.o"
+".\build\modbus.o"
 ".\build\dimmerrf.o"
 ".\build\uttecled.o"
 ".\build\msecexe.o"

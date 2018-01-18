@@ -120,3 +120,4 @@
 .\build\test.o: ..\..\mbed528\uttec528\Simulation\simSx.h
 .\build\test.o: ..\..\mbed528\uttec528\UttecProc\proc485.h
 .\build\test.o: ..\..\mbed528\uttec528\UttecProc\procSec.h
+.\build\test.o: ..\..\mbed528\uttec528\UttecLib\modBus.h

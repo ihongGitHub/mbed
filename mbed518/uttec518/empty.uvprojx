@@ -2230,6 +2230,11 @@
               <FileType>8</FileType>
               <FilePath>..\..\mbed528\uttec528\UttecLib\Rcu.cpp</FilePath>
             </File>
+            <File>
+              <FileName>modBus.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\mbed528\uttec528\UttecLib\modBus.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

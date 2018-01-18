@@ -36,6 +36,7 @@ public:
 	void testTicker();
 	void setTestReceiveFrameByNum(uint16_t);
 	void setTestMyFrameByNum(uint16_t);
+	void testModAscii();
 };
 
 
