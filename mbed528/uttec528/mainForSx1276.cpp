@@ -58,6 +58,8 @@ static void tickmSec(){
 //HX711 scale;
 
 test myTest;
+#include "comErr.h"
+
 int main(void)
 {
 	ble_gap_addr_t addr;
@@ -112,23 +114,14 @@ simSx mySim(&myRf);
 	procSx1276 mProcSx1276(myLib, &mProcServer);
 /*
 */
-//	myFlash.resetFlash();
-	
-	myUtil.setWdt(3);	
+//	myFlash.resetFlash();	
+	myUtil.setWdt(6);	
 	
 	Rcu myRcu;	
 	myTest.setTest(myLib, &mProcServer);
-	
-//	my1750.setMode(BH1750_ONE_TIME_LOW_RES_MODE);	
-//	myTest.testTicker();
-	myRcu.setRcuPwm();
-	myTest.testModAscii();
-	while(1)	myUtil.setWdtReload();
 	while(true){
 		myUtil.setWdtReload();
 		
-/*		
-*/		
 		if(mProcSec.m_product.rcu)
 		if(myRcu.isRcuReady()){
 //		if(myRcu.isRcuReady()&&myRcu.isUttecCode()){
@@ -166,22 +159,15 @@ simSx mySim(&myRf);
 			mProc485.rs485Task(my485.return485Buf());
 		}		
 		
-		/*
-	*/
 		if(mProcSec.m_product.sx1276)
-		if(mySim.isSxRxReady()){		//For sx1276 Receive
-			printf("-------------isSxRxReady\n\r");
+		if(mySim.isSxRxDone()){		//For sx1276 Receive
+			printf("-------------isSxRxDone\n\r");
 			mySim.clearSxRxFlag();
 			rfFrame_t* psRf = mProcSx1276.readSxFrame();
 			sxFrame_t* psx = (sxFrame_t*)psRf;
 			printf("gid = %d, %d\n\r", psRf->MyAddr.GroupAddr, 
 				psRf->Ctr.Level);
 			printf("\n\r");
-			for(int i = 0; i<sizeof(addr.addr); i++){
-				printf("mac[%d]:%d ", i, psx->mac[i]);
-			}
-			printf("\n\r");
-			
 			if(mProcSx1276.isMyGroup(pFrame, psRf))
 				mProcSx1276.sx1276Task(psRf);
 		}
@@ -209,7 +195,7 @@ simSx mySim(&myRf);
 		if(my485.isTestDone()){		//For test
 			my485.clearTestDone();
 			uint16_t uiResult = my485.returnTestData();
-//			printf("Test Data: %d\n\r",uiResult);
+			printf("Test Data: %d\n\r",uiResult);
 			if(uiResult>100) myTest.setTestReceiveFrameByNum(uiResult);
 			else myTest.setTestMyFrameByNum(uiResult);
 		}		

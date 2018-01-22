@@ -7,12 +7,16 @@
 
 #include  "Rf.h"
 
+rfFrame_t Rf::m_SxRxFrame={0};
+rfFrame_t Rf::m_SxTxFrame={0};
 
 rfFrame_t Rf::m_RxFrame={0};
 rfFrame_t Rf::m_TxFrame={0};
 channel_t Rf::m_Ch={0}; 
 RfRxMode_t Rf::m_RfRxTx=eRxMode;
+
 bool Rf::TxEndFlag=false;
+bool Rf::SxRxEndFlag=false;
 bool Rf::RxEndFlag=false;
 uint32_t Rf::m_blockingTime = 0;
 
@@ -115,7 +119,22 @@ uint8_t CalCheckSum(rfFrame_t *tFrame)
 	}
 	return cTemp;
 }
+
 void Rf::sendInternal(){
+	clearRfMode();
+	setRfMode(eTxMode);
+    while (NRF_RADIO->EVENTS_END == 0U) {}; //Wait Event End 		
+	NRF_RADIO->EVENTS_END=0;
+	TxEndFlag=true;
+/*		
+	printf("Ch=%d, Hop=%d -> ",NRF_RADIO->FREQUENCY,
+		m_Ch.Hopping);
+*/
+	clearRfMode();
+	setRfMode(eRxMode);
+}
+
+void Rf::sendSxInternal(){
 	clearRfMode();
 	setRfMode(eTxMode);
     while (NRF_RADIO->EVENTS_END == 0U) {}; //Wait Event End 		
@@ -158,16 +177,16 @@ void Rf::sendSxRf(const rfFrame_t* ucpTx)
 	UttecUtil myUtil;
 	printf("sendSxRf Ch =%d -> ", m_Ch.channel);
 	uint8_t ucTempHop=0;
-	m_TxFrame=*ucpTx;
+	m_SxTxFrame=*ucpTx;
 	
 	ucTempHop=m_Ch.Hopping;
 	if(m_Ch.Hopping!=eNoHopping){
 		for(int i=0;i<eNoHopping;i++){
 			m_Ch.Hopping=i; 	setRadio(m_Ch);
-			sendInternal();
+			sendSxInternal();
 		}
 	}
-	else sendInternal();
+	else sendSxInternal();
 	m_Ch.Hopping=ucTempHop;
 }
 
@@ -212,9 +231,11 @@ uint32_t Rf::receiveAction(){
    uint32_t result = 0;
     if (NRF_RADIO->CRCSTATUS == 1U)
     {
-        result = m_RxFrame.MyAddr.GroupAddr;		
+        result = m_RxFrame.MyAddr.GroupAddr;	
+				m_SxRxFrame = m_RxFrame;	
 //		RxEndFlag=isOkCheckSum();
 		RxEndFlag=true;
+		SxRxEndFlag=true;
     }
 	clearRfMode();
 	setRfMode(eRxMode);
@@ -230,12 +251,29 @@ bool Rf::isRxDone(){
 	return RxEndFlag;
 }
 
+bool Rf::isSxRxDone(){
+	if(m_RfRxTx&&NRF_RADIO->EVENTS_END){
+		NRF_RADIO->EVENTS_END=0;
+		receiveAction();
+//		printf("\n\rRxDone=%d\n\r",receiveAction());
+	}
+	return SxRxEndFlag;
+}
+
 void Rf::clearRxFlag(){
 	RxEndFlag=false;
 }
 
+void Rf::clearSxRxFlag(){
+	SxRxEndFlag=false;
+}
+
 void Rf::setRxFlag(){	//For rfFrame simulation
 	RxEndFlag=true;
+}
+
+void Rf::setSxRxFlag(){	//For rfFrame simulation
+	SxRxEndFlag=true;
 }
 
 void Rf::setRfMode(RfRxMode_t eMode){
@@ -268,6 +306,10 @@ void Rf::clearRfMode(){
         // wait
     }
 	m_RfRxTx=eRxMode;
+}
+
+rfFrame_t* Rf::returnSxRxBuf(){
+	return &m_SxRxFrame;
 }
 
 rfFrame_t* Rf::returnRxBuf(){

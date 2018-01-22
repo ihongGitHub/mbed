@@ -119,7 +119,8 @@ public:
 	void initSx1276(uint8_t ucCh);
 	void testTxRx(uint32_t);
 	void clearSxRxFlag();
-	bool isSxRxReady();
+	bool isSxRxDone();
+	void setSxRxFlag();
 };
 #endif // __UttecSx1276_H__
 //#endif

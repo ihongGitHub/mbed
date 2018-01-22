@@ -29,3 +29,46 @@ procSx1276.cpp 수정
 Rcu 기능 추가
 Uttec Rcu Generator
 Uttec Rcu Decoder
+
+2018.01.22(예제 참조)
+Test Mode정리
+
+		if(my485.isTestDone()){		//For test
+			my485.clearTestDone();
+			uint16_t uiResult = my485.returnTestData();
+//			printf("Test Data: %d\n\r",uiResult);
+			if(uiResult>100) myTest.setTestReceiveFrameByNum(uiResult);
+			else myTest.setTestMyFrameByNum(uiResult);
+		}		
+
+
+	myTest.setTest(myLib, &mProcServer);
+	
+//	my1750.setMode(BH1750_ONE_TIME_LOW_RES_MODE);	
+//	myTest.testTicker();
+	myRcu.setRcuPwm();
+//	myTest.testModAscii();
+//	myTest.testModRtu();
+//	myTest.testRealRtu();
+//	myTest.testRealAscii();
+//	printf("End of testModAscii\n\r");
+
+//	srand(9);
+	
+//		myTest.testMonitor();
+		myTest.testSchedule();
+	while(1){
+		myUtil.setWdtReload();
+		wait(0.5);
+	}
+
+
+2108.01.23 ---> USA BSL Light Test준비
+1. Rf통신 Frame변경(CRC Test)--> Check Sum 방법 변경?
+2. Rf.cpp부분에 Sx관련 함수와 변수 추가: 
+m_SxRxFrame, m_SxTxFrame, SxRxEndFlag
+sendSxInternal, returnSxRxBuf, sendSxRf
+
+-----------LoRa 인접 Channel간섭여부 Test는 어떻게 할것인가?
+
+

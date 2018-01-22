@@ -101,6 +101,6 @@
 .\build\modbus.o: mbed/./platform/DirHandle.h
 .\build\modbus.o: mbed/./platform/CriticalSectionLock.h
 .\build\modbus.o: mbed/./platform/DeepSleepLock.h
-.\build\modbus.o: ..\..\mbed528\uttec528\UttecApp\UttecUtil.h
 .\build\modbus.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\modbus.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
+.\build\modbus.o: ..\..\mbed528\uttec528\UttecApp\UttecUtil.h

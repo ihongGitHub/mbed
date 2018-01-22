@@ -2295,6 +2295,21 @@
               <FileType>8</FileType>
               <FilePath>..\..\mbed528\uttec528\UttecProc\procSx1276.cpp</FilePath>
             </File>
+            <File>
+              <FileName>schedule.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\mbed528\uttec528\UttecProc\schedule.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>comErr.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\mbed528\uttec528\UttecProc\comErr.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>monitor.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\mbed528\uttec528\UttecProc\monitor.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

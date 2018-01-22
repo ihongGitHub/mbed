@@ -14,6 +14,7 @@ rs485* test::pMy485 = NULL;
 UttecBle* test::pMyBle = NULL;
 mSecExe* test::pMy_mSec = NULL;
 procServer* test::pMyServer = NULL;
+simSx* test::pMySim = NULL;
 
 test::test(){
 }
@@ -21,12 +22,13 @@ void test::setTest(uttecLib_t pLib, procServer* pServer){
 	mpFlash = pLib.pFlash;
 	mpFlashFrame = mpFlash->getFlashFrame();
 	mp_rfFrame = &mpFlashFrame->rfFrame;
-	
+/*	
 	pMyRf = pLib.pDimmerRf;
 	pMy485 = pLib.pRs485;
 	pMyBle = pLib.pBle;
 	pMy_mSec = pLib.pMsec;
 	pMyServer = pServer;
+	*/
 }
 
 void test::setTestRfData(){		
@@ -206,17 +208,24 @@ void test::setTestReceiveFrameByNum(uint16_t uiNum){
 	pMyRf->setRxFlag();
 	rfFrame_t* pRf = pMyRf->returnRxBuf();
 	*pRf = *mp_rfFrame;
-*/
 	pMy485->set485Done();
 	rfFrame_t* pRf = pMy485->return485Buf();
 	*pRf = *mp_rfFrame;
+*/
+	pMySim->setSxRxFlag();
+//	rfFrame_t* pSxRf = pMySim->readLoRa();
+	sxRxFrame_t* pSxRf = pMySim->readLoRa();
+	rfFrame_t MyRf = *mp_rfFrame;
 	
+	rfFrame_t* pRf = &MyRf;
 	pRf->MyAddr.SensorType.iSensor = setSensorType(ucSensor);
 	pRf->MyAddr.RxTx.iRxTx = setRoleType(ucRxTx);
 	pRf->Cmd.Command = setCmd(ucCmd);
 	pRf->Cmd.SubCmd = setSub(ucSub);
 	pRf->Ctr.Level = 22;
-	printf("End of setReceiveFrameByNum\n\r");
+	
+	*(rfFrame_t*)pSxRf->ptrBuf = *pRf;
+	printf("\n\rEnd of setReceiveFrameByNum\n\r");
 	myUtil.dispSec(mp_rfFrame,false);
 }
 
@@ -225,24 +234,143 @@ void test::setTestMyFrameByNum(uint16_t uiNum){
 	UttecUtil myUtil;
 	uint8_t ucRxTx = uiNum%10; uiNum /= 10;
 	uint8_t ucSensor = uiNum;
+	printf("ucRxTx = %d, ucSensor = %d\n\r", 
+		ucRxTx, ucSensor);
 	
 	rfFrame_t* pRf = mp_rfFrame;
+	
 	pRf->MyAddr.SensorType.iSensor = setSensorType(ucSensor);
 	pRf->MyAddr.RxTx.iRxTx = setRoleType(ucRxTx);
-	printf("End of setReceiveFrameByNum\n\r");
+	printf("End of setTestMyFrameByNum\n\r");
 	myUtil.dispSec(mp_rfFrame,false);
 }
 
 void test::testModAscii(){
+	Serial Uart(p9,p11);
 	printf("testModAscii\n\r");
-	modBus myMod;
-	char cTest[100];
-	int iLength = sprintf(cTest,":1234567890\r\n");
-	printf("Length = %d\n\r", iLength);
+	modBus myMod(&Uart);
 	
-	for(int i = 0; i<iLength; i++){
-		myMod.parseModAscii(cTest[i]);
-//		wait(0.001);
-		putchar(cTest[i]);
+	modRtu_Frame_t rFrame;
+	
+	rFrame.slave = 2;
+	rFrame.function = 0x06;
+	rFrame.length = 8;
+	
+	for(int i = 0; i<rFrame.length; i++)
+		rFrame.data[i] = i+2;
+
+	uint8_t* ucpTest = 
+		myMod.generateModAscii(&rFrame);
+	
+	printf("Send Length = %d\n\r",rFrame.lengthForSend);
+	for(int i = 0; i<rFrame.lengthForSend; i++)
+		putchar(ucpTest[i]);
+	for(int i = 0; i<rFrame.lengthForSend; i++){
+		myMod.parseModAscii(ucpTest[i]);
+	}
+	
+//	myMod.setModRData();
+	myMod.clearAsciiDone();
+	myMod.returnModAscii();
+	
+	printf("Rtu Time out\n\r");	
+}
+
+void test::testModRtu(){
+	UttecUtil myUtil;
+	Serial Uart(p9,p11);
+	
+	printf("testModRtu\n\r");
+	modBus myMod(&Uart);
+	modRtu_Frame_t rFrame;
+	
+	rFrame.slave = 2;
+	rFrame.function = 6;
+	rFrame.length = 4;
+	rFrame.data[0] = 0x10;
+	rFrame.data[1] = 0x46;
+	rFrame.data[2] = 0;
+	rFrame.data[3] = 0x32;
+	
+	uint8_t* ucpTest = 
+		myMod.generateModRtu(&rFrame);
+	
+	printf("Send Length = %d\n\r",rFrame.lengthForSend);
+	for(int i = 0; i<rFrame.lengthForSend; i++){
+		myMod.parseModRtu(ucpTest[i]);
+		wait(0.1);
+	}
+	
+	while(!myMod.isRtuDone()){
+		myUtil.setWdtReload();
+	}	
+	myMod.clearRtuDone();
+	myMod.returnModRtu();
+	
+	printf("Rtu Time out\n\r");
+/*	
+	*/
+}
+
+void test::testRealRtu(){
+	UttecUtil myUtil;
+	Serial Uart(p9,p11);
+	
+	printf("testModRtu\n\r");
+	modBus myMod(&Uart);
+
+	printf("....Waiting serial input\n\r");
+	
+	while(!myMod.isRtuDone()){
+		myUtil.setWdtReload();
+	}
+	
+	myMod.clearRtuDone();
+	myMod.returnModRtu();
+	
+	printf("Rtu Time out\n\r");
+	
+}
+
+void test::testRealAscii(){
+	UttecUtil myUtil;
+	Serial Uart(p9,p11);
+	
+	printf("testRealAscii\n\r");
+	modBus myMod(&Uart);
+
+	printf("....Waiting serial input\n\r");
+	
+	while(!myMod.isAsciiDone()){
+		myUtil.setWdtReload();
+	}
+	
+	myMod.setModRData();
+	myMod.clearAsciiDone();
+	myMod.returnModAscii();
+	
+	printf("Rtu Time out\n\r");
+	
+}
+
+#include "monitor.h"
+
+void test::testMonitor(){
+	monitor myMon;
+	myMon.setTestData();
+}
+
+#include "schedule.h"
+
+void test::testSchedule(){
+	UttecUtil myUtil;
+	schedule mySch;
+	mySch.initSchedule();
+	while(1){
+		mySch.procSchedule();
+		myUtil.setWdtReload();
 	}
 }
+
+
+

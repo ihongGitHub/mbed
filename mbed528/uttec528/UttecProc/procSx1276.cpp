@@ -53,6 +53,13 @@ void procSx1276::transferMstGwBy485(rfFrame_t* pFrame, UttecDirection_t dir){
 	}
 }
 
+void procSx1276::transferMstGwBySx(rfFrame_t* pFrame){
+	if(myUtil.isNotMyGwGroup(pFrame, mp_rfFrame)&&myUtil.isGw(mp_rfFrame)) return;
+	
+	char cCmd[20]; char cSub[20];
+	myUtil.dispCmdandSub(cCmd, cSub, pFrame);
+}
+
 void procSx1276::dispSx1276(){
 	sxRxFrame_t msxRxFrame= *pMySx1276->readLoRa();
 	sxFrame_t msxFrame;
@@ -84,6 +91,7 @@ void procSx1276::sendSxFrame(rfFrame_t* pFrame){
 	sxTxFrame_t sTxFrame;
 	sTxFrame.ptrBuf = (sxFrame_t*)pFrame;
 	sTxFrame.size = sizeof(sxFrame_t);
+	printf("sendSxFrame->");
 	pMySx1276->sendLoRa(sTxFrame);
 }
 
@@ -285,8 +293,15 @@ void procSx1276::sx1276Task(rfFrame_t* pFrame){
 		case edServerReq:
 			if(myUtil.isMstOrGw(mp_rfFrame)){
 				transferMstGwBy485(pFrame, eDown);
+				transferMstGwBySx(pFrame);
 				return;
 			}			
+			else if(myUtil.isTx(mp_rfFrame)){
+				printf("From Tx ->");
+//				printf
+				sendSxFrame(pFrame);
+				break;
+			}
 			pMyServer->taskServer(pFrame);
 				break;
 		case edClientAck:

@@ -32,6 +32,7 @@ private:
 	void procVolumeCmd(rfFrame_t*);
 	void resendByRepeater(rfFrame_t*);
 	void transferMstGwBy485(rfFrame_t*, UttecDirection_t);
+	void transferMstGwBySx(rfFrame_t*);
 	void setNewFactor();
 
 	void procSensorCmd(rfFrame_t*);
