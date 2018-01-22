@@ -198,12 +198,29 @@ static uint8_t setSub(uint8_t ucSub){
 	return ucResult;	
 }
 
+void test::setTestAddr(uint16_t uiAddr){
+	UttecUtil myUtil;
+	uint8_t ucPid = uiAddr%100; uiAddr /= 100;
+	uint8_t ucGid = uiAddr;
+	
+	printf("ucPid = %d, ucGid = %d\n\r", 
+		ucPid, ucGid);
+	
+	rfFrame_t* pRf = mp_rfFrame;
+	
+	pRf->MyAddr.GroupAddr	= ucGid;
+	pRf->MyAddr.PrivateAddr = ucPid;
+	printf("End of setTestMyFrameByNum\n\r");
+	myUtil.dispSec(mp_rfFrame,false);
+}
+
 void test::setTestReceiveFrameByNum(uint16_t uiNum){
 	UttecUtil myUtil;
+	uint8_t ucRxTxDst = uiNum%10; uiNum /= 10;
+	uint8_t ucSensorDst = uiNum%10; uiNum /= 10;
 	uint8_t ucSub = uiNum%10; uiNum /= 10;
-	uint8_t ucCmd = uiNum%10; uiNum /= 10;
-	uint8_t ucRxTx = uiNum%10; uiNum /= 10;
-	uint8_t ucSensor = uiNum;
+	uint8_t ucRxTxSrc = uiNum%10; uiNum /= 10;
+	uint8_t ucSensorSrc = uiNum;
 /*	
 	pMyRf->setRxFlag();
 	rfFrame_t* pRf = pMyRf->returnRxBuf();
@@ -213,16 +230,22 @@ void test::setTestReceiveFrameByNum(uint16_t uiNum){
 	*pRf = *mp_rfFrame;
 */
 	pMySim->setSxRxFlag();
-//	rfFrame_t* pSxRf = pMySim->readLoRa();
 	sxRxFrame_t* pSxRf = pMySim->readLoRa();
 	rfFrame_t MyRf = *mp_rfFrame;
 	
 	rfFrame_t* pRf = &MyRf;
-	pRf->MyAddr.SensorType.iSensor = setSensorType(ucSensor);
-	pRf->MyAddr.RxTx.iRxTx = setRoleType(ucRxTx);
-	pRf->Cmd.Command = setCmd(ucCmd);
+	
+	dst_t* sDst = (dst_t*)&pRf->Trans;
+
+	pRf->MyAddr.SensorType.iSensor = setSensorType(ucSensorSrc);
+	pRf->MyAddr.RxTx.iRxTx = setRoleType(ucRxTxSrc);
+	pRf->Cmd.Command = edServerReq;
 	pRf->Cmd.SubCmd = setSub(ucSub);
 	pRf->Ctr.Level = 22;
+	
+	sDst->rxtx = ucRxTxDst;
+	sDst->pid = pRf->MyAddr.PrivateAddr;
+	sDst->gid = pRf->MyAddr.GroupAddr;
 	
 	*(rfFrame_t*)pSxRf->ptrBuf = *pRf;
 	printf("\n\rEnd of setReceiveFrameByNum\n\r");

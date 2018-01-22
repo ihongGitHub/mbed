@@ -196,7 +196,8 @@ simSx mySim(&myRf);
 			my485.clearTestDone();
 			uint16_t uiResult = my485.returnTestData();
 			printf("Test Data: %d\n\r",uiResult);
-			if(uiResult>100) myTest.setTestReceiveFrameByNum(uiResult);
+			if(uiResult>=10000) myTest.setTestReceiveFrameByNum(uiResult);
+			else if((uiResult<10000)&&(uiResult>100)) myTest.setTestAddr(uiResult);
 			else myTest.setTestMyFrameByNum(uiResult);
 		}		
 /*		

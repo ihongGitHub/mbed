@@ -132,12 +132,7 @@ bool rs485::parseTestData(uint8_t ucChar)
 		m_testDone=false;
 	}
 	else if(ucChar==teof){
-		if((m_tstatus.start)&&(m_tstatus.count==4)){
-			/*
-			printf("\n\r");
-			for(int i=0;i<sizeof(mtData);i++) putchar(mtData[i]);
-			printf("\n\r");
-			*/
+		if((m_tstatus.start)&&(m_tstatus.count==6)){
 			m_testDone =true;
 			m_tstatus.flag=true;
 			m_tstatus.count=0;
