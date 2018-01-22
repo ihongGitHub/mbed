@@ -57,36 +57,63 @@ uint8_t UttecUtil::Hex2Dec(uint8_t cHex)
 
 #include <stdio.h>
 #include <string.h>
-
-char* UttecUtil::dispRxTx(char* cResult, uint8_t ucRxTx){
-	memset(cResult,0,5);
+char cdRxTx[5];
+char* UttecUtil::dispRxTx(uint8_t ucRxTx){
+	memset(cdRxTx,0,5);
 	switch(ucRxTx){
-		case eRx: sprintf(cResult, "Rx"); break;
-		case eTx: sprintf(cResult, "Tx"); break;
-		case eSRx: sprintf(cResult, "SRx"); break;
-		case eRpt: sprintf(cResult, "Rpt"); break;
-		case eGW: sprintf(cResult, "GW"); break;
-		case eMst: sprintf(cResult, "Mst"); break;
-		case eReserved: sprintf(cResult, "TBD"); break;
+		case eRx: sprintf(cdRxTx, "Rx"); break;
+		case eTx: sprintf(cdRxTx, "Tx"); break;
+		case eSRx: sprintf(cdRxTx, "SRx"); break;
+		case eRpt: sprintf(cdRxTx, "Rpt"); break;
+		case eGW: sprintf(cdRxTx, "GW"); break;
+		case eMst: sprintf(cdRxTx, "Mst"); break;
+		case eReserved: sprintf(cdRxTx, "TBD"); break;
 		default: printf("RxTx Error value %d\n\r", ucRxTx);
 	}
-	return cResult;
+	return cdRxTx;
 }
 
-char* dispSensor(char* cResult, uint8_t ucSensor){
-	memset(cResult,0,5);
-	switch(ucSensor){
-		case eNoSensor: sprintf(cResult, "No"); break;
-		case ePir: sprintf(cResult, "Pir"); break;
-		case eMicroWave: sprintf(cResult, "Mw"); break;
-		case eDayLight: sprintf(cResult, "Day"); break;
-		case eUtraSonic: sprintf(cResult, "Snx"); break;
-		case eHyBrid: sprintf(cResult, "Hyb"); break;
-		case eVolume: sprintf(cResult, "Vol"); break;
-		case eTestMode: sprintf(cResult, "Test"); break;
-		default: sprintf(cResult, "sErr"); break;
+char* UttecUtil::dispRxTx(rfFrame_t* pFrame){
+	memset(cdRxTx,0,5);	
+	switch(pFrame->MyAddr.RxTx.iRxTx){
+		case eRx:
+			sprintf(cdRxTx,"Rx");
+			break;
+		case eTx:
+			sprintf(cdRxTx,"Tx");
+			break;
+		case eSRx:
+			sprintf(cdRxTx,"SRx");
+			break;
+		case eRpt:
+			sprintf(cdRxTx,"Rpt");
+			break;
+		case eGW:
+			sprintf(cdRxTx,"Gw");
+			break;
+		case eMst:
+			sprintf(cdRxTx,"Mst");
+			break;
+		default:
+			break;
 	}
-	return cResult;
+	return cdRxTx;
+}
+
+char* dispSensor(uint8_t ucSensor){
+	memset(cdRxTx,0,5);
+	switch(ucSensor){
+		case eNoSensor: sprintf(cdRxTx, "No"); break;
+		case ePir: sprintf(cdRxTx, "Pir"); break;
+		case eMicroWave: sprintf(cdRxTx, "Mw"); break;
+		case eDayLight: sprintf(cdRxTx, "Day"); break;
+		case eUtraSonic: sprintf(cdRxTx, "Snx"); break;
+		case eHyBrid: sprintf(cdRxTx, "Hyb"); break;
+		case eVolume: sprintf(cdRxTx, "Vol"); break;
+		case eTestMode: sprintf(cdRxTx, "Test"); break;
+		default: sprintf(cdRxTx, "sErr"); break;
+	}
+	return cdRxTx;
 }
 
 #include <time.h>
@@ -99,10 +126,10 @@ void dispTime(uint32_t ulTime){
 	printf("%dD %dH %dM %dS\n\r", myTime.tm_mday,
 	myTime.tm_hour, myTime.tm_min, myTime.tm_sec);
 }
-char* dispForced(char* cResult, bool bForced){
-	if(bForced) sprintf(cResult,"manu");
-	else sprintf(cResult,"auto");
-	return cResult;
+char* dispForced(bool bForced){
+	if(bForced) sprintf(cdRxTx,"manu");
+	else sprintf(cdRxTx,"auto");
+	return cdRxTx;
 }
 
 void UttecUtil::dispSec(rfFrame_t* pFrame, bool bCount){
@@ -113,16 +140,15 @@ void UttecUtil::dispSec(rfFrame_t* pFrame, bool bCount){
 	if(bCount)
 		if(ulCount++%10) { printf("-"); return; }
 	
-	char cResult[5];
 	printf("\n\rG:%d P:%d RxTx:%s", 
 	pFrame->MyAddr.GroupAddr, pFrame->MyAddr.PrivateAddr,
-	dispRxTx(cResult,pFrame->MyAddr.RxTx.iRxTx));
+	dispRxTx(pFrame->MyAddr.RxTx.iRxTx));
 	printf(" S:%s\n\r",
-	dispSensor(cResult,pFrame->MyAddr.SensorType.iSensor));
+	dispSensor(pFrame->MyAddr.SensorType.iSensor));
 	dispTime(ulTime);
 	if(!isMstOrGw(pFrame)){	
-		printf("Dim:%s, ",dispForced(cResult, myDimFact.forced));
-		printf("Type:%s, ", dispSensor(cResult,myDimFact.sensorType));
+		printf("Dim:%s, ",dispForced(myDimFact.forced));
+		printf("Type:%s, ", dispSensor(myDimFact.sensorType));
 		printf("tagetPwm = %0.3f, nowPwm = %0.3f\n\r", 
 			myDimFact.targetValue, myDimFact.nowValue);
 	}
@@ -352,32 +378,6 @@ void UttecUtil::alertFaultSet(uint8_t ucFrom){
 		}
 		printf("You set Fault value from %d\n\r",ucFrom);
 		wait(1);
-	}
-}
-
-void UttecUtil::dispRxTx(char* cpRxTx, rfFrame_t* pFrame){
-	memset(cpRxTx,0,5);	
-	switch(pFrame->MyAddr.RxTx.iRxTx){
-		case eRx:
-			sprintf(cpRxTx,"Rx");
-			break;
-		case eTx:
-			sprintf(cpRxTx,"Tx");
-			break;
-		case eSRx:
-			sprintf(cpRxTx,"SRx");
-			break;
-		case eRpt:
-			sprintf(cpRxTx,"Rpt");
-			break;
-		case eGW:
-			sprintf(cpRxTx,"Gw");
-			break;
-		case eMst:
-			sprintf(cpRxTx,"Mst");
-			break;
-		default:
-			break;
 	}
 }
 

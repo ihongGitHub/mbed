@@ -105,8 +105,7 @@ typedef struct
 	uint8_t Type;
 	uint8_t SensorRate;
 	Status_t Status;
-	uint16_t DTime;
-	
+	uint16_t DTime;	
 } Ctr_t;
 
 typedef struct
@@ -115,6 +114,12 @@ typedef struct
 	uint8_t SubCmd;
 	uint16_t Time;
 } Cmd_t;
+
+typedef struct{
+	uint8_t pid;
+	uint8_t rxtx;
+	uint16_t gid;
+} dst_t;
 
 typedef struct
 {

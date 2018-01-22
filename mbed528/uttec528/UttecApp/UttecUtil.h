@@ -90,8 +90,8 @@ public:
 	bool isNotMyGwGroup(rfFrame_t* pSrc, rfFrame_t* pMy);
 	bool isFactoryOutMode();
 	void alertFaultSet(uint8_t);
-	void dispRxTx(char*, rfFrame_t*);
-	char* dispRxTx(char*, uint8_t);
+	char* dispRxTx(rfFrame_t*);
+	char* dispRxTx(uint8_t);
 };
 
 #endif

@@ -29,11 +29,9 @@ proc485::proc485(uttecLib_t pLib, procServer* pServer){
 
 
 void proc485::sendAckBy485(rfFrame_t* pFrame){
-	char cRxTx[5]; 
-	myUtil.dispRxTx(cRxTx, mp_rfFrame);
 	mp_rfFrame->Cmd.Command = edClientAck;
 	pMy485->send485(pFrame, eRsUp);
-	printf("by485 Up: From %s -> Server\n\r", cRxTx);
+	printf("by485 Up: From %s -> Server\n\r", myUtil.dispRxTx(mp_rfFrame));
 }
 
 void proc485::procVolumeCmd(rfFrame_t* pFrame){
@@ -45,7 +43,6 @@ void proc485::procVolumeCmd(rfFrame_t* pFrame){
 }
 
 void proc485::answerReqBy485(rfFrame_t* pFrame){
-	char cRxTx[5];
 	switch(pFrame->Cmd.SubCmd){
 		case edsControl:
 		case edsNewSet:
@@ -54,8 +51,7 @@ void proc485::answerReqBy485(rfFrame_t* pFrame){
 		case edsCmd_Alternative:
 		case edsPing:
 		case edsCmd_Status:
-				myUtil.dispRxTx(cRxTx, pFrame);
-				printf(" 485 Ack From %s -> server \n\r", cRxTx);
+				printf(" 485 Ack From %s -> server \n\r", myUtil.dispRxTx(pFrame));
 				sendAckBy485(mp_rfFrame);
 			break;
 	}
@@ -103,9 +99,8 @@ void proc485::transferBy485(rfFrame_t* pFrame){
 		pMy485->send485(pFrame, eRsDown);
 	}
 	else{
-		myUtil.dispRxTx(cSrc, pFrame);
-		myUtil.dispRxTx(cMy, mp_rfFrame);
-		printf("Not match Src: %s, My: %s\n\r", cSrc, cMy);
+		printf("Not match Src: %s, My: %s\n\r", 
+			myUtil.dispRxTx(pFrame), myUtil.dispRxTx(mp_rfFrame));
 	}
 }
 

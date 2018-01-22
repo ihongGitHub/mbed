@@ -11,6 +11,7 @@ typedef enum{
 	edNewSetAck, edReady, edReadyAck, edSearch, edSearchAck, //5~9
 	edBack, edAsk, edAskAck, edVolume, edDayLight, //10~14
 	edColor,	//15
+	edSchedule = 20, edMonitor, edEmergency,
 	edServerReq=100, edClientAck, edClientReq, edServerAck, edReportLife, //100~104
 	edDefaultAck=200, edTestMode
 } eCmd_t;

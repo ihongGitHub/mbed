@@ -8,7 +8,6 @@
 #include  "Rf.h"
 
 rfFrame_t Rf::m_SxRxFrame={0};
-rfFrame_t Rf::m_SxTxFrame={0};
 
 rfFrame_t Rf::m_RxFrame={0};
 rfFrame_t Rf::m_TxFrame={0};
@@ -134,20 +133,6 @@ void Rf::sendInternal(){
 	setRfMode(eRxMode);
 }
 
-void Rf::sendSxInternal(){
-	clearRfMode();
-	setRfMode(eTxMode);
-    while (NRF_RADIO->EVENTS_END == 0U) {}; //Wait Event End 		
-	NRF_RADIO->EVENTS_END=0;
-	TxEndFlag=true;
-/*		
-	printf("Ch=%d, Hop=%d -> ",NRF_RADIO->FREQUENCY,
-		m_Ch.Hopping);
-*/
-	clearRfMode();
-	setRfMode(eRxMode);
-}
-
 void Rf::sendRf(const rfFrame_t* ucpTx)
 {
 	UttecUtil myUtil;
@@ -175,18 +160,17 @@ void Rf::sendRf(const rfFrame_t* ucpTx)
 void Rf::sendSxRf(const rfFrame_t* ucpTx)
 {
 	UttecUtil myUtil;
-	printf("sendSxRf Ch =%d -> ", m_Ch.channel);
 	uint8_t ucTempHop=0;
-	m_SxTxFrame=*ucpTx;
+	m_TxFrame=*ucpTx;
 	
 	ucTempHop=m_Ch.Hopping;
 	if(m_Ch.Hopping!=eNoHopping){
 		for(int i=0;i<eNoHopping;i++){
 			m_Ch.Hopping=i; 	setRadio(m_Ch);
-			sendSxInternal();
+			sendInternal();
 		}
 	}
-	else sendSxInternal();
+	else sendInternal();
 	m_Ch.Hopping=ucTempHop;
 }
 
@@ -233,6 +217,7 @@ uint32_t Rf::receiveAction(){
     {
         result = m_RxFrame.MyAddr.GroupAddr;	
 				m_SxRxFrame = m_RxFrame;	
+				printf("m_SxRxFrame.gid = %d",m_SxRxFrame.MyAddr.GroupAddr);
 //		RxEndFlag=isOkCheckSum();
 		RxEndFlag=true;
 		SxRxEndFlag=true;

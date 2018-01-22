@@ -25,7 +25,6 @@ private:
 	static channel_t m_Ch;
 
 	static rfFrame_t m_SxRxFrame;	//for Sx1276Test
-	static rfFrame_t m_SxTxFrame;	//for Sx1276Test
 
 	static rfFrame_t m_RxFrame;
 	static rfFrame_t m_TxFrame;
@@ -34,7 +33,6 @@ private:
 	uint32_t receiveAction();
 	void clearRfMode();
 	void sendInternal();
-	void sendSxInternal();
 	void setRfMode(RfRxMode_t);
 
 public:

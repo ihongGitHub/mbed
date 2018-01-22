@@ -53,11 +53,15 @@ void procSx1276::transferMstGwBy485(rfFrame_t* pFrame, UttecDirection_t dir){
 	}
 }
 
-void procSx1276::transferMstGwBySx(rfFrame_t* pFrame){
+void procSx1276::fromServer2Tx(rfFrame_t* pFrame){
 	if(myUtil.isNotMyGwGroup(pFrame, mp_rfFrame)&&myUtil.isGw(mp_rfFrame)) return;
 	
 	char cCmd[20]; char cSub[20];
 	myUtil.dispCmdandSub(cCmd, cSub, pFrame);
+	printf("server ---> gateway, %s, %s -> ", cCmd, cSub);
+	
+	printf("From Gw sendSxFrame -> end\n\r");
+	sendSxFrame(pFrame);
 }
 
 void procSx1276::dispSx1276(){
@@ -91,7 +95,6 @@ void procSx1276::sendSxFrame(rfFrame_t* pFrame){
 	sxTxFrame_t sTxFrame;
 	sTxFrame.ptrBuf = (sxFrame_t*)pFrame;
 	sTxFrame.size = sizeof(sxFrame_t);
-	printf("sendSxFrame->");
 	pMySx1276->sendLoRa(sTxFrame);
 }
 
@@ -292,15 +295,25 @@ void procSx1276::sx1276Task(rfFrame_t* pFrame){
 				break;
 		case edServerReq:
 			if(myUtil.isMstOrGw(mp_rfFrame)){
-				transferMstGwBy485(pFrame, eDown);
-				transferMstGwBySx(pFrame);
+				if(myUtil.isGw(pFrame)){
+					pFrame->MyAddr.RxTx.iRxTx = eGW;
+					fromServer2Tx(pFrame);
+				}
+				else{
+					printf(" ??? from where %s \n\r", myUtil.dispRxTx(pFrame));
+				}
 				return;
 			}			
 			else if(myUtil.isTx(mp_rfFrame)){
-				printf("From Tx ->");
-//				printf
-				sendSxFrame(pFrame);
-				break;
+				if(myUtil.isGw(pFrame)){
+					printf("From Tx sendSxFrame -> ");
+					pFrame->MyAddr.RxTx.iRxTx = eTx;
+					sendSxFrame(pFrame);
+				}
+				else{		
+					printf(" ??? from where %s \n\r", myUtil.dispRxTx(pFrame));
+					return;
+				}
 			}
 			pMyServer->taskServer(pFrame);
 				break;
