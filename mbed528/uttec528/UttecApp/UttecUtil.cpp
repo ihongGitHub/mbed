@@ -249,6 +249,7 @@ bool UttecUtil::isGw(rfFrame_t* pFrame){
 	else return false;
 }
 bool UttecUtil::isMst(rfFrame_t* pFrame){
+//	printf("------- rxtx = %d", pFrame->MyAddr.RxTx.iRxTx);
 	if(pFrame->MyAddr.RxTx.iRxTx == eMst) return true;
 	else return false;
 }
@@ -323,21 +324,36 @@ UttecFactory_t UttecUtil::m_Factory =
 	{eFactoryTestMode,DeFactoryModeTimeout};
 
 bool UttecUtil::isNotMyGwGroup(rfFrame_t* pSrc, rfFrame_t* pMy){
-	if(pMy->MyAddr.GroupAddr/10 == pSrc->MyAddr.GroupAddr/10) 
+	dst_t* pDst = (dst_t*)&pSrc->Trans;
+	if(pMy->MyAddr.GroupAddr/10 == pDst->gid/10) 
 		return false;
 	else return true;
 }
 
 bool UttecUtil::isMyGroup(rfFrame_t* pSrc, rfFrame_t* pMy){
-	if(pMy->MyAddr.GroupAddr == pSrc->MyAddr.GroupAddr) 
+	dst_t* pDst = (dst_t*)&pSrc->Trans;
+	if(pMy->MyAddr.GroupAddr == pDst->gid) 
 		return true;
 	else return false;
 }
+
 bool UttecUtil::isMyAddr(rfFrame_t* pSrc, rfFrame_t* pMy){
-	if((pMy->MyAddr.GroupAddr == pSrc->MyAddr.GroupAddr)&&
-		(pMy->MyAddr.PrivateAddr == pSrc->MyAddr.PrivateAddr))	
+	dst_t* pDst = (dst_t*)&pSrc->Trans;
+	if((pMy->MyAddr.GroupAddr == pDst->gid)&&
+		(pMy->MyAddr.PrivateAddr == pDst->pid)
+		&&(pMy->MyAddr.RxTx.iRxTx == pDst->rxtx)){	
+			printf(" All Address Matching -> ");
 			return true;
-	else return false;
+		}
+	else if((pMy->MyAddr.GroupAddr == pDst->gid)&&
+		(!pDst->pid)){
+			printf(" Tx Matching and I'm this group -> ");
+			return true;
+	}		
+	else{
+		printf("Not Match and No Action\n\r");
+		return false;
+	}
 }
 
 bool UttecUtil::isFactoryOutMode(){

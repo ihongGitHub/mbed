@@ -204,7 +204,7 @@ void Flash::initOrgFlash(){
 	rfFrame = rfFrame;
 	
 //	rfFrame.MyAddr.GroupAddr=DeFactoryChannel;		//For Test Only
-	rfFrame.MyAddr.GroupAddr=2;		//For Test Only
+	rfFrame.MyAddr.GroupAddr=3;		//For Test Only
 	rfFrame.MyAddr.PrivateAddr=10;
 	rfFrame.MyAddr.Micom.Bit.nRf518=1;
 	rfFrame.MyAddr.RxTx.iRxTx=eSRx;

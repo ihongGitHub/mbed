@@ -34,8 +34,8 @@ private:
 	void transferMstGwBy485(rfFrame_t*, UttecDirection_t);
 	void fromServer2Tx(rfFrame_t*);
 	void setNewFactor();
-
 	void procSensorCmd(rfFrame_t*);
+	void procAck(rfFrame_t*);
 
 public:
 	procSx1276();

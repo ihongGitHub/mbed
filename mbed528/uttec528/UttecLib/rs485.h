@@ -28,7 +28,7 @@ typedef enum{
 typedef enum{
 	tsof='t',
 	teof='t',
-	tFLENGTH=6,
+	tFLENGTH=7,
 	tDe485FrameLength=4
 } testFrame_t;
 

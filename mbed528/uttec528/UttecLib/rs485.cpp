@@ -132,7 +132,7 @@ bool rs485::parseTestData(uint8_t ucChar)
 		m_testDone=false;
 	}
 	else if(ucChar==teof){
-		if((m_tstatus.start)&&(m_tstatus.count==6)){
+		if((m_tstatus.start)&&(m_tstatus.count==(tFLENGTH-2))){
 			m_testDone =true;
 			m_tstatus.flag=true;
 			m_tstatus.count=0;

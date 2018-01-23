@@ -25,10 +25,12 @@ private:
 	void procNewSetSub(rfFrame_t*);
 	void procNewFactSetSub(rfFrame_t*);
 	void procAltSub(rfFrame_t*);
-	void procStatus(rfFrame_t*);
+	bool procStatus(rfFrame_t*);
+	void setAckFrame(rfFrame_t*);
+
 public:
 	procServer(uttecLib_t);
-	void taskServer(rfFrame_t*);
+	bool taskServer(rfFrame_t*);
 	void taskClient(rfFrame_t*);
 };
 

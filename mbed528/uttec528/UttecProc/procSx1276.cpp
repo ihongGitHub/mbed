@@ -211,7 +211,6 @@ void procSx1276::setNewFactor(){
 void procSx1276::resendByRepeater(rfFrame_t* pFrame){
 	if(myUtil.isRpt(mp_rfFrame)){	//Repeat Function		
 		if(!myUtil.isRpt(pFrame)){	//From Rpt?
-			pFrame->MyAddr.RxTx.iRxTx = eRpt;
 			printf("resend by repeater --> ");
 			sendSxFrame(pFrame);	
 		}			
@@ -256,6 +255,14 @@ void procSx1276::searchSx1276(rfFrame_t* pFrame){
 	setSx1276Proc = eWaitGatewayApprove;
 }
 
+void procSx1276::procAck(rfFrame_t* pFrame){
+}
+
+void dispErrorRxTx(rfFrame_t* pThis, rfFrame_t* pFrame){
+	printf(" ??? This %s: ", myUtil.dispRxTx(pThis));
+	printf("from where %s\n\r",myUtil.dispRxTx(pFrame));
+}
+
 void procSx1276::sx1276Task(rfFrame_t* pFrame){
 	bool bSetOk = false;	
 	uint8_t ucCmd = pFrame->Cmd.Command;
@@ -293,58 +300,55 @@ void procSx1276::sx1276Task(rfFrame_t* pFrame){
 				break;
 		case edDayLight:
 				break;
+		
 		case edServerReq:
 			if(myUtil.isMstOrGw(mp_rfFrame)){
-				if(myUtil.isGw(pFrame)){
+				if(myUtil.isMst(pFrame)){
 					pFrame->MyAddr.RxTx.iRxTx = eGW;
 					fromServer2Tx(pFrame);
 				}
-				else{
-					printf(" ??? from where %s \n\r", myUtil.dispRxTx(pFrame));
-				}
+				else dispErrorRxTx(mp_rfFrame, pFrame);
 				return;
 			}			
 			else if(myUtil.isTx(mp_rfFrame)){
 				if(myUtil.isGw(pFrame)){
-					printf("From Tx sendSxFrame -> ");
+					printf("Tx: from Mst, send SxFrame to Rx -> ");
 					pFrame->MyAddr.RxTx.iRxTx = eTx;
 					sendSxFrame(pFrame);
 				}
-				else{		
-					printf(" ??? from where %s \n\r", myUtil.dispRxTx(pFrame));
-					return;
-				}
+				else dispErrorRxTx(mp_rfFrame, pFrame);
 			}
-			pMyServer->taskServer(pFrame);
-				break;
-		case edClientAck:
-			if(myUtil.isMstOrGw(mp_rfFrame)){
-				transferMstGwBy485(pFrame, eUp);
-				return;
-			}			
-				break;
-		case edClientReq:
-			if(myUtil.isGw(mp_rfFrame)&&(pFrame->Cmd.SubCmd==edsApprove)){
-				printf("Gw return message to client for setting approve\n\r");
-				pFrame->Cmd.Command = edServerAck; pFrame->Cmd.SubCmd = edsApprove;
+			if(pMyServer->taskServer(pFrame)){
+				wait(0.01);
+				printf("Now ready for return\n\r");
 				sendSxFrame(pFrame);
+			}
+				break;
+			
+		case edClientAck:
+			printf("Now start edClientAck %d\n\r", 
+				pFrame->MyAddr.RxTx.iRxTx);
+			if(myUtil.isMstOrGw(mp_rfFrame)){
+				printf("Now start edClientAck %d\n\r", 
+					pFrame->MyAddr.RxTx.iRxTx);
+				if(myUtil.isTx(pFrame)){
+					pFrame->MyAddr.RxTx.iRxTx = eGW;
+					sendSxFrame(pFrame);
+					printf("Gw: from tx, send SxFrame to Mst -> \n\r");
+				}
+				else dispErrorRxTx(mp_rfFrame, pFrame);
 				return;
 			}			
+			else if(myUtil.isTx(mp_rfFrame)){
+				if(!myUtil.isMstOrGw(pFrame)){
+					printf("Tx: from Rx, SRx, Rpt, send SxFrame to Mst -> \n\r");
+					pFrame->MyAddr.RxTx.iRxTx = eTx;
+					sendSxFrame(pFrame);
+				}
+				else dispErrorRxTx(mp_rfFrame, pFrame);
+			}
 				break;
-		case edServerAck:
-			if((!myUtil.isGw(mp_rfFrame))&&(pFrame->Cmd.SubCmd==edsApprove)){
-				if( setSx1276Proc != eWaitGatewayApprove ){
-					setSx1276Proc = eReadySet;
-					printf("Already timeout, please try again\n\r");
-					break;
-				}					
-				printf("I received the setting approval from Gateway\n\r");
-				printf("Change channel to Setting channel and waiting Final set\n\r");
-				setSx1276Proc = eWaitRfSet;
-				setNewFactor();
-				return;
-			}			
-				break;
+			
 		default:
 			printf("Check Cmd %d\n\r", ucCmd);
 			break;
