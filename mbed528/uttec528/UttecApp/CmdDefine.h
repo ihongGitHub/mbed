@@ -20,7 +20,7 @@ typedef enum{
 	edsStart=0, edsFromRpt, edsRepeat, edsFromTx,	//0~3
 	edsPowerReset=100, edsPowerRead, edsMonitor, edsControl, edsNewSet,	//100~104
 	edsPing, edsPhoto, edsColor, edsCmd_485NewSet, edsCmd_Alternative,	//105~109
-	edsCmd_Status, edsApprove, edsAck, edsSchedule
+	edsCmd_Status, edsApprove, edsAck, edsSchedule1, edsSchedule2				//110~114
 } eSubCmd_t;
 
 #endif

@@ -29,6 +29,15 @@ typedef struct{
 	uint8_t member[96];
 } monitor_t;
 
+typedef struct{
+	uint8_t ackTime;
+	uint8_t nextTime;
+	uint8_t nextNum;
+	uint8_t totalNum;
+	eMonitor_t memBit[12];
+	uint8_t member[96];
+} monitor1_t;
+
 class monitor
 {
 private:

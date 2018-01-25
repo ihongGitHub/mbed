@@ -119,6 +119,26 @@ simSx mySim(&myRf);
 	
 	Rcu myRcu;	
 	myTest.setTest(myLib, &mProcServer);
+	
+	uint32_t ulCount = 0;
+	bool bRx = false;
+	while(1){
+		myUtil.setWdtReload();
+		if(Uart.readable()){
+			printf("Input %c\n\r", getchar());
+			bRx = true;
+		}
+//		wait(0.5);
+		if(bRx){
+			bRx = false;
+			Serial hks(p16,p11);
+			hks.baud(115200);
+			hks.printf("Count = %d\n\r",ulCount++);
+			Serial back(p9,p11);
+			back.baud(115200);
+		}
+	}
+	wait(0.1);
 	while(true){
 		myUtil.setWdtReload();
 		
