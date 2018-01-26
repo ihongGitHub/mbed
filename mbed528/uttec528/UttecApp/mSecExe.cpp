@@ -167,13 +167,13 @@ void mSecExe::switchSensorType(rfFrame_t* pFrame){
 void mSecExe::msecTask(rfFrame_t* pFrame){
 	UttecUtil myUtil;	
 	static uint32_t ulCount = 0;	
-	static bool isRealMode = true;
+	static bool isRealMode = false;
 	ulCount++;
 	
 //	putchar('.');
-	if(isRealMode)
 	if(!myUtil.isMstOrGw(pFrame)){
-		switchSensorType(pFrame);
+		if(isRealMode)
+			switchSensorType(pFrame);
 		switchDimType(pFrame);
 	}
 	/*

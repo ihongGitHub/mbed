@@ -5,7 +5,7 @@
 
 rfFrame_t rs485::m_485Rx = {0,};
 rs485Status_t rs485::m_status={0};
-rs485Status_t rs485::m_tstatus={0};
+//rs485Status_t rs485::m_tstatus={0};
 
 uint8_t rs485::m485Data[]={0};
 uint8_t rs485::mtData[]={0};
@@ -24,12 +24,71 @@ rs485::rs485(Serial* pSer){
 	upCtr = 1;
 }
 
+static Timeout rs485T;
+static bool bRs485Timeout = false;
+
+static void rs485Timeout(){
+	bRs485Timeout = true;
+}
+
+bool rs485::isAnyDone(){
+	static type485_t eType = e485NoType;
+	static type485Proc_t eProc = e485procReady;	
+	uint8_t ucChar;
+	
+	if(pMySer->readable()){
+		ucChar = getchar();
+		putchar(ucChar);
+		rs485T.attach(&rs485Timeout, 1);
+	}
+	else{
+	//	if((!m_status.start)&&bRs485Timeout){
+		if(bRs485Timeout){
+			eType = e485NoType; eProc = e485procReady;
+			bRs485Timeout = false;
+//			printf("\n\r+++++++++++++ timeout \n\r");
+		}				
+		return m_485Done||m_testDone;
+	}
+	
+	switch(eProc){
+		case e485procReady:
+			switch(ucChar){
+				case '{': eType = e485Uttec; eProc = e485procStart; 
+				putchar('#');
+				parse485Data(ucChar);
+				break;
+				case 't': eType = e485Test; eProc = e485procStart; 
+				parseTestData(ucChar);
+				break;
+				case ':': printf("Mod Bus Connection\n\r");
+				break;
+				default: putchar(ucChar); break;
+			}
+			break;
+		case e485procStart:
+			switch(eType){
+				putchar('*');
+				case e485Uttec: parse485Data(ucChar);	
+				break;
+				putchar('?');
+				case e485Test:  parseTestData(ucChar);	break;
+				default: putchar('?'); break;
+			}
+			break;
+		default:
+				putchar('?');
+			break;
+	}
+	return m_485Done||m_testDone;
+}
+
 bool rs485::is485Done(){
-//	if(pMySer->readable()) parse485Data(getchar());
+	if(pMySer->readable()) parse485Data(getchar());
 	return m_485Done;
 }
 bool rs485::isTestDone(){
-	if(pMySer->readable()) parseTestData(getchar());
+//	if(pMySer->readable()) parseTestData(getchar());
 	return m_testDone;
 }
 
@@ -125,33 +184,33 @@ bool rs485::parse485Data(uint8_t ucChar)
 
 bool rs485::parseTestData(uint8_t ucChar)
 {
-	if((ucChar==tsof)&&(!m_tstatus.start)){
-		m_tstatus.flag=false;
-		m_tstatus.count=0;
-		m_tstatus.start=true;
+	if((ucChar==tsof)&&(!m_status.start)){
+		m_status.flag=false;
+		m_status.count=0;
+		m_status.start=true;
 		m_testDone=false;
 	}
 	else if(ucChar==teof){
-		if((m_tstatus.start)&&(m_tstatus.count==(tFLENGTH-2))){
+		if((m_status.start)&&(m_status.count==(tFLENGTH-2))){
 			m_testDone =true;
-			m_tstatus.flag=true;
-			m_tstatus.count=0;
-			m_tstatus.start=false;
+			m_status.flag=true;
+			m_status.count=0;
+			m_status.start=false;
 		}
 		else{
-			m_tstatus.flag=false;
-			m_tstatus.count=0;
-			m_tstatus.start=false;
+			m_status.flag=false;
+			m_status.count=0;
+			m_status.start=false;
 			m_testDone=false;
 		}
 	}
-	else if(m_tstatus.count>4){
-			m_tstatus.flag=false;
-			m_tstatus.count=0;
-			m_tstatus.start=false;
+	else if(m_status.count>4){
+			m_status.flag=false;
+			m_status.count=0;
+			m_status.start=false;
 			m_testDone=false;
 	}
-	else mtData[m_tstatus.count++]=ucChar;
+	else mtData[m_status.count++]=ucChar;
 	return m_testDone;
 }
 

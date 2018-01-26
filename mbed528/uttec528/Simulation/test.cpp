@@ -225,15 +225,23 @@ void test::setTestReceiveFrameByNum(uint16_t uiNum){
 	pMyRf->setRxFlag();
 	rfFrame_t* pRf = pMyRf->returnRxBuf();
 	*pRf = *mp_rfFrame;
+	
 	pMy485->set485Done();
 	rfFrame_t* pRf = pMy485->return485Buf();
 	*pRf = *mp_rfFrame;
-*/
+
 	pMySim->setSxRxFlag();
 	sxRxFrame_t* pSxRf = pMySim->readLoRa();
-	rfFrame_t MyRf = *mp_rfFrame;
+	rfFrame_t* pRf = mp_rfFrame;
 	
-	rfFrame_t* pRf = &MyRf;
+	*(rfFrame_t*)pSxRf->ptrBuf = *pRf;
+	
+*/
+	pMy485->set485Done();
+	rfFrame_t* pRf = pMy485->return485Buf();
+	rfFrame_t MyRf = *mp_rfFrame;
+
+	*pRf = MyRf;
 	
 	dst_t* sDst = (dst_t*)&pRf->Trans;
 
@@ -247,7 +255,6 @@ void test::setTestReceiveFrameByNum(uint16_t uiNum){
 	sDst->pid = pRf->MyAddr.PrivateAddr;
 	sDst->gid = pRf->MyAddr.GroupAddr;
 	
-	*(rfFrame_t*)pSxRf->ptrBuf = *pRf;
 	printf("\n\rEnd of setReceiveFrameByNum\n\r");
 	myUtil.dispSec(mp_rfFrame,false);
 }

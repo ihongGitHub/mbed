@@ -43,11 +43,33 @@ typedef struct{
 	uint16_t sum;
 } rs485withRf_t;
 
+typedef enum{
+	eUttecFrame = '{',
+	eTestFrame = 't',
+	eAsciiFrame = ':',
+	eRtuFrame = 'r'
+} frame485_t;
+
+typedef enum{
+	e485NoType = 0,
+	e485Uttec = 1,
+	e485Ascii = 2,
+	e485Rtu = 3,
+	e485Test = 4
+} type485_t; 
+
+typedef enum{
+	e485procReady = 0,
+	e485procStart = 1,
+	e485procDo = 2,
+	e485procEnd = 3
+} type485Proc_t;
+
 class rs485
 {
 private:
 	static rs485Status_t m_status;
-	static rs485Status_t m_tstatus;
+//	static rs485Status_t m_tstatus;
 
 	static rfFrame_t m_485Rx;
 	static uint8_t m485Data[FLENGTH];
@@ -64,9 +86,10 @@ private:
 	void sendByUart();
 	void sendByDown();
 	void sendByUp();
-
+	
 public:
 	rs485(Serial*);
+	bool isAnyDone();
 	bool isTestDone();
 	bool is485Done();
 	void clear485Done();

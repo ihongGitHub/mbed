@@ -120,25 +120,6 @@ simSx mySim(&myRf);
 	Rcu myRcu;	
 	myTest.setTest(myLib, &mProcServer);
 	
-	uint32_t ulCount = 0;
-	bool bRx = false;
-	while(1){
-		myUtil.setWdtReload();
-		if(Uart.readable()){
-			printf("Input %c\n\r", getchar());
-			bRx = true;
-		}
-//		wait(0.5);
-		if(bRx){
-			bRx = false;
-			Serial hks(p16,p11);
-			hks.baud(115200);
-			hks.printf("Count = %d\n\r",ulCount++);
-			Serial back(p9,p11);
-			back.baud(115200);
-		}
-	}
-	wait(0.1);
 	while(true){
 		myUtil.setWdtReload();
 		
@@ -209,8 +190,27 @@ simSx mySim(&myRf);
 		if(tick_Sec){			
 			tick_Sec = false;			
 			mProcSec.secTask(pFrame);	
+//			my485.send485(pFrame, eUart);
 //			myRcu.testRcuGenerate();
 		}
+		if(my485.isAnyDone()){
+			if(my485.is485Done()){
+				my485.clear485Done();
+//				my485.clearTestDone();
+				mProc485.rs485Task(my485.return485Buf());
+				printf("485Done\n\r");
+			}
+			if(my485.isTestDone()){
+//				my485.clear485Done();
+				my485.clearTestDone();
+				uint16_t uiResult = my485.returnTestData();
+				printf("Test Data: %d\n\r",uiResult);
+				if(uiResult>=10000) myTest.setTestReceiveFrameByNum(uiResult);
+				else if((uiResult<10000)&&(uiResult>100)) myTest.setTestAddr(uiResult);
+				else myTest.setTestMyFrameByNum(uiResult);
+			}
+		}
+/*		
 		
 		if(my485.isTestDone()){		//For test
 			my485.clearTestDone();
@@ -220,7 +220,6 @@ simSx mySim(&myRf);
 			else if((uiResult<10000)&&(uiResult>100)) myTest.setTestAddr(uiResult);
 			else myTest.setTestMyFrameByNum(uiResult);
 		}		
-/*		
 		*/
 	}
 }

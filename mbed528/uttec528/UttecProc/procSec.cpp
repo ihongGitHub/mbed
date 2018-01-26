@@ -19,8 +19,8 @@ void procSec::setProductType(){
 	m_product.rcu = false;
 	m_product.rf = false;
 	m_product.ble	= false;
-	m_product.rs485 = true;
-	m_product.sx1276 = true;
+	m_product.rs485 = false;
+	m_product.sx1276 = false;
 }
 
 procSec::procSec(uttecLib_t pLib, procServer* pServer){
