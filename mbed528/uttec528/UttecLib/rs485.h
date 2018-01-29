@@ -27,7 +27,7 @@ typedef enum{
 
 typedef enum{
 	tsof='t',
-	teof='t',
+	teof='T',
 	tFLENGTH=7,
 	tDe485FrameLength=4
 } testFrame_t;
@@ -77,6 +77,8 @@ private:
 	static bool m_485Done;
 	static bool m_testDone;
 	static Serial* pMySer;
+
+	void reformRsFrame(uint8_t);
 
 	bool parse485Data(uint8_t);
 	bool parseTestData(uint8_t);

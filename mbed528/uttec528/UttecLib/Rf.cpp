@@ -217,7 +217,7 @@ uint32_t Rf::receiveAction(){
     {
         result = m_RxFrame.MyAddr.GroupAddr;	
 				m_SxRxFrame = m_RxFrame;	
-				printf("m_SxRxFrame.gid = %d",m_SxRxFrame.MyAddr.GroupAddr);
+//				printf("m_SxRxFrame.gid = %d",m_SxRxFrame.MyAddr.GroupAddr);
 //		RxEndFlag=isOkCheckSum();
 		RxEndFlag=true;
 		SxRxEndFlag=true;

@@ -30,6 +30,7 @@ private:
 	void procRfVolumeCmd(rfFrame_t*);
 	void procRfDaylightCmd(rfFrame_t*);
 	void resendByRfRepeater(rfFrame_t*);
+	void resendSensorByRfRepeater(rfFrame_t*);
 	void searchRf(rfFrame_t*);
 	void setNewFactor();
 	void processCmdNewSet(rfFrame_t*);

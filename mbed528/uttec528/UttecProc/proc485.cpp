@@ -28,11 +28,6 @@ proc485::proc485(uttecLib_t pLib, procServer* pServer){
 }
 
 
-void proc485::sendAckBy485(rfFrame_t* pFrame){
-	mp_rfFrame->Cmd.Command = edClientAck;
-	pMy485->send485(pFrame, eRsUp);
-	printf("by485 Up: From %s -> Server\n\r", myUtil.dispRxTx(mp_rfFrame));
-}
 
 void proc485::procVolumeCmd(rfFrame_t* pFrame){
 	pMy_mSec->m_sensorType = eVolume;
@@ -42,66 +37,9 @@ void proc485::procVolumeCmd(rfFrame_t* pFrame){
 		pMy_mSec->sDim.target);
 }
 
-void proc485::answerReqBy485(rfFrame_t* pFrame){
-	switch(pFrame->Cmd.SubCmd){
-		case edsControl:
-		case edsNewSet:
-		case edsPhoto:
-		case edsCmd_485NewSet:
-		case edsCmd_Alternative:
-		case edsPing:
-		case edsCmd_Status:
-				printf(" 485 Ack From %s -> server \n\r", myUtil.dispRxTx(pFrame));
-				sendAckBy485(mp_rfFrame);
-			break;
-	}
-}
-
-void proc485::transferBy485(rfFrame_t* pFrame){
-	bool bPass = false;
-	bool bReturn = false;
-	char cCmd[20]; char cSub[20];
-	char cSrc[5]; char cMy[5];
-	
-	if(myUtil.isMyRxTx(mp_rfFrame, pFrame)) bReturn = true;
-	
-	switch(mp_rfFrame->MyAddr.RxTx.iRxTx){
-		case eMst: bPass = true; break;
-		case eGW: 
-			if(!myUtil.isNotMyGwGroup(pFrame, mp_rfFrame))
-				bPass = true;
-			else bReturn = false;
-			break;
-		case eTx:
-			if(pFrame->MyAddr.GroupAddr == mp_rfFrame->MyAddr.GroupAddr)
-				bPass = true;
-			else bReturn = false;
-			break;
-		case eRpt:
-		case eSRx:
-		case eRx:
-			if(pFrame->MyAddr.GroupAddr != mp_rfFrame->MyAddr.GroupAddr)
-				bReturn = false;
-			break;
-	}
-	if(bReturn){
-		pMyServer->taskServer(pFrame);
-		answerReqBy485(pFrame);
-		return;
-	}
-	else if(bPass){
-		if(myUtil.isTx(mp_rfFrame)){
-				printf("byRf: isTx ");
-				pMyRf->sendRf(pFrame);	
-		}
-		myUtil.dispCmdandSub(cCmd, cSub, pFrame);
-		printf("by485 Down: , %s, %s\n\r", cCmd, cSub);
-		pMy485->send485(pFrame, eRsDown);
-	}
-	else{
-		printf("Not match Src: %s, My: %s\n\r", 
-			myUtil.dispRxTx(pFrame), myUtil.dispRxTx(mp_rfFrame));
-	}
+static void dispErrorRxTx(rfFrame_t* pThis, rfFrame_t* pFrame){
+	printf(" ??? This %s: ", myUtil.dispRxTx(pThis));
+	printf("from where %s, No Action\n\r",myUtil.dispRxTx(pFrame));
 }
 
 void proc485::rs485Task(rfFrame_t* pFrame){
@@ -152,10 +90,47 @@ void proc485::rs485Task(rfFrame_t* pFrame){
 		case edDayLight:
 				break;
 		case edServerReq:
-			transferBy485(pFrame);
+			if(myUtil.isMstOrGw(mp_rfFrame)){
+				if(myUtil.isMst(pFrame)){
+					pFrame->MyAddr.RxTx.iRxTx = eGW;
+					pMy485->send485(pFrame, eRsDown);
+					printf("From mst or gw send 485Frame to Tx -> end \n\r");
+				}
+				else dispErrorRxTx(mp_rfFrame, pFrame);
+				return;
+			}			
+			else if(myUtil.isTx(mp_rfFrame)){
+				if(myUtil.isGw(pFrame)){
+					printf("Tx: from Mst, send SxFrame to Rx -> ");
+					pFrame->MyAddr.RxTx.iRxTx = eTx;
+					pMy485->send485(pFrame, eRsDown);
+				}
+				else dispErrorRxTx(mp_rfFrame, pFrame);
+			}
+			if(pMyServer->taskServer(pFrame)){
+				wait(0.01);
+				printf("Now ready for return\n\r");
+				pMy485->send485(pFrame, eRsUp);
+			}
 				break;
 		case edClientAck:
-			sendAckBy485(pFrame);
+			if(myUtil.isMstOrGw(mp_rfFrame)){
+				if(myUtil.isTx(pFrame)){
+					pFrame->MyAddr.RxTx.iRxTx = eGW;
+					pMy485->send485(pFrame, eRsUp);
+					printf("Gw: from tx, send 485Frame to Mst -> end\n\r");
+				}
+				else dispErrorRxTx(mp_rfFrame, pFrame);
+				return;
+			}			
+			else if(myUtil.isTx(mp_rfFrame)){
+				if(!myUtil.isMstOrGw(pFrame)){
+					printf("Tx: from Rx, SRx, Rpt, send 485Frame to Mst -> end\n\r");
+					pFrame->MyAddr.RxTx.iRxTx = eTx;
+					pMy485->send485(pFrame, eRsUp);
+				}
+				else dispErrorRxTx(mp_rfFrame, pFrame);
+			}
 				break;
 		default:
 			printf("Check Cmd %d\n\r", ucCmd);

@@ -258,9 +258,9 @@ void procSx1276::searchSx1276(rfFrame_t* pFrame){
 void procSx1276::procAck(rfFrame_t* pFrame){
 }
 
-void dispErrorRxTx(rfFrame_t* pThis, rfFrame_t* pFrame){
+static void dispErrorRxTx(rfFrame_t* pThis, rfFrame_t* pFrame){
 	printf(" ??? This %s: ", myUtil.dispRxTx(pThis));
-	printf("from where %s\n\r",myUtil.dispRxTx(pFrame));
+	printf("from where %s, No Action\n\r",myUtil.dispRxTx(pFrame));
 }
 
 void procSx1276::sx1276Task(rfFrame_t* pFrame){

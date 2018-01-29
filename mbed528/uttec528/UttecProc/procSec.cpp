@@ -17,7 +17,7 @@ productType_t procSec::m_product = {0,};
 
 void procSec::setProductType(){
 	m_product.rcu = false;
-	m_product.rf = false;
+	m_product.rf = true;
 	m_product.ble	= false;
 	m_product.rs485 = false;
 	m_product.sx1276 = false;

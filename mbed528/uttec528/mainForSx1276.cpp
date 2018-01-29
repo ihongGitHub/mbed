@@ -194,53 +194,32 @@ simSx mySim(&myRf);
 //			myRcu.testRcuGenerate();
 		}
 		if(my485.isAnyDone()){
-			if(my485.is485Done()){
-				my485.clear485Done();
-//				my485.clearTestDone();
-				mProc485.rs485Task(my485.return485Buf());
-				printf("485Done\n\r");
-			}
-			if(my485.isTestDone()){
-//				my485.clear485Done();
+			if(my485.isTestDone()){		//For test
 				my485.clearTestDone();
 				uint16_t uiResult = my485.returnTestData();
 				printf("Test Data: %d\n\r",uiResult);
 				if(uiResult>=10000) myTest.setTestReceiveFrameByNum(uiResult);
 				else if((uiResult<10000)&&(uiResult>100)) myTest.setTestAddr(uiResult);
 				else myTest.setTestMyFrameByNum(uiResult);
-			}
+			}					
 		}
-/*		
-		
-		if(my485.isTestDone()){		//For test
-			my485.clearTestDone();
-			uint16_t uiResult = my485.returnTestData();
-			printf("Test Data: %d\n\r",uiResult);
-			if(uiResult>=10000) myTest.setTestReceiveFrameByNum(uiResult);
-			else if((uiResult<10000)&&(uiResult>100)) myTest.setTestAddr(uiResult);
-			else myTest.setTestMyFrameByNum(uiResult);
-		}		
-		*/
 	}
 }
 
-/*
-			pFrame->MyAddr.SensorType.iSensor = eNoSensor;
-//			pFrame->MyAddr.RxTx.iRxTx = eRx;
-//			pFrame->MyAddr.RxTx.iRxTx = eTx;
-//			pFrame->MyAddr.RxTx.iRxTx = eSRx;
-			pFrame->MyAddr.RxTx.iRxTx = eRpt;
-			
-			sxFrame_t sxFrame;
-			sxFrame.gid = 2;
-			sxFrame.cmd = edVolume;
-			sxFrame.rxtx = eSRx;
-			sxFrame.level = 33;
-
-			
-			for(int i = 0; i<6; i++) sxFrame.mac[i] = i;
-			if(pFrame->MyAddr.RxTx.iRxTx == eTx){
-				printf("sendSxFrame for eTx\n\r"); 
-				mProcSx1276.sendSxFrame((rfFrame_t*)&sxFrame);
-			}
-*/
+/*		
+		if(my485.isAnyDone()){
+			if(my485.is485Done()){		//For rs485 Receive
+				my485.clear485Done();
+				printf("\n\ris485Done\n\r");
+				mProc485.rs485Task(my485.return485Buf());
+			}		
+			if(my485.isTestDone()){		//For test
+				my485.clearTestDone();
+				uint16_t uiResult = my485.returnTestData();
+				printf("Test Data: %d\n\r",uiResult);
+				if(uiResult>=10000) myTest.setTestReceiveFrameByNum(uiResult);
+				else if((uiResult<10000)&&(uiResult>100)) myTest.setTestAddr(uiResult);
+				else myTest.setTestMyFrameByNum(uiResult);
+			}					
+		}
+		*/

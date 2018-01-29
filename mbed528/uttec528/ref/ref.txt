@@ -81,4 +81,7 @@ typedef struct{
 목적: Server로 부터 목적지를 지정함으로써 중간 Logic을 단순화
 
 
+2018.01.27
+rs485 and sx1276 edClientAck에 대한 부분 추가 Test필요
+
 

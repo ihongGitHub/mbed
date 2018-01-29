@@ -24,67 +24,43 @@ rs485::rs485(Serial* pSer){
 	upCtr = 1;
 }
 
-static Timeout rs485T;
-static bool bRs485Timeout = false;
+static rs485Status_t tStatus = {0,};
+static uint8_t rsFrame[72];
 
-static void rs485Timeout(){
-	bRs485Timeout = true;
+void rs485::reformRsFrame(uint8_t ucType){
+	switch(ucType){
+		case 1: 
+			for(int i = 1; i<70; i++) m485Data[i-1] = rsFrame[i];
+			m_485Done = reform485toRx(m485Data);
+			break;
+		case 2: 
+			for(int i = 1; i<7; i++) mtData[i-1] = rsFrame[i];
+			m_testDone =true;
+			break;
+		default:
+			break;
+	}
 }
 
 bool rs485::isAnyDone(){
-	static type485_t eType = e485NoType;
-	static type485Proc_t eProc = e485procReady;	
-	uint8_t ucChar;
-	
-	if(pMySer->readable()){
-		ucChar = getchar();
-		putchar(ucChar);
-		rs485T.attach(&rs485Timeout, 1);
-	}
-	else{
-	//	if((!m_status.start)&&bRs485Timeout){
-		if(bRs485Timeout){
-			eType = e485NoType; eProc = e485procReady;
-			bRs485Timeout = false;
-//			printf("\n\r+++++++++++++ timeout \n\r");
-		}				
-		return m_485Done||m_testDone;
-	}
-	
-	switch(eProc){
-		case e485procReady:
-			switch(ucChar){
-				case '{': eType = e485Uttec; eProc = e485procStart; 
-				putchar('#');
-				parse485Data(ucChar);
-				break;
-				case 't': eType = e485Test; eProc = e485procStart; 
-				parseTestData(ucChar);
-				break;
-				case ':': printf("Mod Bus Connection\n\r");
-				break;
-				default: putchar(ucChar); break;
-			}
-			break;
-		case e485procStart:
-			switch(eType){
-				putchar('*');
-				case e485Uttec: parse485Data(ucChar);	
-				break;
-				putchar('?');
-				case e485Test:  parseTestData(ucChar);	break;
-				default: putchar('?'); break;
-			}
-			break;
-		default:
-				putchar('?');
-			break;
+	while(pMySer->readable()){		
+		uint8_t ucTemp = getchar();
+		rsFrame[tStatus.count++] = ucTemp;
+		if(ucTemp == '}'){
+			tStatus.count = 0;
+			reformRsFrame(1);
+		}
+		else if(ucTemp == 'T'){
+			tStatus.count = 0;
+			reformRsFrame(2);
+		}
+		if(tStatus.count > 71) tStatus.count = 0;
 	}
 	return m_485Done||m_testDone;
 }
 
 bool rs485::is485Done(){
-	if(pMySer->readable()) parse485Data(getchar());
+//	if(pMySer->readable()) parse485Data(getchar());
 	return m_485Done;
 }
 bool rs485::isTestDone(){

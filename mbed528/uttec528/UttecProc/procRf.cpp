@@ -56,8 +56,18 @@ void procRf::procRfRepeatCmd(rfFrame_t* pFrame){
 
 void procRf::resendByRfRepeater(rfFrame_t* pFrame){
 	if(myUtil.isRpt(mp_rfFrame)){	//Repeat Function
+		if(myUtil.isTx(pFrame)||myUtil.isMstOrGw(pFrame)){	//From Rpt?
+			mp_rfFrame->MyAddr.RxTx.iRxTx = eRpt;
+			printf("Rf Rpt ->");
+			pMyRf->sendRf(pFrame);	
+		}			
+	}
+}
+
+void procRf::resendSensorByRfRepeater(rfFrame_t* pFrame){
+	if(myUtil.isRpt(mp_rfFrame)){	//Repeat Function
 		if(!myUtil.isRpt(pFrame)){	//From Rpt?
-			pFrame->MyAddr.RxTx.iRxTx = eRpt;
+			mp_rfFrame->MyAddr.RxTx.iRxTx = eRpt;
 			printf("Rf Rpt ->");
 			pMyRf->sendRf(pFrame);	
 		}			
@@ -78,7 +88,7 @@ void procRf::procRfSensorCmd(rfFrame_t* pFrame){
 	pMy_mSec->sDim.dTime = mp_rfFrame->Ctr.DTime*1000;
 	pMy_mSec->sDim.target = mp_rfFrame->Ctr.High/100.0;
 	
-	resendByRfRepeater(pFrame);
+	resendSensorByRfRepeater(pFrame);
 	printf("End of procRfSensorCmd\n\r");
 }
 
@@ -242,6 +252,11 @@ void procRf::transferMstGwByRf(rfFrame_t* pFrame){
 	printf("End of transferMstGwByRf\n\r");
 }
 
+static void dispErrorRxTx(rfFrame_t* pThis, rfFrame_t* pFrame){
+	printf(" ??? This %s: ", myUtil.dispRxTx(pThis));
+	printf("from where %s, No Action\n\r",myUtil.dispRxTx(pFrame));
+}
+
 void procRf::taskRf(rfFrame_t* pFrame){
 	UttecLed myLed;
 	uint8_t ucCmd = pFrame->Cmd.Command;
@@ -278,22 +293,26 @@ void procRf::taskRf(rfFrame_t* pFrame){
 		case edServerReq:
 			resendByRfRepeater(pFrame);
 			if(myUtil.isMstOrGw(mp_rfFrame)){
-				if(myUtil.isRpt(pFrame)){
-					printf("From Rpt, No Transfer: isMstOrGw\n\r");
-					break;
+				if(myUtil.isMst(pFrame)){
+					pFrame->MyAddr.RxTx.iRxTx = eGW;
+					transferMstGwByRf(pFrame);
 				}
-				transferMstGwByRf(pFrame);
+				else dispErrorRxTx(mp_rfFrame, pFrame);
 				break;
 			}
-			if(myUtil.isTx(mp_rfFrame)){
-				if(myUtil.isRpt(pFrame)){
-					printf("From Rpt, No Transfer: isTx -> ");
-					pMyServer->taskServer(pFrame);
-					break;
+			else if(myUtil.isTx(mp_rfFrame)){
+				if(myUtil.isGw(pFrame)){
+					printf("Tx: from Mst, send SxFrame to Rx -> ");
+					pFrame->MyAddr.RxTx.iRxTx = eTx;
+					pMyRf->sendRf(pFrame);	
 				}
+				else dispErrorRxTx(mp_rfFrame, pFrame);
+			}
+			if(pMyServer->taskServer(pFrame)){
+				wait(0.01);
+				printf("Now ready for return\n\r");
 				pMyRf->sendRf(pFrame);	
 			}
-			pMyServer->taskServer(pFrame);
 				break;
 		case edClientReq:
 				break;
