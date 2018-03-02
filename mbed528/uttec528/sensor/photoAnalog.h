@@ -8,7 +8,7 @@
 #include "Flash.h"
 #include "UttecUtil.h"
 
-#include "bh1750.h"
+#include "BH1750.h"
 
 #define floatVol_Zero (float)0.01
 #define MaxVolumeCount 10000

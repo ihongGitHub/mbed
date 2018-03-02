@@ -1,0 +1,112 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: •ÏVision V5.24.2.0
+Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Kwang Seon Hong, UTTEC, LIC=KRMMM-XAJCR-T33MI-T3M7J-QP611-9RZPL
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.24.1
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 5 (build 528)
+Assembler:       Armasm.exe V5.06 update 5 (build 528)
+Linker/Locator:  ArmLink.exe V5.06 update 5 (build 528)
+Library Manager: ArmAr.exe V5.06 update 5 (build 528)
+Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
+CPU DLL:         
+Dialog DLL:      DCM.DLL V1.16.0.0
+Target DLL:      CMSIS_AGDI.dll V1.28.3.0
+Dialog DLL:      TCM.DLL V1.32.0.0
+ 
+<h2>Project:</h2>
+C:\mbed\mbed518\uttec518\empty.uvprojx
+Project File Date:  02/06/2018
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'uttec518'
+compiling radio_config.c...
+compiling Rf.cpp...
+compiling mainForSx1276.cpp...
+..\..\mbed528\uttec528\mainForSx1276.cpp(103): warning:  #177-D: variable "myCode"  was declared but never referenced
+  			rcuValue_t myCode;
+..\..\mbed528\uttec528\mainForSx1276.cpp(142): warning:  #177-D: variable "psx"  was declared but never referenced
+  			sxFrame_t* psx = (sxFrame_t*)psRf;
+..\..\mbed528\uttec528\mainForSx1276.cpp(51): warning:  #550-D: variable "addr"  was set but never used
+  	ble_gap_addr_t addr;
+..\..\mbed528\uttec528\mainForSx1276.cpp: 3 warnings, 0 errors
+compiling Flash.cpp...
+compiling rs485.cpp...
+compiling Rcu.cpp...
+..\..\mbed528\uttec528\UttecLib\Rcu.cpp(28): warning:  #550-D: variable "bRcuTimeout"  was set but never used
+  static bool bRcuTimeout = false;
+..\..\mbed528\uttec528\UttecLib\Rcu.cpp(29): warning:  #177-D: function "rcuTimeout"  was declared but never referenced
+  static void rcuTimeout(){
+..\..\mbed528\uttec528\UttecLib\Rcu.cpp(121): warning:  #177-D: function "rcuCallback"  was declared but never referenced
+  static void rcuCallback()
+..\..\mbed528\uttec528\UttecLib\Rcu.cpp: 3 warnings, 0 errors
+compiling DimmerRf.cpp...
+compiling modBus.cpp...
+..\..\mbed528\uttec528\UttecLib\modBus.cpp(273): warning:  #177-D: variable "ucpSrc"  was declared but never referenced
+  	uint8_t* ucpSrc = (uint8_t*)pFrame;
+..\..\mbed528\uttec528\UttecLib\modBus.cpp: 1 warning, 0 errors
+compiling UttecLed.cpp...
+compiling mSecExe.cpp...
+compiling UttecUtil.cpp...
+compiling proc485.cpp...
+compiling procBle.cpp...
+compiling procRf.cpp...
+compiling procSec.cpp...
+compiling procServer.cpp...
+compiling schedule.cpp...
+compiling procSx1276.cpp...
+..\..\mbed528\uttec528\UttecProc\procSx1276.cpp(266): warning:  #177-D: variable "bSetOk"  was declared but never referenced
+  	bool bSetOk = false;	
+..\..\mbed528\uttec528\UttecProc\procSx1276.cpp: 1 warning, 0 errors
+compiling monitor.cpp...
+compiling comErr.cpp...
+compiling test.cpp...
+..\..\mbed528\uttec528\UttecProc\test.cpp(204): warning:  #177-D: variable "ucRxTxDst"  was declared but never referenced
+  	uint8_t ucRxTxDst = uiNum%10; uiNum /= 10;
+..\..\mbed528\uttec528\UttecProc\test.cpp(205): warning:  #177-D: variable "ucSensorDst"  was declared but never referenced
+  	uint8_t ucSensorDst = uiNum%10; uiNum /= 10;
+..\..\mbed528\uttec528\UttecProc\test.cpp(231): warning:  #177-D: variable "sDst"  was declared but never referenced
+  	dst_t* sDst = (dst_t*)&pRf->Trans;
+..\..\mbed528\uttec528\UttecProc\test.cpp(141): warning:  #177-D: function "setCmd"  was declared but never referenced
+  static uint8_t setCmd(uint8_t ucCmd){
+..\..\mbed528\uttec528\UttecProc\test.cpp: 4 warnings, 0 errors
+compiling UttecBle.cpp...
+compiling simSx.cpp...
+compiling pirAnalog.cpp...
+compiling photoAnalog.cpp...
+compiling volume.cpp...
+compiling BH1750.cpp...
+compiling Pyd1788.cpp...
+compiling eprom.cpp...
+compiling HX711.cpp...
+..\..\mbed528\uttec528\sensor\HX711.cpp(153): warning:  #550-D: variable "testTick"  was set but never used
+  static bool testTick = false;
+..\..\mbed528\uttec528\sensor\HX711.cpp: 1 warning, 0 errors
+linking...
+Program Size: Code=60328 RO-data=2996 RW-data=792 ZI-data=4344  
+FromELF: creating hex file...
+".\BUILD\sx1276nrf518_180205_1410.axf" - 0 Error(s), 13 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: NordicSemiconductor
+                http://developer.nordicsemi.com/nRF5_SDK/pieces/nRF_DeviceFamilyPack/NordicSemiconductor.nRF_DeviceFamilyPack.8.15.0.pack
+                NordicSemiconductor.nRF_DeviceFamilyPack.8.15.0
+                Nordic Semiconductor nRF ARM devices Device Family Pack.
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_uttec518
+  C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.15.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:11
+</pre>
+</body>
+</html>

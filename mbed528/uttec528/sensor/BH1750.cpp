@@ -3,7 +3,7 @@
 
 #include "mbed.h"
 
-#include "bh1750.h"
+#include "BH1750.h"
 
 I2C i2c(p7, p30);		//sda, scl
 
@@ -29,11 +29,13 @@ uint16_t bh1750::readBH1750()
 	char m_sample[2] = {0,};
 	uint16_t uiResult = 0;
 	
+	setMode(BH1750_ONE_TIME_HIGH_RES_MODE);
+	
 	if(i2c.read(m_addr, m_sample, 2, false)){
 		printf("\n\r+++++++++++++Error i2c read: \n\r");
 	}
-		
+	printf("d0: %d, d1: %d\r\n", m_sample[0], m_sample[1]);	
 	uiResult = ((m_sample[0]<<8)|m_sample[1])/1.2;
-//	printf("Photo=%d\n\r",uiResult);	
+	printf("Photo=%d\n\r",uiResult);	
 	return uiResult;
 }

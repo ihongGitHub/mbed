@@ -12,7 +12,7 @@ typedef struct{
 	Flash* pFlash;
 	DimmerRf* pDimmerRf;
 	rs485* pRx485;
-	sx1276Exe* pSx1276Exe;
+	sx1276Exe* pSx1276;
 	UttecBle* pBleExe;
 	mSecExe* pMsecEce;
 } uttecLib_t;

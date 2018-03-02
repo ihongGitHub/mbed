@@ -2,7 +2,7 @@
 .\build\procrf.o: mbed_config.h
 .\build\procrf.o: ..\..\mbed528\uttec528\UttecApp\CmdDefine.h
 .\build\procrf.o: ..\..\mbed528\uttec528\UttecProc\procRf.h
-.\build\procrf.o: ..\..\mbed528\uttec528\UttecProc\uttecLib.h
+.\build\procrf.o: ..\..\mbed528\uttec528\UttecApp\uttecLib.h
 .\build\procrf.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\procrf.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\procrf.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h

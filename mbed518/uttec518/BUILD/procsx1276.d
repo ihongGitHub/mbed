@@ -101,7 +101,7 @@
 .\build\procsx1276.o: mbed/./platform/DirHandle.h
 .\build\procsx1276.o: mbed/./platform/CriticalSectionLock.h
 .\build\procsx1276.o: mbed/./platform/DeepSleepLock.h
-.\build\procsx1276.o: ..\..\mbed528\uttec528\UttecProc\uttecLib.h
+.\build\procsx1276.o: ..\..\mbed528\uttec528\UttecApp\uttecLib.h
 .\build\procsx1276.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\procsx1276.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\procsx1276.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h

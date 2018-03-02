@@ -4,8 +4,6 @@
 #include "procSx1276.h"
 #include "UttecUtil.h"
 
-//#include "sx1276Exe.h"
-
 static UttecUtil myUtil;
 
 Flash* procSx1276::mpFlash = NULL;
@@ -15,6 +13,7 @@ DimmerRf* procSx1276::pMyRf = NULL;
 rs485* procSx1276::pMy485 = NULL;
 
 simSx* procSx1276::pMySx1276 = NULL;
+//sx1276Exe* procSx1276::pMySx1276 = NULL;
 UttecBle* procSx1276::pMyBle = NULL;
 mSecExe* procSx1276::pMy_mSec = NULL;
 procServer* procSx1276::pMyServer = NULL;

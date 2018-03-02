@@ -5,7 +5,6 @@
 
 #include "nrf.h"
 #include "nrf_gpio.h"
-#include "nrf_drv_config.h"
 
 #include "Pyd1788.h"
 

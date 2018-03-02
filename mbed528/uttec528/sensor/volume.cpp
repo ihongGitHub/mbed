@@ -3,7 +3,7 @@
 
 #include "volume.h"
 
-AnalogIn volPin(p4);
+AnalogIn volPin(p2);
 vol_t volume::m_sVol = {0,};
 
 volume::volume(){

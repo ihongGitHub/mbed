@@ -101,7 +101,7 @@
 .\build\comerr.o: mbed/./platform/DirHandle.h
 .\build\comerr.o: mbed/./platform/CriticalSectionLock.h
 .\build\comerr.o: mbed/./platform/DeepSleepLock.h
-.\build\comerr.o: ..\..\mbed528\uttec528\UttecProc\uttecLib.h
+.\build\comerr.o: ..\..\mbed528\uttec528\UttecApp\uttecLib.h
 .\build\comerr.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\comerr.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\comerr.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h

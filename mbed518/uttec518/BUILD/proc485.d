@@ -101,7 +101,7 @@
 .\build\proc485.o: mbed/./platform/DirHandle.h
 .\build\proc485.o: mbed/./platform/CriticalSectionLock.h
 .\build\proc485.o: mbed/./platform/DeepSleepLock.h
-.\build\proc485.o: ..\..\mbed528\uttec528\UttecProc\uttecLib.h
+.\build\proc485.o: ..\..\mbed528\uttec528\UttecApp\uttecLib.h
 .\build\proc485.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\proc485.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\proc485.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h

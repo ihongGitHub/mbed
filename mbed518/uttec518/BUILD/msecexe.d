@@ -114,4 +114,4 @@
 .\build\msecexe.o: ..\..\mbed528\uttec528\sensor\Pyd1788.h
 .\build\msecexe.o: ..\..\mbed528\uttec528\sensor\volume.h
 .\build\msecexe.o: ..\..\mbed528\uttec528\sensor\photoAnalog.h
-.\build\msecexe.o: ..\..\mbed528\uttec528\sensor\bh1750.h
+.\build\msecexe.o: ..\..\mbed528\uttec528\sensor\BH1750.h

@@ -16,10 +16,10 @@ procServer* procSec::pMyServer = NULL;
 productType_t procSec::m_product = {0,};
 
 void procSec::setProductType(){
-	m_product.rcu = false;
+	m_product.rcu = true;
 	m_product.rf = true;
 	m_product.ble	= false;
-	m_product.rs485 = false;
+	m_product.rs485 = true;
 	m_product.sx1276 = false;
 }
 
@@ -64,8 +64,13 @@ void procSec::testFrame(rfFrame_t* pFrame){
 	}	
 }
 
-void procSec::testSxFrame(){
-	
+void procSec::proc1Sec(){
+	rfFrame_t* pRf = mp_rfFrame;
+	if(pRf->MyAddr.RxTx.Bit.Tx){
+//		printf("Send Repeat Cmd form Tx\n\r");
+		pRf->Cmd.Command = edRepeat;
+		pMyRf->sendRf(pRf);		
+	}
 }
 
 void procSec::secTask(rfFrame_t* pFrame){
@@ -75,6 +80,6 @@ void procSec::secTask(rfFrame_t* pFrame){
 //		pMy_mSec->setForcedDim(DeLampTtest);
 		pMy_mSec->setForcedDim(pFrame->Ctr.High/100.0);
 	}
-		
+	proc1Sec();	
 	myUtil.dispSec(pFrame, true);
 }

@@ -102,7 +102,7 @@ public:
 	void set485Done();	//for test only
 
 	rfFrame_t* return485Buf();
-	uint16_t returnTestData();
+	uint32_t returnTestData();
 
 };
 #endif

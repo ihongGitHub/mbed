@@ -88,6 +88,7 @@ public:
 	void generateRcuSignal();
 	void generateUtRcuSignal(uint64_t);
 	void testRcuGenerate();
+	uint8_t forTest(uint8_t);
 };
 
 

@@ -138,7 +138,8 @@ void UttecUtil::dispSec(rfFrame_t* pFrame, bool bCount){
 	ulTime++;
 	
 	if(bCount)
-		if(ulCount++%10) { printf("-"); return; }
+//		if(ulCount++%2) { printf("-"); return; }
+		if(ulCount++%2) {return; }
 	
 	printf("\n\rG:%d P:%d RxTx:%s", 
 	pFrame->MyAddr.GroupAddr, pFrame->MyAddr.PrivateAddr,
@@ -146,12 +147,14 @@ void UttecUtil::dispSec(rfFrame_t* pFrame, bool bCount){
 	printf(" S:%s\n\r",
 	dispSensor(pFrame->MyAddr.SensorType.iSensor));
 	dispTime(ulTime);
+		
 	if(!isMstOrGw(pFrame)){	
 		printf("Dim:%s, ",dispForced(myDimFact.forced));
 		printf("Type:%s, ", dispSensor(myDimFact.sensorType));
 		printf("tagetPwm = %0.3f, nowPwm = %0.3f\n\r", 
 			myDimFact.targetValue, myDimFact.nowValue);
 	}
+	
 	if(m_Factory.mode == eFactoryTestMode)
 		printf("eFactoryTestMode\n\r");
 	else if(m_Factory.mode == eFactoryOutMode)

@@ -101,7 +101,7 @@
 .\build\monitor.o: mbed/./platform/DirHandle.h
 .\build\monitor.o: mbed/./platform/CriticalSectionLock.h
 .\build\monitor.o: mbed/./platform/DeepSleepLock.h
-.\build\monitor.o: ..\..\mbed528\uttec528\UttecProc\uttecLib.h
+.\build\monitor.o: ..\..\mbed528\uttec528\UttecApp\uttecLib.h
 .\build\monitor.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\monitor.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\monitor.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h

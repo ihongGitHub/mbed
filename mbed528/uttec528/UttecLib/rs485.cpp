@@ -81,7 +81,7 @@ void rs485::task485(rfFrame_t* pFrame){
 rfFrame_t* rs485::return485Buf(){
 	return &m_485Rx;
 }
-uint16_t rs485::returnTestData(){
+uint32_t rs485::returnTestData(){
 	uint32_t uiResult = 0;
 	uint8_t ucData;
 	for(int i = 0; i<sizeof(mtData)-2; i++){

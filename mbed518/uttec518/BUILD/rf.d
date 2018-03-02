@@ -100,10 +100,10 @@
 .\build\rf.o: mbed/./platform/DirHandle.h
 .\build\rf.o: mbed/./platform/CriticalSectionLock.h
 .\build\rf.o: mbed/./platform/DeepSleepLock.h
-.\build\rf.o: mbed/TARGET_NRF51_DK/TARGET_NORDIC/TARGET_NRF5/TARGET_SDK11/drivers_nrf/delay/nrf_delay.h
 .\build\rf.o: ..\..\mbed528\uttec528\UttecLib\Rf.h
 .\build\rf.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\rf.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\rf.o: ..\..\mbed528\uttec528\UttecLib\Random.h
 .\build\rf.o: ..\..\mbed528\uttec528\UttecApp\UttecUtil.h
 .\build\rf.o: ..\..\mbed528\uttec528\UttecLib\radio_config.h
+.\build\rf.o: ..\..\mbed528\uttec528\UttecApp\UttecLed.h

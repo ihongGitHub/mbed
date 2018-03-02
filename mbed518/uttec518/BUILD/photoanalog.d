@@ -104,4 +104,4 @@
 .\build\photoanalog.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\photoanalog.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\photoanalog.o: ..\..\mbed528\uttec528\UttecApp\UttecUtil.h
-.\build\photoanalog.o: ..\..\mbed528\uttec528\sensor\bh1750.h
+.\build\photoanalog.o: ..\..\mbed528\uttec528\sensor\BH1750.h

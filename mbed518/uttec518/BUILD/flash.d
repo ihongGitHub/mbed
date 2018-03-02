@@ -100,7 +100,6 @@
 .\build\flash.o: mbed/./platform/DirHandle.h
 .\build\flash.o: mbed/./platform/CriticalSectionLock.h
 .\build\flash.o: mbed/./platform/DeepSleepLock.h
-.\build\flash.o: mbed/TARGET_NRF51_DK/TARGET_NORDIC/TARGET_NRF5/TARGET_SDK11/drivers_nrf/delay/nrf_delay.h
 .\build\flash.o: mbed/TARGET_NRF51_DK/TARGET_NORDIC/TARGET_NRF5/TARGET_SDK11/drivers_nrf/hal/nrf_nvmc.h
 .\build\flash.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\flash.o: ..\..\mbed528\uttec528\UttecLib\Channel.h

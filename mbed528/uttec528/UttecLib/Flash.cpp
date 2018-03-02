@@ -1,7 +1,6 @@
 #include "mbed.h"
 	
 #include <stdio.h>
-#include "nrf_delay.h"
 	
 #include "nrf.h"
 #include "nrf_nvmc.h"
@@ -147,7 +146,7 @@ void Flash::ReadAllFlash(void)
 bool Flash::isFactoryMode(){
 	printf("Gid=%d\n\r",getFlashFrame()->rfFrame.MyAddr.GroupAddr);
 	if(m_flash.FactoryModeId!=DeFieldMode){
-//		printf("\f\n New Factors \n\r");
+		printf("\f\n ---------------- New Factors \n\r");
 		initOrgFlash();
 		return false;
 	}
@@ -207,7 +206,7 @@ void Flash::initOrgFlash(){
 	rfFrame.MyAddr.GroupAddr=3;		//For Test Only
 	rfFrame.MyAddr.PrivateAddr=10;
 	rfFrame.MyAddr.Micom.Bit.nRf518=1;
-	rfFrame.MyAddr.RxTx.iRxTx=eSRx;
+	rfFrame.MyAddr.RxTx.iRxTx=eRx;
 	rfFrame.MyAddr.SensorType.iSensor=ePir;
 	
 	rfFrame.Ctr.High=100;

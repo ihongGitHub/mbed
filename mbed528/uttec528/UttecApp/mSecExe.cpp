@@ -37,7 +37,7 @@ mSecExe::mSecExe(DimmerRf* pRf){
 	dimer = 0.3;			//set Pwm initial duty
 }
 
-void mSecExe::procDim(UttecDim_t sDim){
+void mSecExe::procDim(){
 //	putchar('.');
 	static float fNow = 0;
 	if(sDim.target >= fNow){
@@ -49,6 +49,8 @@ void mSecExe::procDim(UttecDim_t sDim){
 		if(fNow <= sDim.target) fNow = sDim.target;
 	}
 	sDim.pwm = fNow;
+	sDim.current = fNow;
+//	printf("%f\r\n", sDim.pwm);
 	dimer = (float)1.0 - sDim.pwm; 
 //	dimer = fNow;
 }
@@ -56,6 +58,7 @@ void mSecExe::procDim(UttecDim_t sDim){
 void mSecExe::switchDimType(rfFrame_t* pFrame){
 	if(sDim.forced){	//when forced Mode
 		dimer = sDim.target;
+		sDim.pwm = sDim.target;
 		return;
 	}
 	switch(m_sensorType){
@@ -69,19 +72,19 @@ void mSecExe::switchDimType(rfFrame_t* pFrame){
 			sDim.upStep = 0.005;
 			sDim.downStep = 0.0003;
 			sDim.forced = false;
-			procDim(sDim);		
+			procDim();		
 			break;
 		case eVolume:
 			sDim.upStep = 0.01;
 			sDim.downStep = 0.01;
 			sDim.forced = false;
-			procDim(sDim);		
+			procDim();		
 			break;
 		case eDayLight:
 			sDim.upStep = 0.01;
 			sDim.downStep = 0.01;
 			sDim.forced = false;
-			procDim(sDim);		
+			procDim();		
 			break;
 		default:
 			break;
@@ -95,6 +98,7 @@ void mSecExe::switchSensorType(rfFrame_t* pFrame){
 		case ePir:
 			m_sensorType = ePir;			
 			if(pirA.procPirSensor(ePirAnalog)){
+				myLed.blink(eSensLed, eSensBlink);
 //			if(pirA.procPirSensor(ePirDigital)){
 				pirA.clearSensorFlag();
 				if(!ulTimeout){
@@ -131,7 +135,8 @@ void mSecExe::switchSensorType(rfFrame_t* pFrame){
 			if(pFrame->MyAddr.RxTx.Bit.Tx){
 							pFrame->Ctr.Level = sDim.target*100;
 			}
-			if(photoA.procPhotoA(ePhotoDigital)&&pFrame->MyAddr.RxTx.Bit.Tx){
+			if(photoA.procPhotoA(ePhotoAnalog)&&pFrame->MyAddr.RxTx.Bit.Tx){
+//			if(photoA.procPhotoA(ePhotoDigital)&&pFrame->MyAddr.RxTx.Bit.Tx){
 				m_sensorType = eDayLight;		
 				photoA.clearSensorFlag();	
 				if(!ulTimeout){
@@ -167,27 +172,24 @@ void mSecExe::switchSensorType(rfFrame_t* pFrame){
 void mSecExe::msecTask(rfFrame_t* pFrame){
 	UttecUtil myUtil;	
 	static uint32_t ulCount = 0;	
-	static bool isRealMode = false;
+	static bool isRealMode = true;
+	
 	ulCount++;
 	
-//	putchar('.');
 	if(!myUtil.isMstOrGw(pFrame)){
 		if(isRealMode)
 			switchSensorType(pFrame);
 		switchDimType(pFrame);
 	}
-	/*
-	*/
 	myLed.taskLed();
 	if(!(ulCount%500)){
+//		testPwm();
+//		testLed();
 		pFrame->Ctr.Level = sDim.target*100;
 		dimFactors_t sFactors = {sDim.forced,m_sensorType,
-			sDim.target,sDim.pwm}; 
-		
+			sDim.target,sDim.current}; 
 		myUtil.getDimFactor(sFactors);
 //		printf("getDimFactor\n\r");
-		myLed.blink(eRfLed, eRfBlink);
-		myLed.blink(eSensLed, eSensBlink);
 	}
 }
 bool mSecExe::returnSensorFlag(){
@@ -208,3 +210,23 @@ void mSecExe::setForcedDim(float level){
 void mSecExe::setUnforcedDim(){
 	sDim.forced = false;
 }
+
+void mSecExe::testLed(){
+	static bool bToggel = true;
+	bToggel = !bToggel;
+	
+	if(bToggel){
+		myLed.blink(eRfLed, eRfBlink);
+	}
+	else{
+		myLed.blink(eSensLed, eSensBlink);
+	}
+}
+
+void mSecExe::testPwm(){
+	static float fPwm = 0.0;
+	setForcedDim(fPwm);	
+	fPwm += 0.02;
+	if(fPwm>1.0) fPwm = 0.0;
+}
+

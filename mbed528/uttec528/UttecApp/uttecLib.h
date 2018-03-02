@@ -6,7 +6,7 @@
 #include "rs485.h"
 #include "UttecBle.h"
 #include "mSecExe.h"
-//#include "UttecSx1276.h"
+//#include "sx1276Exe.h"
 
 #include "CmdDefine.h"
 
@@ -16,6 +16,7 @@ typedef struct{
 	Flash* pFlash;
 	DimmerRf* pDimmerRf;
 	rs485* pRs485;
+//	sx1276Exe* pSx1276;
 	UttecBle* pBle;
 	mSecExe* pMsec;
 } uttecLib_t;

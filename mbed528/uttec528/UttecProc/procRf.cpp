@@ -51,7 +51,7 @@ void procRf::procRfRepeatCmd(rfFrame_t* pFrame){
 			printf("Rx pwm = %f ->",	pMy_mSec->sDim.target);
 		}
 	}
-	printf("procRepeatCmd\n\r");
+//	printf("procRepeatCmd\n\r");
 }
 
 void procRf::resendByRfRepeater(rfFrame_t* pFrame){
@@ -81,7 +81,7 @@ void procRf::procRfSensorCmd(rfFrame_t* pFrame){
 	}
 	if(myUtil.isRx(mp_rfFrame)&&
 		(mp_rfFrame->MyAddr.SensorType.iSensor!=eNoSensor)){
-		printf("No Action: isRx\n\r");
+//		printf("No Action: isRx\n\r");
 		return;
 	}
 	
@@ -260,7 +260,7 @@ static void dispErrorRxTx(rfFrame_t* pThis, rfFrame_t* pFrame){
 void procRf::taskRf(rfFrame_t* pFrame){
 	UttecLed myLed;
 	uint8_t ucCmd = pFrame->Cmd.Command;
-	printf("From taskRf:%d -> ", ucCmd);
+//	printf("From taskRf:%d -> ", ucCmd);
 	switch(ucCmd){
 		case edDummy:
 			printf("End of edDummy\n\r");

@@ -24,6 +24,7 @@ private:
 	static rs485* pMy485;
 
 	static simSx* pMySx1276;
+//	static sx1276Exe* pMySx1276;
 
 	static UttecBle* pMyBle;
 	static mSecExe* pMy_mSec;

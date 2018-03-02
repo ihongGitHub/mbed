@@ -7,9 +7,9 @@
 #include "test.h"
 
 extern test myTest;
-extern Timer rcuTimer;
+static Timer rcuTimer;
 
-InterruptIn rcuEvent(p2);
+InterruptIn rcuEvent(p4);
 
 Rcu_t m_Rcu={true,false,false,false,0,0,0};
 rcuFrame_t Rcu::m_utRcu = {0,};
@@ -76,7 +76,6 @@ static void rcuUtCallback()
 	uint32_t ulDelta;
 	
 	static int begin, end;
-	
 	end=rcuTimer.read_us();
 	ulDelta = end - begin; 
 	begin=rcuTimer.read_us();
@@ -86,16 +85,16 @@ static void rcuUtCallback()
 		m_Rcu.m_ulRcuTimeTimeOut=750;
 		m_Rcu.m_bitCount=64;
 		m_Rcu.m_RcuData=0;
-//		putchar('H');
+		putchar('H');
 	}
 	else if(m_Rcu.bStart&&(m_Rcu.m_bitCount--)){
 		if((ulDelta>=(DeRcu_1-DeRcuRange))&&(ulDelta<=(DeRcu_1+DeRcuRange))){
 			m_Rcu.m_UtRcuData|=0x0000000000000001; bBitOk=true;
-//			putchar('1');
+			putchar('1');
 		}
 		else if((ulDelta>=(DeRcu_0-DeRcuRange))&&(ulDelta<=(DeRcu_0+DeRcuRange))){
 			m_Rcu.m_UtRcuData&=~0x0000000000000001; bBitOk=true;
-//			putchar('0');
+			putchar('0');
 		}
 		if(bBitOk){
 			if(!m_Rcu.m_bitCount){
@@ -173,8 +172,8 @@ Rcu::Rcu(){
 	m_Rcu.bRcuFlag=true;
 	printf("Rcu\n\r");
 	rcuTimer.start();
-//	rcuEvent.fall(&rcuCallback);
-	rcuEvent.fall(&rcuUtCallback);
+	rcuEvent.fall(&rcuCallback);
+//	rcuEvent.fall(&rcuUtCallback);
 }
 void Rcu::setRcuPwm(){
 	rcuPwm.period_us(25);		//set Pwm Freq
@@ -265,9 +264,8 @@ uint8_t Rcu::returnRcuCode(){
 	ucRcu1=ulRcu>>8;
 	ucRcu0=ulRcu;
 	ucRcu1=~ucRcu1;
-	if(ucRcu1==ucRcu0) printf("Ok=%x\n\r",ucRcu0);
+	if(ucRcu1==ucRcu0) return ucRcu0; //printf("Ok=%x\n\r",ucRcu0);
 	else printf("Error Rcu Data=%x\n\r",m_Rcu.m_RcuData);
-	return ucRcu0;
 }
 bool Rcu::isUttecCode(){
 	if(returnVendorCode()==DeUttecRcuCode) return true;
@@ -336,8 +334,6 @@ void Rcu::procRcu(rcuValue_t value)
 //			uiNum = 0;
 		break;
 		case rMinus: printf("rMinus\n\r"); 
-			myTest.setTestMyFrameByNum(uiNum);
-//			uiNum = 0;
 		break;
 		default: printf("Rcu Error value: %x\n\r", value);			
 	}
@@ -355,6 +351,28 @@ void Rcu::clearUtRcuFlag(){
 
 void Rcu::procUtRcu(rcuFrame_t* sRcu){
 	printf("gid = %d\n\r", sRcu->rcu0.Data_t.gid);
+}
+
+uint8_t Rcu::forTest(uint8_t rcu){
+	uint8_t ucResult = 0;
+	switch(rcu){
+		case rOne:
+			printf("My Role is Rx\r\n");		
+			ucResult =1;
+			break;
+		case rTwo:
+			printf("My Role is Tx\r\n");		
+			ucResult =2;
+			break;
+		case rThree:
+			printf("My Role is SRx\r\n");		
+			ucResult =4;
+			break;
+		default:
+			ucResult =1;
+			break;
+	}
+	return ucResult;
 }
 
 

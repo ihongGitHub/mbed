@@ -84,4 +84,11 @@ typedef struct{
 2018.01.27
 rs485 and sx1276 edClientAck에 대한 부분 추가 Test필요
 
+2017.02.05 BSL Light Sample debugging
+- Timer rcuTimer; deleted and in Rcu.cpp, insert "static Timer rcuTimer;"
 
+- redefine Test String
+	- t4xxxxT: Received Frame
+	- t5xxxxT: My Address
+	- t6xxxxT: Your Address
+	

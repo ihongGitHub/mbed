@@ -13,7 +13,7 @@ typedef enum{
 	eForced = true,
 	eNonForced = false,
 	eRfBlink = 20,
-	eSensBlink = 100	
+	eSensBlink = 20	
 } enumLed_t;
 
 typedef struct{

@@ -101,8 +101,8 @@
 .\build\rcu.o: mbed/./platform/DirHandle.h
 .\build\rcu.o: mbed/./platform/CriticalSectionLock.h
 .\build\rcu.o: mbed/./platform/DeepSleepLock.h
-.\build\rcu.o: ..\..\mbed528\uttec528\Simulation\test.h
-.\build\rcu.o: ..\..\mbed528\uttec528\UttecProc\uttecLib.h
+.\build\rcu.o: ..\..\mbed528\uttec528\UttecProc\test.h
+.\build\rcu.o: ..\..\mbed528\uttec528\UttecApp\uttecLib.h
 .\build\rcu.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\rcu.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\rcu.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h

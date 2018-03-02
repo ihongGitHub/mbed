@@ -37,16 +37,22 @@ void photoAnalog::setBH1750Mode(BH1750_Mode_t mode){
 
 bool photoAnalog::procPhotoA(photoType_t sType){
 	static uint32_t ulcount =0;
+	static uint32_t ulTest = 0;
 	
 	Flash myFlash;
 	Flash_t* pFlash = myFlash.getFlashFrame();	
 	if(sType == ePhotoDigital){
 		if(!(ulcount++%0x400)){
 			m_sPhotoA.current = myBH.readBH1750()/65536.0;	//0x10000 (max lux)
+//			if(!(ulTest++%200))
+			printf("Digital Photo = %f\r\n", m_sPhotoA.current);
 		}	
 	}
-	else
+	else{
 		m_sPhotoA.current = photoPin.read();	//check range of max, min
+			if(!(ulTest++%200))
+			printf("Analog Photo = %f\r\n", m_sPhotoA.current);
+	}	
 	averageSensor(m_sPhotoA.current);
 	
 	if(m_sPhotoA.average > m_sPhotoA.next){

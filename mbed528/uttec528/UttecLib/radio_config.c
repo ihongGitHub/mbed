@@ -13,9 +13,9 @@
 * @addtogroup nrf_dev_radio_rx_example_main nrf_dev_radio_tx_example_main
 * @{
 */
- 
+#include "nrf51.h"
+#include "nrf51_bitfields.h" 
 #include "radio_config.h"
-#include "nrf_delay.h"
 
 /* These are set to zero as Shockburst packets don't have corresponding fields. */
 #define PACKET_S1_FIELD_SIZE      (0UL)  /**< Packet S1 field size in bits. */

@@ -63,8 +63,10 @@ private:
 	static bool m_sensorFlag;
 
 	void switchSensorType(rfFrame_t*);
-	void procDim(UttecDim_t);
+	void procDim();
 	void setSensorFlag();
+	void testPwm();
+	void testLed();
 
 public:
 	static eSensorType_t m_sensorType;

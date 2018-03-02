@@ -13,7 +13,7 @@
 #include "procSec.h"
 #include "procServer.h"
 
-#include "simSx.h"
+//#include "simSx.h"
 
 class test
 {
@@ -26,7 +26,7 @@ private:
 	static UttecBle* pMyBle;
 	static mSecExe* pMy_mSec;
 	static procServer* pMyServer;
-	static simSx* pMySim;
+//	static simSx* pMySim;
 
 public:
 	test();
@@ -38,8 +38,8 @@ public:
 	void setTestBleData();
 	void testTicker();
 	void setTestReceiveFrameByNum(uint16_t);
-	void setTestMyFrameByNum(uint16_t);
-	void setTestAddr(uint16_t);
+	void setTestYourAddr(uint32_t);
+	void setTestMyAddr(uint32_t);
 	void testModAscii();
 	void testModRtu();
 	void testRealRtu();

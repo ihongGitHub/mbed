@@ -1,6 +1,6 @@
-.\build\test.o: ..\..\mbed528\uttec528\Simulation\test.cpp
+.\build\test.o: ..\..\mbed528\uttec528\UttecProc\test.cpp
 .\build\test.o: mbed_config.h
-.\build\test.o: ..\..\mbed528\uttec528\Simulation\test.h
+.\build\test.o: ..\..\mbed528\uttec528\UttecProc\test.h
 .\build\test.o: mbed/./mbed.h
 .\build\test.o: mbed/./platform/mbed_toolchain.h
 .\build\test.o: mbed/./platform/mbed_preprocessor.h
@@ -101,7 +101,7 @@
 .\build\test.o: mbed/./platform/DirHandle.h
 .\build\test.o: mbed/./platform/CriticalSectionLock.h
 .\build\test.o: mbed/./platform/DeepSleepLock.h
-.\build\test.o: ..\..\mbed528\uttec528\UttecProc\uttecLib.h
+.\build\test.o: ..\..\mbed528\uttec528\UttecApp\uttecLib.h
 .\build\test.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\test.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\test.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h

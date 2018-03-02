@@ -14,7 +14,7 @@ rs485* test::pMy485 = NULL;
 UttecBle* test::pMyBle = NULL;
 mSecExe* test::pMy_mSec = NULL;
 procServer* test::pMyServer = NULL;
-simSx* test::pMySim = NULL;
+//simSx* test::pMySim = NULL;
 
 test::test(){
 }
@@ -198,21 +198,6 @@ static uint8_t setSub(uint8_t ucSub){
 	return ucResult;	
 }
 
-void test::setTestAddr(uint16_t uiAddr){
-	UttecUtil myUtil;
-	uint8_t ucPid = uiAddr%100; uiAddr /= 100;
-	uint8_t ucGid = uiAddr;
-	
-	printf("ucPid = %d, ucGid = %d\n\r", 
-		ucPid, ucGid);
-	
-	rfFrame_t* pRf = mp_rfFrame;
-	
-	pRf->MyAddr.GroupAddr	= ucGid;
-	pRf->MyAddr.PrivateAddr = ucPid;
-	printf("End of setTestMyFrameByNum\n\r");
-	myUtil.dispSec(mp_rfFrame,false);
-}
 
 void test::setTestReceiveFrameByNum(uint16_t uiNum){
 	UttecUtil myUtil;
@@ -251,28 +236,51 @@ void test::setTestReceiveFrameByNum(uint16_t uiNum){
 //	pRf->Cmd.Command = edClientAck;
 	pRf->Cmd.SubCmd = setSub(ucSub);
 	pRf->Ctr.Level = 22;
-	
-	sDst->rxtx = ucRxTxDst;
-	sDst->pid = pRf->MyAddr.PrivateAddr;
-	sDst->gid = pRf->MyAddr.GroupAddr;
-	
+		
 	printf("\n\rEnd of setReceiveFrameByNum\n\r");
 	myUtil.dispSec(mp_rfFrame,false);
 }
 
-// rxtx, cmd, sub, sensor
-void test::setTestMyFrameByNum(uint16_t uiNum){
+void test::setTestMyAddr(uint32_t uiNum){
 	UttecUtil myUtil;
+	
+	uint8_t ucPid = uiNum%10; uiNum /= 10;
+	uint8_t ucGid = uiNum%10; uiNum /= 10;
 	uint8_t ucRxTx = uiNum%10; uiNum /= 10;
-	uint8_t ucSensor = uiNum;
-	printf("ucRxTx = %d, ucSensor = %d\n\r", 
-		ucRxTx, ucSensor);
+	uint8_t ucSensor = uiNum%10;
 	
 	rfFrame_t* pRf = mp_rfFrame;
 	
+	pRf->MyAddr.GroupAddr	= ucGid;
+	pRf->MyAddr.PrivateAddr = ucPid;
 	pRf->MyAddr.SensorType.iSensor = setSensorType(ucSensor);
 	pRf->MyAddr.RxTx.iRxTx = setRoleType(ucRxTx);
-	printf("End of setTestMyFrameByNum\n\r");
+	
+	printf("\n\r MyAddr = %d, %d, %d, %d \n\r", 
+		ucSensor, ucRxTx, ucGid, ucPid);
+	printf("End of setTestMyAddr\n\r");
+	myUtil.dispSec(mp_rfFrame,false);
+}
+
+// rxtx, cmd, sub, sensor
+void test::setTestYourAddr(uint32_t uiNum){
+	UttecUtil myUtil;
+	
+	uint8_t ucPid = uiNum%10; uiNum /= 10;
+	uint8_t ucGid = uiNum%10; uiNum /= 10;
+	uint8_t ucRxTx = uiNum%10; uiNum /= 10;
+	uint8_t ucSensor = uiNum%10;
+	
+	rfFrame_t* pRf = mp_rfFrame;
+	dst_t* sDst = (dst_t*)&pRf->Trans;
+
+	sDst->rxtx = setRoleType(ucRxTx);
+	sDst->pid = pRf->MyAddr.PrivateAddr;
+	sDst->gid = pRf->MyAddr.GroupAddr;
+	
+	printf("\n\r YourAddr = %d, %d, %d, %d \n\r", 
+		ucSensor, ucRxTx, ucGid, ucPid);
+	printf("End of setTestYourAddr\n\r");
 	myUtil.dispSec(mp_rfFrame,false);
 }
 

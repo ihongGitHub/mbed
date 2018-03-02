@@ -100,6 +100,4 @@
 .\build\pyd1788.o: mbed/./platform/DirHandle.h
 .\build\pyd1788.o: mbed/./platform/CriticalSectionLock.h
 .\build\pyd1788.o: mbed/./platform/DeepSleepLock.h
-.\build\pyd1788.o: mbed/TARGET_NRF51_DK/TARGET_NORDIC/TARGET_NRF5/TARGET_MCU_NRF51822_UNIFIED/sdk/nrf_drv_config.h
-.\build\pyd1788.o: mbed/TARGET_NRF51_DK/TARGET_NORDIC/TARGET_NRF5/TARGET_SDK11/drivers_nrf/config/nrf_drv_config_validation.h
 .\build\pyd1788.o: ..\..\mbed528\uttec528\sensor\Pyd1788.h

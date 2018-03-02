@@ -30,8 +30,9 @@ private:
 	static procServer* pMyServer;
 
 	void testFrame(rfFrame_t*);
-	void testSxFrame();
 	void setProductType();
+	void proc1Sec();
+
 public:
 	static productType_t m_product;
 

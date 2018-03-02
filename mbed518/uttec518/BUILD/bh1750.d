@@ -100,4 +100,4 @@
 .\build\bh1750.o: mbed/./platform/DirHandle.h
 .\build\bh1750.o: mbed/./platform/CriticalSectionLock.h
 .\build\bh1750.o: mbed/./platform/DeepSleepLock.h
-.\build\bh1750.o: ..\..\mbed528\uttec528\sensor\bh1750.h
+.\build\bh1750.o: ..\..\mbed528\uttec528\sensor\BH1750.h

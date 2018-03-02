@@ -101,7 +101,7 @@
 .\build\uttecble.o: mbed/./platform/DirHandle.h
 .\build\uttecble.o: mbed/./platform/CriticalSectionLock.h
 .\build\uttecble.o: mbed/./platform/DeepSleepLock.h
-.\build\uttecble.o: ..\..\mbed528\uttec528\UttecProc\uttecLib.h
+.\build\uttecble.o: ..\..\mbed528\uttec528\UttecApp\uttecLib.h
 .\build\uttecble.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\uttecble.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\uttecble.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h

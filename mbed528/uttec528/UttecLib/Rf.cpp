@@ -3,7 +3,6 @@
 #include "mbed.h"
 
 #include "nrf.h"
-#include "nrf_delay.h"
 
 #include  "Rf.h"
 
@@ -132,11 +131,13 @@ void Rf::sendInternal(){
 	clearRfMode();
 	setRfMode(eRxMode);
 }
+#include "UttecLed.h"
 
 void Rf::sendRf(const rfFrame_t* ucpTx)
 {
+	UttecLed myLed;
 	UttecUtil myUtil;
-	printf("sendRf Ch =%d -> ", m_Ch.channel);
+//	printf("sendRf Ch =%d -> ", m_Ch.channel);
 	uint8_t ucTempHop=0;
 	m_blockingTime=30;
 	m_TxFrame=*ucpTx;
@@ -155,6 +156,7 @@ void Rf::sendRf(const rfFrame_t* ucpTx)
 	}
 	else sendInternal();
 	m_Ch.Hopping=ucTempHop;
+	myLed.blink(eRfLed, eRfBlink);
 }
 
 void Rf::sendSxRf(const rfFrame_t* ucpTx)

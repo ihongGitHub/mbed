@@ -1,7 +1,7 @@
 .\build\procserver.o: ..\..\mbed528\uttec528\UttecProc\procServer.cpp
 .\build\procserver.o: mbed_config.h
 .\build\procserver.o: ..\..\mbed528\uttec528\UttecProc\procServer.h
-.\build\procserver.o: ..\..\mbed528\uttec528\UttecProc\uttecLib.h
+.\build\procserver.o: ..\..\mbed528\uttec528\UttecApp\uttecLib.h
 .\build\procserver.o: ..\..\mbed528\uttec528\UttecLib\Flash.h
 .\build\procserver.o: ..\..\mbed528\uttec528\UttecLib\Channel.h
 .\build\procserver.o: ..\..\mbed528\uttec528\UttecApp\DimmerRf.h
