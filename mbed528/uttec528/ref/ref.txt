@@ -92,5 +92,9 @@ rs485 and sx1276 edClientAck에 대한 부분 추가 Test필요
 	- t5xxxxT: My Address
 	- t6xxxxT: Your Address
 
-2017.03.03
+2018.03.03
 rs485 input time delay: dimer, switchSensorType
+for GW and MST, in mSecExe skip dimmer and sensorType process.
+
+2018.03.06
+setup Schedule, Monitor, Emergency... etc Protocol 

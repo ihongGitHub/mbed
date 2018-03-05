@@ -57,7 +57,7 @@ bool monitor::isMonitor(){
 }
 
 void monitor::askAlive(){
-	printf("Monitor ask to %dth member, wheter alive\n\r",
+	printf("Monitor ask to %dth member, whether alive\n\r",
 		m_monitor.nextNum);
 	printf("and process previous Ack result\n\\r");
 }
