@@ -141,25 +141,25 @@ void UttecUtil::dispSec(rfFrame_t* pFrame, bool bCount){
 //		if(ulCount++%2) { printf("-"); return; }
 		if(ulCount++%2) {return; }
 	
-	printf("\n\rG:%d P:%d RxTx:%s", 
+	if(m_Factory.mode == eFactoryTestMode)
+		printf("eFactoryTestMode\r\n");
+	else if(m_Factory.mode == eFactoryOutMode)
+		printf("eFactoryOutMode\r\n");
+	else printf("eFieldMode\r\n");
+	
+	printf("G:%d P:%d RxTx:%s", 
 	pFrame->MyAddr.GroupAddr, pFrame->MyAddr.PrivateAddr,
 	dispRxTx(pFrame->MyAddr.RxTx.iRxTx));
-	printf(" S:%s\n\r",
+	printf(" S:%s\r\n",
 	dispSensor(pFrame->MyAddr.SensorType.iSensor));
 	dispTime(ulTime);
 		
 	if(!isMstOrGw(pFrame)){	
-		printf("Dim:%s, ",dispForced(myDimFact.forced));
+		printf("\r\nDim:%s, ",dispForced(myDimFact.forced));
 		printf("Type:%s, ", dispSensor(myDimFact.sensorType));
-		printf("tagetPwm = %0.3f, nowPwm = %0.3f\n\r", 
+		printf("tagetPwm = %0.3f, nowPwm = %0.3f\r\n", 
 			myDimFact.targetValue, myDimFact.nowValue);
-	}
-	
-	if(m_Factory.mode == eFactoryTestMode)
-		printf("eFactoryTestMode\n\r");
-	else if(m_Factory.mode == eFactoryOutMode)
-		printf("eFactoryOutMode\n\r");
-	else printf("eFieldMode\n\r");
+	}	
 }
 
 void UttecUtil::testProc(uint8_t ucName, uint32_t ulValue){

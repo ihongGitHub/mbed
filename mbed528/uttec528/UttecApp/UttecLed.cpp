@@ -7,6 +7,7 @@ DigitalOut UttecLed::rfLed = DigitalOut(LED1);
 DigitalOut UttecLed::sensLed = DigitalOut(LED2);
 UttecLed_t UttecLed::sRfLed = {0,};
 UttecLed_t UttecLed::sSensLed = {0,};
+uint32_t UttecLed::sAlarmTime = 0;
 
 UttecLed::UttecLed(){
 	/*
@@ -85,3 +86,17 @@ void UttecLed::blink(enumLed_t eLed, uint16_t uiTime){
 			break;
 	}
 }
+
+void UttecLed::alarm(){
+	if(sAlarmTime) sAlarmTime--;	
+	else return;
+	
+	if(!(sAlarmTime%100)) blink(eRfLed, eRfBlink);
+}
+
+void UttecLed::setAlarmTime(uint32_t ulTime){
+	sAlarmTime = ulTime;
+}
+
+
+

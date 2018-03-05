@@ -60,7 +60,11 @@ bool rs485::isAnyDone(){
 }
 
 bool rs485::is485Done(){
-//	if(pMySer->readable()) parse485Data(getchar());
+	static uint32_t ulCount = 0;
+	while(pMySer->readable()) {
+		parse485Data(getchar());
+//		if(!(ulCount++%20)) putchar('@');
+	}
 	return m_485Done;
 }
 bool rs485::isTestDone(){
@@ -129,8 +133,10 @@ bool rs485::parse485Data(uint8_t ucChar)
 		m_status.count=0;
 		m_status.start=true;
 		m_485Done=false;
+//		putchar('%');
 	}
 	else if(ucChar==eof){
+//		putchar('E');
 		if((m_status.start)&&(m_status.count==De485FrameLength)){
 			printf("\n\r");
 			for(int i=0;i<De485FrameLength;i++) putchar(m485Data[i]);
@@ -153,6 +159,7 @@ bool rs485::parse485Data(uint8_t ucChar)
 			m_status.count=0;
 			m_status.start=false;
 			m_485Done=false;
+		putchar('&');
 	}
 	else m485Data[m_status.count++]=ucChar;
 	return m_485Done;

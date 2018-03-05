@@ -50,23 +50,16 @@ void proc485::rs485Task(rfFrame_t* pFrame){
 	printf("From 485:%d -> ", ucCmd);
 	switch(ucCmd){
 		case edDummy:
-				break;
 		case edSensor:
-				break;
 		case edRepeat:
-				break;
 		case edLifeEnd:
-				break;
 		case edNewSet:
-				break;
 		case edNewSetAck:
-				break;
 		case edSearch:
-				break;
 		case edBack:
-				break;
 		case edAsk:
-				break;
+			printf("TBD\r\n");
+			break;
 		case edVolume:
 			if(myUtil.isMst(mp_rfFrame)){
 				printf("and by485: isMst -> ");

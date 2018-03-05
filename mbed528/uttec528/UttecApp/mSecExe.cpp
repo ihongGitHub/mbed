@@ -40,34 +40,40 @@ mSecExe::mSecExe(DimmerRf* pRf){
 void mSecExe::procDim(){
 //	putchar('.');
 	static float fNow = 0;
+	bool bAct = false;
+	
 	if(sDim.target >= fNow){
 		fNow += sDim.upStep;
 		if(fNow >= sDim.target) fNow = sDim.target;
+		else bAct = true;
 	}
 	else{
 		fNow -= sDim.downStep;
 		if(fNow <= sDim.target) fNow = sDim.target;
+		else bAct = true;
 	}
 	sDim.pwm = fNow;
 	sDim.current = fNow;
-//	printf("%f\r\n", sDim.pwm);
-	dimer = (float)1.0 - sDim.pwm; 
+	
+	if(bAct){
+		dimer = (float)1.0 - sDim.pwm; 
+	}
 //	dimer = fNow;
 }
 
 void mSecExe::switchDimType(rfFrame_t* pFrame){
+	static uint32_t ulCount = 0;
 	if(sDim.forced){	//when forced Mode
+		if((ulCount++%20)) return;
 		dimer = sDim.target;
 		sDim.pwm = sDim.target;
 		return;
 	}
 	switch(m_sensorType){
 		case ePir:
-//			putchar('1');
 			if(sDim.dTime) sDim.dTime--;
 			else{	//when Delay Time out
 				sDim.target = (float)pFrame->Ctr.Low/(float)100.0;
-//				putchar('.');
 			}
 			sDim.upStep = 0.005;
 			sDim.downStep = 0.0003;
@@ -179,6 +185,7 @@ void mSecExe::msecTask(rfFrame_t* pFrame){
 	if(!myUtil.isMstOrGw(pFrame)){
 		if(isRealMode)
 			switchSensorType(pFrame);
+//		if(0) //for test 20180303
 		switchDimType(pFrame);
 	}
 	myLed.taskLed();

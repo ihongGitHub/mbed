@@ -48,7 +48,7 @@ int main(void)
 {
 	uttecLib_t myLib;	
 	Uart.baud(115200);	
-
+	
 	printf("\n\rNow New nrf51822 2018.01.15 11:00\n\r");
 	
 	ble_gap_addr_t addr;
@@ -100,10 +100,32 @@ simSx mySim(&myRf);
 //	pFrame->MyAddr.SensorType.iSensor = eNoSensor;
 	pMyFrame->MyAddr.SensorType.iSensor = ePir;	//ePir, eDayLight
 UttecLed myLed;
-
+/*
+	uint8_t ucdTest[32] = {0,};
+	for(int i = 0; i<32; i++) ucdTest[i] = i;
+	printf("Now test Crc \r\n");
+	printf("\r\n");
+	for(int i = 0; i<32; i++) printf("%02x",i);
+	printf("\r\n");
+	
+	printf("crc result = %x\r\n",myUtil.gen_crc16(ucdTest,32));
+	for(int i = 0; i<32; i++) ucdTest[i] = 0;
+	rfFrame_t* pTest = (rfFrame_t*)ucdTest;
+	pTest->Trans.SrcGroupAddr = 0x1234;
+	printf("\r\n");
+	for(int i=0;i<32; i++) printf("%02x",ucdTest[i]);
+	printf("\r\n");
+	printf("\r\n");
+	
+	while(1){
+		myUtil.setWdtReload();
+	}
+	*/
 	while(true){
 		myUtil.setWdtReload();
 		
+/*		
+*/		
 		if(mProcSec.m_product.rcu)
 		if(myRcu.isRcuReady()){
 			rcuValue_t myCode;
@@ -112,7 +134,7 @@ UttecLed myLed;
 			pMyFrame->MyAddr.RxTx.iRxTx = myRcu.forTest(myCode);
 //			myRcu.procRcu(myCode);
 		}
-		
+
 		if(mProcSec.m_product.rf)
 		if(myRf.isRxDone()){		//For Rf Receive
 			myLed.blink(eRfLed, eRfBlink);
@@ -120,12 +142,6 @@ UttecLed myLed;
 			rfFrame_t* pFrame = myRf.returnRxBuf();
 			mProcRf.taskRf(pFrame);			
 		}
-		
-		if(mProcSec.m_product.rs485)
-		if(my485.is485Done()){		//For rs485 Receive
-			my485.clear485Done();
-			mProc485.rs485Task(my485.return485Buf());
-		}		
 		
 		if(mProcSec.m_product.sx1276)
 		if(mySim.isSxRxDone()){		//For sx1276 Receive
@@ -139,6 +155,12 @@ UttecLed myLed;
 			if(mProcSx1276.isMyGroup(pMyFrame, psRf))
 				mProcSx1276.sx1276Task(psRf);
 		}
+		if(mProcSec.m_product.rs485)
+		if(my485.is485Done()){		//For rs485 Receive
+			my485.clear485Done();
+			mProc485.rs485Task(my485.return485Buf());
+		}		
+		
 		
 		if(my_mSec.returnSensorFlag()){		//For sensor Receive
 			my_mSec.clearSensorFlag();
@@ -151,17 +173,19 @@ UttecLed myLed;
 		}
 		
 		if(tick_mSec){
+			myLed.alarm();
 			tick_mSec = false;
 			my_mSec.msecTask(pMyFrame);
 		}
-		
+//		static bool bTest = false;
 		if(tick_Sec){		
-			static uint16_t uiCount = 0;	
+//			bTest = !bTest;
+//			if(bTest) myLed.setAlarmTime(500);
+			
 			tick_Sec = false;			
 			mProcSec.secTask(pMyFrame);	
 //			myRcu.testRcuGenerate();
-		}
-		
+		}		
 	}
 }
 

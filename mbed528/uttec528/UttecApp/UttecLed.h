@@ -25,17 +25,21 @@ typedef struct{
 class UttecLed 
 {
 private:
+	static uint32_t sAlarmTime;
 public:
 	static DigitalOut rfLed;
 	static DigitalOut sensLed;
 	static UttecLed_t sRfLed;
 	static UttecLed_t sSensLed;
+
 	UttecLed();
 	void taskLed();
 	void on(enumLed_t);
 	void off(enumLed_t);
 	void unforced(enumLed_t);
 	void blink(enumLed_t,uint16_t);
+	void alarm();
+	void setAlarmTime(uint32_t);
 };
 
 #endif
