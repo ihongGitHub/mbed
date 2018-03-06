@@ -104,3 +104,6 @@ void photoAnalog::monitorSensorFactor(){
 	printf("Gid = %d\n\r", pFlash->rfFrame.MyAddr.GroupAddr);
 }
 
+float photoAnalog::getPhotoAnalog(){
+	return photoPin;
+}

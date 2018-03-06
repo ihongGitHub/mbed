@@ -92,5 +92,8 @@ rs485 and sx1276 edClientAck에 대한 부분 추가 Test필요
 	- t5xxxxT: My Address
 	- t6xxxxT: Your Address
 
-2017.03.03
+2018.03.03
 rs485 input time delay: dimer, switchSensorType
+
+2018.03.06
+modify class monitor,  function: returnMonitor

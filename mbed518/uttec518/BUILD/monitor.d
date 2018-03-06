@@ -113,3 +113,5 @@
 .\build\monitor.o: ..\..\mbed528\uttec528\Simulation\UttecBle.h
 .\build\monitor.o: ..\..\mbed528\uttec528\UttecApp\mSecExe.h
 .\build\monitor.o: ..\..\mbed528\uttec528\UttecApp\CmdDefine.h
+.\build\monitor.o: ..\..\mbed528\uttec528\sensor\photoAnalog.h
+.\build\monitor.o: ..\..\mbed528\uttec528\sensor\BH1750.h

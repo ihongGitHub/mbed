@@ -396,7 +396,6 @@ void test::testRealAscii(){
 
 void test::testMonitor(){
 	monitor myMon;
-	myMon.setTestData();
 }
 
 #include "schedule.h"

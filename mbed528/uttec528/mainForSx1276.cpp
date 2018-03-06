@@ -20,6 +20,8 @@
 #include "nrf_ble_gap.h"
 
 //#include "bh1750.h"
+#include "monitor.h"
+
 
 DigitalIn CTS(p10, PullDown);
 
@@ -155,13 +157,13 @@ UttecLed myLed;
 			if(mProcSx1276.isMyGroup(pMyFrame, psRf))
 				mProcSx1276.sx1276Task(psRf);
 		}
+		
 		if(mProcSec.m_product.rs485)
 		if(my485.is485Done()){		//For rs485 Receive
 			my485.clear485Done();
 			mProc485.rs485Task(my485.return485Buf());
 		}		
-		
-		
+				
 		if(my_mSec.returnSensorFlag()){		//For sensor Receive
 			my_mSec.clearSensorFlag();
 			if(!myUtil.isRx(pMyFrame))
@@ -179,6 +181,8 @@ UttecLed myLed;
 		}
 //		static bool bTest = false;
 		if(tick_Sec){		
+			monitor myM;
+//			myM.returnMonitor();
 //			bTest = !bTest;
 //			if(bTest) myLed.setAlarmTime(500);
 			

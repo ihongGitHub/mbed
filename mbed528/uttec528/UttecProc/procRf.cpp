@@ -164,12 +164,15 @@ void procRf::processCmdNewSet(rfFrame_t* sFrame){
 	tempFrame->Ctr.Low =	sFrame->Ctr.Low*100/255;
 	tempFrame->Ctr.SensorRate =	sFrame->Ctr.SensorRate;
 	tempFrame->Ctr.DTime=	sFrame->Ctr.DTime;
-
+	printf("high, low = %d, %d\r\n", tempFrame->Ctr.High, tempFrame->Ctr.Low);
+	myUtil.setWdt(5);
 	tempFrame->MyAddr.GroupAddr=sFrame->Trans.DstGroupAddr;
 	myFlash.getFlashFrame()->Channel.channel=
 	sFrame->Trans.DstGroupAddr;
 
 	myFlash.writeFlash();
+	
+//	while(1);
 	NVIC_SystemReset();
 }
 
@@ -238,6 +241,7 @@ void procRf::searchRf(rfFrame_t* pFrame){
 	//Next you have to set pwm control for off the led lamp 
 	myLed.on(eRfLed);
 	myLed.on(eSensLed);
+	pMy_mSec->setDirectDim(1);
 	printf("\n\r----------searchSx1276\n\r");
 	setRfTimeout.attach(atSetTimeout,DeRfSetTimeout);
 	setRfProc = eWaitGatewayApprove;

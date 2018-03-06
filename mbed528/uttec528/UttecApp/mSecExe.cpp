@@ -23,6 +23,9 @@ pirAnalog pirA;
 volume vol;
 photoAnalog photoA;
 
+mSecExe::mSecExe(){
+}
+
 mSecExe::mSecExe(DimmerRf* pRf){
 	Flash* myFlash;
 	rfFrame_t* pyFrame = &myFlash->getFlashFrame()->rfFrame;
@@ -235,5 +238,9 @@ void mSecExe::testPwm(){
 	setForcedDim(fPwm);	
 	fPwm += 0.02;
 	if(fPwm>1.0) fPwm = 0.0;
+}
+
+void mSecExe::setDirectDim(float dim){
+	dimer = dim;
 }
 

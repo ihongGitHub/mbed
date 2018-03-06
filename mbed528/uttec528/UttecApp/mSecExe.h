@@ -72,6 +72,7 @@ public:
 	static eSensorType_t m_sensorType;
 	static UttecDim_t sDim;
 
+	mSecExe();
 	mSecExe(DimmerRf*);
 	void msecTask(rfFrame_t*);
 	bool returnSensorFlag();
@@ -80,6 +81,7 @@ public:
 	void switchDimType(rfFrame_t*);
 	void setForcedDim(float level);
 	void setUnforcedDim();
+	void setDirectDim(float);
 };
 
 #endif

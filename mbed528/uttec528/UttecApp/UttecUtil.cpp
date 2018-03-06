@@ -123,7 +123,7 @@ void dispTime(uint32_t ulTime){
 	myTime.tm_min = (ulTime/60)%60;
 	myTime.tm_hour = (ulTime/3600)%24;
 	myTime.tm_mday = ulTime/(3600*24);
-	printf("%dD %dH %dM %dS\n\r", myTime.tm_mday,
+	printf(":: %d:%d:%d:%d\n\r", myTime.tm_mday,
 	myTime.tm_hour, myTime.tm_min, myTime.tm_sec);
 }
 char* dispForced(bool bForced){
@@ -152,6 +152,7 @@ void UttecUtil::dispSec(rfFrame_t* pFrame, bool bCount){
 	dispRxTx(pFrame->MyAddr.RxTx.iRxTx));
 	printf(" S:%s\r\n",
 	dispSensor(pFrame->MyAddr.SensorType.iSensor));
+	printf("H:%d, L:%d ", pFrame->Ctr.High, pFrame->Ctr.Low);
 	dispTime(ulTime);
 		
 	if(!isMstOrGw(pFrame)){	
