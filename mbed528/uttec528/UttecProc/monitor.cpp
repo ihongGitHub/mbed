@@ -19,6 +19,14 @@ static void timeoutM(){
 monitor::monitor(){
 }
 
+<<<<<<< HEAD
+=======
+void monitor::askAlive(){
+	printf("Monitor ask to %dth member, whether alive\n\r",
+		m_monitor.nextNum);
+	printf("and process previous Ack result\n\\r");
+}
+>>>>>>> bbb8c67653aee43815baf561b4d515df7c7b5644
 
 bool monitor::returnMonitor(){
 	bool bResult = true;
