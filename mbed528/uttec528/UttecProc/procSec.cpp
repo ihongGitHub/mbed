@@ -73,6 +73,8 @@ void procSec::proc1Sec(){
 	}
 }
 
+#include "UttecLed.h"
+static Serial myUart(p9, p11);
 void procSec::secTask(rfFrame_t* pFrame){
 	UttecUtil myUtil;	
 //	testFrame(pFrame);
@@ -81,5 +83,14 @@ void procSec::secTask(rfFrame_t* pFrame){
 		pMy_mSec->setForcedDim(pFrame->Ctr.High/100.0);
 	}
 	proc1Sec();	
-	myUtil.dispSec(pFrame, true);
+	if(!myUtil.isMstOrGw(mp_rfFrame))
+		myUtil.dispSec(pFrame, true);
+	else{
+		UttecLed myLed;
+		static uint32_t ulCount = 0;	
+		if(!(ulCount++%40)) printf("\r\n");
+		else myUart.printf("*");
+//		myLed.blink(eRfLed, eRfBlink);
+		myLed.blink(eSensLed, eRfBlink);
+	}
 }

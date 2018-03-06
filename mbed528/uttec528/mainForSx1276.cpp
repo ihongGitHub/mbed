@@ -25,7 +25,6 @@
 
 DigitalIn CTS(p10, PullDown);
 
-Serial Uart(p9,p11);
 UttecBle myBle;
 
 Flash myFlash;
@@ -48,6 +47,7 @@ static void tickmSec(){
 
 int main(void)
 {
+Serial Uart(p9,p11);
 	uttecLib_t myLib;	
 	Uart.baud(115200);	
 	
@@ -102,40 +102,20 @@ simSx mySim(&myRf);
 	myTest.setTest(myLib, &mProcServer);
 	
 //	pFrame->MyAddr.SensorType.iSensor = eNoSensor;
-	pMyFrame->MyAddr.SensorType.iSensor = ePir;	//ePir, eDayLight
+//	pMyFrame->MyAddr.SensorType.iSensor = ePir;	//ePir, eDayLight
 UttecLed myLed;
-/*
-	uint8_t ucdTest[32] = {0,};
-	for(int i = 0; i<32; i++) ucdTest[i] = i;
-	printf("Now test Crc \r\n");
-	printf("\r\n");
-	for(int i = 0; i<32; i++) printf("%02x",i);
-	printf("\r\n");
 	
-	printf("crc result = %x\r\n",myUtil.gen_crc16(ucdTest,32));
-	for(int i = 0; i<32; i++) ucdTest[i] = 0;
-	rfFrame_t* pTest = (rfFrame_t*)ucdTest;
-	pTest->Trans.SrcGroupAddr = 0x1234;
-	printf("\r\n");
-	for(int i=0;i<32; i++) printf("%02x",ucdTest[i]);
-	printf("\r\n");
-	printf("\r\n");
-	
-	while(1){
-		myUtil.setWdtReload();
-	}
-	*/
 	while(true){
 		myUtil.setWdtReload();
 		
 /*		
-*/		
+		*/
 		if(mProcSec.m_product.rcu)
 		if(myRcu.isRcuReady()){
 			rcuValue_t myCode;
 			myRcu.clearRcuFlag();
 			myCode = (rcuValue_t)myRcu.returnRcuCode(); 
-			pMyFrame->MyAddr.RxTx.iRxTx = myRcu.forTest(myCode);
+//			pMyFrame->MyAddr.RxTx.iRxTx = myRcu.forTest(myCode);
 //			myRcu.procRcu(myCode);
 		}
 
@@ -182,7 +162,8 @@ UttecLed myLed;
 			my_mSec.msecTask(pMyFrame);
 		}
 //		static bool bTest = false;
-		if(tick_Sec){		
+		if(tick_Sec){
+			
 			monitor myM;
 //			myM.returnMonitor();
 //			bTest = !bTest;
@@ -190,8 +171,9 @@ UttecLed myLed;
 			
 			tick_Sec = false;			
 			mProcSec.secTask(pMyFrame);	
-			printf("high:%d, low:%d\r\n", pMyFrame->Ctr.High,
-			pMyFrame->Ctr.Low);
+			
+//			printf("high:%d, low:%d, rxtx:%d\r\n", pMyFrame->Ctr.High,
+//			pMyFrame->Ctr.Low, pMyFrame->MyAddr.RxTx.iRxTx);
 		}		
 	}
 }

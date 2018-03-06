@@ -206,8 +206,8 @@ void Flash::initOrgFlash(){
 	rfFrame.MyAddr.GroupAddr=3;		//For Test Only
 	rfFrame.MyAddr.PrivateAddr=10;
 	rfFrame.MyAddr.Micom.Bit.nRf518=1;
-	rfFrame.MyAddr.RxTx.iRxTx=eRx;
-	rfFrame.MyAddr.SensorType.iSensor=ePir;
+	rfFrame.MyAddr.RxTx.iRxTx=eGW;
+	rfFrame.MyAddr.SensorType.iSensor=eNoSensor;
 	
 	rfFrame.Ctr.High=100;
 	rfFrame.Ctr.Low=0;

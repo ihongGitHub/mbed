@@ -86,6 +86,8 @@ void proc485::rs485Task(rfFrame_t* pFrame){
 			if(myUtil.isMstOrGw(mp_rfFrame)){
 				if(myUtil.isMst(pFrame)){
 					pFrame->MyAddr.RxTx.iRxTx = eGW;
+//					pMy485->send485(pFrame, eRsDown);
+					pMyRf->sendRf(pFrame);	
 					pMy485->send485(pFrame, eRsDown);
 					printf("From mst or gw send 485Frame to Tx -> end \n\r");
 				}

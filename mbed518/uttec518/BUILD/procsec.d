@@ -114,3 +114,4 @@
 .\build\procsec.o: ..\..\mbed528\uttec528\UttecApp\mSecExe.h
 .\build\procsec.o: ..\..\mbed528\uttec528\UttecApp\CmdDefine.h
 .\build\procsec.o: ..\..\mbed528\uttec528\UttecProc\procServer.h
+.\build\procsec.o: ..\..\mbed528\uttec528\UttecApp\UttecLed.h
