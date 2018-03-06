@@ -65,6 +65,8 @@ int main(void)
 	
 	printf("My Gid =%d, %f\n\r", pMyFrame->MyAddr.GroupAddr,
 		pFlash->VolumeCheck);
+	printf("high =%d, low =%d\n\r", pMyFrame->Ctr.High,
+		pMyFrame->Ctr.Low);
 
 	UttecUtil myUtil;
 	DimmerRf myRf(&myFlash);
@@ -188,7 +190,8 @@ UttecLed myLed;
 			
 			tick_Sec = false;			
 			mProcSec.secTask(pMyFrame);	
-//			myRcu.testRcuGenerate();
+			printf("high:%d, low:%d\r\n", pMyFrame->Ctr.High,
+			pMyFrame->Ctr.Low);
 		}		
 	}
 }
