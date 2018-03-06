@@ -94,13 +94,6 @@ rs485 and sx1276 edClientAck에 대한 부분 추가 Test필요
 
 2018.03.03
 rs485 input time delay: dimer, switchSensorType
-<<<<<<< HEAD
 
 2018.03.06
 modify class monitor,  function: returnMonitor
-=======
-for GW and MST, in mSecExe skip dimmer and sensorType process.
-
-2018.03.06
-setup Schedule, Monitor, Emergency... etc Protocol 
->>>>>>> bbb8c67653aee43815baf561b4d515df7c7b5644
