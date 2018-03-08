@@ -32,7 +32,7 @@ bool pirAnalog::procPirSensor(pirType_t sType){
 	
 	if(sType == ePirAnalog){
 		m_sPirA.current = pirAPin.read();
-//		static uint32_t ulCount = 0;
+		static uint32_t ulCount = 0;
 //		if(!(ulCount++%100)) printf("pir = %f\r\n", m_sPirA.current);
 		if(m_sPirA.max<m_sPirA.current) m_sPirA.max = m_sPirA.current;
 		else if(m_sPirA.min>m_sPirA.current) m_sPirA.min = m_sPirA.current;

@@ -194,6 +194,7 @@ void Flash::resetFlash(){
 }
 
 #define DeFactoryChannel 1
+//#define DeTx 1
 void Flash::initOrgFlash(){
 	
 	uint8_t* ucpFrame=(uint8_t*)getFlashFrame();
@@ -203,11 +204,17 @@ void Flash::initOrgFlash(){
 	rfFrame = rfFrame;
 	
 //	rfFrame.MyAddr.GroupAddr=DeFactoryChannel;		//For Test Only
-	rfFrame.MyAddr.GroupAddr=3;		//For Test Only
+	rfFrame.MyAddr.GroupAddr=8;		//For Test Only
 	rfFrame.MyAddr.PrivateAddr=10;
 	rfFrame.MyAddr.Micom.Bit.nRf518=1;
+	
+#ifdef DeTx	
+	rfFrame.MyAddr.RxTx.iRxTx=eTx;
+	rfFrame.MyAddr.SensorType.iSensor=ePir;
+#else	
 	rfFrame.MyAddr.RxTx.iRxTx=eGW;
 	rfFrame.MyAddr.SensorType.iSensor=eNoSensor;
+#endif
 	
 	rfFrame.Ctr.High=100;
 	rfFrame.Ctr.Low=0;

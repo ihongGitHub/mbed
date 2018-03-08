@@ -22,7 +22,6 @@
 //#include "bh1750.h"
 #include "monitor.h"
 
-
 DigitalIn CTS(p10, PullDown);
 
 UttecBle myBle;
@@ -52,6 +51,7 @@ Serial Uart(p9,p11);
 	Uart.baud(115200);	
 	
 	printf("\n\rNow New nrf51822 2018.01.15 11:00\n\r");
+	printf("bsl Manual Control\n\r");
 	
 	ble_gap_addr_t addr;
 	for(int i=0; i<sizeof(addr.addr); i++) 
@@ -95,8 +95,10 @@ simSx mySim(&myRf);
 	procSec mProcSec(myLib, &mProcServer);
 	procSx1276 mProcSx1276(myLib, &mProcServer);
 /*
+	myFlash.resetFlash();	
+	while(1);
 */
-//	myFlash.resetFlash();	
+	
 	myUtil.setWdt(6);	
 	Rcu myRcu;	
 	myTest.setTest(myLib, &mProcServer);
@@ -124,6 +126,7 @@ UttecLed myLed;
 			myLed.blink(eRfLed, eRfBlink);
 			myRf.clearRxFlag();
 			rfFrame_t* pFrame = myRf.returnRxBuf();
+			myUtil.dispCmd(pFrame);
 			mProcRf.taskRf(pFrame);			
 		}
 		
@@ -141,9 +144,11 @@ UttecLed myLed;
 		}
 		
 		if(mProcSec.m_product.rs485)
-		if(my485.is485Done()){		//For rs485 Receive
+		if(my485.is485Done()){		//For rs485 Receive			
 			my485.clear485Done();
-			mProc485.rs485Task(my485.return485Buf());
+			rfFrame_t* p485Frame = my485.return485Buf();
+//			mProc485.rs485Task(p485Frame);
+			my485.send485(pMyFrame, eRsDown);
 		}		
 				
 		if(my_mSec.returnSensorFlag()){		//For sensor Receive
@@ -161,19 +166,67 @@ UttecLed myLed;
 			tick_mSec = false;
 			my_mSec.msecTask(pMyFrame);
 		}
-//		static bool bTest = false;
-		if(tick_Sec){
-			
-			monitor myM;
-//			myM.returnMonitor();
-//			bTest = !bTest;
-//			if(bTest) myLed.setAlarmTime(500);
+		
+		if(tick_Sec){	
 			
 			tick_Sec = false;			
 			mProcSec.secTask(pMyFrame);	
 			
-//			printf("high:%d, low:%d, rxtx:%d\r\n", pMyFrame->Ctr.High,
-//			pMyFrame->Ctr.Low, pMyFrame->MyAddr.RxTx.iRxTx);
+			
+			/*			
+			static uint32_t ulCount = 0;
+			static uint32_t ulNext = 0;
+			static uint32_t ucMode = 0;
+			uint8_t ucConst = 10;
+			uint8_t ucNext=ucConst;
+			if(ulCount == ulNext){
+				ulNext += ucNext;
+				ucMode++;
+				myLed.setAlarmTime(500);
+			}
+			printf("Mode = %d, Next = %d, target = %f, pwm = %f\r\n", ucMode%7,
+			 ucNext, my_mSec.sDim.target, my_mSec.sDim.current);
+			switch(ucMode%7){
+				case 0:
+						ucNext = ucConst;
+						my_mSec.sDim.target = 1.0;
+					break;
+				case 1:
+						ucNext = ucConst;
+						my_mSec.sDim.target = 0.1;
+					break;
+				case 2:
+						ucNext = ucConst;
+						my_mSec.sDim.target = 0.7;
+					break;
+				case 3:
+						ucNext = ucConst;
+						my_mSec.sDim.target = 0.3;
+					break;
+				case 4:
+						ucNext = ucConst;
+						my_mSec.sDim.target = 1.0;
+					break;
+				case 5:
+						ucNext = ucConst;
+						my_mSec.sDim.target = 0.0;
+					break;
+				case 6:
+						ucNext = ucConst;
+						my_mSec.sDim.target = 0.5;
+					break;
+			}
+			ulCount++;
+			monitor myM;
+			myM.returnMonitor();
+			bTest = !bTest;
+			if(bTest) myLed.setAlarmTime(500);
+			if(myM.getTrafficCountFlag()){ 
+				printf("Traffic = %d\r\n", myM.getTraffic());
+			}
+			printf("high:%d, low:%d, rxtx:%d\r\n", pMyFrame->Ctr.High,
+			pMyFrame->Ctr.Low, pMyFrame->MyAddr.RxTx.iRxTx);
+			*/
 		}		
 	}
 }

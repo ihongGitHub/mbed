@@ -20,8 +20,8 @@ static DigitalOut upCtr(p19);	//For upload TXCtr
 
 rs485::rs485(Serial* pSer){
 	pMySer = pSer;
-	downCtr = 1;
-	upCtr = 1;
+	downCtr = 0;
+	upCtr = 0;
 }
 
 static rs485Status_t tStatus = {0,};
@@ -209,11 +209,11 @@ void rs485::sendByDown(){
 	Serial sendDown(p12, p11);	//FOR Download TX
 	sendDown.baud(115200);
 	for(int i=0;i<FLENGTH;i++){
-		downCtr = 0;
+		downCtr = 1;
 		sendDown.putc(m485Data[i]);
 	}
 	wait(0.0002);
-	downCtr = 1;		
+	downCtr = 0;		
 }
 
 void rs485::sendByUp(){
@@ -221,11 +221,11 @@ void rs485::sendByUp(){
 	sendUp.baud(115200);		
 //	sendUp.baud(115200/12);		//For 9600bps
 	for(int i=0;i<FLENGTH;i++){
-		upCtr = 0;
+		upCtr = 1;
 		sendUp.putc(m485Data[i]);
 	}
 	wait(0.0002);
-	upCtr = 1;		
+	upCtr = 0;		
 }
 
 void rs485::changeChannel(rs485Channel_t ch){

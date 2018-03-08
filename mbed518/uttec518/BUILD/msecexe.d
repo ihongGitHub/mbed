@@ -115,3 +115,7 @@
 .\build\msecexe.o: ..\..\mbed528\uttec528\sensor\volume.h
 .\build\msecexe.o: ..\..\mbed528\uttec528\sensor\photoAnalog.h
 .\build\msecexe.o: ..\..\mbed528\uttec528\sensor\BH1750.h
+.\build\msecexe.o: ..\..\mbed528\uttec528\UttecProc\monitor.h
+.\build\msecexe.o: ..\..\mbed528\uttec528\UttecApp\uttecLib.h
+.\build\msecexe.o: ..\..\mbed528\uttec528\UttecLib\rs485.h
+.\build\msecexe.o: ..\..\mbed528\uttec528\Simulation\UttecBle.h
