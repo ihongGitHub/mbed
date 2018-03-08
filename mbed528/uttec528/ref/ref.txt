@@ -97,3 +97,23 @@ rs485 input time delay: dimer, switchSensorType
 
 2018.03.06
 modify class monitor,  function: returnMonitor
+
+
+2018.03.09
+add Server request sub command: 
+status(edsCmd_Status: traffic, mac Address, photo)
+poer(edsPowerRead: power)
+
+For traffic: 1cycle/day, traffic count time: 1cycle/3second
+(max: 3*65000= 2days)
+traffic: Ctr_t->Monitor_t(traffic)
+
+mac Address: Trans_t->ping_t(mac[6] 6bytes)
+
+photo: Ctr_t->Monitor_t(photo)
+
+power: Ctr_t->Power_t(Power)
+
+from server: edServerReq and edsControl.. or edsCmd_Status
+
+from client: edClientAck and edsControl.. or edsCmd_Status

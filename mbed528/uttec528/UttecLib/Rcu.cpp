@@ -368,6 +368,10 @@ uint8_t Rcu::forTest(uint8_t rcu){
 			printf("My Role is SRx\r\n");		
 			ucResult =4;
 			break;
+		case rFour:
+			printf("My Role is GW\r\n");		
+			ucResult =eGW;
+			break;
 		default:
 			ucResult =4;
 			break;

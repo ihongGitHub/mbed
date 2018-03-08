@@ -122,6 +122,7 @@
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\Simulation\simSx.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecProc\proc485.h
 .\build\mainforsx1276.o: ..\..\mbed528\uttec528\UttecProc\procSec.h
+.\build\mainforsx1276.o: ..\..\mbed528\uttec528\sensor\eprom.h
 .\build\mainforsx1276.o: mbed/TARGET_NRF51_DK/TARGET_NORDIC/TARGET_NRF5/TARGET_MCU_NRF51822_UNIFIED/sdk/softdevice/s130/headers/nrf_ble_gap.h
 .\build\mainforsx1276.o: mbed/TARGET_NRF51_DK/TARGET_NORDIC/TARGET_NRF5/TARGET_MCU_NRF51822_UNIFIED/sdk/softdevice/s130/headers/nrf_ble_types.h
 .\build\mainforsx1276.o: mbed/TARGET_NRF51_DK/TARGET_NORDIC/TARGET_NRF5/TARGET_MCU_NRF51822_UNIFIED/sdk/softdevice/s130/headers/nrf_ble_ranges.h

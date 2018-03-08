@@ -340,21 +340,21 @@ UttecFactory_t UttecUtil::m_Factory =
 	{eFactoryTestMode,DeFactoryModeTimeout};
 
 bool UttecUtil::isNotMyGwGroup(rfFrame_t* pSrc, rfFrame_t* pMy){
-	dst_t* pDst = (dst_t*)&pSrc->Trans;
+	ping_t* pDst = (ping_t*)&pSrc->Trans;
 	if(pMy->MyAddr.GroupAddr/10 == pDst->gid/10) 
 		return false;
 	else return true;
 }
 
 bool UttecUtil::isMyGroup(rfFrame_t* pSrc, rfFrame_t* pMy){
-	dst_t* pDst = (dst_t*)&pSrc->Trans;
+	ping_t* pDst = (ping_t*)&pSrc->Trans;
 	if(pMy->MyAddr.GroupAddr == pDst->gid) 
 		return true;
 	else return false;
 }
 
 bool UttecUtil::isMyAddr(rfFrame_t* pSrc, rfFrame_t* pMy){
-	dst_t* pDst = (dst_t*)&pSrc->Trans;
+	ping_t* pDst = (ping_t*)&pSrc->Trans;
 	if((pMy->MyAddr.GroupAddr == pDst->gid)&&
 		(pMy->MyAddr.PrivateAddr == pDst->pid)
 		&&(pMy->MyAddr.RxTx.iRxTx == pDst->rxtx)){	

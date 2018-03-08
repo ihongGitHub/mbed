@@ -65,7 +65,7 @@ void procServer::procAltSub(rfFrame_t* pFrame){
 
 void procServer::setAckFrame(rfFrame_t* pFrame){
 	*pFrame = *mp_rfFrame;
-	dst_t* pDst = (dst_t*)&pFrame->Trans;
+	ping_t* pDst = (ping_t*)&pFrame->Trans;
 	pDst->rxtx = eMst;
 	pFrame->Cmd.Command = edClientAck;
 }
@@ -100,12 +100,6 @@ bool procServer::taskServer(rfFrame_t* pFrame){
 		case edsNewSet:
 			procNewSetSub(pFrame);
 				break;
-		case edsPing:
-			printf("edsPing tbd\n\r");
-				break;
-		case edsPhoto:
-			printf("edsPhoto return Photo Value\n\r");
-				break;
 		case edsColor:
 				break;
 		case edsCmd_485NewSet:
@@ -138,10 +132,6 @@ void procServer::taskClient(rfFrame_t* pFrame){
 		case edsControl:
 				break;
 		case edsNewSet:
-				break;
-		case edsPing:
-				break;
-		case edsPhoto:
 				break;
 		case edsColor:
 				break;

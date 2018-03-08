@@ -228,7 +228,7 @@ void test::setTestReceiveFrameByNum(uint16_t uiNum){
 
 	*pRf = MyRf;
 	
-	dst_t* sDst = (dst_t*)&pRf->Trans;
+	ping_t* sDst = (ping_t*)&pRf->Trans;
 
 	pRf->MyAddr.SensorType.iSensor = setSensorType(ucSensorSrc);
 	pRf->MyAddr.RxTx.iRxTx = setRoleType(ucRxTxSrc);
@@ -272,7 +272,7 @@ void test::setTestYourAddr(uint32_t uiNum){
 	uint8_t ucSensor = uiNum%10;
 	
 	rfFrame_t* pRf = mp_rfFrame;
-	dst_t* sDst = (dst_t*)&pRf->Trans;
+	ping_t* sDst = (ping_t*)&pRf->Trans;
 
 	sDst->rxtx = setRoleType(ucRxTx);
 	sDst->pid = pRf->MyAddr.PrivateAddr;

@@ -99,6 +99,25 @@ typedef union
 
 typedef struct
 {	
+	uint16_t traffic;
+	uint8_t Level;
+	uint8_t Type;
+	uint8_t monitor;
+	Status_t Status;
+	uint16_t photo;	
+} Monitor_t;
+
+typedef struct
+{	
+	uint8_t High;
+	uint8_t Low;
+	uint8_t Level;
+	uint8_t Type;
+	uint32_t Power;
+} Power_t;
+
+typedef struct
+{	
 	uint8_t High;
 	uint8_t Low;
 	uint8_t Level;
@@ -115,11 +134,16 @@ typedef struct
 	uint16_t Time;
 } Cmd_t;
 
+
 typedef struct{
 	uint8_t pid;
 	uint8_t rxtx;
 	uint16_t gid;
-} dst_t;
+	uint16_t tbd;
+	uint8_t mac[6];
+	uint8_t Zone;
+	uint8_t CheckSum;
+} ping_t;
 
 typedef struct
 {

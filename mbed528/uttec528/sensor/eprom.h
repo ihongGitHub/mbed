@@ -1,5 +1,5 @@
-#ifndef _BH1750_I2C_H
-#define _BH1750_I2C_H
+#ifndef _EEPROM_I2C_H
+#define _EEPROM_I2C_H
 
 #define DeEpromAddr       0xA0U 	//AT24c02
 //#define DeBH1750Addr        (0x46U >> 1)	//BH1750
@@ -11,6 +11,7 @@
 #define De256WriteDelay 0.005
 #define DeReadDelay 0.0001
 #define De256PageWriteDelay 0.005
+
 typedef struct{
 	uint8_t addr;
 	char data;

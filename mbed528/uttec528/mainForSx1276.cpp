@@ -7,6 +7,7 @@
 #include "UttecLed.h"
 #include "Rcu.h"
 #include "test.h"
+#include "eprom.h"
 
 #include "procRf.h"
 #include "procBle.h"
@@ -106,7 +107,8 @@ simSx mySim(&myRf);
 //	pFrame->MyAddr.SensorType.iSensor = eNoSensor;
 //	pMyFrame->MyAddr.SensorType.iSensor = ePir;	//ePir, eDayLight
 UttecLed myLed;
-	
+eprom myRom;
+	myRom.test256Byte(0,16);
 	while(true){
 		myUtil.setWdtReload();
 		
@@ -117,8 +119,9 @@ UttecLed myLed;
 			rcuValue_t myCode;
 			myRcu.clearRcuFlag();
 			myCode = (rcuValue_t)myRcu.returnRcuCode(); 
-//			pMyFrame->MyAddr.RxTx.iRxTx = myRcu.forTest(myCode);
-//			myRcu.procRcu(myCode);
+	
+			pMyFrame->MyAddr.RxTx.iRxTx = myRcu.forTest(myCode);
+			myRcu.procRcu(myCode);
 		}
 
 		if(mProcSec.m_product.rf)
@@ -171,6 +174,8 @@ UttecLed myLed;
 			
 			tick_Sec = false;			
 			mProcSec.secTask(pMyFrame);	
+			myLed.blink(eSensLed, eRfBlink);
+			myLed.blink(eRfLed, eRfBlink);
 			
 			
 			/*			
